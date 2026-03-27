@@ -40,15 +40,15 @@ const categoryColors: Record<string, string> = {
   ogImage={post.image}
 >
   <!-- Breadcrumb + Hero -->
-  <section class="bg-navy pt-10 pb-16 relative overflow-hidden">
+  <section class="bg-navy pt-28 pb-16 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style={`background-image: url('${post.image}'); background-size: cover; background-position: center;`}></div>
     <div class="absolute inset-0 bg-gradient-to-b from-navy/80 to-navy"></div>
     <div class="relative container">
       <div class="max-w-3xl">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title.length > 40 ? post.title.substring(0, 40) + '…' : post.title }]} />
         <span class={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-4 ${categoryColors[post.category] || 'bg-gold/20 text-gold'}`}>
           {post.category}
         </span>
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title.length > 40 ? post.title.substring(0, 40) + '…' : post.title }]} />
         <h1 class="font-display text-3xl md:text-4xl lg:text-5xl text-cream leading-tight mb-4">
           {post.title}
         </h1>
