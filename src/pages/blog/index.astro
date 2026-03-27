@@ -1,5 +1,8 @@
 ---
+export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { listPublishedPosts } from '../../lib/blog-db';
+import { env } from 'cloudflare:workers';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta.";
 
@@ -12,7 +15,30 @@ const categories = [
   { id: 6, name: "Saúde Ocular" },
 ];
 
-const posts = [
+// ─── Buscar posts do banco D1 ─────────────────────────────────────────────────
+const cfEnv = env as unknown as Env;
+let dbPosts: any[] = [];
+try {
+  dbPosts = await listPublishedPosts(cfEnv.DB, { limit: 60 });
+} catch (e) {
+  console.error('[blog/index] Erro ao buscar posts do D1:', e);
+}
+
+// Converter posts do D1 para o formato esperado pelo template
+const d1Posts = dbPosts.map(p => ({
+  slug: p.slug,
+  title: p.title,
+  excerpt: p.excerpt,
+  category: p.category,
+  readTime: p.read_time ?? '5 min',
+  image: p.image_url || '/images/blog/default-blog.webp',
+  date: p.published_at ? new Date(p.published_at * 1000).toISOString().split('T')[0] : new Date(p.created_at * 1000).toISOString().split('T')[0],
+  type: 'article',
+  featured: !!p.featured,
+}));
+
+// Posts estáticos hardcoded (fallback / artigos existentes antes do D1)
+const staticPosts = [
   {
     slug: "injecao-antivegf-o-que-e",
     title: "Injeção Intravítrea Anti-VEGF: O Que É, Para Quem É Indicada e Como Funciona",
@@ -114,8 +140,13 @@ const posts = [
   },
 ];
 
-const featuredPost = posts[0];
-const regularPosts = posts.slice(1);
+// Mesclar: posts do D1 primeiro, depois estáticos (sem duplicatas por slug)
+const d1Slugs = new Set(d1Posts.map(p => p.slug));
+const uniqueStaticPosts = staticPosts.filter(p => !d1Slugs.has(p.slug));
+const posts = [...d1Posts, ...uniqueStaticPosts];
+
+const featuredPost = posts.find(p => p.featured) ?? posts[0];
+const regularPosts = posts.filter(p => p !== featuredPost);
 
 function formatDate(dateStr: string) {
   const date = new Date(dateStr + 'T00:00:00');

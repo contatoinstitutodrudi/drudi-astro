@@ -1,21 +1,98 @@
 ---
+export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { allPosts } from '../../data/blogPosts';
+import { getPostBySlug } from '../../lib/blog-db';
+import { env } from 'cloudflare:workers';
 
 const WA_LINK = "https://wa.me/5511916544653";
 const WA_AGENDAR = `${WA_LINK}?text=Olá! Gostaria de agendar uma consulta.`;
 
-// ─── Geração estática de rotas ───────────────────────────────────────────────
-export function getStaticPaths() {
-  return allPosts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+// ─── Buscar post: primeiro no D1, depois fallback estático ───────────────────────────────
+const { slug } = Astro.params;
+const cfEnv = env as unknown as Env;
+
+let post: any = null;
+let relatedPosts: any[] = [];
+
+try {
+  const dbPost = await getPostBySlug(cfEnv.DB, slug!);
+  if (dbPost) {
+    post = {
+      slug: dbPost.slug,
+      title: dbPost.title,
+      excerpt: dbPost.excerpt,
+      category: dbPost.category,
+      keywords: dbPost.keywords ?? '',
+      content: dbPost.content,
+      image: dbPost.image_url || '/images/blog/default-blog.webp',
+      date: dbPost.published_at
+        ? new Date(dbPost.published_at * 1000).toISOString().split('T')[0]
+        : new Date(dbPost.created_at * 1000).toISOString().split('T')[0],
+      readTime: dbPost.read_time ?? '5 min',
+      author: dbPost.author ?? 'Equipe Drudi e Almeida',
+      authorCRM: dbPost.author_crm ?? '',
+      authorImg: dbPost.author_img || '/images/team/default-author.webp',
+      relatedSlugs: dbPost.related_slugs ? JSON.parse(dbPost.related_slugs) : [],
+      metaTitle: dbPost.meta_title ?? dbPost.title,
+      metaDescription: dbPost.meta_description ?? dbPost.excerpt,
+      schemaFaq: dbPost.schema_faq ? JSON.parse(dbPost.schema_faq) : [],
+    };
+    relatedPosts = allPosts.filter(p => post.relatedSlugs.includes(p.slug));
+  }
+} catch (e) {
+  console.error('[blog/slug] Erro ao buscar post do D1:', e);
 }
 
-const { post } = Astro.props;
-const relatedPosts = allPosts.filter(p => post.relatedSlugs.includes(p.slug));
+// Fallback: posts estáticos
+if (!post) {
+  const staticPost = allPosts.find(p => p.slug === slug);
+  if (staticPost) {
+    post = staticPost;
+    relatedPosts = allPosts.filter(p => staticPost.relatedSlugs.includes(p.slug));
+  }
+}
+
+// 404 se não encontrou
+if (!post) return Astro.redirect('/404');
+
+// ─── Schema.org ─────────────────────────────────────────────────────────────
+const siteUrl = 'https://institutodrudiealmeida.com.br';
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": post.metaTitle ?? post.title,
+  "description": post.metaDescription ?? post.excerpt,
+  "url": `${siteUrl}/blog/${post.slug}`,
+  "datePublished": post.date,
+  "dateModified": post.date,
+  "author": {
+    "@type": "Person",
+    "name": post.author,
+    "description": post.authorCRM
+  },
+  "publisher": {
+    "@type": "MedicalOrganization",
+    "name": "Drudi e Almeida Oftalmologia",
+    "url": siteUrl,
+    "logo": { "@type": "ImageObject", "url": `${siteUrl}/images/logo-drudi-almeida.webp` }
+  },
+  "image": post.image?.startsWith('http') ? post.image : `${siteUrl}${post.image}`,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `${siteUrl}/blog/${post.slug}` },
+  "about": { "@type": "MedicalCondition", "name": post.category },
+  "specialty": "Ophthalmology"
+};
+
+const faqSchema = post.schemaFaq?.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": post.schemaFaq.map((item: any) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+  }))
+} : null;
 
 function formatDate(dateStr: string) {
   const date = new Date(dateStr + 'T00:00:00');
@@ -33,12 +110,14 @@ const categoryColors: Record<string, string> = {
 ---
 
 <BaseLayout
-  title={post.title}
-  description={post.excerpt}
+  title={post.metaTitle ?? post.title}
+  description={post.metaDescription ?? post.excerpt}
   keywords={post.keywords}
   canonicalPath={`/blog/${post.slug}`}
   ogImage={post.image}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <!-- Breadcrumb + Hero -->
   <section class="bg-navy pt-28 pb-16 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style={`background-image: url('${post.image}'); background-size: cover; background-position: center;`}></div>

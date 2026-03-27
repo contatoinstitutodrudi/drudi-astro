@@ -1,0 +1,658 @@
+---
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Verificar autenticação via middleware
+const { cfEnv, adminUser } = Astro.locals as { cfEnv: Env; adminUser: boolean };
+if (!adminUser) {
+  return Astro.redirect('/admin/login?redirect=/admin/blog');
+}
+---
+<BaseLayout title="Admin — Blog | Drudi e Almeida" description="Painel de gerenciamento do blog">
+  <style>
+    body { background: #0f172a; color: #e2e8f0; }
+    .admin-nav { background: #1e293b; border-bottom: 1px solid #334155; padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .admin-nav a { color: #94a3b8; text-decoration: none; font-size: 0.875rem; }
+    .admin-nav a:hover { color: #f1f5f9; }
+    .admin-nav .current { color: #c9a961; font-weight: 600; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .page-title { font-size: 1.5rem; font-weight: 700; color: #f1f5f9; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
+    .btn-primary { background: #c9a961; color: #0f172a; }
+    .btn-primary:hover { background: #d4b97a; }
+    .btn-secondary { background: #334155; color: #e2e8f0; }
+    .btn-secondary:hover { background: #475569; }
+    .btn-danger { background: #ef4444; color: white; }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-success { background: #22c55e; color: white; }
+    .btn-success:hover { background: #16a34a; }
+    .btn-ai { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+    .btn-ai:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+    .btn-sm { padding: 0.25rem 0.625rem; font-size: 0.75rem; }
+    .filters { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; align-items: center; }
+    .filter-select { background: #1e293b; border: 1px solid #334155; color: #e2e8f0; padding: 0.4rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; }
+    .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 1rem; text-align: center; }
+    .stat-value { font-size: 1.75rem; font-weight: 700; color: #c9a961; }
+    .stat-label { font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem; }
+    .posts-table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 0.75rem; overflow: hidden; }
+    .posts-table th { background: #0f172a; color: #94a3b8; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.75rem 1rem; text-align: left; }
+    .posts-table td { padding: 0.875rem 1rem; border-bottom: 1px solid #334155; font-size: 0.875rem; vertical-align: middle; }
+    .posts-table tr:last-child td { border-bottom: none; }
+    .posts-table tr:hover td { background: #263348; }
+    .badge { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; }
+    .badge-published { background: #166534; color: #86efac; }
+    .badge-draft { background: #374151; color: #9ca3af; }
+    .badge-ai { background: #312e81; color: #a5b4fc; }
+    .badge-cat { background: #1e3a5f; color: #93c5fd; }
+    .post-title { font-weight: 600; color: #f1f5f9; max-width: 380px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .post-title a { color: inherit; text-decoration: none; }
+    .post-title a:hover { color: #c9a961; }
+    .actions { display: flex; gap: 0.375rem; }
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #1e293b; border: 1px solid #334155; border-radius: 1rem; padding: 1.5rem; width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; }
+    .modal-title { font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 1.25rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.375rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .form-input, .form-select, .form-textarea { width: 100%; background: #0f172a; border: 1px solid #334155; color: #e2e8f0; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: #c9a961; }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .modal-footer { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #334155; }
+    .ai-status { background: #0f172a; border: 1px solid #334155; border-radius: 0.5rem; padding: 0.75rem 1rem; font-size: 0.8rem; color: #94a3b8; margin-top: 0.75rem; display: none; }
+    .ai-status.visible { display: block; }
+    .ai-status.success { border-color: #22c55e; color: #86efac; }
+    .ai-status.error { border-color: #ef4444; color: #fca5a5; }
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: #64748b; }
+    .empty-state svg { margin: 0 auto 1rem; display: block; opacity: 0.4; }
+    .pagination { display: flex; gap: 0.5rem; align-items: center; justify-content: center; margin-top: 1.5rem; }
+    .page-btn { background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 0.4rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; cursor: pointer; }
+    .page-btn:hover, .page-btn.active { background: #c9a961; color: #0f172a; border-color: #c9a961; }
+    .search-input { background: #1e293b; border: 1px solid #334155; color: #e2e8f0; padding: 0.4rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; width: 240px; }
+    .search-input::placeholder { color: #64748b; }
+  </style>
+
+  <!-- Admin Nav -->
+  <nav class="admin-nav">
+    <a href="/admin/agendamentos">Agendamentos</a>
+    <span style="color:#475569">/</span>
+    <a href="/admin/blog" class="current">Blog</a>
+    <span style="flex:1"></span>
+    <a href="/" target="_blank">Ver site</a>
+    <a href="/admin/login" id="logoutBtn" style="color:#ef4444">Sair</a>
+  </nav>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="page-header">
+      <div>
+        <div class="page-title">Gerenciamento do Blog</div>
+        <div style="font-size:0.8rem;color:#64748b;margin-top:0.25rem">Artigos publicados e rascunhos — geração automática com Gemini</div>
+      </div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+        <button class="btn btn-ai" onclick="openAiModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Gerar com IA
+        </button>
+        <button class="btn btn-primary" onclick="openNewPostModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Novo Artigo
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-card"><div class="stat-value" id="statTotal">—</div><div class="stat-label">Total</div></div>
+      <div class="stat-card"><div class="stat-value" id="statPublished">—</div><div class="stat-label">Publicados</div></div>
+      <div class="stat-card"><div class="stat-value" id="statDraft">—</div><div class="stat-label">Rascunhos</div></div>
+      <div class="stat-card"><div class="stat-value" id="statAi">—</div><div class="stat-label">Gerados por IA</div></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título..." oninput="filterPosts()">
+      <select class="filter-select" id="filterStatus" onchange="loadPosts()">
+        <option value="all">Todos os status</option>
+        <option value="published">Publicados</option>
+        <option value="draft">Rascunhos</option>
+      </select>
+      <select class="filter-select" id="filterCategory" onchange="loadPosts()">
+        <option value="all">Todas as categorias</option>
+        <option value="Catarata">Catarata</option>
+        <option value="Ceratocone">Ceratocone</option>
+        <option value="Glaucoma">Glaucoma</option>
+        <option value="Retina">Retina</option>
+        <option value="Estrabismo">Estrabismo</option>
+        <option value="Saúde Ocular">Saúde Ocular</option>
+      </select>
+      <button class="btn btn-secondary btn-sm" onclick="loadPosts()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+        Atualizar
+      </button>
+    </div>
+
+    <!-- Table -->
+    <div style="overflow-x:auto;border-radius:0.75rem;border:1px solid #334155">
+      <table class="posts-table">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Status</th>
+            <th>Origem</th>
+            <th>Publicado em</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="postsTableBody">
+          <tr><td colspan="6" style="text-align:center;padding:2rem;color:#64748b">Carregando artigos...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <!-- Modal: Gerar com IA -->
+  <div class="modal-overlay" id="aiModal">
+    <div class="modal">
+      <div class="modal-title">
+        <svg style="display:inline;margin-right:0.5rem" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Gerar Artigo com Gemini
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoria *</label>
+        <select class="form-select" id="aiCategory" onchange="updateAiTopics()">
+          <option value="Catarata">Catarata</option>
+          <option value="Ceratocone">Ceratocone</option>
+          <option value="Glaucoma">Glaucoma</option>
+          <option value="Retina">Retina</option>
+          <option value="Estrabismo">Estrabismo</option>
+          <option value="Saúde Ocular">Saúde Ocular</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tópico / Palavra-chave *</label>
+        <select class="form-select" id="aiTopicSelect" onchange="syncTopicInput()">
+          <option value="">— Selecionar tópico sugerido —</option>
+        </select>
+        <input type="text" class="form-input" id="aiTopic" placeholder="Ou digite um tópico personalizado..." style="margin-top:0.5rem">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Publicar imediatamente?</label>
+        <select class="form-select" id="aiPublish">
+          <option value="1">Sim — publicar ao gerar</option>
+          <option value="0">Não — salvar como rascunho</option>
+        </select>
+      </div>
+      <div class="ai-status" id="aiStatus"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeAiModal()">Cancelar</button>
+        <button class="btn btn-ai" id="aiGenerateBtn" onclick="generateArticle()">
+          <span class="spinner" id="aiSpinner" style="display:none"></span>
+          Gerar Artigo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Novo/Editar Post -->
+  <div class="modal-overlay" id="postModal">
+    <div class="modal" style="max-width:780px">
+      <div class="modal-title" id="postModalTitle">Novo Artigo</div>
+      <input type="hidden" id="editPostId">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Título *</label>
+          <input type="text" class="form-input" id="postTitle" placeholder="Título do artigo">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Slug *</label>
+          <input type="text" class="form-input" id="postSlug" placeholder="url-do-artigo">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Categoria *</label>
+          <select class="form-select" id="postCategory">
+            <option value="Catarata">Catarata</option>
+            <option value="Ceratocone">Ceratocone</option>
+            <option value="Glaucoma">Glaucoma</option>
+            <option value="Retina">Retina</option>
+            <option value="Estrabismo">Estrabismo</option>
+            <option value="Saúde Ocular">Saúde Ocular</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="postStatus">
+            <option value="draft">Rascunho</option>
+            <option value="published">Publicado</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Resumo (excerpt) *</label>
+        <textarea class="form-textarea" id="postExcerpt" rows="2" placeholder="Resumo para cards e SEO (150-200 caracteres)"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Palavras-chave SEO</label>
+        <input type="text" class="form-input" id="postKeywords" placeholder="catarata, cirurgia, são paulo...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Meta Description SEO</label>
+        <textarea class="form-textarea" id="postMetaDesc" rows="2" placeholder="Descrição para o Google (máx 160 caracteres)"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">URL da Imagem de Capa</label>
+        <input type="text" class="form-input" id="postImage" placeholder="/images/blog/meu-artigo.webp">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Conteúdo HTML *</label>
+        <textarea class="form-textarea" id="postContent" rows="10" placeholder="<h2>Título da seção</h2><p>Conteúdo...</p>"></textarea>
+      </div>
+      <div class="form-group">
+        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+          <input type="checkbox" id="postFeatured"> Artigo em destaque (aparece no topo do blog)
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closePostModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="savePost()">
+          <span class="spinner" id="saveSpinner" style="display:none"></span>
+          Salvar Artigo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmar exclusão -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal" style="max-width:420px">
+      <div class="modal-title" style="color:#ef4444">Excluir Artigo</div>
+      <p style="color:#94a3b8;margin-bottom:1rem">Tem certeza que deseja excluir este artigo? Esta ação não pode ser desfeita.</p>
+      <div id="deletePostTitle" style="font-weight:600;color:#f1f5f9;margin-bottom:1.25rem"></div>
+      <input type="hidden" id="deletePostId">
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TOPICS = {
+      'Catarata': [
+        'Cirurgia de catarata em São Paulo: tudo o que você precisa saber',
+        'Catarata tem cura? Entenda o tratamento e quando operar',
+        'Lentes intraoculares para catarata: monofocal, multifocal e trifocal',
+        'Recuperação após cirurgia de catarata: o que esperar',
+        'Catarata em jovens: causas, sintomas e tratamento',
+        'Sintomas iniciais da catarata: como identificar',
+        'Cirurgia de catarata pelo convênio em São Paulo',
+      ],
+      'Ceratocone': [
+        'Ceratocone: o que é, causas, sintomas e tratamento completo',
+        'Crosslinking para ceratocone: como funciona e resultados',
+        'Lentes de contato para ceratocone: tipos e adaptação',
+        'Anel intracorneano para ceratocone: quando é indicado',
+        'Diagnóstico precoce do ceratocone: exames e sinais',
+        'Ceratocone grau 1, 2, 3 e 4: diferenças e tratamentos',
+      ],
+      'Glaucoma': [
+        'Glaucoma: o que é, tipos, sintomas e tratamento',
+        'Pressão ocular alta: quando é glaucoma?',
+        'Colírio para glaucoma: tipos, uso correto e efeitos',
+        'Cirurgia de glaucoma: quando é necessária',
+        'Glaucoma e hereditariedade: quem tem mais risco',
+        'Campo visual no glaucoma: o exame que monitora a doença',
+      ],
+      'Retina': [
+        'Descolamento de retina: sintomas, causas e tratamento urgente',
+        'Degeneração macular: o que é e como tratar',
+        'Retinopatia diabética: prevenção e tratamento',
+        'OCT de retina: o exame que salva a visão',
+        'Buraco macular: sintomas, diagnóstico e cirurgia',
+        'Vitrectomia: quando a cirurgia de retina é indicada',
+      ],
+      'Estrabismo': [
+        'Estrabismo: o que é, tipos, causas e tratamento',
+        'Cirurgia de estrabismo em adultos: vale a pena?',
+        'Estrabismo em crianças: quando tratar e como',
+        'Olho preguiçoso (ambliopia): diagnóstico e tratamento',
+        'Toxina botulínica para estrabismo: como funciona',
+        'Estrabismo convergente e divergente: diferenças',
+      ],
+      'Saúde Ocular': [
+        'Exame de vista completo: quando fazer e o que esperar',
+        'Síndrome do olho seco: causas, sintomas e tratamento',
+        'Miopia em crianças: como identificar e controlar',
+        'Óculos ou lente de contato: qual a melhor opção?',
+        'Vitaminas para os olhos: quais realmente funcionam',
+      ],
+    };
+
+    let allPosts = [];
+    let currentPage = 0;
+    const PAGE_SIZE = 20;
+
+    // ─── Auth token ─────────────────────────────────────────────────────────
+    function getToken() {
+      return document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith('admin_token='))?.split('=')[1] ?? '';
+    }
+
+    // ─── Load posts ──────────────────────────────────────────────────────────
+    async function loadPosts(page = 0) {
+      currentPage = page;
+      const status = document.getElementById('filterStatus').value;
+      const category = document.getElementById('filterCategory').value;
+      const offset = page * PAGE_SIZE;
+
+      const tbody = document.getElementById('postsTableBody');
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:#64748b">Carregando...</td></tr>';
+
+      try {
+        const params = new URLSearchParams({ status, category, limit: String(PAGE_SIZE), offset: String(offset) });
+        const res = await fetch(`/api/admin/blog/posts?${params}`, {
+          headers: { 'Authorization': `Bearer ${getToken()}` }
+        });
+        const posts = await res.json();
+        allPosts = posts;
+        renderTable(posts);
+        updateStats(posts);
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:2rem;color:#ef4444">Erro ao carregar: ${err.message}</td></tr>`;
+      }
+    }
+
+    function renderTable(posts) {
+      const tbody = document.getElementById('postsTableBody');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = search ? posts.filter(p => p.title.toLowerCase().includes(search)) : posts;
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:3rem;color:#64748b">Nenhum artigo encontrado.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(p => {
+        const date = p.published_at ? new Date(p.published_at * 1000).toLocaleDateString('pt-BR') : '—';
+        const statusBadge = p.status === 'published'
+          ? '<span class="badge badge-published">● Publicado</span>'
+          : '<span class="badge badge-draft">● Rascunho</span>';
+        const aiBadge = p.generated_by_ai ? '<span class="badge badge-ai">IA</span>' : '<span style="color:#475569;font-size:0.75rem">Manual</span>';
+        const catBadge = `<span class="badge badge-cat">${p.category}</span>`;
+
+        return `<tr>
+          <td>
+            <div class="post-title">
+              <a href="/blog/${p.slug}" target="_blank" title="${p.title}">${p.title}</a>
+            </div>
+            <div style="font-size:0.7rem;color:#64748b;margin-top:0.2rem">/blog/${p.slug}</div>
+          </td>
+          <td>${catBadge}</td>
+          <td>${statusBadge}</td>
+          <td>${aiBadge}</td>
+          <td style="color:#94a3b8;font-size:0.8rem">${date}</td>
+          <td>
+            <div class="actions">
+              ${p.status === 'draft' ? `<button class="btn btn-success btn-sm" onclick="publishPost(${p.id})">Publicar</button>` : `<button class="btn btn-secondary btn-sm" onclick="unpublishPost(${p.id})">Despublicar</button>`}
+              <button class="btn btn-secondary btn-sm" onclick="editPost(${p.id})">Editar</button>
+              <button class="btn btn-danger btn-sm" onclick="openDeleteModal(${p.id}, '${p.title.replace(/'/g, "\\'")}')">Excluir</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    function filterPosts() {
+      renderTable(allPosts);
+    }
+
+    function updateStats(posts) {
+      document.getElementById('statTotal').textContent = posts.length;
+      document.getElementById('statPublished').textContent = posts.filter(p => p.status === 'published').length;
+      document.getElementById('statDraft').textContent = posts.filter(p => p.status === 'draft').length;
+      document.getElementById('statAi').textContent = posts.filter(p => p.generated_by_ai).length;
+    }
+
+    // ─── Publish / Unpublish ─────────────────────────────────────────────────
+    async function publishPost(id) {
+      await patchPost(id, { status: 'published' });
+    }
+    async function unpublishPost(id) {
+      await patchPost(id, { status: 'draft' });
+    }
+    async function patchPost(id, data) {
+      const res = await fetch(`/api/admin/blog/post/${id}`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) loadPosts(currentPage);
+      else alert('Erro ao atualizar post.');
+    }
+
+    // ─── Delete ──────────────────────────────────────────────────────────────
+    function openDeleteModal(id, title) {
+      document.getElementById('deletePostId').value = id;
+      document.getElementById('deletePostTitle').textContent = title;
+      document.getElementById('deleteModal').classList.add('open');
+    }
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').classList.remove('open');
+    }
+    async function confirmDelete() {
+      const id = document.getElementById('deletePostId').value;
+      const res = await fetch(`/api/admin/blog/post/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${getToken()}` },
+      });
+      if (res.ok) { closeDeleteModal(); loadPosts(currentPage); }
+      else alert('Erro ao excluir post.');
+    }
+
+    // ─── New / Edit Post Modal ───────────────────────────────────────────────
+    function openNewPostModal() {
+      document.getElementById('editPostId').value = '';
+      document.getElementById('postModalTitle').textContent = 'Novo Artigo';
+      document.getElementById('postTitle').value = '';
+      document.getElementById('postSlug').value = '';
+      document.getElementById('postCategory').value = 'Catarata';
+      document.getElementById('postStatus').value = 'draft';
+      document.getElementById('postExcerpt').value = '';
+      document.getElementById('postKeywords').value = '';
+      document.getElementById('postMetaDesc').value = '';
+      document.getElementById('postImage').value = '';
+      document.getElementById('postContent').value = '';
+      document.getElementById('postFeatured').checked = false;
+      document.getElementById('postModal').classList.add('open');
+    }
+
+    async function editPost(id) {
+      // Buscar post completo via API
+      const res = await fetch(`/api/admin/blog/posts?limit=200`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+      });
+      const posts = await res.json();
+      const post = posts.find(p => p.id === id);
+      if (!post) return alert('Post não encontrado.');
+
+      // Buscar conteúdo completo
+      const res2 = await fetch(`/api/admin/blog/post-full/${id}`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+      });
+      let fullPost = post;
+      if (res2.ok) fullPost = await res2.json();
+
+      document.getElementById('editPostId').value = id;
+      document.getElementById('postModalTitle').textContent = 'Editar Artigo';
+      document.getElementById('postTitle').value = fullPost.title ?? '';
+      document.getElementById('postSlug').value = fullPost.slug ?? '';
+      document.getElementById('postCategory').value = fullPost.category ?? 'Catarata';
+      document.getElementById('postStatus').value = fullPost.status ?? 'draft';
+      document.getElementById('postExcerpt').value = fullPost.excerpt ?? '';
+      document.getElementById('postKeywords').value = fullPost.keywords ?? '';
+      document.getElementById('postMetaDesc').value = fullPost.meta_description ?? '';
+      document.getElementById('postImage').value = fullPost.image_url ?? '';
+      document.getElementById('postContent').value = fullPost.content ?? '';
+      document.getElementById('postFeatured').checked = !!fullPost.featured;
+      document.getElementById('postModal').classList.add('open');
+    }
+
+    function closePostModal() {
+      document.getElementById('postModal').classList.remove('open');
+    }
+
+    async function savePost() {
+      const id = document.getElementById('editPostId').value;
+      const data = {
+        title: document.getElementById('postTitle').value.trim(),
+        slug: document.getElementById('postSlug').value.trim(),
+        category: document.getElementById('postCategory').value,
+        status: document.getElementById('postStatus').value,
+        excerpt: document.getElementById('postExcerpt').value.trim(),
+        keywords: document.getElementById('postKeywords').value.trim(),
+        meta_description: document.getElementById('postMetaDesc').value.trim(),
+        image_url: document.getElementById('postImage').value.trim(),
+        content: document.getElementById('postContent').value.trim(),
+        featured: document.getElementById('postFeatured').checked ? 1 : 0,
+      };
+
+      if (!data.title || !data.slug || !data.content || !data.category) {
+        return alert('Preencha os campos obrigatórios: Título, Slug, Categoria e Conteúdo.');
+      }
+
+      const spinner = document.getElementById('saveSpinner');
+      spinner.style.display = 'inline-block';
+
+      try {
+        let res;
+        if (id) {
+          res = await fetch(`/api/admin/blog/post/${id}`, {
+            method: 'PATCH',
+            headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } else {
+          res = await fetch('/api/admin/blog/posts', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        }
+
+        const result = await res.json();
+        if (res.ok) {
+          closePostModal();
+          loadPosts(currentPage);
+        } else {
+          alert('Erro: ' + (result.error ?? 'Falha ao salvar.'));
+        }
+      } finally {
+        spinner.style.display = 'none';
+      }
+    }
+
+    // ─── Auto-slug from title ────────────────────────────────────────────────
+    document.getElementById('postTitle').addEventListener('input', function() {
+      if (!document.getElementById('editPostId').value) {
+        document.getElementById('postSlug').value = this.value
+          .toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-')
+          .substring(0, 80);
+      }
+    });
+
+    // ─── AI Modal ────────────────────────────────────────────────────────────
+    function openAiModal() {
+      document.getElementById('aiModal').classList.add('open');
+      document.getElementById('aiStatus').className = 'ai-status';
+      document.getElementById('aiStatus').textContent = '';
+      updateAiTopics();
+    }
+    function closeAiModal() {
+      document.getElementById('aiModal').classList.remove('open');
+    }
+
+    function updateAiTopics() {
+      const cat = document.getElementById('aiCategory').value;
+      const select = document.getElementById('aiTopicSelect');
+      const topics = TOPICS[cat] ?? [];
+      select.innerHTML = '<option value="">— Selecionar tópico sugerido —</option>' +
+        topics.map(t => `<option value="${t}">${t}</option>`).join('');
+    }
+
+    function syncTopicInput() {
+      const val = document.getElementById('aiTopicSelect').value;
+      if (val) document.getElementById('aiTopic').value = val;
+    }
+
+    async function generateArticle() {
+      const topic = document.getElementById('aiTopic').value.trim();
+      const category = document.getElementById('aiCategory').value;
+      const publish = document.getElementById('aiPublish').value === '1';
+
+      if (!topic) return alert('Informe o tópico do artigo.');
+
+      const btn = document.getElementById('aiGenerateBtn');
+      const spinner = document.getElementById('aiSpinner');
+      const status = document.getElementById('aiStatus');
+
+      btn.disabled = true;
+      spinner.style.display = 'inline-block';
+      status.className = 'ai-status visible';
+      status.textContent = '⏳ Gerando artigo com Gemini... isso pode levar 20-40 segundos.';
+
+      try {
+        const res = await fetch('/api/admin/blog/generate', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic, category, publish }),
+        });
+        const result = await res.json();
+
+        if (res.ok) {
+          status.className = 'ai-status visible success';
+          status.innerHTML = `✅ Artigo gerado com sucesso!<br><strong>${result.title}</strong><br>Status: ${result.status} | <a href="/blog/${result.slug}" target="_blank" style="color:#86efac">Ver artigo</a>`;
+          loadPosts(currentPage);
+        } else {
+          status.className = 'ai-status visible error';
+          status.textContent = '❌ Erro: ' + (result.error ?? 'Falha na geração.');
+        }
+      } catch (err) {
+        status.className = 'ai-status visible error';
+        status.textContent = '❌ Erro de rede: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        spinner.style.display = 'none';
+      }
+    }
+
+    // ─── Logout ──────────────────────────────────────────────────────────────
+    document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      await fetch('/api/admin/logout', { method: 'POST' });
+      window.location.href = '/admin/login';
+    });
+
+    // ─── Close modals on overlay click ───────────────────────────────────────
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('open');
+      });
+    });
+
+    // ─── Init ────────────────────────────────────────────────────────────────
+    loadPosts();
+  </script>
+</BaseLayout>
