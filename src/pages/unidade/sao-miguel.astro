@@ -57,9 +57,9 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
       <div class="max-w-2xl">
                 <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Unidades", href: "/contato" }, { label: "São Miguel Paulista" }]} />
 
-        <h1 class="font-display text-4xl md:text-5xl text-cream leading-tight mb-4">
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-4">
           Clínica Oftalmológica em<br />
-          <em class="text-gold not-italic">{unidade.nome}</em>
+          <em class="text-gold italic">{unidade.nome}</em>
         </h1>
         <p class="font-body text-lg text-cream/80 leading-relaxed mb-8 max-w-xl">{unidade.subtitulo}</p>
         <div class="flex flex-wrap gap-4">
@@ -292,7 +292,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <div class="relative container text-center">
       <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">AGENDE SUA CONSULTA</span>
       <h2 class="font-display text-3xl md:text-4xl text-cream mt-4 mb-3">
-        Agende sua consulta em <em class="text-gold not-italic">{unidade.nome}</em>
+        Agende sua consulta em <em class="text-gold italic">{unidade.nome}</em>
       </h2>
       <p class="font-body text-base text-cream/80 mb-8 max-w-xl mx-auto">Nossa equipe está pronta para atender você com excelência e cuidado.</p>
       <div class="flex flex-wrap gap-4 justify-center">
