@@ -106,6 +106,9 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Drudi e Almeida Clínicas Oftalmológicas" />
 
@@ -484,7 +487,8 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
           © {new Date().getFullYear()} Drudi e Almeida Clínicas Oftalmológicas. Todos os direitos reservados.
         </p>
         <div class="flex gap-4">
-          <a href="/politica-privacidade" class="font-body text-xs text-white/40 hover:text-gold transition-colors">Política de Privacidade</a>
+          <a href="/politica-de-privacidade" class="font-body text-xs text-white/40 hover:text-gold transition-colors">Política de Privacidade</a>
+          <a href="/lgpd" class="font-body text-xs text-white/40 hover:text-gold transition-colors">LGPD</a>
         </div>
       </div>
     </footer>
