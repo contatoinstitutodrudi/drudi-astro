@@ -1,0 +1,933 @@
+---
+// LP Glaucoma — Réplica fiel de lp-glaucoma.institutodrudiealmeida.com.br
+const WA_LINK = "https://wa.me/5511916544653";
+const WA_AGENDAR = `${WA_LINK}?text=Olá! Gostaria de agendar uma avaliação de glaucoma.`;
+const WA_CONVENIO = `${WA_LINK}?text=Olá! Gostaria de verificar se meu convênio cobre o tratamento de glaucoma.`;
+const WA_DUVIDA = `${WA_LINK}?text=Olá! Tenho uma dúvida sobre glaucoma.`;
+const PHONE = "tel:+5511916544653";
+
+const unidades = [
+  { nome: "Guarulhos Centro", endereco: "R. Sete de Setembro, 375", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Guarulhos" },
+  { nome: "Santana — São Paulo", endereco: "R. Dr. César, 130", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Santana" },
+  { nome: "Tatuapé — São Paulo", endereco: "R. Tuiuti, 2429", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Tatuape" },
+  { nome: "Lapa — São Paulo", endereco: "R. Barão de Jundiaí, 221", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Lapa" },
+  { nome: "São Miguel — São Paulo", endereco: "R. Bernardo Marcondes, 108", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Sao+Miguel" },
+];
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instituto do Glaucoma em SP | Drudi e Almeida Clínicas Oftalmológicas</title>
+  <meta name="description" content="Diagnóstico precoce, tratamento personalizado e acompanhamento contínuo do glaucoma. Laser SLT, cirurgia MIGS, trabeculectomia. 5 unidades em SP." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2e44;
+      --navy-light: #243b55;
+      --gold: #c9a961;
+      --gold-light: #d4b97a;
+      --cream: #f5f0e8;
+      --cream-dark: #ede8df;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --gray-light: #f3f4f6;
+      --green: #16a34a;
+      --red: #dc2626;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    .announcement-bar {
+      background: var(--navy);
+      color: var(--cream);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .announcement-bar strong { color: var(--gold); }
+
+    .lp-header {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .lp-header img { height: 40px; }
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero { background: var(--cream); padding: 48px 24px 56px; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-desc { font-size: 15px; color: #4b5563; margin-bottom: 24px; line-height: 1.7; }
+    .hero-checks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .hero-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .form-card select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--white);
+      margin-bottom: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+    .form-card select:focus { border-color: var(--gold); }
+    .btn-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #25d366;
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .btn-wa:hover { background: #1fb855; }
+    .btn-phone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-phone:hover { background: var(--navy-light); }
+    .google-rating { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 13px; color: var(--gray); }
+    .stars { color: #f59e0b; font-size: 14px; }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+    }
+    .testimonial-card .stars { margin-bottom: 12px; display: block; }
+    .testimonial-card blockquote { font-size: 14px; color: #374151; font-style: italic; line-height: 1.6; margin-bottom: 14px; }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .author-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+    .author-detail { font-size: 12px; color: var(--gray); }
+    .verified { font-size: 11px; color: var(--green); font-weight: 500; }
+
+    .units-box {
+      background: var(--navy); color: var(--cream);
+      border-radius: 10px; padding: 18px 20px; margin-top: 16px;
+    }
+    .units-box h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 10px; }
+    .units-box ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+    .units-box li { font-size: 13px; }
+    .units-box li::before { content: "• "; color: var(--gold); }
+
+    .convenios-strip {
+      background: var(--white);
+      border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;
+      padding: 24px;
+    }
+    .convenios-strip h4 { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--gray); text-transform: uppercase; margin-bottom: 16px; }
+    .convenios-logos { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .convenios-logos img { height: 36px; object-fit: contain; filter: grayscale(0.3); }
+    .convenio-not-found { text-align: center; margin-top: 14px; font-size: 13px; color: var(--gray); }
+    .convenio-not-found a { color: var(--navy); font-weight: 600; text-decoration: underline; }
+
+    .section { padding: 64px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 500; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-subtitle { font-size: 15px; color: var(--gray); max-width: 600px; line-height: 1.7; }
+    .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 16px 0 40px; }
+
+    /* Tunnel Vision Section */
+    .tunnel-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .tunnel-image { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.15); }
+    .tunnel-image img { width: 100%; height: 300px; object-fit: cover; }
+
+    /* Symptoms Grid */
+    .symptoms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+    .symptom-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .symptom-card.urgent { border-left-color: var(--red); }
+    .symptom-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .symptom-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    .symptom-card.urgent .symptom-title { color: var(--red); }
+
+    /* Treatments */
+    .treatments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .treatment-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .treatment-icon {
+      width: 48px; height: 48px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      color: var(--gold);
+      font-size: 22px;
+    }
+    .treatment-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .treatment-card p { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
+    .treatment-tag { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.05em; }
+
+    /* Types of Glaucoma */
+    .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .type-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-top: 3px solid var(--gold);
+    }
+    .type-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .type-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+    /* Nerve Comparison */
+    .nerve-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .nerve-image { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.15); }
+    .nerve-image img { width: 100%; height: 280px; object-fit: cover; }
+
+    /* Steps */
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 40px; }
+    .step-item { text-align: center; }
+    .step-number {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--navy); color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step-item h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step-item p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* Specialists */
+    .specialists-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+    .specialist-card {
+      background: var(--white); border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex;
+    }
+    .specialist-img { width: 160px; flex-shrink: 0; object-fit: cover; object-position: top; }
+    .specialist-info { padding: 24px; }
+    .specialist-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 4px; }
+    .specialist-crm { font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .specialist-info p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+
+    /* Media */
+    .media-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+    .media-card {
+      background: var(--white); border-radius: 10px;
+      overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .media-thumb {
+      position: relative; aspect-ratio: 16/9;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .media-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+    .play-btn {
+      position: absolute; width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-btn::after { content: ""; border-left: 16px solid var(--navy); border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
+    .media-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); padding: 10px 14px 4px; }
+    .media-card h4 { font-size: 13px; font-weight: 600; color: var(--navy); padding: 0 14px 6px; }
+    .media-card p { font-size: 12px; color: var(--gray); padding: 0 14px 14px; line-height: 1.5; }
+
+    /* FAQ */
+    .faq-list { margin-top: 40px; max-width: 800px; }
+    .faq-item { border-bottom: 1px solid #e5e7eb; }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      text-align: left; padding: 18px 0;
+      font-size: 15px; font-weight: 600; color: var(--navy);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .faq-question .icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0; transition: transform 0.2s;
+    }
+    .faq-answer { font-size: 14px; color: #4b5563; line-height: 1.7; padding-bottom: 18px; display: none; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .icon { transform: rotate(45deg); }
+    .faq-cta { margin-top: 24px; font-size: 14px; color: var(--gray); }
+    .faq-cta a { color: var(--navy); font-weight: 600; text-decoration: underline; }
+
+    /* Final CTA */
+    .final-cta { background: var(--navy); padding: 64px 24px; text-align: center; }
+    .final-cta .urgency-badge {
+      display: inline-block;
+      background: rgba(201,169,97,0.2); border: 1px solid var(--gold);
+      color: var(--gold); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 6px 18px; border-radius: 20px; margin-bottom: 24px;
+    }
+    .final-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+    .final-cta h2 em { color: var(--gold); font-style: italic; }
+    .final-cta p { font-size: 15px; color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+    .final-cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25d366; color: var(--white);
+      padding: 16px 36px; border-radius: 8px;
+      font-size: 16px; font-weight: 700; transition: background 0.2s;
+    }
+    .final-cta-btn:hover { background: #1fb855; }
+    .final-cta-trust { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .final-cta-info { margin-top: 12px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .final-cta-info strong { color: rgba(255,255,255,0.75); }
+
+    .addresses-section { background: var(--navy); padding: 48px 24px; }
+    .addresses-inner { max-width: 1100px; margin: 0 auto; }
+    .addresses-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 24px; }
+    .address-card { text-align: center; }
+    .address-card h4 { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+    .address-card p { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+    .address-card a { font-size: 12px; color: var(--cream); border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px; display: inline-block; }
+
+    .lp-footer { background: #0f1f2e; padding: 24px; text-align: center; }
+    .lp-footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+    .lp-footer a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+
+    .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; grid-template-columns: 1fr auto; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.15); }
+    .sticky-cta .btn-wa { border-radius: 0; margin: 0; font-size: 14px; padding: 14px; }
+    .sticky-cta .btn-phone { border-radius: 0; width: auto; padding: 14px 20px; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .treatments-grid { grid-template-columns: 1fr 1fr; }
+      .types-grid { grid-template-columns: 1fr 1fr; }
+      .symptoms-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .specialists-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr 1fr; }
+      .addresses-grid { grid-template-columns: 1fr 1fr; }
+      .tunnel-section { grid-template-columns: 1fr; }
+      .nerve-section { grid-template-columns: 1fr; }
+      .sticky-cta { display: grid; }
+    }
+    @media (max-width: 600px) {
+      .treatments-grid { grid-template-columns: 1fr; }
+      .types-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr; }
+      .addresses-grid { grid-template-columns: 1fr; }
+      .specialist-card { flex-direction: column; }
+      .specialist-img { width: 100%; height: 200px; }
+      .units-box ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    Referência em glaucoma &nbsp;·&nbsp; 5 unidades em SP e Guarulhos &nbsp;·&nbsp; <strong>(11) 91654-4653</strong>
+  </div>
+
+  <!-- Header -->
+  <header class="lp-header">
+    <a href="/"><img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" /></a>
+    <a href={PHONE} class="header-phone">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      (11) 91654-4653
+    </a>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">Instituto do Glaucoma — Drudi e Almeida</div>
+        <h1>Proteja sua visão do <em>glaucoma</em></h1>
+        <p class="hero-desc">Diagnóstico precoce, tratamento personalizado e acompanhamento contínuo. Na Drudi e Almeida, cuidamos do seu glaucoma com tecnologia avançada e especialistas dedicados a preservar cada grau da sua visão.</p>
+        <div class="hero-checks">
+          <span class="hero-check">✓ Laser SLT</span>
+          <span class="hero-check">✓ Cirurgia MIGS</span>
+          <span class="hero-check">✓ Trabeculectomia</span>
+          <span class="hero-check">✓ Aceita Convênios</span>
+          <span class="hero-check">✓ Pacote Consulta + Exames</span>
+        </div>
+
+        <div class="form-card">
+          <select>
+            <option value="">Selecione a unidade mais próxima</option>
+            {unidades.map(u => <option value={u.nome}>{u.nome}</option>)}
+          </select>
+          <a href={WA_AGENDAR} target="_blank" class="btn-wa">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar Avaliação
+          </a>
+          <a href={PHONE} class="btn-phone">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            (11) 91654-4653
+          </a>
+          <div class="google-rating">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            <strong>4.9</strong>
+            <span class="stars">★★★★★</span>
+            <span>847+ avaliações</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Descobri o glaucoma num exame de rotina. O Dr. Fernando explicou tudo com calma, iniciou o tratamento e minha pressão ocular está controlada há 3 anos. Profissional excepcional e equipe acolhedora."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">SL</div>
+            <div>
+              <div class="author-name">Sérgio Lima</div>
+              <div class="author-detail">Tratamento de Glaucoma — Santana</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="units-box">
+          <h4>5 UNIDADES EM SP</h4>
+          <ul>
+            <li>Guarulhos</li>
+            <li>Santana</li>
+            <li>Tatuapé</li>
+            <li>Lapa</li>
+            <li>São Miguel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Convênios Strip -->
+  <div class="convenios-strip">
+    <h4>Convênios Aceitos</h4>
+    <div class="convenios-logos">
+      <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" />
+      <img src="/images/amil-188w_94445080.webp" alt="Amil" />
+      <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" />
+      <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" />
+      <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" />
+      <img src="/images/logo-propm-188w_44c9af21.webp" alt="Pró-PM" />
+    </div>
+    <p class="convenio-not-found">Não encontrou o seu? <a href={WA_CONVENIO} target="_blank">Consulte pelo WhatsApp</a></p>
+  </div>
+
+  <!-- O Ladrão Silencioso -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">O LADRÃO SILENCIOSO DA VISÃO</div>
+      <h2 class="section-title">Glaucoma: a perda que você não percebe</h2>
+      <div class="gold-line"></div>
+      <div class="tunnel-section">
+        <div>
+          <p style="font-size:15px; color:#4b5563; line-height:1.7; margin-bottom:16px;">O glaucoma destrói gradualmente a visão periférica, criando um efeito de "visão em túnel". Como a perda é lenta e indolor, muitos pacientes só percebem quando já perderam mais de 40% do campo visual.</p>
+          <p style="font-size:15px; color:#4b5563; line-height:1.7; margin-bottom:16px;">A imagem ao lado ilustra a diferença: à esquerda, a visão normal com campo completo; à direita, a visão comprometida pelo glaucoma, com escurecimento progressivo das bordas.</p>
+          <p style="font-size:12px; color:var(--gray); font-style:italic;">Ilustração educativa — a perda real varia conforme o estágio da doença.</p>
+        </div>
+        <div class="tunnel-image">
+          <img src="/images/glaucoma-campo-visual_opt.webp" alt="Comparação visão normal vs glaucoma" onerror="this.style.background='#1a2e44'; this.style.height='300px';" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sinais de Alerta -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">SINAIS DE ALERTA</div>
+      <h2 class="section-title">Quando procurar um especialista em glaucoma?</h2>
+      <p class="section-subtitle">O glaucoma é chamado de "ladrão silencioso da visão" porque avança sem sintomas. Fique atento aos fatores de risco e sinais abaixo.</p>
+      <div class="gold-line"></div>
+
+      <div class="symptoms-grid">
+        <div class="symptom-card">
+          <div class="symptom-title">Perda gradual da visão periférica</div>
+          <div class="symptom-desc">Visão em túnel — sinal clássico do glaucoma avançado</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-title">Halos ao redor de luzes</div>
+          <div class="symptom-desc">Círculos coloridos ao olhar para fontes luminosas</div>
+        </div>
+        <div class="symptom-card urgent">
+          <div class="symptom-title">⚠ Dor ocular intensa e súbita</div>
+          <div class="symptom-desc">Pode indicar crise de glaucoma agudo — emergência</div>
+        </div>
+        <div class="symptom-card urgent">
+          <div class="symptom-title">⚠ Vermelhidão nos olhos</div>
+          <div class="symptom-desc">Acompanhada de dor e visão turva no glaucoma agudo</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-title">Dificuldade de adaptação ao escuro</div>
+          <div class="symptom-desc">Demora para enxergar em ambientes com pouca luz</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-title">Histórico familiar de glaucoma</div>
+          <div class="symptom-desc">Risco 4 a 9 vezes maior — rastreamento anual obrigatório</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href={WA_AGENDAR} target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:var(--red); color:white; padding:12px 28px; border-radius:8px; font-size:14px; font-weight:700;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Agendar Avaliação Preventiva
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tratamentos -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">TRATAMENTOS ESPECIALIZADOS</div>
+      <h2 class="section-title">Tecnologia de ponta para controlar o glaucoma</h2>
+      <p class="section-subtitle">Do tratamento clínico às cirurgias mais avançadas, oferecemos todas as opções para preservar sua visão.</p>
+      <div class="gold-line"></div>
+
+      <div class="treatments-grid">
+        <div class="treatment-card">
+          <div class="treatment-icon">💊</div>
+          <h3>Tratamento Clínico (Colírios)</h3>
+          <p>Primeira linha de tratamento do glaucoma. Colírios hipotensores reduzem a pressão intraocular em 20-30%, controlando a progressão da doença. Uso diário e contínuo, com acompanhamento regular para ajuste da terapia.</p>
+          <div class="treatment-tag">Classes: Análogos de prostaglandina, betabloqueadores, agonistas alfa-adrenérgicos, inibidores da anidrase carbônica.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">⚡</div>
+          <h3>Laser SLT</h3>
+          <p>A Trabeculoplastia Seletiva a Laser (SLT) utiliza pulsos de baixa energia para estimular a drenagem natural do humor aquoso. Procedimento ambulatorial, rápido (5 minutos) e com anestesia tópica. Pode ser primeira linha ou complementar aos colírios.</p>
+          <div class="treatment-tag">Vantagens: Indolor, repetível, reduz PIO em 20-30%, excelente perfil de segurança.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🔬</div>
+          <h3>Iridotomia a Laser (YAG)</h3>
+          <p>Procedimento preventivo e terapêutico para glaucoma de ângulo fechado. O laser YAG cria uma microabertura na íris, permitindo a passagem do humor aquoso e normalizando a pressão. Ambulatorial e rápido.</p>
+          <div class="treatment-tag">Indicações: Glaucoma de ângulo fechado, ângulo estreito com risco de fechamento, prevenção de crise aguda.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🔧</div>
+          <h3>Cirurgia MIGS</h3>
+          <p>As Cirurgias Minimamente Invasivas de Glaucoma (MIGS) utilizam microimplantes para criar novas vias de drenagem com menor trauma cirúrgico. Recuperação mais rápida e menor risco de complicações. Pode ser combinada com cirurgia de catarata.</p>
+          <div class="treatment-tag">Indicações: Glaucoma leve a moderado, pacientes com intolerância a colírios, combinação com facoemulsificação.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🏥</div>
+          <h3>Trabeculectomia</h3>
+          <p>Cirurgia filtrante clássica e altamente eficaz para casos moderados a avançados. Cria uma nova via de drenagem do humor aquoso sob a conjuntiva, reduzindo significativamente a pressão intraocular de forma duradoura.</p>
+          <div class="treatment-tag">Indicações: Glaucoma moderado a avançado, falha do tratamento clínico e laser, progressão documentada.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🔭</div>
+          <h3>Diagnóstico Avançado</h3>
+          <p>Exames de alta precisão para detecção precoce e monitoramento: OCT do nervo óptico, campimetria computadorizada, tonometria de aplanação, gonioscopia, paquimetria e retinografia.</p>
+          <div class="treatment-tag">Tecnologias: OCT Spectral Domain, Campímetro Humphrey, Tonômetro de Goldmann, Retinógrafo digital.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tipos de Glaucoma -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">TIPOS DE GLAUCOMA</div>
+      <h2 class="section-title">Conheça os principais tipos e suas características</h2>
+      <p class="section-subtitle">Cada tipo de glaucoma exige uma abordagem específica. O diagnóstico correto é o primeiro passo para o tratamento eficaz.</p>
+      <div class="gold-line"></div>
+
+      <div class="types-grid">
+        <div class="type-card">
+          <h3>Glaucoma de Ângulo Aberto</h3>
+          <p>Forma mais comum (~80% dos casos). Progressão lenta e silenciosa, sem dor. A drenagem do humor aquoso é parcialmente bloqueada, elevando gradualmente a pressão. Requer acompanhamento contínuo e tratamento para toda a vida.</p>
+        </div>
+        <div class="type-card">
+          <h3>Glaucoma de Ângulo Fechado</h3>
+          <p>Pode causar crise aguda com dor intensa, vermelhidão, visão turva, halos e náusea — uma emergência oftalmológica. A íris bloqueia subitamente a drenagem. Tratamento imediato com laser (iridotomia) é fundamental.</p>
+        </div>
+        <div class="type-card">
+          <h3>Glaucoma de Pressão Normal</h3>
+          <p>Dano ao nervo óptico mesmo com pressão intraocular dentro da faixa normal. Requer investigação detalhada de fatores vasculares e neurológicos. Tratamento visa reduzir a PIO abaixo do nível que causa dano.</p>
+        </div>
+        <div class="type-card">
+          <h3>Glaucoma Congênito</h3>
+          <p>Presente ao nascimento, causado por desenvolvimento incompleto do sistema de drenagem ocular. Sinais incluem olhos grandes, lacrimejamento e sensibilidade à luz. Tratamento cirúrgico precoce é essencial.</p>
+        </div>
+        <div class="type-card">
+          <h3>Glaucoma Secundário</h3>
+          <p>Causado por outra condição: trauma ocular, inflamação (uveíte), uso prolongado de corticoides, diabetes avançado ou cirurgias prévias. O tratamento envolve controlar a causa base e reduzir a pressão intraocular.</p>
+        </div>
+        <div class="type-card">
+          <h3>Glaucoma Pigmentar</h3>
+          <p>Grânulos de pigmento da íris se desprendem e obstruem a malha trabecular, dificultando a drenagem. Mais comum em homens jovens e míopes. Pode ser tratado com laser SLT, colírios ou cirurgia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nervo Óptico -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">ENTENDA O DANO</div>
+      <h2 class="section-title">O nervo óptico: normal vs. glaucomatoso</h2>
+      <div class="gold-line"></div>
+      <div class="nerve-section">
+        <div>
+          <p style="font-size:15px; color:#4b5563; line-height:1.7; margin-bottom:16px;">O glaucoma causa a escavação progressiva do nervo óptico (disco óptico), destruindo as fibras nervosas responsáveis pela transmissão da visão ao cérebro.</p>
+          <p style="font-size:15px; color:#4b5563; line-height:1.7; margin-bottom:16px;">À esquerda, um nervo óptico saudável com escavação pequena e bordas preservadas. À direita, um nervo com escavação aumentada pelo glaucoma — dano irreversível que reforça a importância do diagnóstico precoce.</p>
+          <p style="font-size:12px; color:var(--gray); font-style:italic;">Ilustração educativa do exame de fundo de olho (oftalmoscopia).</p>
+        </div>
+        <div class="nerve-image">
+          <img src="/images/glaucoma-nervo-optico_opt.webp" alt="Nervo óptico normal vs glaucomatoso" onerror="this.style.background='#1a2e44'; this.style.height='280px';" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">SUA JORNADA</div>
+      <h2 class="section-title">Como funciona o atendimento</h2>
+      <p class="section-subtitle">Do primeiro contato ao acompanhamento contínuo, cada etapa é pensada para oferecer segurança e conforto. Consulta e exames podem ser realizados no mesmo dia, evitando múltiplos retornos.</p>
+      <div class="gold-line"></div>
+
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h3>Agendamento Facilitado</h3>
+          <p>Entre em contato pelo WhatsApp, telefone ou formulário. Nossa equipe agenda sua consulta na unidade mais conveniente, com horários flexíveis de segunda a sábado.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h3>Consulta + Exames no Mesmo Dia</h3>
+          <p>Realize sua consulta e todos os exames necessários (tonometria, gonioscopia, campimetria, OCT do nervo óptico) no mesmo dia, com retorno ao médico para avaliação dos resultados.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h3>Plano de Tratamento Personalizado</h3>
+          <p>Com base nos resultados, o especialista define a melhor estratégia: colírios, laser SLT, MIGS ou cirurgia. Cada plano é individualizado para o seu tipo de glaucoma.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <h3>Acompanhamento Contínuo</h3>
+          <p>Consultas periódicas a cada 3-6 meses com exames de controle para monitorar a pressão e o nervo óptico. Ajustes no tratamento sempre que necessário para manter sua visão estável.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Especialistas -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">CORPO CLÍNICO</div>
+      <h2 class="section-title">Especialistas dedicados à sua visão</h2>
+      <div class="gold-line"></div>
+
+      <div class="specialists-grid">
+        <div class="specialist-card">
+          <img class="specialist-img" src="/images/dr-fernando-800w.webp" alt="Dr. Fernando Macei Drudi" />
+          <div class="specialist-info">
+            <h3>Dr. Fernando M. Drudi</h3>
+            <div class="specialist-crm">Glaucoma e Cirurgia — CRM-SP 139.300</div>
+            <p>Fundador da Drudi e Almeida, especialista em glaucoma com mais de uma década de experiência. Preceptor de Retina e Catarata na Residência Médica do IAMSPE. Realiza trabeculectomias, cirurgias MIGS, laser SLT e iridotomia.</p>
+            <p style="margin-top:8px;">Condecorado "Amigo da Marinha" (SOAMAR Brasil) pelo projeto humanitário que leva cirurgias gratuitas a comunidades ribeirinhas da Amazônia.</p>
+          </div>
+        </div>
+        <div class="specialist-card">
+          <img class="specialist-img" src="/images/dra-priscilla-800w.webp" alt="Dra. Priscilla R. de Almeida" />
+          <div class="specialist-info">
+            <h3>Dra. Priscilla R. de Almeida</h3>
+            <div class="specialist-crm">Córnea e Segmento Anterior — CRM-SP 148.173 | RQE 59.216</div>
+            <p>Cofundadora da Drudi e Almeida, especialista em Córnea pela EPM/UNIFESP. Fellowship em Córnea e Doenças Externas. Referência em adaptação de lentes de contato especiais e doenças da superfície ocular.</p>
+            <p style="margin-top:8px;">Presença frequente em Você Bonita (TV Gazeta), CNN Brasil e Programa Interioriza, democratizando informação sobre saúde ocular.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">DEPOIMENTOS VERIFICADOS</div>
+      <h2 class="section-title">O que nossos pacientes dizem</h2>
+      <div class="gold-line"></div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Descobri o glaucoma num exame de rotina e fiquei muito preocupado. O Dr. Fernando explicou tudo com clareza, iniciou o tratamento com colírios e minha pressão está controlada há 4 anos. Profissional excepcional."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">JR</div>
+            <div>
+              <div class="author-name">José Roberto S.</div>
+              <div class="author-detail">Tratamento Clínico — Guarulhos</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Fiz o laser SLT com o Dr. Fernando e foi incrível — rápido, sem dor e minha pressão baixou significativamente. Reduzi os colírios pela metade. Equipe muito atenciosa e acolhedora em todas as consultas."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">MH</div>
+            <div>
+              <div class="author-name">Maria Helena C.</div>
+              <div class="author-detail">Laser SLT — Santana</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Minha mãe tem glaucoma avançado e precisou de cirurgia. O Dr. Samir em conjunto com o Dr. Fernando realizaram a Faco-Trabeculectomia com maestria. A pressão normalizou e a visão dela se mantém estável. Somos muito gratos."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">AF</div>
+            <div>
+              <div class="author-name">Ana Flávia M.</div>
+              <div class="author-detail">Faco-Trabeculectomia — Tatuapé</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Na Mídia -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">NA MÍDIA</div>
+      <h2 class="section-title">Referência em grandes veículos nacionais</h2>
+      <div class="gold-line"></div>
+
+      <div class="media-grid">
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-cnn.webp" alt="Dr. Fernando Drudi na CNN Brasil" loading="lazy" />
+          </div>
+          <div class="media-badge">★ CNN BRASIL — DESTAQUE</div>
+          <h4>Dr. Fernando na CNN Brasil</h4>
+          <p>Participação ao vivo abordando avanços da oftalmologia e glaucoma.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-ressoar.webp" alt="Dr. Fernando Drudi no Programa Ressoar" loading="lazy" />
+          </div>
+          <div class="media-badge">INSTITUTO RESSOAR — RECORD</div>
+          <h4>Dr. Fernando no Programa Ressoar</h4>
+          <p>Projeto humanitário de cirurgias gratuitas para comunidades ribeirinhas da Amazônia.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla de Almeida no Você Bonita TV Gazeta" loading="lazy" />
+          </div>
+          <div class="media-badge">VOCÊ BONITA — TV GAZETA</div>
+          <h4>Dra. Priscilla no Você Bonita</h4>
+          <p>Orientações sobre saúde ocular e prevenção do glaucoma.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla e Dr. Fernando no Programa Interioriza" loading="lazy" />
+          </div>
+          <div class="media-badge">PROGRAMA INTERIORIZA</div>
+          <h4>Dra. Priscilla e Dr. Fernando no Interioriza</h4>
+          <p>Saúde ocular e cirurgias levadas ao interior de São Paulo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">DÚVIDAS FREQUENTES</div>
+      <h2 class="section-title">Perguntas sobre glaucoma e tratamentos</h2>
+      <p class="section-subtitle">Tire suas dúvidas antes de entrar em contato. Se não encontrar o que procura, fale com nossa equipe.</p>
+      <div class="gold-line"></div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">O que é glaucoma? <span class="icon">+</span></button>
+          <div class="faq-answer">O glaucoma é uma doença ocular crônica que danifica progressivamente o nervo óptico, geralmente associada ao aumento da pressão intraocular. É a principal causa de cegueira irreversível no mundo. A perda de visão começa pela periferia e avança silenciosamente — por isso é chamado de "ladrão silencioso da visão". Estima-se que 50% dos portadores não sabem que têm a doença. O diagnóstico precoce é fundamental para preservar a visão.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Glaucoma tem cura? <span class="icon">+</span></button>
+          <div class="faq-answer">O glaucoma não tem cura, mas pode ser controlado com tratamento adequado. O objetivo é reduzir a pressão intraocular para impedir a progressão do dano ao nervo óptico. Com colírios, laser SLT ou cirurgia, a maioria dos pacientes consegue estabilizar a doença e preservar a visão funcional por toda a vida. O acompanhamento regular é essencial.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quais são os fatores de risco para glaucoma? <span class="icon">+</span></button>
+          <div class="faq-answer">Os principais fatores de risco incluem: idade acima de 40 anos, histórico familiar de glaucoma (risco 4-9x maior), pressão intraocular elevada, miopia alta, diabetes, hipertensão arterial, uso prolongado de corticoides e raça negra (risco 3-4x maior). Pessoas com qualquer desses fatores devem fazer rastreamento anual com oftalmologista.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Meu convênio cobre o tratamento de glaucoma? <span class="icon">+</span></button>
+          <div class="faq-answer">A maioria dos planos de saúde cobre consultas, exames diagnósticos (tonometria, campimetria, OCT) e procedimentos como laser SLT e cirurgias quando há indicação médica. Aceitamos Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Pró-PM, Ameplam e outros. A cobertura pode variar conforme o tipo de plano. <a href={WA_CONVENIO} target="_blank">Consulte pelo WhatsApp.</a></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">O que é o laser SLT e dói? <span class="icon">+</span></button>
+          <div class="faq-answer">A Trabeculoplastia Seletiva a Laser (SLT) é um procedimento ambulatorial que utiliza laser de baixa energia para melhorar a drenagem do humor aquoso. Não dói — é realizado com colírio anestésico e dura cerca de 5 minutos. O paciente pode sentir uma leve sensação de pressão. A recuperação é imediata e o procedimento pode ser repetido se necessário.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Com que frequência devo fazer exame de glaucoma? <span class="icon">+</span></button>
+          <div class="faq-answer">Pessoas acima de 40 anos devem fazer exame oftalmológico completo pelo menos uma vez ao ano, incluindo medição da pressão intraocular. Quem tem fatores de risco (histórico familiar, diabetes, miopia alta, uso de corticoides) deve iniciar o rastreamento mais cedo. Pacientes já diagnosticados necessitam de acompanhamento a cada 3 a 6 meses para monitorar a pressão e o nervo óptico.</div>
+        </div>
+      </div>
+
+      <p class="faq-cta">Ainda tem dúvidas? Nossa equipe responde em até 2 horas. <a href={WA_DUVIDA} target="_blank">Perguntar pelo WhatsApp</a></p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="urgency-badge">DIAGNÓSTICO PRECOCE PRESERVA A VISÃO</div>
+    <h2>Controle o glaucoma com quem é <em>referência</em></h2>
+    <p>Agende sua avaliação com nosso especialista em glaucoma. Diagnóstico avançado, tratamentos de ponta e acompanhamento contínuo em 5 unidades em SP.</p>
+    <a href={WA_AGENDAR} target="_blank" class="final-cta-btn">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar Avaliação pelo WhatsApp
+    </a>
+    <p class="final-cta-trust">🛡️ Sem compromisso · Resposta em até 2h · Atendimento humanizado</p>
+    <p class="final-cta-info">Nossa equipe atende de seg. a sáb. das 8h às 18h. <strong>Agende agora sua avaliação com o especialista em glaucoma.</strong></p>
+  </section>
+
+  <!-- Endereços -->
+  <section class="addresses-section">
+    <div class="addresses-inner">
+      <div class="addresses-grid">
+        {unidades.map(u => (
+          <div class="address-card">
+            <h4>{u.nome.split(' —')[0]}</h4>
+            <p>{u.endereco}</p>
+            <a href={u.maps} target="_blank" rel="noopener">Ver no mapa</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="lp-footer">
+    <p>© 2026 Drudi e Almeida Clínicas Oftalmológicas — Drudi e Almeida Participações Ltda. · CNPJ 40.106.607/0001-75</p>
+    <p>Dr. Fernando M. Drudi — CRM-SP 139.300 · Dra. Priscilla R. de Almeida — CRM-SP 148.173 | RQE 59.216</p>
+    <p><a href="/instituto/glaucoma/">Ver página completa do Instituto do Glaucoma</a> · <a href="/politica-de-privacidade/">Política de Privacidade</a></p>
+  </footer>
+
+  <!-- Sticky CTA Mobile -->
+  <div class="sticky-cta">
+    <a href={WA_AGENDAR} target="_blank" class="btn-wa">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href={PHONE} class="btn-phone">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      Ligar
+    </a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

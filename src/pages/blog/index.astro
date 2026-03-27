@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta.";
+
+const categories = [
+  { id: 1, name: "Catarata" },
+  { id: 2, name: "Ceratocone" },
+  { id: 3, name: "Estrabismo" },
+  { id: 4, name: "Glaucoma" },
+  { id: 5, name: "Retina" },
+  { id: 6, name: "Saúde Ocular" },
+];
+
+const posts = [
+  {
+    slug: "injecao-antivegf-o-que-e",
+    title: "Injeção Intravítrea Anti-VEGF: O Que É, Para Quem É Indicada e Como Funciona",
+    excerpt: "Descubra tudo sobre a injeção intravítrea anti-VEGF: o que é, para quem é indicada, como funciona o procedimento, frequência do tratamento, custo, cobertura por convênio e eficácia na Drudi e Almeida Oftalmologia.",
+    category: "Retina",
+    readTime: "10 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-injecao-intravitrea-XwivpU9Ad769VUTFChHBRt.webp",
+    date: "2026-03-01",
+    type: "article",
+    featured: true,
+  },
+  {
+    slug: "crosslinking-ceratocone-sp",
+    title: "Crosslinking para Ceratocone em SP: Preço, Convênio e Recuperação Completa [2026]",
+    excerpt: "Descubra tudo sobre o crosslinking para ceratocone em São Paulo, incluindo como funciona, custos, cobertura por convênios e o processo de recuperação. Entenda por que este tratamento é essencial para estabilizar a doença.",
+    category: "Ceratocone",
+    readTime: "10 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-crosslinking-4aHuWSXtfzy92aLXe2Fz2S.webp",
+    date: "2026-02-17",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "lente-intraocular-monofocal-multifocal-trifocal",
+    title: "Lente Intraocular: Monofocal, Multifocal ou Trifocal? Qual é a Melhor para Você?",
+    excerpt: "Entenda as diferenças entre lentes intraoculares monofocais, multifocais e trifocais para escolher a melhor opção para sua visão. Saiba como cada tipo funciona e qual se adapta ao seu estilo de vida.",
+    category: "Catarata",
+    readTime: "10 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-lente-intraocular-htSBo2x6P3ZoUFUbeM4vyf.webp",
+    date: "2026-02-03",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "cirurgia-catarata-convenio",
+    title: "Cirurgia de Catarata pelo Convênio: Como Funciona, Quais Planos Cobrem e Passo a Passo",
+    excerpt: "Entenda a cobertura da cirurgia de catarata pelos planos de saúde, a diferença entre lentes e o processo de autorização. Saiba como a Drudi e Almeida te ajuda em São Paulo e Guarulhos.",
+    category: "Catarata",
+    readTime: "10 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-catarata-convenio-Pb348WhNsLkbqVJALYEaJH.webp",
+    date: "2026-01-20",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "cirurgia-catarata-sp-preco",
+    title: "Cirurgia de Catarata em SP: Preço, Convênios e O Que Esperar [2026]",
+    excerpt: "Descubra o que influencia o preço da cirurgia de catarata em São Paulo em 2026, incluindo tipos de lentes, convênios e o que esperar na Drudi e Almeida. Entenda suas opções e agende sua avaliação.",
+    category: "Catarata",
+    readTime: "10 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-catarata-preco-2026-SmukPnNqiheEsfuWRqWA9L.webp",
+    date: "2026-01-06",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "glaucoma-tem-cura",
+    title: "Glaucoma tem cura? Tratamento em São Paulo e o que esperar [2026]",
+    excerpt: "Glaucoma não tem cura, mas tem controle. Entenda a diferença, a importância do diagnóstico precoce e os tratamentos disponíveis em São Paulo para preservar sua visão.",
+    category: "Glaucoma",
+    readTime: "6 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-glaucoma-tem-cura-Hk6YTNn5zDiDC3PM4qhFUX.webp",
+    date: "2025-11-24",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "tratamento-glaucoma-sp",
+    title: "Tratamento de Glaucoma em SP: Colírios, Cirurgia e Convênios [2026]",
+    excerpt: "Explore as opções de tratamento para glaucoma em São Paulo, incluindo colírios e cirurgias, cobertura por convênios como Bradesco, Amil, Unimed e Prevent Senior, e o custo do acompanhamento contínuo.",
+    category: "Glaucoma",
+    readTime: "7 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-glaucoma-coli-rio-cirurgia-bLh2VAfEArsQ7vLykE8F95.webp",
+    date: "2025-11-10",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "cirurgia-estrabismo-adultos",
+    title: "Cirurgia de Estrabismo em Adultos: Mitos, Verdades e o Impacto na Qualidade de Vida [2026]",
+    excerpt: "Desvende mitos e verdades sobre a cirurgia de estrabismo em adultos. Entenda os resultados esperados, riscos, recuperação e o impacto na qualidade de vida e autoestima.",
+    category: "Estrabismo",
+    readTime: "6 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-estrabismo-adulto-jWeonVtExtxzHBdYHp59rP.webp",
+    date: "2025-10-27",
+    type: "article",
+    featured: false,
+  },
+  {
+    slug: "cirurgia-estrabismo-sp",
+    title: "Cirurgia de Estrabismo em SP: Preço, Convênios e O Que Esperar [2026]",
+    excerpt: "Descubra tudo sobre a cirurgia de estrabismo em São Paulo: indicações para adultos e crianças, tipos de procedimento, recuperação, custos e cobertura por convênios.",
+    category: "Estrabismo",
+    readTime: "5 min",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/blog-capa-cirurgia-estrabismo-preco-ArxvuaKvForqdKjNYFefhA.webp",
+    date: "2025-10-13",
+    type: "article",
+    featured: false,
+  },
+];
+
+const featuredPost = posts[0];
+const regularPosts = posts.slice(1);
+
+function formatDate(dateStr: string) {
+  const date = new Date(dateStr + 'T00:00:00');
+  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+
+<BaseLayout
+  title="Blog de Saúde Ocular | Drudi e Almeida"
+  description="Artigos, vídeos e conteúdos sobre saúde ocular, catarata, ceratocone, glaucoma, retina e estrabismo. Drudi e Almeida Oftalmologia."
+>
+
+  <!-- ========== HERO — Seurat Grande Jatte ========== -->
+  <section class="relative min-h-[65vh] flex items-end overflow-hidden">
+    <!-- Pintura de Seurat como fundo -->
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/images/seurat-grande-jatte_8467105c.webp')"
+    ></div>
+    <!-- Gradiente: escuro na base para legibilidade, sutil no topo -->
+    <div class="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/55 to-navy/15"></div>
+    <!-- Vinheta lateral esquerda suave -->
+    <div class="absolute inset-0 bg-gradient-to-r from-navy/40 to-transparent"></div>
+
+    <div class="relative container pb-16 pt-32">
+      <nav class="flex items-center gap-2 font-ui text-xs text-cream/60 mb-5">
+        <a href="/" class="hover:text-cream transition-colors">Início</a>
+        <span>/</span>
+        <span class="text-cream">Blog</span>
+      </nav>
+      <div class="max-w-2xl">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold mb-3 block">
+          Saúde Ocular em Foco
+        </span>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-4">
+          Blog de Oftalmologia e Saúde <span class="text-gold italic">Ocular</span>
+        </h1>
+        <p class="font-body text-lg text-cream/80 leading-relaxed max-w-xl">
+          Artigos, vídeos e conteúdos educativos sobre cuidados com a visão, elaborados pelos especialistas da Drudi e Almeida Oftalmologia.
+        </p>
+        <div class="w-16 h-0.5 bg-gold mt-6"></div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+  </section>
+
+  <!-- ========== BUSCA E FILTROS ========== -->
+  <div class="bg-white border-b border-border shadow-sm sticky top-0 z-20">
+    <div class="container py-4">
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        <div class="relative max-w-xl w-full">
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input
+            type="text"
+            id="blog-search"
+            placeholder="Buscar artigos, vídeos, podcasts..."
+            class="w-full pl-12 pr-4 py-2.5 border border-border/60 rounded-lg font-body text-sm text-navy focus:ring-2 focus:ring-gold/30 focus:border-gold outline-none transition-all"
+          />
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="cat-filter active font-ui text-xs font-semibold px-4 py-2 rounded-full border border-navy bg-navy text-cream transition-all" data-cat="">
+            Todos
+          </button>
+          {categories.map(cat => (
+            <button class="cat-filter font-ui text-xs font-semibold px-4 py-2 rounded-full border border-border/60 text-navy hover:border-navy/40 transition-all" data-cat={cat.name}>
+              {cat.name}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== POST DESTAQUE ========== -->
+  <section class="section-padding bg-white" id="blog-content">
+    <div class="container">
+      <!-- Featured post -->
+      <div class="mb-12 blog-post" data-category={featuredPost.category} data-title={featuredPost.title.toLowerCase()}>
+        <a href={`/blog/${featuredPost.slug}`} class="group grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border/40 hover:shadow-xl transition-all">
+          <div class="relative overflow-hidden">
+            <img
+              src={featuredPost.image}
+              alt={featuredPost.title}
+              class="w-full h-[300px] lg:h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="eager"
+            />
+            <div class="absolute top-4 left-4 flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-gold text-navy font-ui text-xs font-bold px-3 py-1.5 rounded-full">
+                Destaque
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm text-navy font-ui text-xs font-semibold px-3 py-1.5 rounded-full">
+                Artigo
+              </span>
+            </div>
+          </div>
+          <div class="p-8 flex flex-col justify-center bg-white">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-flex items-center bg-rose-100 text-rose-700 font-ui text-xs font-semibold px-3 py-1 rounded-full">{featuredPost.category}</span>
+            </div>
+            <h2 class="font-display text-2xl md:text-3xl text-navy mb-4 group-hover:text-gold transition-colors leading-tight">{featuredPost.title}</h2>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-6">{featuredPost.excerpt}</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4 font-body text-xs text-muted-foreground">
+                <span class="flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {featuredPost.readTime} de leitura
+                </span>
+                <span>{formatDate(featuredPost.date)}</span>
+              </div>
+              <span class="inline-flex items-center gap-1 font-ui text-xs font-semibold text-navy group-hover:text-gold transition-colors">
+                Ler artigo completo
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Grid de posts -->
+      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {regularPosts.map(post => (
+          <article class="blog-post group rounded-2xl overflow-hidden border border-border/40 hover:shadow-lg transition-all bg-white" data-category={post.category} data-title={post.title.toLowerCase()}>
+            <a href={`/blog/${post.slug}`} class="block">
+              <div class="relative overflow-hidden h-52 bg-slate-100">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div class="absolute top-3 left-3 flex items-center gap-2">
+                  <span class="inline-flex items-center bg-white/90 backdrop-blur-sm text-navy font-ui text-xs font-semibold px-2.5 py-1 rounded-full">
+                    Artigo
+                  </span>
+                  <span class="inline-flex items-center bg-navy/80 backdrop-blur-sm text-cream font-ui text-xs font-semibold px-2.5 py-1 rounded-full">
+                    {post.category}
+                  </span>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-3 font-body text-xs text-muted-foreground">
+                  <span class="flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {post.readTime}
+                  </span>
+                  <span>·</span>
+                  <span>{formatDate(post.date)}</span>
+                </div>
+                <h3 class="font-display text-base text-navy mb-2 group-hover:text-gold transition-colors leading-snug">{post.title}</h3>
+                <p class="font-body text-xs text-muted-foreground leading-relaxed line-clamp-3">{post.excerpt}</p>
+                <div class="mt-4 flex items-center gap-1 font-ui text-xs font-semibold text-navy group-hover:text-gold transition-colors">
+                  Ler artigo
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <svg class="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p class="font-display text-lg text-navy mb-2">Nenhum artigo encontrado</p>
+        <p class="font-body text-sm text-muted-foreground">Tente buscar por outro termo ou categoria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA COM FAMÍLIA FELIZ (fundo, igual aos institutos) ========== -->
+  <section class="relative min-h-[500px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/happy-family_6ee5e159.webp')"></div>
+    <div class="absolute inset-0 bg-navy/70"></div>
+
+    <div class="relative container py-14 md:py-16">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold mb-4 block">
+          Cuide da sua Visão
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl text-cream mb-4">
+          Leu algo que te preocupou? <span class="text-gold">Fale com um especialista</span>
+        </h2>
+        <p class="font-body text-base text-cream/70 mb-8 leading-relaxed">
+          Agende sua consulta com os especialistas da Drudi e Almeida Oftalmologia. 5 institutos especializados, 5 unidades em SP e Guarulhos.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md hover:bg-gold/90 transition-colors shadow-lg"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+          <a
+            href="tel:+551150268521"
+            class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-7 py-3.5 rounded-md hover:bg-cream/10 transition-colors"
+          >
+            Ligar Agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  const catFilters = document.querySelectorAll('.cat-filter');
+  const blogPosts = document.querySelectorAll('.blog-post');
+  const emptyState = document.getElementById('empty-state');
+  const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+
+  let activeCategory = '';
+  let searchTerm = '';
+
+  function filterPosts() {
+    let visible = 0;
+    blogPosts.forEach((post) => {
+      const el = post as HTMLElement;
+      const cat = el.dataset.category || '';
+      const title = el.dataset.title || '';
+
+      const matchesCat = activeCategory === '' || cat === activeCategory;
+      const matchesSearch = searchTerm === '' || title.includes(searchTerm);
+
+      if (matchesCat && matchesSearch) {
+        el.style.display = '';
+        visible++;
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (emptyState) {
+      emptyState.classList.toggle('hidden', visible > 0);
+    }
+  }
+
+  catFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catFilters.forEach(b => {
+        b.classList.remove('active', 'bg-navy', 'text-cream', 'border-navy');
+        b.classList.add('border-border/60', 'text-navy');
+      });
+      btn.classList.add('active', 'bg-navy', 'text-cream', 'border-navy');
+      btn.classList.remove('border-border/60');
+      activeCategory = (btn as HTMLElement).dataset.cat || '';
+      filterPosts();
+    });
+  });
+
+  searchInput?.addEventListener('input', () => {
+    searchTerm = searchInput.value.toLowerCase().trim();
+    filterPosts();
+  });
+</script>

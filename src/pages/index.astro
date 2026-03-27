@@ -1,0 +1,852 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Drudi e Almeida | Oftalmologista em SP"
+  description="Oftalmologista em São Paulo com 5 institutos especializados: catarata, ceratocone, glaucoma, retina e estrabismo. Agende sua consulta."
+  canonicalPath="/"
+>
+
+  <!-- ========== HERO ========== -->
+  <!-- top-bar: 36px + header: 80px = 116px -->
+  <section class="relative min-h-[75vh] flex items-center overflow-hidden" style="background:#1e2a44;padding-top:116px">
+    <div class="absolute inset-0 overflow-hidden">
+      <img
+        src="/images/hero-monet-resized_00e348d0.webp"
+        srcset="/images/hero-monet-360w.webp 360w, /images/hero-monet-480w_5af50fa4_d2802f0a.webp 480w, /images/hero-monet-960w-q55_opt.webp 960w, /images/hero-monet-resized_00e348d0.webp 1920w"
+        sizes="100vw"
+        alt="Ponte japonesa de Monet — representação artística da visão com catarata"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        width="1920"
+        height="1072"
+      />
+    </div>
+    <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(30,42,68,0.90) 0%, rgba(30,42,68,0.70) 50%, rgba(30,42,68,0.20) 100%)"></div>
+
+    <div class="relative container py-20">
+      <div style="max-width:42rem">
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6" style="background:rgba(201,169,97,0.15);border:1px solid rgba(201,169,97,0.30);animation:hero-fade-up 0.6s 0.2s both">
+          <svg class="w-3.5 h-3.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+          <span class="font-ui text-xs font-semibold tracking-wide" style="color:#c9a961">REFERÊNCIA EM OFTALMOLOGIA</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight mb-6" style="color:#f5f0e8;animation:hero-fade-up 0.7s 0.4s both">
+          Sua visão merece <em class="not-italic" style="color:#c9a961">excelência</em> e <em class="not-italic" style="color:#c9a961">cuidado</em>
+        </h1>
+
+        <p class="font-body text-lg leading-relaxed mb-8" style="color:rgba(245,240,232,0.80);max-width:36rem;animation:hero-fade-up 0.6s 0.6s both">
+          Na Drudi e Almeida, unimos tecnologia de ponta, especialistas renomados e 
+          5 institutos dedicados para oferecer o melhor cuidado oftalmológico do Brasil.
+        </p>
+
+        <div class="flex flex-wrap gap-4" style="animation:hero-fade-up 0.6s 0.8s both">
+          <a
+            href="https://wa.me/5511916544653?text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-ui text-sm font-bold px-7 py-3.5 rounded-md transition-colors"
+            style="background:#c9a961;color:#1e2a44"
+          >
+            Agendar pelo WhatsApp
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a
+            href="https://app.drudi.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-7 py-3.5 rounded-md transition-all"
+            style="background:#1e2a44;color:#ffffff;border:1px solid rgba(30,42,68,0.20)"
+            onmouseover="this.style.background='#162036'"
+            onmouseout="this.style.background='#1e2a44'"
+          >
+            Agendar Online
+          </a>
+        </div>
+
+        <div class="flex items-center gap-2 mt-4" style="animation:hero-fade-in 0.5s 1.5s both">
+          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#25D366;box-shadow:0 0 6px rgba(37,211,102,0.5)"></span>
+          <span class="font-ui text-xs font-medium" style="color:rgba(245,240,232,0.60)">Respondemos em até 5 min pelo WhatsApp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-24" style="background:linear-gradient(to top, #faf9f7, transparent)"></div>
+  </section>
+
+  <!-- ========== STATS BAR ========== -->
+  <section class="relative z-10" style="margin-top:-3rem">
+    <div class="container">
+      <div class="bg-white rounded-xl shadow-lg grid grid-cols-2 md:grid-cols-4" style="border:1px solid rgba(201,169,97,0.20)">
+        <div class="px-6 py-6 text-center aos-element" style="border-right:1px solid #f0ece6">
+          <div class="font-display text-2xl md:text-3xl font-bold" style="color:#1e2a44">10+</div>
+          <div class="font-ui text-xs mt-1 tracking-wide" style="color:#6b7280">Anos de Experiência</div>
+        </div>
+        <div class="px-6 py-6 text-center aos-element" style="border-right:1px solid #f0ece6">
+          <div class="font-display text-2xl md:text-3xl font-bold" style="color:#1e2a44">50.000+</div>
+          <div class="font-ui text-xs mt-1 tracking-wide" style="color:#6b7280">Pacientes Atendidos</div>
+        </div>
+        <div class="px-6 py-6 text-center aos-element" style="border-right:1px solid #f0ece6">
+          <div class="font-display text-2xl md:text-3xl font-bold" style="color:#1e2a44">5</div>
+          <div class="font-ui text-xs mt-1 tracking-wide" style="color:#6b7280">Institutos Especializados</div>
+        </div>
+        <div class="px-6 py-6 text-center aos-element">
+          <div class="font-display text-2xl md:text-3xl font-bold" style="color:#1e2a44">100%</div>
+          <div class="font-ui text-xs mt-1 tracking-wide" style="color:#6b7280">Compromisso com Você</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOSSOS INSTITUTOS ========== -->
+  <section id="institutos" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Acessibilidade e Especialização</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Nossos Institutos</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          Cada instituto é dedicado a uma especialidade, garantindo que você receba o cuidado 
+          mais especializado e atualizado para a sua condição.
+        </p>
+        <div class="gold-line mx-auto mt-6" style="max-width:80px"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: "Instituto da Catarata", href: "/instituto/catarata", desc: "Cirurgia de catarata, especialistas renomados, tecnologia de ponta para restaurar a clareza da sua visão.", logo: "/images/logo-catarata-128_4016b3c8.webp" },
+          { name: "Instituto do Ceratocone", href: "/instituto/ceratocone", desc: "Adaptação de lente de contato, Crosslinking e tratamentos avançados para estabilizar e tratar o ceratocone.", logo: "/images/logo-ceratocone-128_5f37b031.webp" },
+          { name: "Instituto do Glaucoma", href: "/instituto/glaucoma", desc: "Diagnóstico precoce e tratamento contínuo para preservar sua visão do glaucoma.", logo: "/images/logo-glaucoma-128_c3ccf9c1.webp" },
+          { name: "Instituto da Retina", href: "/instituto/retina", desc: "Tratamento especializado para doenças da retina com tecnologia de última geração.", logo: "/images/logo-retina-128_88ef0fac.webp" },
+          { name: "Instituto de Estrabismo", href: "/instituto/estrabismo", desc: "Cirurgia para correção do estrabismo para crianças e adultos com técnicas modernas.", logo: "/images/logo-estrabismo-128_b8ca4997.webp" },
+        ].map((inst) => (
+          <div class="h-full transition-transform duration-300 hover:-translate-y-1.5 hover:scale-[1.02] aos-element">
+            <a href={inst.href} class="group block h-full">
+              <div class="relative rounded-xl p-7 h-full bg-white hover:shadow-lg transition-all duration-300" style="border:1px solid rgba(201,169,97,0.20);border-left:4px solid #c9a961">
+                <img
+                  src={inst.logo}
+                  alt={inst.name}
+                  class="w-14 h-14 object-contain mb-4 rounded-lg transition-transform duration-300 group-hover:scale-110"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 class="font-display text-xl mb-2 group-hover:transition-colors" style="color:#1e2a44">{inst.name}</h3>
+                <p class="font-body text-sm leading-relaxed mb-4" style="color:#6b7280">{inst.desc}</p>
+                <span class="inline-flex items-center gap-1.5 font-ui text-xs font-semibold" style="color:#1e2a44">
+                  Saiba mais
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONVÊNIOS ========== -->
+  <section class="py-12" style="background:#faf9f7;border-top:1px solid #f0ece6;border-bottom:1px solid #f0ece6">
+    <div class="container">
+      <div class="text-center mb-8 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">— Convênios Aceitos —</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-3" style="color:#1e2a44">Atendemos os principais convênios</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          Trabalhamos com os principais planos de saúde para facilitar o acesso ao cuidado oftalmológico.
+        </p>
+      </div>
+      <div class="overflow-hidden relative" id="convenios-track-wrapper">
+        <div id="convenios-track" class="flex gap-5 items-center" style="width:max-content">
+          {[
+            { nome: "Prevent Senior", logo: "/images/prevent-senior-188w_60641e66.webp" },
+            { nome: "Bradesco Saúde", logo: "/images/bradesco-188w_b58e35a5.webp" },
+            { nome: "Mediservice", logo: "/images/tech-mediservice-188w_ba541991.webp" },
+            { nome: "Instituto Pró-PM", logo: "/images/logo-propm-188w_44c9af21.webp" },
+            { nome: "Amil", logo: "/images/amil-188w_94445080.webp" },
+            { nome: "Unimed Seguros", logo: "/images/unimed-188w_3728f5a6.webp" },
+            { nome: "Ameplam", logo: "/images/ameplam-188w_df6e92d3.webp" },
+            { nome: "Prevent Senior", logo: "/images/prevent-senior-188w_60641e66.webp" },
+            { nome: "Bradesco Saúde", logo: "/images/bradesco-188w_b58e35a5.webp" },
+            { nome: "Mediservice", logo: "/images/tech-mediservice-188w_ba541991.webp" },
+            { nome: "Instituto Pró-PM", logo: "/images/logo-propm-188w_44c9af21.webp" },
+            { nome: "Amil", logo: "/images/amil-188w_94445080.webp" },
+            { nome: "Unimed Seguros", logo: "/images/unimed-188w_3728f5a6.webp" },
+            { nome: "Ameplam", logo: "/images/ameplam-188w_df6e92d3.webp" },
+          ].map((c) => (
+            <div class="flex-shrink-0 flex items-center justify-center bg-white rounded-xl p-4" style="width:160px;height:80px;border:1px solid #f0ece6">
+              <img src={c.logo} alt={c.nome} class="max-h-10 max-w-full object-contain" loading="lazy" decoding="async" width="120" height="40" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <!-- Card 7+ Convênios -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
+        <div class="inline-flex items-center gap-2 rounded-lg px-5 py-3" style="background:#1e2a44;border:1px solid rgba(201,169,97,0.30);height:46px">
+          <span class="font-display text-lg font-bold leading-none" style="color:#c9a961">7+</span>
+          <span class="font-ui text-sm font-semibold leading-none" style="color:#fff">Convênios Aceitos</span>
+        </div>
+        <a href="https://wa.me/5511916544653?text=Ol%C3%A1%21+Gostaria+de+saber+se+meu+conv%C3%AAnio+%C3%A9+aceito." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-5 py-3 rounded-lg transition-colors" style="background:#faf9f7;color:#1e2a44;border:1px solid #e5e0d8">
+          <svg class="w-4 h-4" style="color:#25D366" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Verificar meu convênio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUEM SOMOS ========== -->
+  <section class="relative overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2" style="min-height:600px">
+      <!-- Left: Cirurgia image -->
+      <div class="relative aos-element">
+        <div class="relative h-full" style="min-height:400px">
+          <img
+            src="/images/quemsomos-600w_opt.webp"
+            srcset="/images/quemsomos-400w_opt.webp 400w, /images/quemsomos-600w_opt.webp 600w"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            alt="Cirurgião oftalmologista realizando cirurgia ocular com microscópio Leica — Drudi e Almeida"
+            class="absolute inset-0 w-full h-full object-cover object-center"
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="402"
+          />
+          <div class="absolute inset-y-0 right-0 w-24 hidden lg:block" style="background:linear-gradient(to left, #faf9f7, transparent)"></div>
+          <div class="absolute inset-x-0 bottom-0 h-20 lg:hidden" style="background:linear-gradient(to top, rgba(250,249,247,0.90), transparent)"></div>
+          <!-- Floating badge -->
+          <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 bg-white rounded-xl shadow-xl p-4" style="max-width:220px;border:1px solid rgba(201,169,97,0.20)">
+            <div class="flex items-center gap-1 mb-1.5">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-3.5 h-3.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="font-ui text-xs font-bold" style="color:#1e2a44">Clínicas Premiadas</p>
+            <p class="font-body text-[11px]" style="color:#6b7280">Excelência no Atendimento</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="relative aos-element">
+        <div class="flex flex-col justify-center h-full px-8 py-14 md:px-14 lg:px-16 lg:py-20" style="background:linear-gradient(135deg, rgba(245,240,232,0.60) 0%, #faf9f7 50%, rgba(245,240,232,0.40) 100%)">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Quem Somos</span>
+          <h2 class="font-display text-3xl md:text-4xl mt-3 mb-6 leading-tight" style="color:#1e2a44">
+            Cuidar da sua visão é a nossa <em class="not-italic" style="color:#c9a961">vocação</em>
+          </h2>
+          <div class="space-y-4">
+            <p class="font-body text-base leading-relaxed" style="color:#6b7280">
+              A <strong style="color:#1e2a44">Drudi e Almeida Oftalmologia</strong> nasceu do encontro
+              entre a tradição cirúrgica do Dr. Fernando Drudi e a dedicação da
+              Dra. Priscilla de Almeida — Unido pelo propósito de transformar
+              a forma como as pessoas cuidam dos olhos.
+            </p>
+            <p class="font-body text-base leading-relaxed" style="color:#6b7280">
+              Com <strong style="color:#1e2a44">5 institutos especializados</strong> e uma equipe
+              multidisciplinar, oferecemos desde consultas de rotina até cirurgias de alta
+              complexidade, sempre com acolhimento e excelência.
+            </p>
+          </div>
+          <!-- Key differentials -->
+          <div class="grid grid-cols-3 gap-4 mt-8">
+            <div class="text-center">
+              <div class="w-10 h-10 mx-auto rounded-lg flex items-center justify-center mb-2" style="background:rgba(30,42,68,0.08)">
+                <svg class="w-5 h-5" style="color:#1e2a44" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              </div>
+              <div class="font-display text-lg font-bold" style="color:#1e2a44">5</div>
+              <div class="font-ui text-[10px] tracking-wide leading-tight" style="color:#6b7280">Institutos<br/>Especializados</div>
+            </div>
+            <div class="text-center">
+              <div class="w-10 h-10 mx-auto rounded-lg flex items-center justify-center mb-2" style="background:rgba(30,42,68,0.08)">
+                <svg class="w-5 h-5" style="color:#1e2a44" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <div class="font-display text-lg font-bold" style="color:#1e2a44">14</div>
+              <div class="font-ui text-[10px] tracking-wide leading-tight" style="color:#6b7280">Equipamentos<br/>de Ponta</div>
+            </div>
+            <div class="text-center">
+              <div class="w-10 h-10 mx-auto rounded-lg flex items-center justify-center mb-2" style="background:rgba(30,42,68,0.08)">
+                <svg class="w-5 h-5" style="color:#1e2a44" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </div>
+              <div class="font-display text-lg font-bold" style="color:#1e2a44">100%</div>
+              <div class="font-ui text-[10px] tracking-wide leading-tight" style="color:#6b7280">Cuidado<br/>Humanizado</div>
+            </div>
+          </div>
+          <div class="mt-8 flex justify-center">
+            <a href="/sobre" class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-7 py-3.5 rounded-lg transition-all shadow-md hover:shadow-lg" style="background:#1e2a44;color:#f5f0e8">
+              Conheça Nossa História
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TECNOLOGIA ========== -->
+  <section id="tecnologia" class="section-padding" style="background:#faf9f7">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Infraestrutura</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Tecnologia de Ponta</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          Contamos com <strong style="color:#1e2a44">14 equipamentos de última geração</strong> para garantir diagnósticos precisos e tratamentos seguros e eficazes.
+        </p>
+      </div>
+
+      <!-- Carousel de equipamentos -->
+      <div class="relative overflow-hidden">
+        <div id="tech-scroll" class="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory" style="scrollbar-width:none;-ms-overflow-style:none">
+          {[
+            { name: "OCT com Angio-OCT", brand: "Maestro 2 — Topcon", highlight: "Automatizado — resultado em segundos", image: "/images/tech-ervHszJT_dbcd90e3.webp", category: "Diagnóstico" },
+            { name: "Pentacam AXL", brand: "Oculus", highlight: "Análise completa do segmento anterior", image: "/images/tech-BjIDRRibGgbqaEgW_c47e0e8a.webp", category: "Diagnóstico" },
+            { name: "Campo Visual", brand: "Humphrey 750i — Zeiss", highlight: "Padrão-ouro para glaucoma", image: "/images/tech-uqfZPyapWiDmhgjZ_6136865e.webp", category: "Diagnóstico" },
+            { name: "Laser Argônio Multipoint", brand: "Vitra 2 — Quantel Medical", highlight: "Multispot — tratamento mais rápido", image: "/images/tech-LUSoVEgfmutwLJEX_87a665d8.webp", category: "Tratamento" },
+            { name: "OPD-Scan III", brand: "Nidek", highlight: "5 exames em 1 único aparelho", image: "/images/other-tHthjLAV_ae6c8b04.webp", category: "Diagnóstico" },
+            { name: "Yag Laser", brand: "Optimis II — Quantel Medical", highlight: "Precisão com mínima energia", image: "/images/other-uNpBHQmk_5cf97577.webp", category: "Cirúrgico" },
+          ].map((eq) => (
+            <div class="flex-shrink-0 snap-start bg-white rounded-2xl overflow-hidden shadow-sm aos-element" style="width:300px;border:1px solid #f0ece6">
+              <div class="relative h-48 overflow-hidden bg-gray-50">
+                <img
+                  src={eq.image}
+                  alt={eq.name}
+                  class="w-full h-full object-contain p-4"
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="192"
+                />
+                <span class="absolute top-3 left-3 font-ui text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full" style={eq.category === 'Diagnóstico' ? 'background:#dbeafe;color:#1e40af' : eq.category === 'Tratamento' ? 'background:#d1fae5;color:#065f46' : 'background:#fef3c7;color:#92400e'}>
+                  {eq.category}
+                </span>
+              </div>
+              <div class="p-5">
+                <h3 class="font-display text-base mb-1" style="color:#1e2a44">{eq.name}</h3>
+                <p class="font-ui text-xs mb-3" style="color:#6b7280">{eq.brand}</p>
+                <div class="flex items-center gap-2 rounded-lg px-3 py-2" style="background:#faf9f7">
+                  <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+                  <span class="font-ui text-xs" style="color:#1e2a44">{eq.highlight}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <!-- Navigation dots -->
+        <div class="flex justify-center gap-2 mt-6" id="tech-dots">
+          {[0,1,2,3,4,5].map((i) => (
+            <button class="w-2 h-2 rounded-full transition-all" style={i === 0 ? 'background:#1e2a44;width:1.5rem' : 'background:#d1d5db'} data-idx={i} aria-label={`Ir para equipamento ${i+1}`}></button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-6 mt-10 text-center">
+        <div class="aos-element">
+          <div class="font-display text-3xl font-bold" style="color:#1e2a44">14</div>
+          <div class="font-ui text-xs mt-1" style="color:#6b7280">Equipamentos</div>
+        </div>
+        <div class="aos-element">
+          <div class="font-display text-3xl font-bold" style="color:#1e2a44">6</div>
+          <div class="font-ui text-xs mt-1" style="color:#6b7280">Fabricantes</div>
+        </div>
+        <div class="aos-element">
+          <div class="font-display text-3xl font-bold" style="color:#1e2a44">3</div>
+          <div class="font-ui text-xs mt-1" style="color:#6b7280">Categorias</div>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/tecnologia" class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-md transition-colors" style="background:#1e2a44;color:#f5f0e8">
+          Ver Todos os Equipamentos
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOSSOS FUNDADORES ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Fundadores</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Nossos Fundadores</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          Dois médicos oftalmologistas unidos pela paixão em oferecer o melhor cuidado para a sua visão.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {[
+          {
+            name: "Dr. Fernando Macei Drudi",
+            role: "Diretor Clínico",
+            specialty: "Catarata e Retina Cirúrgica",
+            crm: "CRM-SP 139.300",
+            image: "/images/dr-fernando-800w.webp",
+            highlights: [
+              "Especialista em Catarata e Retina Cirúrgica",
+              "Membro do Conselho Brasileiro de Oftalmologia (CBO)",
+              "Preceptor de Retina e Catarata — Residência Médica IAMSPE",
+              'Condecoração "Amigo da Marinha" — Projeto Amazônia',
+            ],
+          },
+          {
+            name: "Dra. Priscilla R. de Almeida",
+            role: "Diretora Técnica",
+            specialty: "Córnea, Segmento Anterior e Lentes de Contato",
+            crm: "CRM-SP 148.173 | RQE 59.216",
+            image: "/images/dra-priscilla-800w.webp",
+            highlights: [
+              "Especialista em Córnea pela Escola Paulista de Medicina (EPM/UNIFESP)",
+              "Membro do Conselho Brasileiro de Oftalmologia (CBO)",
+              "Fellowship em Córnea e Doenças Externas",
+              "Especialista em Adaptação de Lentes de Contato Especiais",
+            ],
+          },
+        ].map((doc) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm aos-element" style="border:1px solid #f0ece6">
+            <div class="relative overflow-hidden" style="height:320px">
+              <img
+                src={doc.image}
+                alt={doc.name}
+                class="w-full h-full object-cover"
+                style="object-position:center 10%"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="640"
+              />
+              <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(30,42,68,0.70) 0%, transparent 60%)"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <span class="inline-block font-ui text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full" style="background:rgba(201,169,97,0.90);color:#1e2a44">
+                  {doc.role}
+                </span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl mb-1" style="color:#1e2a44">{doc.name}</h3>
+              <p class="font-ui text-sm font-semibold mb-1" style="color:#c9a961">{doc.specialty}</p>
+              <p class="font-body text-xs mb-4" style="color:#6b7280">{doc.crm}</p>
+              <div class="space-y-2">
+                {doc.highlights.map((h) => (
+                  <div class="flex items-start gap-2.5 rounded-lg px-3 py-2" style="background:rgba(245,240,232,0.60);border:1px solid rgba(201,169,97,0.10)">
+                    <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                    <p class="font-ui text-xs leading-snug" style="color:#1e2a44">{h}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/sobre#corpo-clinico" class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-md transition-colors" style="background:#1e2a44;color:#f5f0e8">
+          Conheça Nossa História
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARTE E VISÃO ========== -->
+  <section class="section-padding relative overflow-hidden" style="background:#1e2a44;color:#f5f0e8">
+    <div class="container relative">
+      <div class="text-center mb-10 aos-element">
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4" style="background:rgba(201,169,97,0.20)">
+          <svg class="w-4 h-4" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Arte e Visão</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl mt-2" style="color:#f5f0e8">Quando a Arte Revela a Visão</h2>
+        <p class="font-body text-base max-w-2xl mx-auto mt-4 leading-relaxed" style="color:rgba(245,240,232,0.70)">
+          Grandes mestres da pintura tinham condições oculares que transformaram suas obras. Na Drudi e Almeida, usamos essas histórias para conectar arte, ciência e cuidado com a visão.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { href: "/instituto/catarata", label: "Catarata", artist: "Claude Monet", desc: "A catarata transformou as cores vibrantes de Monet em tons amarelados e borrados.", image: "/images/monet-japanese-bridge_7feeb7be.webp", alt: "Monet - Ponte Japonesa antes e depois da catarata" },
+          { href: "/instituto/ceratocone", label: "Ceratocone", artist: "Vincent van Gogh", desc: "Os halos e espirais de Van Gogh lembram a visão distorcida do ceratocone.", image: "/images/van-gogh-starry-night_78be1262.webp", alt: "Van Gogh - Noite Estrelada, halos e distorções do ceratocone" },
+          { href: "/instituto/retina", label: "Retina", artist: "Edgar Degas", desc: "A degeneração macular de Degas fez suas bailarinas ficarem cada vez mais borradas.", image: "/images/art-degas-dancers_57775727.webp", alt: "Degas - Bailarinas, afetado por doença retiniana" },
+          { href: "/instituto/estrabismo", label: "Estrabismo", artist: "Leonardo da Vinci", desc: "Estudos revelam que Da Vinci tinha exotropia intermitente, vantagem artística.", image: "/images/da-vinci-strabismus_b1164d80.webp", alt: "Leonardo da Vinci - Estrabismo que ajudou sua arte" },
+        ].map((card) => (
+          <div class="aos-element">
+            <a href={card.href} class="group block h-full">
+              <div class="rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300" style="border:1px solid rgba(245,240,232,0.10)">
+                <div class="h-44 overflow-hidden">
+                  <img src={card.image} alt={card.alt} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" width="600" height="400" />
+                </div>
+                <div class="p-4 flex-1" style="background:rgba(245,240,232,0.05)">
+                  <span class="font-ui text-[10px] font-semibold tracking-wider uppercase" style="color:#c9a961">{card.label}</span>
+                  <h3 class="font-display text-lg mt-1 mb-2" style="color:#f5f0e8">{card.artist}</h3>
+                  <p class="font-body text-xs leading-relaxed" style="color:rgba(245,240,232,0.60)">{card.desc}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/blog/arte-visao-doencas-oculares-historia-arte" class="inline-flex items-center gap-2 font-ui text-sm font-semibold transition-colors" style="color:#c9a961">
+          Leia o artigo completo: Arte e Visão na História
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOSSAS UNIDADES ========== -->
+  <section id="unidades" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Perto de Você</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Nossas Unidades</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          5 unidades estrategicamente localizadas na Grande São Paulo para facilitar o seu acesso.
+        </p>
+        <div class="gold-line mx-auto mt-5" style="max-width:80px"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: "Guarulhos", slug: "guarulhos", address: "Rua Sete de Setembro, 375", city: "Guarulhos - SP", image: "/images/clinica_guarulhos_8e7690c7.webp", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Guarulhos+Rua+Sete+de+Setembro+375" },
+          { name: "Lapa", slug: "lapa", address: "Rua Barão de Jundiaí, 221", city: "São Paulo - SP", image: "/images/consultorio_lapa_be866546.webp", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Lapa+Rua+Barao+de+Jundiai+221" },
+          { name: "Santana", slug: "santana", address: "Rua Dr. César, 130", city: "São Paulo - SP", image: "/images/sala_espera_sofa_bege_v1_3860a616.webp", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Santana+Rua+Dr+Cesar+130" },
+          { name: "São Miguel", slug: "sao-miguel", address: "Rua Bernardo Marcondes, 108", city: "São Paulo - SP", image: "/images/sala_espera_sofa_bege_v4_0b2982e6.webp", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Sao+Miguel+Rua+Bernardo+Marcondes+108" },
+          { name: "Tatuápé", slug: "tatuape", address: "Rua Tuiuti, 2429", city: "São Paulo - SP", image: "/images/sala_espera_sofa_bege_v3_5717e0c0.webp", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Tatuape+Rua+Tuiuti+2429" },
+        ].map((u) => (
+          <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 aos-element" style="border:1px solid #f0ece6">
+            <a href={`/unidade/${u.slug}`} class="block">
+              <div class="h-48 overflow-hidden relative">
+                <img
+                  src={u.image}
+                  alt={`Unidade ${u.name} — Drudi e Almeida`}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="400"
+                />
+              </div>
+              <div class="p-5 pb-3">
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 shrink-0 mt-0.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  <div>
+                    <h3 class="font-display text-base mb-0.5" style="color:#1e2a44">{u.name}</h3>
+                    <p class="font-body text-xs" style="color:#6b7280">{u.address}</p>
+                    <p class="font-body text-xs font-semibold" style="color:#c9a961">{u.city}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="px-5 pb-4 flex items-center justify-between">
+              <a href={`/unidade/${u.slug}`} class="font-ui text-xs font-semibold flex items-center gap-1 transition-colors" style="color:#1e2a44">
+                Ver detalhes
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a href={u.mapsUrl} target="_blank" rel="noopener noreferrer" class="font-ui text-xs flex items-center gap-1 transition-colors" style="color:#6b7280">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                Google Maps
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/unidades" class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-md transition-colors" style="background:#1e2a44;color:#f5f0e8">
+          Ver Todas as Unidades no Mapa
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AVALIAÇÕES REAIS ========== -->
+  <section class="section-padding" style="background:#faf9f7">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Depoimentos</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Avaliações Reais</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          Veja o que nossos pacientes dizem sobre o atendimento e os resultados.
+        </p>
+        <div class="gold-line mx-auto mt-6" style="max-width:80px"></div>
+      </div>
+
+      <!-- Summary Card -->
+      <div class="max-w-4xl mx-auto mb-10 aos-element">
+        <div class="bg-white rounded-2xl shadow-sm p-8 flex flex-col md:flex-row items-center gap-8" style="border:1px solid #f0ece6">
+          <!-- Left: Big Rating -->
+          <div class="text-center md:text-left md:pr-8" style="border-right:none">
+            <div class="font-display text-6xl font-bold" style="color:#1e2a44">4.9</div>
+            <div class="flex items-center gap-1 justify-center md:justify-start mt-2 mb-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="font-body text-sm" style="color:#6b7280">Baseado em 847 avaliações</p>
+            <div class="flex items-center gap-1.5 justify-center md:justify-start mt-3">
+              <svg class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <span class="font-ui text-xs font-semibold" style="color:#6b7280">Google Reviews</span>
+            </div>
+          </div>
+          <div class="hidden md:block w-px h-20" style="background:#f0ece6"></div>
+          <!-- Right: Rating Bars -->
+          <div class="flex-1 w-full space-y-2">
+            {[
+              { stars: 5, count: 789, pct: 93 },
+              { stars: 4, count: 41, pct: 5 },
+              { stars: 3, count: 12, pct: 1.4 },
+              { stars: 2, count: 3, pct: 0.4 },
+              { stars: 1, count: 2, pct: 0.2 },
+            ].map((r) => (
+              <div class="flex items-center gap-3">
+                <span class="font-ui text-sm w-3 text-right" style="color:#1e2a44">{r.stars}</span>
+                <svg class="w-3.5 h-3.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <div class="flex-1 h-2.5 rounded-full overflow-hidden" style="background:#f0ece6">
+                  <div class="h-full rounded-full" style={`width:${r.pct}%;background:#c9a961`}></div>
+                </div>
+                <span class="font-body text-xs w-8 text-right" style="color:#6b7280">{r.count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Reviews -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          { name: "Patricia Oliveira", time: "há 2 semanas", text: "Excelente atendimento! Fiz minha cirurgia de catarata com o Dr. Fernando e o resultado superou todas as expectativas. Equipe muito profissional e acolhedora. A clínica é moderna e muito bem equipada. Recomendo de olhos fechados!", stars: 5, unit: "Santana" },
+          { name: "Ricardo Santos", time: "há 1 mês", text: "Levo meu pai para tratar glaucoma há 2 anos. O acompanhamento é impecável, sempre com exames detalhados e explicações claras. A recepção é muito educada e o tempo de espera é curto. Nota 10 para toda a equipe.", stars: 5, unit: "Tatuapé" },
+          { name: "Juliana Mendes", time: "há 3 semanas", text: "A Dra. Priscilla é maravilhosa! Adaptou lentes de contato para meu ceratocone e finalmente consigo enxergar direito. Tentei em outros lugares e ninguém conseguiu. Ela tem muita paciência e conhecimento técnico. Sou muito grata!", stars: 5, unit: "Lapa" },
+          { name: "Fernando Costa", time: "há 1 mês", text: "Minha mãe de 78 anos fez cirurgia de catarata e ficou com medo. A equipe toda foi extremamente cuidadosa, explicaram cada etapa. No dia seguinte ela já estava enxergando perfeitamente. Atendimento humanizado de verdade.", stars: 5, unit: "Guarulhos" },
+          { name: "Ana Beatriz Lima", time: "há 2 meses", text: "Levei meu filho de 5 anos com suspeita de estrabismo. A Dra. Maria Amélia foi incrível com ele, super paciente e carinhosa. Fez todos os exames brincando. Diagnóstico preciso e tratamento já iniciado. Profissional exemplar.", stars: 5, unit: "São Miguel" },
+          { name: "Carlos Alberto Souza", time: "há 3 meses", text: "Faço acompanhamento da retina por causa da diabetes. O Dr. Fernando é muito competente e atencioso, sempre explica os resultados dos exames com calma. Os equipamentos são de última geração. Melhor clínica de olhos que já fui.", stars: 5, unit: "Santana" },
+        ].map((review) => (
+          <div class="bg-white rounded-xl p-5 h-full hover:shadow-md transition-all duration-300 aos-element" style="border:1px solid #f0ece6">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:rgba(30,42,68,0.10)">
+                  <span class="font-display text-sm font-bold" style="color:#1e2a44">{review.name.charAt(0)}</span>
+                </div>
+                <div>
+                  <p class="font-ui text-sm font-semibold" style="color:#1e2a44">{review.name}</p>
+                  <p class="font-body text-[11px]" style="color:#6b7280">{review.time}</p>
+                </div>
+              </div>
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+            </div>
+            <div class="flex items-center gap-0.5 mb-3">
+              {Array.from({ length: review.stars }).map(() => (
+                <svg class="w-3.5 h-3.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="font-body text-sm leading-relaxed mb-3" style="color:rgba(30,42,68,0.80)">{review.text}</p>
+            <div class="flex items-center justify-between pt-3" style="border-top:1px solid #f0ece6">
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3 h-3" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span class="font-ui text-[10px]" style="color:#6b7280">Unidade {review.unit}</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <svg class="w-3 h-3" style="color:#10b981" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>
+                <span class="font-ui text-[10px] font-semibold" style="color:#10b981">Verificado</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA Google Reviews -->
+      <div class="text-center mt-10 aos-element">
+        <a
+          href="https://g.page/r/drudiealmeida/review"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 bg-white rounded-xl px-6 py-4 shadow-sm hover:shadow-md transition-all font-ui text-sm font-semibold" style="color:#1e2a44;border:1px solid #f0ece6"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Ver todas as avaliações no Google
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section-padding" style="background:#faf9f7">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Dúvidas Frequentes</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Perguntas Frequentes</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          Tire suas principais dúvidas sobre nossos serviços e tratamentos.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-3" id="faq-list">
+        {[
+          { q: "Quais convênios a Drudi e Almeida aceita?", a: "Atendemos os principais planos de saúde: Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Instituto Pró-PM e Ameplam. Para confirmar a cobertura do seu plano específico, entre em contato conosco pelo WhatsApp." },
+          { q: "Como faço para agendar uma consulta?", a: "Você pode agendar pelo WhatsApp (11) 91654-4653, pelo telefone (11) 5430-2421, ou pelo nosso sistema de agendamento online. Respondemos em até 5 minutos pelo WhatsApp durante o horário de atendimento." },
+          { q: "A cirurgia de catarata dói? Como é a recuperação?", a: "A cirurgia de catarata é realizada com anestesia local e sedação leve, portanto não há dor durante o procedimento. A recuperação é rápida: a maioria dos pacientes já enxerga melhor no dia seguinte. Recomendamos repouso por 24h e evitar esforços por 1 semana." },
+          { q: "O que é ceratocone e qual o tratamento?", a: "Ceratocone é uma doença progressiva em que a córnea se afina e assume formato cônico, causando visão distorcida. O tratamento depende do estágio: lentes de contato especiais para casos leves, Crosslinking para estabilizar a progressão, e anel de Ferrara para casos moderados." },
+          { q: "Glaucoma tem cura? Como é o tratamento?", a: "O glaucoma não tem cura, mas tem controle. Com diagnóstico precoce e tratamento adequado (colírios, laser ou cirurgia), é possível preservar a visão por toda a vida. O mais importante é o diagnóstico precoce, pois a visão perdida pelo glaucoma não pode ser recuperada." },
+          { q: "Com que idade devo levar meu filho ao oftalmologista?", a: "O primeiro exame deve ser o Teste do Olhinho, feito na maternidade. Depois, recomendamos consultas aos 6 meses, 1 ano, 3 anos e antes de entrar na escola (5-6 anos). A partir daí, anualmente." },
+          { q: "Sou diabético. Com que frequência devo fazer exame de vista?", a: "Pacientes diabéticos devem fazer exame de fundo de olho (mapeamento de retina) pelo menos uma vez ao ano. A retinopatia diabética é uma das principais causas de cegueira no mundo e pode progredir silenciosamente." },
+          { q: "Quais são as unidades da Drudi e Almeida?", a: "Temos 5 unidades na Grande São Paulo: Santana (Rua Dr. César, 130), Tatuapé (Rua Tuiuti, 2429), Lapa (Rua Barão de Jundiaí, 221), São Miguel Paulista (Rua Bernardo Marcondes, 108) e Guarulhos (Rua Sete de Setembro, 375)." },
+        ].map((faq, i) => (
+          <div class="faq-item bg-white rounded-xl px-6 transition-all aos-element" style="border:1px solid #f0ece6">
+            <button class="faq-trigger w-full text-left font-display text-base py-5 flex items-center justify-between gap-4" style="color:#1e2a44" aria-expanded="false">
+              <span>{faq.q}</span>
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 transition-transform" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content overflow-hidden" style="max-height:0;transition:max-height 0.3s ease">
+              <p class="font-body text-sm leading-relaxed pb-5" style="color:#6b7280">{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <p class="font-body text-sm mb-4" style="color:#6b7280">Não encontrou sua dúvida? Fale conosco!</p>
+        <a
+          href="https://wa.me/5511916544653?text=Ol%C3%A1%21+Tenho+uma+d%C3%BAvida+sobre..."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 font-ui text-sm font-bold px-6 py-3 rounded-md transition-colors"
+          style="background:#25D366;color:#fff"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pergunte pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ========== -->
+  <section class="relative flex items-center overflow-hidden" style="min-height:500px">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/happy-family_6ee5e159.webp')"></div>
+    <div class="absolute inset-0" style="background:rgba(30,42,68,0.70)"></div>
+    <div class="relative container py-16 md:py-20">
+      <div class="text-center mx-auto aos-element" style="max-width:42rem">
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl leading-tight mb-6" style="color:#f5f0e8">
+          Cuide da sua visão com quem é referência
+        </h2>
+        <p class="font-body text-lg leading-relaxed mb-10" style="color:rgba(245,240,232,0.80)">
+          Agende sua consulta e descubra como podemos ajudar você a enxergar 
+          o mundo com mais clareza e qualidade de vida.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://wa.me/5511916544653?text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-ui text-sm font-bold px-8 py-4 rounded-md transition-colors"
+            style="background:#c9a961;color:#1e2a44"
+          >
+            Agendar pelo WhatsApp
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a
+            href="https://app.drudi.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-8 py-4 rounded-md transition-colors"
+            style="border:1px solid rgba(245,240,232,0.30);color:#f5f0e8"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+          <a
+            href="tel:+5511916544653"
+            class="inline-flex items-center gap-2 font-ui text-sm font-medium px-6 py-4 rounded-md transition-colors"
+            style="border:1px solid rgba(245,240,232,0.20);color:rgba(245,240,232,0.70)"
+          >
+            Ligar Agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ accordion + tech carousel JS -->
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const content = item?.querySelector('.faq-content') as HTMLElement;
+        const icon = btn.querySelector('.faq-icon') as HTMLElement;
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(el => {
+          const c = el.querySelector('.faq-content') as HTMLElement;
+          const b = el.querySelector('.faq-trigger');
+          const ic = el.querySelector('.faq-icon') as HTMLElement;
+          if (c) c.style.maxHeight = '0';
+          if (b) b.setAttribute('aria-expanded', 'false');
+          if (ic) ic.style.transform = '';
+          el.style.borderColor = '#f0ece6';
+        });
+        // Open clicked
+        if (!isOpen && content) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+          if (icon) icon.style.transform = 'rotate(180deg)';
+          if (item) (item as HTMLElement).style.borderColor = 'rgba(201,169,97,0.30)';
+        }
+      });
+    });
+
+    // Tech carousel dots
+    const techScroll = document.getElementById('tech-scroll');
+    const techDots = document.querySelectorAll('#tech-dots button');
+    techDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        if (techScroll) {
+          techScroll.scrollTo({ left: i * 320, behavior: 'smooth' });
+        }
+        techDots.forEach((d, j) => {
+          (d as HTMLElement).style.background = j === i ? '#1e2a44' : '#d1d5db';
+          (d as HTMLElement).style.width = j === i ? '1.5rem' : '0.5rem';
+        });
+      });
+    });
+
+    // Convênios auto-scroll
+    const track = document.getElementById('convenios-track');
+    if (track) {
+      let pos = 0;
+      const SPEED = 0.5;
+      const blockW = 7 * (160 + 20); // 7 items * (width + gap)
+      let paused = false;
+      track.addEventListener('mouseenter', () => paused = true);
+      track.addEventListener('mouseleave', () => paused = false);
+      function tick() {
+        if (!paused) {
+          pos -= SPEED;
+          if (Math.abs(pos) >= blockW) pos += blockW;
+          track.style.transform = `translateX(${pos}px)`;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  </script>
+
+</BaseLayout>

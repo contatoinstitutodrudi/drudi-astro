@@ -1,0 +1,893 @@
+---
+// LP Retina — Réplica fiel de lp-retina.institutodrudiealmeida.com.br
+const WA_LINK = "https://wa.me/5511916544653";
+const WA_AGENDAR = `${WA_LINK}?text=Olá! Gostaria de agendar uma avaliação de retina.`;
+const WA_CONVENIO = `${WA_LINK}?text=Olá! Gostaria de verificar se meu convênio cobre o tratamento de retina.`;
+const WA_DUVIDA = `${WA_LINK}?text=Olá! Tenho uma dúvida sobre doenças da retina.`;
+const PHONE = "tel:+5511916544653";
+
+const unidades = [
+  { nome: "Guarulhos Centro", endereco: "R. Sete de Setembro, 375", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Guarulhos" },
+  { nome: "Santana — São Paulo", endereco: "R. Dr. César, 130", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Santana" },
+  { nome: "Tatuapé — São Paulo", endereco: "R. Tuiuti, 2429", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Tatuape" },
+  { nome: "Lapa — São Paulo", endereco: "R. Barão de Jundiaí, 221", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Lapa" },
+  { nome: "São Miguel — São Paulo", endereco: "R. Bernardo Marcondes, 108", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Sao+Miguel" },
+];
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instituto da Retina em SP | Drudi e Almeida Clínicas Oftalmológicas</title>
+  <meta name="description" content="Diagnóstico avançado e tratamentos de ponta para doenças da retina: DMRI, retinopatia diabética, descolamento de retina. Especialistas em 5 unidades em SP." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2e44;
+      --navy-light: #243b55;
+      --gold: #c9a961;
+      --gold-light: #d4b97a;
+      --cream: #f5f0e8;
+      --cream-dark: #ede8df;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --gray-light: #f3f4f6;
+      --green: #16a34a;
+      --red: #dc2626;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    .announcement-bar {
+      background: var(--navy);
+      color: var(--cream);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .announcement-bar strong { color: var(--gold); }
+
+    .lp-header {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .lp-header img { height: 40px; }
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero { background: var(--cream); padding: 48px 24px 56px; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-desc { font-size: 15px; color: #4b5563; margin-bottom: 24px; line-height: 1.7; }
+    .hero-checks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .hero-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .form-card select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--white);
+      margin-bottom: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+    .form-card select:focus { border-color: var(--gold); }
+    .btn-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #25d366;
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .btn-wa:hover { background: #1fb855; }
+    .btn-phone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-phone:hover { background: var(--navy-light); }
+    .google-rating { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 13px; color: var(--gray); }
+    .stars { color: #f59e0b; font-size: 14px; }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+    }
+    .testimonial-card .stars { margin-bottom: 12px; display: block; }
+    .testimonial-card blockquote { font-size: 14px; color: #374151; font-style: italic; line-height: 1.6; margin-bottom: 14px; }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .author-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+    .author-detail { font-size: 12px; color: var(--gray); }
+    .verified { font-size: 11px; color: var(--green); font-weight: 500; }
+
+    .units-box {
+      background: var(--navy); color: var(--cream);
+      border-radius: 10px; padding: 18px 20px; margin-top: 16px;
+    }
+    .units-box h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 10px; }
+    .units-box ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+    .units-box li { font-size: 13px; }
+    .units-box li::before { content: "• "; color: var(--gold); }
+
+    .convenios-strip {
+      background: var(--white);
+      border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;
+      padding: 24px;
+    }
+    .convenios-strip h4 { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--gray); text-transform: uppercase; margin-bottom: 16px; }
+    .convenios-logos { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .convenios-logos img { height: 36px; object-fit: contain; filter: grayscale(0.3); }
+    .convenio-not-found { text-align: center; margin-top: 14px; font-size: 13px; color: var(--gray); }
+    .convenio-not-found a { color: var(--navy); font-weight: 600; text-decoration: underline; }
+
+    .section { padding: 64px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 500; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-subtitle { font-size: 15px; color: var(--gray); max-width: 600px; line-height: 1.7; }
+    .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 16px 0 40px; }
+
+    /* Symptoms Grid */
+    .symptoms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+    .symptom-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .symptom-card.urgent { border-left-color: var(--red); }
+    .symptom-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .symptom-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    .symptom-card.urgent .symptom-title { color: var(--red); }
+    .symptoms-cta { margin-top: 24px; }
+    .btn-urgent {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* Treatments */
+    .treatments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .treatment-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .treatment-icon {
+      width: 48px; height: 48px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      color: var(--gold);
+      font-size: 22px;
+    }
+    .treatment-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .treatment-card p { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
+    .treatment-tag { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.05em; }
+
+    /* Diseases */
+    .diseases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .disease-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .disease-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .disease-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+    /* Steps */
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 40px; }
+    .step-item { text-align: center; }
+    .step-number {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--navy); color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step-item h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step-item p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* Specialists */
+    .specialists-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+    .specialist-card {
+      background: var(--white); border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex;
+    }
+    .specialist-img { width: 160px; flex-shrink: 0; object-fit: cover; object-position: top; }
+    .specialist-info { padding: 24px; }
+    .specialist-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 4px; }
+    .specialist-crm { font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .specialist-info p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+
+    /* Media */
+    .media-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+    .media-card {
+      background: var(--white); border-radius: 10px;
+      overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .media-thumb {
+      position: relative; aspect-ratio: 16/9;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .media-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+    .play-btn {
+      position: absolute; width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-btn::after { content: ""; border-left: 16px solid var(--navy); border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
+    .media-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); padding: 10px 14px 4px; }
+    .media-card h4 { font-size: 13px; font-weight: 600; color: var(--navy); padding: 0 14px 6px; }
+    .media-card p { font-size: 12px; color: var(--gray); padding: 0 14px 14px; line-height: 1.5; }
+
+    /* FAQ */
+    .faq-list { margin-top: 40px; max-width: 800px; }
+    .faq-item { border-bottom: 1px solid #e5e7eb; }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      text-align: left; padding: 18px 0;
+      font-size: 15px; font-weight: 600; color: var(--navy);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .faq-question .icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0; transition: transform 0.2s;
+    }
+    .faq-answer { font-size: 14px; color: #4b5563; line-height: 1.7; padding-bottom: 18px; display: none; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .icon { transform: rotate(45deg); }
+    .faq-cta { margin-top: 24px; font-size: 14px; color: var(--gray); }
+    .faq-cta a { color: var(--navy); font-weight: 600; text-decoration: underline; }
+
+    /* Final CTA */
+    .final-cta { background: var(--navy); padding: 64px 24px; text-align: center; }
+    .final-cta .urgency-badge {
+      display: inline-block;
+      background: rgba(201,169,97,0.2); border: 1px solid var(--gold);
+      color: var(--gold); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 6px 18px; border-radius: 20px; margin-bottom: 24px;
+    }
+    .final-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+    .final-cta h2 em { color: var(--gold); font-style: italic; }
+    .final-cta p { font-size: 15px; color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+    .final-cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25d366; color: var(--white);
+      padding: 16px 36px; border-radius: 8px;
+      font-size: 16px; font-weight: 700; transition: background 0.2s;
+    }
+    .final-cta-btn:hover { background: #1fb855; }
+    .final-cta-trust { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .final-cta-info { margin-top: 12px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .final-cta-info strong { color: rgba(255,255,255,0.75); }
+
+    .addresses-section { background: var(--navy); padding: 48px 24px; }
+    .addresses-inner { max-width: 1100px; margin: 0 auto; }
+    .addresses-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 24px; }
+    .address-card { text-align: center; }
+    .address-card h4 { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+    .address-card p { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+    .address-card a { font-size: 12px; color: var(--cream); border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px; display: inline-block; }
+
+    .lp-footer { background: #0f1f2e; padding: 24px; text-align: center; }
+    .lp-footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+    .lp-footer a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+
+    .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; grid-template-columns: 1fr auto; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.15); }
+    .sticky-cta .btn-wa { border-radius: 0; margin: 0; font-size: 14px; padding: 14px; }
+    .sticky-cta .btn-phone { border-radius: 0; width: auto; padding: 14px 20px; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .treatments-grid { grid-template-columns: 1fr 1fr; }
+      .diseases-grid { grid-template-columns: 1fr 1fr; }
+      .symptoms-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .specialists-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr 1fr; }
+      .addresses-grid { grid-template-columns: 1fr 1fr; }
+      .sticky-cta { display: grid; }
+    }
+    @media (max-width: 600px) {
+      .treatments-grid { grid-template-columns: 1fr; }
+      .diseases-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr; }
+      .addresses-grid { grid-template-columns: 1fr; }
+      .specialist-card { flex-direction: column; }
+      .specialist-img { width: 100%; height: 200px; }
+      .units-box ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    Avaliação especializada em doenças da retina — <strong>Agende sua consulta</strong>
+  </div>
+
+  <!-- Header -->
+  <header class="lp-header">
+    <a href="/"><img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" /></a>
+    <a href={PHONE} class="header-phone">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      (11) 91654-4653
+    </a>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">Instituto da Retina — Drudi e Almeida</div>
+        <h1>Proteja sua visão com quem é <em>especialista em retina</em></h1>
+        <p class="hero-desc">Diagnóstico avançado e tratamentos de ponta para doenças da retina: DMRI, retinopatia diabética, descolamento de retina e mais. Equipe especializada em <strong>5 unidades em SP</strong>.</p>
+        <div class="hero-checks">
+          <span class="hero-check">✓ Injeção Intravítrea</span>
+          <span class="hero-check">✓ Vitrectomia</span>
+          <span class="hero-check">✓ Laser de Retina</span>
+          <span class="hero-check">✓ Aceita Convênios</span>
+        </div>
+
+        <div class="form-card">
+          <select>
+            <option value="">Selecione a unidade mais próxima</option>
+            {unidades.map(u => <option value={u.nome}>{u.nome}</option>)}
+          </select>
+          <a href={WA_AGENDAR} target="_blank" class="btn-wa">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar Avaliação
+          </a>
+          <a href={PHONE} class="btn-phone">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            (11) 91654-4653
+          </a>
+          <div class="google-rating">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            <strong>4.9</strong>
+            <span class="stars">★★★★★</span>
+            <span>847+ avaliações</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Faço acompanhamento de retina com o Dr. Fernando há 3 anos. Profissional excepcional, explica tudo com clareza e a equipe é muito acolhedora. Minha visão se mantém estável graças ao tratamento."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">JM</div>
+            <div>
+              <div class="author-name">José Marcos P.</div>
+              <div class="author-detail">Acompanhamento de Retina — Santana</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="units-box">
+          <h4>5 UNIDADES EM SP</h4>
+          <ul>
+            <li>Guarulhos</li>
+            <li>Santana</li>
+            <li>Tatuapé</li>
+            <li>Lapa</li>
+            <li>São Miguel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Convênios Strip -->
+  <div class="convenios-strip">
+    <h4>Convênios Aceitos</h4>
+    <div class="convenios-logos">
+      <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" />
+      <img src="/images/amil-188w_94445080.webp" alt="Amil" />
+      <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" />
+      <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" />
+      <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" />
+      <img src="/images/logo-propm-188w_44c9af21.webp" alt="Pró-PM" />
+    </div>
+    <p class="convenio-not-found">Não encontrou o seu? <a href={WA_CONVENIO} target="_blank">Consulte pelo WhatsApp</a></p>
+  </div>
+
+  <!-- Sinais de Alerta -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">SINAIS DE ALERTA</div>
+      <h2 class="section-title">Quando procurar um especialista em retina?</h2>
+      <p class="section-subtitle">Se você apresenta algum destes sintomas, agende uma avaliação o mais rápido possível. O diagnóstico precoce é fundamental.</p>
+      <div class="gold-line"></div>
+
+      <div class="symptoms-grid">
+        <div class="symptom-card">
+          <div class="symptom-title">Visão embaçada ou distorcida</div>
+          <div class="symptom-desc">Dificuldade para ler ou reconhecer rostos</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-title">Manchas escuras ou "moscas volantes"</div>
+          <div class="symptom-desc">Pontos ou fios que flutuam na visão</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-title">Flashes de luz (fotopsias)</div>
+          <div class="symptom-desc">Lampejos repentinos no campo visual</div>
+        </div>
+        <div class="symptom-card urgent">
+          <div class="symptom-title">⚠ Perda súbita de visão</div>
+          <div class="symptom-desc">Escurecimento parcial ou total — emergência</div>
+        </div>
+        <div class="symptom-card urgent">
+          <div class="symptom-title">⚠ "Cortina" no campo visual</div>
+          <div class="symptom-desc">Sombra que cobre parte da visão lateral</div>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-title">Linhas retas parecem onduladas</div>
+          <div class="symptom-desc">Metamorfopsia — sinal clássico de DMRI</div>
+        </div>
+      </div>
+
+      <div class="symptoms-cta" style="margin-top: 32px;">
+        <a href={WA_AGENDAR} target="_blank" class="btn-urgent">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Agendar Avaliação Urgente
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tratamentos -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">TRATAMENTOS ESPECIALIZADOS</div>
+      <h2 class="section-title">Tecnologia de ponta para cuidar da sua retina</h2>
+      <p class="section-subtitle">Oferecemos os tratamentos mais avançados disponíveis na oftalmologia moderna para doenças da retina.</p>
+      <div class="gold-line"></div>
+
+      <div class="treatments-grid">
+        <div class="treatment-card">
+          <div class="treatment-icon">💉</div>
+          <h3>Injeção Intravítrea</h3>
+          <p>Aplicação de medicamentos anti-VEGF diretamente no interior do olho para bloquear o crescimento de vasos anormais e reduzir o edema na retina. Procedimento rápido, com anestesia local (colírio), realizado em ambiente ambulatorial.</p>
+          <div class="treatment-tag">Indicações: DMRI úmida, edema macular diabético, oclusão vascular da retina, edema macular cistoide.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🔬</div>
+          <h3>Vitrectomia</h3>
+          <p>Cirurgia minimamente invasiva para remoção do vítreo e tratamento direto da retina. Realizada com microincisões e instrumentos de alta precisão, com anestesia local e sedação. Permite tratar as condições mais complexas da retina.</p>
+          <div class="treatment-tag">Indicações: Descolamento de retina, buraco macular, membrana epirretiniana, hemorragia vítrea.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">⚡</div>
+          <h3>Fotocoagulação a Laser</h3>
+          <p>Aplicação de laser na retina para selar rasgos, tratar vasos anormais e prevenir o descolamento. Procedimento ambulatorial com anestesia tópica. Fundamental no controle da retinopatia diabética.</p>
+          <div class="treatment-tag">Indicações: Retinopatia diabética proliferativa, rasgos na retina, prevenção de descolamento.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🌊</div>
+          <h3>Terapia Fotodinâmica (PDT)</h3>
+          <p>Tratamento que combina um medicamento fotossensível (verteporfina) com laser de baixa intensidade para destruir seletivamente vasos anormais sem danificar o tecido saudável da retina.</p>
+          <div class="treatment-tag">Indicações: Coriorretinopatia serosa central crônica.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🫧</div>
+          <h3>Retinopexia Pneumática</h3>
+          <p>Procedimento minimamente invasivo que utiliza uma bolha de gás injetada no olho para reposicionar a retina descolada. Combinado com crioterapia ou laser, permite a recuperação sem necessidade de cirurgia aberta em casos selecionados.</p>
+          <div class="treatment-tag">Indicações: Descolamento de retina simples, com rasgo único na porção superior.</div>
+        </div>
+        <div class="treatment-card">
+          <div class="treatment-icon">🔭</div>
+          <h3>Diagnóstico Avançado</h3>
+          <p>Equipamentos de última geração para diagnóstico preciso: OCT, angiofluoresceinografia, retinografia e mapeamento de retina. Exames rápidos, não invasivos e fundamentais para o planejamento do tratamento.</p>
+          <div class="treatment-tag">Exames: OCT, angiofluoresceinografia, retinografia, mapeamento de retina, campo visual.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doenças -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">DOENÇAS QUE TRATAMOS</div>
+      <h2 class="section-title">Especialistas nas principais condições da retina</h2>
+      <div class="gold-line"></div>
+
+      <div class="diseases-grid">
+        <div class="disease-card">
+          <h3>Degeneração Macular (DMRI)</h3>
+          <p>Principal causa de perda de visão central em maiores de 60 anos. Afeta a mácula, responsável pela visão de detalhes. Tratamento com injeções anti-VEGF pode estabilizar e até melhorar a visão.</p>
+        </div>
+        <div class="disease-card">
+          <h3>Retinopatia Diabética</h3>
+          <p>Complicação do diabetes que danifica os vasos sanguíneos da retina. Pode levar à cegueira se não tratada. Controle do diabetes + laser e/ou injeções intravítreas são fundamentais.</p>
+        </div>
+        <div class="disease-card">
+          <h3>Descolamento de Retina</h3>
+          <p>Emergência oftalmológica em que a retina se separa do tecido de suporte. Requer tratamento cirúrgico urgente (vitrectomia ou retinopexia) para preservar a visão.</p>
+        </div>
+        <div class="disease-card">
+          <h3>Edema Macular</h3>
+          <p>Acúmulo de líquido na mácula que causa visão embaçada e distorcida. Pode ser causado por diabetes, oclusão vascular ou pós-cirurgia. Tratamento com injeções intravítreas.</p>
+        </div>
+        <div class="disease-card">
+          <h3>Membrana Epirretiniana</h3>
+          <p>Tecido cicatricial que se forma sobre a mácula, causando distorção visual. Quando compromete a visão, o tratamento é cirúrgico (vitrectomia com peeling da membrana).</p>
+        </div>
+        <div class="disease-card">
+          <h3>Oclusão Vascular da Retina</h3>
+          <p>Bloqueio dos vasos sanguíneos da retina, conhecido como "AVC do olho". Causa perda súbita de visão. Tratamento com injeções intravítreas e, em alguns casos, laser.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">SUA JORNADA</div>
+      <h2 class="section-title">Como funciona o atendimento</h2>
+      <p class="section-subtitle">Do primeiro contato ao acompanhamento contínuo, cuidamos de cada etapa com excelência.</p>
+      <div class="gold-line"></div>
+
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h3>Agendamento</h3>
+          <p>Entre em contato pelo WhatsApp ou telefone. Nossa equipe agenda sua consulta na unidade mais próxima com horário conveniente.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h3>Avaliação Completa</h3>
+          <p>Consulta detalhada com retinólogo, incluindo exames de imagem (OCT, mapeamento de retina) para diagnóstico preciso da sua condição.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h3>Plano de Tratamento</h3>
+          <p>O especialista explica o diagnóstico, as opções de tratamento, riscos e benefícios. Você participa ativamente da decisão sobre o melhor caminho.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <h3>Acompanhamento</h3>
+          <p>Monitoramento contínuo com exames periódicos para avaliar a resposta ao tratamento e ajustar a conduta quando necessário.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Especialistas -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">NOSSOS ESPECIALISTAS</div>
+      <h2 class="section-title">Conheça quem cuida da sua retina</h2>
+      <p class="section-subtitle">Profissionais com mais de 10 anos de experiência e presença em grandes veículos de mídia nacional.</p>
+      <div class="gold-line"></div>
+
+      <div class="specialists-grid">
+        <div class="specialist-card">
+          <img class="specialist-img" src="/images/dr-fernando-800w.webp" alt="Dr. Fernando Macei Drudi" />
+          <div class="specialist-info">
+            <h3>Dr. Fernando Macei Drudi</h3>
+            <div class="specialist-crm">Retina Cirúrgica e Catarata — CRM-SP 139.300</div>
+            <p>Fundador da Drudi e Almeida, especialista em retina cirúrgica com mais de uma década de experiência. Preceptor de Retina e Catarata na Residência Médica do IAMSPE. Realiza vitrectomias, injeções intravítreas e fotocoagulação a laser.</p>
+            <p style="margin-top:8px;">Condecorado "Amigo da Marinha" (SOAMAR Brasil) pelo projeto humanitário que leva cirurgias gratuitas a comunidades ribeirinhas da Amazônia.</p>
+          </div>
+        </div>
+        <div class="specialist-card">
+          <img class="specialist-img" src="/images/dra-priscilla-800w.webp" alt="Dra. Priscilla R. de Almeida" />
+          <div class="specialist-info">
+            <h3>Dra. Priscilla R. de Almeida</h3>
+            <div class="specialist-crm">Córnea e Segmento Anterior — CRM-SP 148.173 | RQE 59.216</div>
+            <p>Cofundadora da Drudi e Almeida, especialista em Córnea pela EPM/UNIFESP. Fellowship em Córnea e Doenças Externas. Referência em adaptação de lentes de contato especiais e doenças da superfície ocular.</p>
+            <p style="margin-top:8px;">Presença frequente em Você Bonita (TV Gazeta), CNN Brasil e Programa Interioriza, democratizando informação sobre saúde ocular.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">DEPOIMENTOS VERIFICADOS</div>
+      <h2 class="section-title">O que nossos pacientes dizem</h2>
+      <div class="gold-line"></div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Descobri que tinha DMRI úmida e fiquei muito assustada. O Dr. Fernando explicou tudo com calma, iniciou o tratamento com injeções e minha visão se estabilizou. Profissional excepcional."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">MA</div>
+            <div>
+              <div class="author-name">Maria Aparecida L.</div>
+              <div class="author-detail">Tratamento DMRI — Santana</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Sou diabético há 20 anos e o Dr. Fernando acompanha minha retina há 4 anos. Graças ao acompanhamento regular e ao tratamento com laser, minha visão se mantém preservada. Equipe muito atenciosa."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">RS</div>
+            <div>
+              <div class="author-name">Roberto Souza</div>
+              <div class="author-detail">Retinopatia Diabética — Guarulhos</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="stars">★★★★★</span>
+          <blockquote>"Tive um descolamento de retina e fui operado de urgência pelo Dr. Fernando. A cirurgia foi um sucesso e recuperei a visão. Sou muito grato a toda a equipe da Drudi e Almeida."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">CA</div>
+            <div>
+              <div class="author-name">Carlos Alberto M.</div>
+              <div class="author-detail">Vitrectomia — Tatuapé</div>
+              <div class="verified">✓ Verificado no Google</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Na Mídia -->
+  <section class="section" style="background: var(--cream-dark);">
+    <div class="section-inner">
+      <div class="section-label">NA MÍDIA</div>
+      <h2 class="section-title">Referência em grandes veículos nacionais</h2>
+      <div class="gold-line"></div>
+
+      <div class="media-grid">
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-cnn.webp" alt="Dr. Fernando Drudi na CNN Brasil" loading="lazy" />
+          </div>
+          <div class="media-badge">★ CNN BRASIL — DESTAQUE</div>
+          <h4>Dr. Fernando na CNN Brasil</h4>
+          <p>Participação ao vivo abordando avanços da oftalmologia e doenças da retina.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-ressoar.webp" alt="Dr. Fernando Drudi no Programa Ressoar" loading="lazy" />
+          </div>
+          <div class="media-badge">INSTITUTO RESSOAR — RECORD</div>
+          <h4>Dr. Fernando no Programa Ressoar</h4>
+          <p>Projeto humanitário de cirurgias gratuitas para comunidades ribeirinhas da Amazônia.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla de Almeida no Você Bonita TV Gazeta" loading="lazy" />
+          </div>
+          <div class="media-badge">VOCÊ BONITA — TV GAZETA</div>
+          <h4>Dra. Priscilla no Você Bonita</h4>
+          <p>Orientações sobre saúde ocular, retina e prevenção de perda de visão.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-thumb">
+            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla e Dr. Fernando no Programa Interioriza" loading="lazy" />
+          </div>
+          <div class="media-badge">PROGRAMA INTERIORIZA</div>
+          <h4>Dra. Priscilla e Dr. Fernando no Interioriza</h4>
+          <p>Saúde ocular e cirurgias levadas ao interior de São Paulo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">DÚVIDAS FREQUENTES</div>
+      <h2 class="section-title">Perguntas sobre doenças e tratamentos da retina</h2>
+      <p class="section-subtitle">Tire suas dúvidas antes de entrar em contato. Se não encontrar o que procura, fale com nossa equipe.</p>
+      <div class="gold-line"></div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">O que é a degeneração macular (DMRI)? <span class="icon">+</span></button>
+          <div class="faq-answer">A Degeneração Macular Relacionada à Idade (DMRI) é a principal causa de perda de visão central em pessoas acima de 60 anos. Afeta a mácula, região da retina responsável pela visão de detalhes (ler, reconhecer rostos, dirigir). Existem duas formas: seca (mais comum, progressão lenta) e úmida (mais agressiva, com formação de vasos anormais). O diagnóstico precoce com OCT e o tratamento com injeções anti-VEGF podem estabilizar e até melhorar a visão.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">A injeção intravítrea dói? <span class="icon">+</span></button>
+          <div class="faq-answer">Não. O procedimento é realizado com anestesia local (colírio anestésico) e dura poucos minutos. O paciente pode sentir uma leve pressão no momento da aplicação, mas não dor. Após o procedimento, é normal sentir um leve desconforto que melhora rapidamente. A injeção intravítrea é um dos tratamentos mais seguros e eficazes para doenças da retina.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quais são os sintomas de problemas na retina? <span class="icon">+</span></button>
+          <div class="faq-answer">Os principais sintomas incluem: visão embaçada ou distorcida, manchas escuras ou "moscas volantes", flashes de luz (fotopsias), perda súbita de visão, sensação de "cortina" cobrindo parte do campo visual e linhas retas que parecem onduladas (metamorfopsia). Qualquer um desses sintomas requer avaliação oftalmológica urgente, especialmente a perda súbita de visão e os flashes de luz, que podem indicar descolamento de retina.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Meu convênio cobre o tratamento de retina? <span class="icon">+</span></button>
+          <div class="faq-answer">A maioria dos planos de saúde cobre consultas, exames diagnósticos (OCT, mapeamento de retina) e procedimentos como injeção intravítrea e vitrectomia quando há indicação médica. Aceitamos Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Pró-PM, Ameplam e outros. A cobertura pode variar conforme o tipo de plano. <a href={WA_CONVENIO} target="_blank">Consulte pelo WhatsApp.</a></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">O que é vitrectomia e como é a recuperação? <span class="icon">+</span></button>
+          <div class="faq-answer">A vitrectomia é uma cirurgia minimamente invasiva que remove o vítreo (gel transparente que preenche o olho) para tratar doenças como descolamento de retina, buraco macular e membrana epirretiniana. É realizada com anestesia local e sedação, com microincisões que geralmente não necessitam de pontos. A recuperação varia de acordo com a complexidade: uso de colírios por algumas semanas e, em alguns casos, posicionamento específico da cabeça. A maioria dos pacientes retoma atividades leves em 1 a 2 semanas.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Retinopatia diabética tem cura? <span class="icon">+</span></button>
+          <div class="faq-answer">A retinopatia diabética pode ser controlada e estabilizada com tratamento adequado, mas o controle rigoroso do diabetes (glicemia, pressão arterial e colesterol) é fundamental. Os tratamentos incluem injeção intravítrea de anti-VEGF, fotocoagulação a laser e, em casos avançados, vitrectomia. O acompanhamento regular com retinólogo — pelo menos uma vez ao ano para diabéticos — é essencial para detectar alterações precocemente e preservar a visão.</div>
+        </div>
+      </div>
+
+      <p class="faq-cta">Ainda tem dúvidas? Nossa equipe responde em até 2 horas. <a href={WA_DUVIDA} target="_blank">Perguntar pelo WhatsApp</a></p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="urgency-badge">DIAGNÓSTICO PRECOCE SALVA A VISÃO</div>
+    <h2>Cuide da sua retina com quem é <em>referência</em></h2>
+    <p>Agende sua avaliação com nosso especialista em retina. Diagnóstico avançado, tratamentos de ponta e acompanhamento contínuo em 5 unidades em SP.</p>
+    <a href={WA_AGENDAR} target="_blank" class="final-cta-btn">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar Avaliação pelo WhatsApp
+    </a>
+    <p class="final-cta-trust">🛡️ Sem compromisso · Resposta em até 2h · Atendimento humanizado</p>
+    <p class="final-cta-info">Nossa equipe atende de seg. a sáb. das 8h às 18h. <strong>Agende agora sua avaliação com o retinólogo.</strong></p>
+  </section>
+
+  <!-- Endereços -->
+  <section class="addresses-section">
+    <div class="addresses-inner">
+      <div class="addresses-grid">
+        {unidades.map(u => (
+          <div class="address-card">
+            <h4>{u.nome.split(' —')[0]}</h4>
+            <p>{u.endereco}</p>
+            <a href={u.maps} target="_blank" rel="noopener">Ver no mapa</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="lp-footer">
+    <p>© 2026 Drudi e Almeida Clínicas Oftalmológicas — Drudi e Almeida Participações Ltda. · CNPJ 40.106.607/0001-75</p>
+    <p>Dr. Fernando M. Drudi — CRM-SP 139.300 · Dra. Priscilla R. de Almeida — CRM-SP 148.173 | RQE 59.216</p>
+    <p><a href="/instituto/retina/">Ver página completa do Instituto da Retina</a> · <a href="/politica-de-privacidade/">Política de Privacidade</a></p>
+  </footer>
+
+  <!-- Sticky CTA Mobile -->
+  <div class="sticky-cta">
+    <a href={WA_AGENDAR} target="_blank" class="btn-wa">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href={PHONE} class="btn-phone">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      Ligar
+    </a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

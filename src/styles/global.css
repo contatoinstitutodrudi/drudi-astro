@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design Tokens — Drudi e Almeida
+   ============================================================ */
+@theme {
+  --color-navy: oklch(0.30 0.04 250);
+  --color-navy-light: oklch(0.35 0.04 250);
+  --color-navy-dark: oklch(0.22 0.04 250);
+  --color-gold: oklch(0.72 0.10 80);
+  --color-gold-light: oklch(0.82 0.08 80);
+  --color-gold-dark: oklch(0.62 0.10 80);
+  --color-cream: oklch(0.98 0.005 80);
+  --color-background: oklch(0.995 0.002 80);
+  --color-foreground: oklch(0.22 0.04 250);
+  --color-border: oklch(0.91 0.005 80);
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --font-ui: "Montserrat", system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-body); background-color: var(--color-background); color: var(--color-foreground); }
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); font-weight: 600; line-height: 1.2; color: var(--color-navy); }
+
+/* Headings dentro de seções escuras herdam branco */
+.bg-navy h1, .bg-navy h2, .bg-navy h3, .bg-navy h4,
+[class*="bg-navy"] h1, [class*="bg-navy"] h2, [class*="bg-navy"] h3, [class*="bg-navy"] h4,
+[style*="background:#1e2a44"] h1, [style*="background:#1e2a44"] h2, [style*="background:#1e2a44"] h3 { color: white; }
+
+/* Forçar cor branca quando classe text-white é usada em headings */
+h1.text-white, h2.text-white, h3.text-white, h4.text-white,
+h1.text-cream, h2.text-cream, h3.text-cream { color: white !important; }
+
+/* Forçar cor dourada quando classe text-gold é usada em headings */
+h1.text-gold, h2.text-gold, h3.text-gold, h4.text-gold,
+span.text-gold { color: var(--color-gold) !important; }
+
+/* Forçar cor navy quando classe text-navy é usada */
+h1.text-navy, h2.text-navy, h3.text-navy, h4.text-navy { color: var(--color-navy) !important; }
+* { box-sizing: border-box; }
+
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+.font-ui      { font-family: var(--font-ui); }
+
+.container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+@media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+@media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; } }
+
+.section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+@media (min-width: 768px) { .section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; } }
+
+.gold-line { height: 1px; background: linear-gradient(90deg, transparent, var(--color-gold), transparent); }
+.glass { background: oklch(1 0 0 / 80%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid oklch(1 0 0 / 20%); }
+
+.aos-element { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.aos-element.aos-visible { opacity: 1; transform: none; }
+
+@keyframes hero-fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { animation: fade-in-up 0.35s ease-out both; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: oklch(0.96 0.003 80); }
+::-webkit-scrollbar-thumb { background: oklch(0.72 0.10 80); border-radius: 4px; }
+::selection { background: oklch(0.72 0.10 80 / 30%); color: oklch(0.22 0.04 250); }

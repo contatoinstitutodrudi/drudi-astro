@@ -1,0 +1,290 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de saber se vocês aceitam meu convênio.";
+const PHONE = "(11) 5026-8521";
+
+const convenios = [
+  {
+    nome: "Prevent Senior",
+    logo: "/images/prevent-senior-resized_d5845445.webp",
+    logoSmall: "/images/prevent-senior-188w_60641e66.webp",
+    descricao: "Plano de saúde referência para a terceira idade, com ampla cobertura em consultas, exames e cirurgias oftalmológicas.",
+    cor: "border-l-[#e8472a]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+  {
+    nome: "Bradesco Saúde",
+    logo: "/images/bradesco-resized_aae8535a.webp",
+    logoSmall: "/images/bradesco-188w_b58e35a5.webp",
+    descricao: "Um dos maiores planos de saúde do Brasil, oferecendo cobertura completa para todos os procedimentos oftalmológicos.",
+    cor: "border-l-[#cc0000]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+  {
+    nome: "Mediservice",
+    logo: "/images/tech-mediservice-rPLmRznR_d6cff695.webp",
+    logoSmall: "/images/tech-mediservice-188w_ba541991.webp",
+    descricao: "Plano corporativo do Bradesco com atendimento diferenciado e cobertura abrangente em oftalmologia.",
+    cor: "border-l-[#003087]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+  {
+    nome: "Instituto Pró-PM",
+    logo: "/images/logo-propm_0b938536.webp",
+    logoSmall: "/images/logo-propm-188w_44c9af21.webp",
+    descricao: "Plano de saúde com cobertura para consultas especializadas, exames diagnósticos e procedimentos cirúrgicos.",
+    cor: "border-l-[#1a3a6b]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+  {
+    nome: "Amil",
+    logo: "/images/amil-resized_65f90601.webp",
+    logoSmall: "/images/amil-188w_94445080.webp",
+    descricao: "Rede nacional com cobertura ampla em oftalmologia, incluindo consultas, exames de alta complexidade e cirurgias.",
+    cor: "border-l-[#0066cc]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+  {
+    nome: "Unimed Seguros",
+    logo: "/images/unimed-resized_954ff1a4.webp",
+    logoSmall: "/images/unimed-188w_3728f5a6.webp",
+    descricao: "Maior sistema cooperativo de saúde do mundo, com cobertura completa para cuidados oftalmológicos.",
+    cor: "border-l-[#009a44]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+  {
+    nome: "Ameplam",
+    logo: "/images/ameplam-resized_f387254f.webp",
+    logoSmall: "/images/ameplam-188w_df6e92d3.webp",
+    descricao: "Plano de saúde com atendimento personalizado e cobertura para consultas e procedimentos em oftalmologia.",
+    cor: "border-l-[#8b1a1a]",
+    coberturas: ["CONSULTAS", "EXAMES", "CIRURGIAS"],
+  },
+];
+
+const diferenciais = [
+  {
+    titulo: "Cobertura Completa",
+    descricao: "Todos os convênios listados cobrem consultas, exames diagnósticos e procedimentos cirúrgicos em nossos 5 institutos especializados.",
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+  },
+  {
+    titulo: "Sem Burocracia",
+    descricao: "Processo de autorização simplificado. Nossa equipe cuida de toda a parte administrativa para que você foque na sua saúde.",
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`,
+  },
+  {
+    titulo: "Atendimento Humanizado",
+    descricao: "Independente do convênio, todos os pacientes recebem o mesmo padrão de excelência e cuidado personalizado.",
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+  },
+];
+---
+
+<BaseLayout
+  title="Planos de Saúde Aceitos | Drudi e Almeida"
+  description="Conheça os convênios e planos de saúde aceitos na Drudi e Almeida Oftalmologia: Prevent Senior, Bradesco Saúde, Mediservice, Amil, Unimed, Ameplam e Instituto Pró-PM."
+>
+
+  <!-- ========== HERO COM VAN GOGH (NOITE ESTRELADA) ========== -->
+  <section class="relative min-h-[60vh] flex items-center overflow-hidden">
+    <!-- Imagem de fundo: Van Gogh — A Noite Estrelada -->
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/starry-night-hero-opt.webp')"
+    ></div>
+    <!-- Overlay gradiente -->
+    <div class="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-navy/30"></div>
+
+    <!-- Conteúdo -->
+    <div class="relative container py-20 md:py-24">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 mb-8" aria-label="Breadcrumb">
+        <a href="/" class="font-ui text-xs text-cream/60 hover:text-cream transition-colors">Início</a>
+        <span class="text-cream/40 text-xs">›</span>
+        <span class="font-ui text-xs text-gold">Convênios</span>
+      </nav>
+
+      <div class="max-w-2xl">
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-6">
+          Convênios e Planos de<br />
+          <span class="text-gold italic">Saúde Aceitos</span>
+        </h1>
+        <p class="font-body text-lg text-cream/80 leading-relaxed mb-8 max-w-xl">
+          Atendemos os principais planos de saúde para facilitar o seu acesso à oftalmologia de excelência.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md hover:bg-gold/90 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Perguntar pelo WhatsApp
+          </a>
+          <a
+            href={`tel:+55${PHONE.replace(/\D/g, "")}`}
+            class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-7 py-3.5 rounded-md hover:bg-cream/10 transition-colors"
+          >
+            Ligar Agora
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fade bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent"></div>
+  </section>
+
+  <!-- ========== NOSSOS CONVÊNIOS ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <!-- Cabeçalho -->
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">
+          Planos Aceitos
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">
+          Nossos Convênios
+        </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          A Drudi e Almeida Clínicas Oftalmológicas atende pacientes de diversos convênios médicos. Nossa equipe está preparada para orientá-lo sobre a cobertura do seu plano e auxiliar em todo o processo de autorização.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <!-- Grid de convênios -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {convenios.map((conv) => (
+          <div class={`bg-white rounded-xl border border-border/60 border-l-4 ${conv.cor} shadow-sm hover:shadow-md transition-shadow p-6`}>
+            <!-- Logo -->
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-16 h-12 flex items-center justify-center flex-shrink-0">
+                <img
+                  src={conv.logo}
+                  alt={`Logotipo do convênio ${conv.nome} — aceito na Drudi e Almeida Oftalmologia`}
+                  class="max-w-full max-h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="font-display text-lg text-navy font-semibold leading-tight">
+                {conv.nome}
+              </h3>
+            </div>
+
+            <!-- Descrição -->
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+              {conv.descricao}
+            </p>
+
+            <!-- Coberturas -->
+            <div class="flex flex-wrap gap-2">
+              {conv.coberturas.map((cob) => (
+                <span class="inline-flex items-center gap-1 font-ui text-[10px] font-semibold tracking-wide text-navy/70">
+                  <svg class="w-3 h-3 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  {cob}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Aviso: convênio não listado -->
+      <div class="mt-12 bg-cream/50 border border-gold/20 rounded-xl p-8 text-center">
+        <h3 class="font-display text-xl text-navy mb-3">
+          Seu convênio não está na lista?
+        </h3>
+        <p class="font-body text-sm text-muted-foreground leading-relaxed mb-6 max-w-xl mx-auto">
+          Estamos constantemente ampliando nossa rede de convênios. Entre em contato conosco para verificar se atendemos o seu plano ou para saber mais sobre nossas condições para atendimento particular.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold/90 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Perguntar pelo WhatsApp
+          </a>
+          <a
+            href={`tel:+55${PHONE.replace(/\D/g, "")}`}
+            class="inline-flex items-center gap-2 border border-navy/30 text-navy font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-navy/5 transition-colors"
+          >
+            {PHONE}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DIFERENCIAIS ========== -->
+  <section class="section-padding bg-cream/40">
+    <div class="container">
+      <div class="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">
+          Diferenciais
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">
+          Por que Escolher a Drudi e Almeida?
+        </h2>
+        <div class="gold-line max-w-[80px] mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {diferenciais.map((d) => (
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gold/10 flex items-center justify-center text-gold mb-5">
+              <Fragment set:html={d.icon} />
+            </div>
+            <h3 class="font-display text-xl text-navy mb-3">{d.titulo}</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed">{d.descricao}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA AGENDAR CONSULTA ========== -->
+  <section class="relative min-h-[460px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/happy-family_6ee5e159.webp')"></div>
+    <div class="absolute inset-0 bg-navy/70"></div>
+
+    <div class="relative container py-14 md:py-16">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold mb-4 block">
+          Agende Sua Consulta
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl text-cream mb-4">
+          Agende sua consulta utilizando o seu <span class="text-gold italic">convênio</span>
+        </h2>
+        <p class="font-body text-base text-cream/70 mb-8 leading-relaxed">
+          Nossa equipe cuida de toda a autorização. Você só precisa se preocupar com a sua saúde ocular.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md hover:bg-gold/90 transition-colors shadow-lg"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+          <a
+            href={`tel:+55${PHONE.replace(/\D/g, "")}`}
+            class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-7 py-3.5 rounded-md hover:bg-cream/10 transition-colors"
+          >
+            Ligar Agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

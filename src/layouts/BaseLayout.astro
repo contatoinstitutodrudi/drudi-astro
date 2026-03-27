@@ -1,0 +1,444 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  keywords = 'oftalmologista São Paulo, clínica de olhos SP, cirurgia de catarata, ceratocone, glaucoma, retina, estrabismo, Drudi e Almeida',
+  canonicalPath = '/',
+  ogImage = '/images/hero-monet-resized_00e348d0.webp',
+} = Astro.props;
+
+const siteUrl = 'https://institutodrudiealmeida.com.br';
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const fullTitle = title.includes('Drudi') ? title : `${title} | Drudi e Almeida`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Drudi e Almeida Clínicas Oftalmológicas" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Fonts: Playfair Display + Source Sans 3 + Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Montserrat:wght@500;600;700&display=swap"
+    />
+
+    <!-- Schema.org: MedicalOrganization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalOrganization",
+      "name": "Drudi e Almeida Clínicas Oftalmológicas",
+      "url": "https://institutodrudiealmeida.com.br",
+      "logo": "https://institutodrudiealmeida.com.br/images/logo-footer-200w_56b3dc2d.webp",
+      "telephone": "+55-11-5026-8521",
+      "email": "contato@drudiealmeida.com",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Voluntários da Pátria, 2863, sala 1203",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "postalCode": "02402-400",
+          "addressCountry": "BR"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/drudiealmeida",
+        "https://www.facebook.com/drudiealmeida"
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Top Bar: Horário + Contatos -->
+    <div class="fixed top-0 left-0 right-0 z-50 bg-navy text-white border-b border-white/10" id="top-bar">
+      <div class="container">
+        <div class="flex items-center justify-between h-9">
+          <!-- Horário -->
+          <div class="flex items-center gap-1.5 font-ui text-[11px] text-white/70">
+            <svg class="w-3.5 h-3.5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Seg–Sex: 8h–18h &nbsp;|&nbsp; Sáb: 8h–12h</span>
+          </div>
+          <!-- Contatos -->
+          <div class="hidden sm:flex items-center gap-4">
+            <a href="tel:+551150268521" class="flex items-center gap-1.5 font-ui text-[11px] text-white/70 hover:text-gold transition-colors">
+              <svg class="w-3.5 h-3.5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              (11) 5026-8521
+            </a>
+            <a href="https://wa.me/5511916544653" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 font-ui text-[11px] text-white/70 hover:text-gold transition-colors">
+              <svg class="w-3.5 h-3.5 text-gold shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              (11) 91654-4653
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Principal: Fundo Branco -->
+    <header id="header" class="fixed top-9 left-0 right-0 z-40 transition-all duration-300" data-header>
+      <div class="absolute inset-0 bg-white/98 backdrop-blur-md border-b border-navy/10 shadow-sm" id="header-bg"></div>
+      <div class="relative container">
+        <div class="flex items-center justify-between h-16 md:h-20">
+          <!-- Logo -->
+          <a href="/" class="flex items-center flex-shrink-0">
+            <img
+              src="/images/logo-horizontal-200w_opt.webp"
+              alt="Drudi e Almeida Clínicas Oftalmológicas"
+              width="200"
+              height="48"
+              class="h-10 md:h-14 w-auto object-contain object-left"
+            />
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden lg:flex items-center gap-0.5">
+            <a href="/" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors">Home</a>
+
+            <!-- Sobre dropdown -->
+            <div class="relative group">
+              <button class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors flex items-center gap-1">
+                Sobre
+                <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="absolute top-full left-0 mt-1 w-52 bg-white border border-navy/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2" style="transform-origin:top left">
+                <a href="/sobre" class="block px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">Quem Somos</a>
+                <a href="/medico/dr-fernando-drudi" class="block px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">Dr. Fernando Drudi</a>
+                <a href="/medico/dra-priscilla-almeida" class="block px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">Dra. Priscilla Almeida</a>
+              </div>
+            </div>
+
+            <!-- Institutos dropdown -->
+            <div class="relative group">
+              <button class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors flex items-center gap-1">
+                Institutos
+                <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="absolute top-full left-0 mt-1 w-60 bg-white border border-navy/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                <a href="/instituto/catarata" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <img src="/images/logo-catarata-128_4016b3c8.webp" alt="" class="w-5 h-5 object-contain" />
+                  Instituto da Catarata
+                </a>
+                <a href="/instituto/ceratocone" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <img src="/images/logo-ceratocone-128_5f37b031.webp" alt="" class="w-5 h-5 object-contain" />
+                  Instituto do Ceratocone
+                </a>
+                <a href="/instituto/glaucoma" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <img src="/images/logo-glaucoma-128_c3ccf9c1.webp" alt="" class="w-5 h-5 object-contain" />
+                  Instituto do Glaucoma
+                </a>
+                <a href="/instituto/retina" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <img src="/images/logo-retina-128_88ef0fac.webp" alt="" class="w-5 h-5 object-contain" />
+                  Instituto da Retina
+                </a>
+                <a href="/instituto/estrabismo" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <img src="/images/logo-estrabismo-128_b8ca4997.webp" alt="" class="w-5 h-5 object-contain" />
+                  Instituto de Estrabismo
+                </a>
+              </div>
+            </div>
+
+            <!-- Unidades dropdown -->
+            <div class="relative group">
+              <button class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors flex items-center gap-1">
+                Unidades
+                <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-navy/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                <a href="/unidade/santana" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  Santana
+                </a>
+                <a href="/unidade/tatuape" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  Tatuapé
+                </a>
+                <a href="/unidade/lapa" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  Lapa
+                </a>
+                <a href="/unidade/sao-miguel" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  São Miguel Paulista
+                </a>
+                <a href="/unidade/guarulhos" class="flex items-center gap-3 px-4 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors rounded-lg mx-1">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  Guarulhos
+                </a>
+              </div>
+            </div>
+
+            <a href="/tecnologia" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors">Tecnologia</a>
+            <a href="/convenios" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors">Convênios</a>
+            <a href="/blog" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors">Blog</a>
+            <a href="/contato" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold px-3.5 py-2 rounded transition-colors">Contato</a>
+          </nav>
+
+          <!-- CTA + Mobile Menu -->
+          <div class="flex items-center gap-3">
+            <a
+              href="https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden md:inline-flex items-center gap-2 bg-gold text-navy font-ui text-xs font-bold px-4 py-2.5 rounded-md hover:bg-gold-light transition-colors"
+            >
+              Agendar Consulta
+            </a>
+            <!-- Mobile menu button -->
+            <button
+              id="mobile-menu-btn"
+              class="lg:hidden flex flex-col gap-1.5 p-2"
+              aria-label="Abrir menu"
+            >
+              <span class="w-5 h-0.5 bg-navy transition-all" id="bar1"></span>
+              <span class="w-5 h-0.5 bg-navy transition-all" id="bar2"></span>
+              <span class="w-5 h-0.5 bg-navy transition-all" id="bar3"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-navy/10 shadow-lg">
+        <div class="container py-4 flex flex-col gap-1">
+          <a href="/" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold py-2.5 border-b border-navy/5 transition-colors">Home</a>
+          <div class="py-2 border-b border-navy/5">
+            <a href="/sobre" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold py-2 block transition-colors">Sobre</a>
+            <a href="/medico/dr-fernando-drudi" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Dr. Fernando Drudi</a>
+            <a href="/medico/dra-priscilla-almeida" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Dra. Priscilla Almeida</a>
+          </div>
+          <div class="py-2 border-b border-navy/5">
+            <div class="font-ui text-xs font-bold tracking-widest uppercase mb-2" style="color:#c9a961">Institutos</div>
+            <a href="/instituto/catarata" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Instituto da Catarata</a>
+            <a href="/instituto/ceratocone" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Instituto do Ceratocone</a>
+            <a href="/instituto/glaucoma" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Instituto do Glaucoma</a>
+            <a href="/instituto/retina" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Instituto da Retina</a>
+            <a href="/instituto/estrabismo" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Instituto de Estrabismo</a>
+          </div>
+          <div class="py-2 border-b border-navy/5">
+            <div class="font-ui text-xs font-bold tracking-widest uppercase mb-2" style="color:#c9a961">Unidades</div>
+            <a href="/unidade/santana" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Santana</a>
+            <a href="/unidade/tatuape" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Tatuapé</a>
+            <a href="/unidade/lapa" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Lapa</a>
+            <a href="/unidade/sao-miguel" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">São Miguel Paulista</a>
+            <a href="/unidade/guarulhos" class="block font-ui text-sm text-navy/70 hover:text-gold py-1.5 pl-3 transition-colors">Guarulhos</a>
+          </div>
+          <a href="/tecnologia" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold py-2.5 border-b border-navy/5 transition-colors">Tecnologia</a>
+          <a href="/convenios" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold py-2.5 border-b border-navy/5 transition-colors">Convênios</a>
+          <a href="/blog" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold py-2.5 border-b border-navy/5 transition-colors">Blog</a>
+          <a href="/contato" class="font-ui text-sm font-semibold text-navy/80 hover:text-gold py-2.5 border-b border-navy/5 transition-colors">Contato</a>
+          <!-- Contatos mobile -->
+          <div class="pt-3 flex flex-col gap-2">
+            <a href="tel:+551150268521" class="flex items-center gap-2 font-ui text-sm text-navy/70">
+              <svg class="w-4 h-4" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              (11) 5026-8521
+            </a>
+            <a href="https://wa.me/5511916544653" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-ui text-sm text-navy/70">
+              <svg class="w-4 h-4" style="color:#c9a961" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              (11) 91654-4653
+            </a>
+          </div>
+          <a
+            href="https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-3 inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-5 py-3 rounded-md"
+          >
+            Agendar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white">
+      <!-- Top bar -->
+      <div class="border-b border-white/10">
+        <div class="container py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Brand -->
+          <div class="lg:col-span-1">
+            <div class="flex items-center gap-3 mb-4">
+              <img src="/images/logo-footer-200w_56b3dc2d.webp" alt="Drudi e Almeida Clínicas Oftalmológicas" width="56" height="56" class="w-14 h-14 object-contain" />
+            </div>
+            <p class="font-body text-sm text-white/60 leading-relaxed mb-4">
+              Referência em oftalmologia em São Paulo com 5 institutos especializados.
+            </p>
+            <div class="flex gap-3">
+              <a href="https://www.instagram.com/drudiealmeida" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold/20 transition-colors" aria-label="Instagram">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://www.facebook.com/drudiealmeida" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold/20 transition-colors" aria-label="Facebook">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Institutos -->
+          <div>
+            <h3 class="font-ui text-xs font-bold text-gold tracking-widest uppercase mb-4">Institutos</h3>
+            <ul class="space-y-2">
+              <li><a href="/instituto/catarata" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto da Catarata</a></li>
+              <li><a href="/instituto/ceratocone" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto do Ceratocone</a></li>
+              <li><a href="/instituto/glaucoma" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto do Glaucoma</a></li>
+              <li><a href="/instituto/retina" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto da Retina</a></li>
+              <li><a href="/instituto/estrabismo" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto de Estrabismo</a></li>
+            </ul>
+          </div>
+
+          <!-- Links -->
+          <div>
+            <h3 class="font-ui text-xs font-bold text-gold tracking-widest uppercase mb-4">Links</h3>
+            <ul class="space-y-2">
+              <li><a href="/sobre" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Sobre a Clínica</a></li>
+              <li><a href="/tecnologia" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Tecnologia</a></li>
+              <li><a href="/convenios" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Convênios</a></li>
+              <li><a href="/blog" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Blog</a></li>
+              <li><a href="/contato" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Contato</a></li>
+              <li><a href="/agendar" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Agendar Consulta</a></li>
+            </ul>
+          </div>
+
+          <!-- Contato -->
+          <div>
+            <h3 class="font-ui text-xs font-bold text-gold tracking-widest uppercase mb-4">Contato</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="tel:+551150268521" class="flex items-start gap-2 text-white/60 hover:text-gold transition-colors">
+                  <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  <span class="font-body text-sm">(11) 5026-8521</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/5511916544653" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-white/60 hover:text-gold transition-colors">
+                  <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  <span class="font-body text-sm">(11) 91654-4653</span>
+                </a>
+              </li>
+              <li class="flex items-start gap-2 text-white/60">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span class="font-body text-sm">5 unidades em São Paulo e Guarulhos</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="font-body text-xs text-white/40">
+          © {new Date().getFullYear()} Drudi e Almeida Clínicas Oftalmológicas. Todos os direitos reservados.
+        </p>
+        <div class="flex gap-4">
+          <a href="/politica-privacidade" class="font-body text-xs text-white/40 hover:text-gold transition-colors">Política de Privacidade</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-400 hover:scale-110 transition-all duration-200"
+      aria-label="Falar pelo WhatsApp"
+    >
+      <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+
+    <!-- Mobile CTA Bar -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-navy border-t border-white/10 flex">
+      <a
+        href="tel:+551150268521"
+        class="flex-1 flex items-center justify-center gap-2 py-3.5 font-ui text-xs font-bold text-white border-r border-white/10"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Ligar
+      </a>
+      <a
+        href="https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 flex items-center justify-center gap-2 py-3.5 bg-gold font-ui text-xs font-bold text-navy"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <!-- Mobile menu JS -->
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const bar1 = document.getElementById('bar1');
+      const bar2 = document.getElementById('bar2');
+      const bar3 = document.getElementById('bar3');
+      let open = false;
+
+      btn?.addEventListener('click', () => {
+        open = !open;
+        menu?.classList.toggle('hidden', !open);
+        if (bar1 && bar2 && bar3) {
+          bar1.style.transform = open ? 'translateY(8px) rotate(45deg)' : '';
+          bar2.style.opacity = open ? '0' : '1';
+          bar3.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
+        }
+      });
+
+      // AOS observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('aos-visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.aos-element').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>

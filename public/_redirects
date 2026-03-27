@@ -1,0 +1,62 @@
+# ============================================================
+# Redirects 301 — Rotas legadas do Wix (antigo site)
+# DEVEM vir antes do fallback SPA /*
+# ============================================================
+
+# Rotas de idioma do Wix (/en, /pt, /pt-br)
+/en             /   301
+/en/            /   301
+/pt             /   301
+/pt/            /   301
+/pt-br          /   301
+/pt-br/         /   301
+
+# Outras rotas legadas do Wix
+/home           /   301
+/home/          /   301
+/index          /   301
+/index.html     /   301
+/copia-home     /   301
+/blank          /   301
+/blank-1        /   301
+/blank-2        /   301
+/blank-3        /   301
+/servicos       /   301
+/services       /   301
+/faq            /   301
+/depoimentos    /   301
+/testimonials   /   301
+/nossos-servicos /  301
+/especialidades /   301
+
+# Redirects de especialidades para institutos
+/catarata               /instituto/catarata     301
+/glaucoma               /instituto/glaucoma     301
+/retina                 /instituto/retina       301
+/ceratocone             /instituto/ceratocone   301
+/estrabismo             /instituto/estrabismo   301
+/cirurgia-de-catarata   /instituto/catarata     301
+/tratamento-glaucoma    /instituto/glaucoma     301
+
+# Redirects de páginas renomeadas
+/blog-1         /blog       301
+/contato-1      /contato    301
+/sobre-1        /sobre      301
+/galeria        /tecnologia 301
+/gallery        /tecnologia 301
+/equipe         /sobre      301
+/team           /sobre      301
+/nossos-medicos /sobre      301
+/medicos        /sobre      301
+/nossas-unidades /contato   301
+/unidades       /contato    301
+/agendamento    /agendar    301
+/agendamento-1  /agendar    301
+/agendar-consulta /agendar  301
+
+# ============================================================
+# LP estáticas — exceções ao fallback SPA (v2)
+/lp/*  /lp/:splat  200
+/instituto/lp/*  /instituto/lp/:splat  200
+# SPA fallback — deve ser a última regra
+/*    /index.html   200

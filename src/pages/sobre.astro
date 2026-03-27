@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta.";
+
+const mvv = [
+  {
+    id: "missao",
+    label: "Missão",
+    title: "Democratizar o Acesso à Oftalmologia de Excelência",
+    description: "Nascemos com o propósito de unir o que há de mais avançado em tecnologia oftalmológica com um atendimento verdadeiramente humanizado. Acreditamos que toda pessoa, independentemente de sua condição social ou localização geográfica, merece ter acesso a cuidados de saúde ocular de alta qualidade.",
+    pillars: [
+      "Atendimento humanizado e acolhedor em cada consulta",
+      "5 institutos especializados com protocolos de excelência",
+      "Alcance social: do centro de SP às comunidades ribeirinhas da Amazônia",
+    ],
+    quote: "Cada paciente que entra pela nossa porta merece o mesmo cuidado que daríamos a um familiar.",
+    quoteAuthor: "Dr. Fernando Drudi",
+  },
+  {
+    id: "visao",
+    label: "Visão",
+    title: "Ser Referência Nacional em Saúde Ocular Especializada",
+    description: "Queremos ser reconhecidos como o grupo oftalmológico de maior impacto do Brasil — não apenas pela excelência técnica e pelos resultados cirúrgicos, mas pela forma como transformamos a experiência do paciente e ampliamos o acesso à saúde ocular de qualidade em todo o território nacional.",
+    pillars: [
+      "Expansão contínua com novos institutos e unidades",
+      "Referência em ensino e formação de novos especialistas",
+      "Tecnologia de ponta acessível a todos os perfis de pacientes",
+    ],
+    quote: "Nossa visão é ser a clínica que todo paciente recomenda e todo médico admira.",
+    quoteAuthor: "Dra. Priscilla de Almeida",
+  },
+  {
+    id: "valores",
+    label: "Valores",
+    title: "Os Princípios que Guiam Cada Decisão",
+    description: "Nossos valores não são palavras em um quadro — são comportamentos praticados diariamente por cada membro da equipe Drudi e Almeida, construídos ao longo de anos de prática clínica e compromisso genuíno com a saúde ocular.",
+    pillars: [
+      "Cuidado Humanizado — cada paciente é único e merece atenção individualizada",
+      "Excelência Técnica — profissionais em constante atualização científica",
+      "Tecnologia de Ponta — investimento nos equipamentos mais modernos do mercado",
+      "Acessibilidade — democratizar o acesso à saúde ocular de qualidade",
+    ],
+    quote: "Excelência não é um destino — é uma escolha que fazemos todos os dias.",
+    quoteAuthor: "Equipe Drudi e Almeida",
+  },
+];
+---
+
+<BaseLayout
+  title="Sobre Nós | Drudi e Almeida Oftalmologia"
+  description="Conheça a história da Drudi e Almeida Oftalmologia, fundada pelo Dr. Fernando Drudi e Dra. Priscilla de Almeida. +10 anos de experiência em saúde ocular."
+>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative min-h-[50vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/art-degas-hero_optimized.webp')"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(30,42,68,0.92) 0%, rgba(30,42,68,0.70) 60%, rgba(30,42,68,0.30) 100%)"></div>
+
+    <div class="relative container pb-14 pt-32">
+      <nav class="flex items-center gap-2 font-ui text-xs mb-5" style="color:rgba(245,240,232,0.60)">
+        <a href="/" class="hover:text-cream transition-colors" style="color:rgba(245,240,232,0.60)">Home</a>
+        <span>/</span>
+        <span style="color:#f5f0e8">Sobre Nós</span>
+      </nav>
+
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5" style="background:rgba(201,169,97,0.15);border:1px solid rgba(201,169,97,0.30)">
+          <svg class="w-3.5 h-3.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <span class="font-ui text-xs font-semibold tracking-wide" style="color:#c9a961">NOSSA HISTÓRIA</span>
+        </div>
+
+        <h1 class="font-display leading-[1.1] mb-4" style="font-size:clamp(2rem,5vw,3.25rem);color:#ffffff">
+          Sobre a <em class="not-italic" style="color:#c9a961">Drudi e Almeida</em><br/>
+          <span style="color:#ffffff">Oftalmologia</span>
+        </h1>
+        <p class="font-body text-lg leading-relaxed" style="color:rgba(245,240,232,0.80)">
+          Tradição, inovação e compromisso com a saúde ocular de cada paciente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MISSÃO, VISÃO E VALORES ========== -->
+  <section class="section-padding" style="background:#faf9f7">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Nossa Essência</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3" style="color:#1e2a44">Missão, Visão e Valores</h2>
+        <div class="gold-line max-w-[80px] mx-auto mt-5"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="flex justify-center gap-2 mb-10 flex-wrap">
+          {mvv.map((item, i) => (
+            <button
+              class="mvv-tab font-ui text-sm font-semibold px-7 py-2.5 rounded-full border transition-all"
+              style={i === 0 ? 'background:#1e2a44;color:#f5f0e8;border-color:#1e2a44' : 'background:#ffffff;color:#1e2a44;border-color:rgba(30,42,68,0.20)'}
+              data-tab={item.id}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
+        {mvv.map((item, i) => (
+          <div class={`mvv-panel ${i !== 0 ? 'hidden' : ''}`} data-panel={item.id}>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+              <div class="aos-element flex flex-col justify-center">
+                <h3 class="font-display text-2xl md:text-3xl mb-4" style="color:#1e2a44">{item.title}</h3>
+                <p class="font-body text-base leading-relaxed mb-6" style="color:#6b7280">{item.description}</p>
+                <ul class="space-y-3 mb-6">
+                  {item.pillars.map(pillar => (
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 shrink-0 mt-0.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                      <span class="font-body text-sm" style="color:rgba(30,42,68,0.80)">{pillar}</span>
+                    </li>
+                  ))}
+                </ul>
+                <blockquote class="pl-4" style="border-left:3px solid #c9a961">
+                  <p class="font-display text-base italic" style="color:#1e2a44">"{item.quote}"</p>
+                  <footer class="font-ui text-xs font-semibold mt-2" style="color:#c9a961">— {item.quoteAuthor}</footer>
+                </blockquote>
+              </div>
+              <div class="rounded-2xl overflow-hidden shadow-xl aos-element" style="min-height:360px">
+                <img
+                  src="/images/dr-fernando-amazonia-elegant_0e59624a.webp"
+                  alt="Dr. Fernando Drudi — Projeto Amazônia"
+                  class="w-full h-full object-cover"
+                  style="min-height:360px"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CORPO CLÍNICO ========== -->
+  <section class="section-padding" style="background:#faf9f7" id="dr-fernando">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Corpo Clínico</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3" style="color:#1e2a44">Conheça Nossos Especialistas</h2>
+        <p class="font-body text-base max-w-2xl mx-auto mt-4 leading-relaxed" style="color:#6b7280">
+          Profissionais com formação de excelência, experiência cirúrgica comprovada e compromisso com o cuidado humanizado.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-5"></div>
+      </div>
+
+      <!-- Dr. Fernando -->
+      <div class="max-w-5xl mx-auto mb-16 aos-element">
+        <div class="rounded-2xl overflow-hidden shadow-sm" style="background:#ffffff;border:1px solid rgba(201,169,97,0.15)">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            <div class="lg:col-span-4 relative" style="min-height:480px">
+              <img
+                src="/images/dr-fernando-800w.webp"
+                alt="Dr. Fernando Macei Drudi — Diretor Clínico"
+                class="absolute inset-0 w-full h-full object-cover"
+                style="object-position:center 10%"
+                loading="lazy"
+              />
+              <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(30,42,68,0.85) 0%, transparent 55%)"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <p class="font-display text-xl text-white">Dr. Fernando Macei Drudi</p>
+                <p class="font-ui text-xs mt-1" style="color:#c9a961">CRM-SP 139.300 | RQE 50.645</p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-8 p-8 lg:p-10 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap items-center gap-3 mb-4">
+                  <span class="font-ui text-xs font-bold px-3 py-1 rounded-full tracking-wide uppercase" style="background:rgba(201,169,97,0.12);color:#c9a961">Diretor Clínico</span>
+                  <span class="font-ui text-xs px-3 py-1 rounded-full" style="background:rgba(30,42,68,0.06);color:#1e2a44">Instituto da Catarata</span>
+                  <span class="font-ui text-xs px-3 py-1 rounded-full" style="background:rgba(30,42,68,0.06);color:#1e2a44">Instituto da Retina</span>
+                </div>
+
+                <h3 class="font-display text-2xl md:text-3xl mb-1" style="color:#1e2a44">Dr. Fernando Macei Drudi</h3>
+                <p class="font-ui text-sm font-semibold mb-5" style="color:#c9a961">Especialista em Catarata e Retina Cirúrgica</p>
+
+                <div class="space-y-3 mb-6">
+                  <p class="font-body text-sm leading-relaxed" style="color:#6b7280">
+                    Médico oftalmologista com formação completa nas subespecialidades de Catarata e Retina Cirúrgica pelo Hospital dos Servidores Público Estadual (HSPE). Atua como médico concursado do HSPE desde 2020, com foco no ensino prático de técnicas cirúrgicas para residentes e fellows.
+                  </p>
+                  <p class="font-body text-sm leading-relaxed" style="color:#6b7280">
+                    Participa há mais de 10 anos do Projeto Oftalmologia Humanitária na Amazônia, realizando cirurgias em comunidades ribeirinhas de difícil acesso. Por essa contribuição, recebeu a condecoração <strong style="color:#1e2a44">'Amigo da Marinha'</strong>, reconhecimento concedido pela Marinha do Brasil.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                  <div class="flex items-start gap-3 rounded-lg p-3" style="background:#faf9f7;border:1px solid #f0ece6">
+                    <svg class="w-4 h-4 shrink-0 mt-0.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <p class="font-ui text-xs leading-snug" style="color:#1e2a44">Subespecialidade em Catarata e Retina — HSPE</p>
+                  </div>
+                  <div class="flex items-start gap-3 rounded-lg p-3" style="background:#faf9f7;border:1px solid #f0ece6">
+                    <svg class="w-4 h-4 shrink-0 mt-0.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <p class="font-ui text-xs leading-snug" style="color:#1e2a44">Médico concursado do HSPE desde 2020</p>
+                  </div>
+                  <!-- Card Amigo da Marinha -->
+                  <div class="sm:col-span-2 flex items-center gap-4 rounded-xl p-4" style="background:linear-gradient(135deg,#1e2a44 0%,#2a3a5c 100%);border:1px solid rgba(201,169,97,0.30)">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0" style="background:rgba(201,169,97,0.15);border:2px solid rgba(201,169,97,0.40)">
+                      <svg class="w-6 h-6" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                    </div>
+                    <div>
+                      <p class="font-ui text-xs font-bold tracking-wide uppercase" style="color:#c9a961">Condecoração Amigo da Marinha</p>
+                      <p class="font-body text-xs mt-0.5" style="color:rgba(245,240,232,0.75)">Reconhecimento da Marinha do Brasil pelo Projeto Oftalmologia Humanitária na Amazônia</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a href="/medico/dr-fernando-drudi"
+                class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-6 py-2.5 rounded-md transition-all self-start"
+                style="background:#1e2a44;color:#ffffff"
+                onmouseover="this.style.background='#162036'"
+                onmouseout="this.style.background='#1e2a44'"
+              >
+                Ver perfil completo
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dra. Priscilla -->
+      <div class="max-w-5xl mx-auto aos-element" id="dra-priscilla">
+        <div class="rounded-2xl overflow-hidden shadow-sm" style="background:#ffffff;border:1px solid rgba(201,169,97,0.15)">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            <div class="lg:col-span-8 p-8 lg:p-10 flex flex-col justify-between lg:order-1">
+              <div>
+                <div class="flex flex-wrap items-center gap-3 mb-4">
+                  <span class="font-ui text-xs font-bold px-3 py-1 rounded-full tracking-wide uppercase" style="background:rgba(201,169,97,0.12);color:#c9a961">Diretora Técnica</span>
+                  <span class="font-ui text-xs px-3 py-1 rounded-full" style="background:rgba(30,42,68,0.06);color:#1e2a44">Instituto do Ceratocone</span>
+                </div>
+
+                <h3 class="font-display text-2xl md:text-3xl mb-1" style="color:#1e2a44">Dra. Priscilla Rodrigues de Almeida</h3>
+                <p class="font-ui text-sm font-semibold mb-5" style="color:#c9a961">Especialista em Segmento Anterior e Lentes de Contato</p>
+
+                <div class="space-y-3 mb-6">
+                  <p class="font-body text-sm leading-relaxed" style="color:#6b7280">
+                    Construiu sua trajetória na oftalmologia a partir de uma formação sólida e vivência intensa em ambientes de alta complexidade. Formou-se em Medicina e realizou Residência em Oftalmologia pelo Hospital do Servidor Público do Estado de São Paulo (HSPE), realizando centenas de cirurgias de catarata.
+                  </p>
+                  <p class="font-body text-sm leading-relaxed" style="color:#6b7280">
+                    Aprofundou seus conhecimentos com Fellowship em Doenças Oculares Externas e Córnea Cirúrgica pela Escola Paulista de Medicina (EPM/UNIFESP), referência nacional em ensino e pesquisa, com atuação em cirurgias de córnea e transplantes.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                  {[
+                    "Fellowship em Córnea — EPM/UNIFESP",
+                    "Centenas de cirurgias de córnea",
+                    "Congressos nacionais e internacionais",
+                  ].map(h => (
+                    <div class="flex items-start gap-3 rounded-lg p-3" style="background:#faf9f7;border:1px solid #f0ece6">
+                      <svg class="w-4 h-4 shrink-0 mt-0.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                      <p class="font-ui text-xs leading-snug" style="color:#1e2a44">{h}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <a href="/medico/dra-priscilla-almeida"
+                class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-6 py-2.5 rounded-md transition-all self-start"
+                style="background:#1e2a44;color:#ffffff"
+                onmouseover="this.style.background='#162036'"
+                onmouseout="this.style.background='#1e2a44'"
+              >
+                Ver perfil completo
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="lg:col-span-4 relative lg:order-2" style="min-height:480px">
+              <img
+                src="/images/dra-priscilla-800w.webp"
+                alt="Dra. Priscilla Rodrigues de Almeida — Diretora Técnica"
+                class="absolute inset-0 w-full h-full object-cover"
+                style="object-position:center 10%"
+                loading="lazy"
+              />
+              <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(30,42,68,0.85) 0%, transparent 55%)"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <p class="font-display text-xl text-white">Dra. Priscilla Rodrigues de Almeida</p>
+                <p class="font-ui text-xs mt-1" style="color:#c9a961">CRM-SP 148.173 | RQE 59.216</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NÚMEROS ========== -->
+  <section class="section-padding" style="background:#1e2a44">
+    <div class="container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {[
+          { value: "10+", label: "Anos de Experiência" },
+          { value: "50.000+", label: "Pacientes Atendidos" },
+          { value: "5", label: "Institutos Especializados" },
+          { value: "5", label: "Unidades em SP" },
+        ].map(stat => (
+          <div class="aos-element">
+            <div class="font-display text-3xl md:text-4xl font-bold" style="color:#c9a961">{stat.value}</div>
+            <div class="font-ui text-xs mt-2 tracking-wide" style="color:rgba(245,240,232,0.60)">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ========== -->
+  <section class="relative section-padding overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/happy-family_6ee5e159.webp')"></div>
+    <div class="absolute inset-0" style="background:rgba(30,42,68,0.85)"></div>
+
+    <div class="relative container text-center z-10">
+      <div class="aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase mb-3 block" style="color:#c9a961">Agende Sua Consulta</span>
+        <h2 class="font-display text-3xl md:text-4xl mb-4" style="color:#ffffff">Cuide da Sua Visão com Quem Entende</h2>
+        <p class="font-body text-base max-w-lg mx-auto mb-8 leading-relaxed" style="color:rgba(255,255,255,0.70)">
+          Venha conhecer nossa clínica e descubra como nossos especialistas podem cuidar da sua saúde ocular.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 font-ui text-sm font-bold px-7 py-3.5 rounded-md transition-colors"
+            style="background:#c9a961;color:#1e2a44"
+            onmouseover="this.style.background='#b8975a'"
+            onmouseout="this.style.background='#c9a961'"
+          >
+            Agendar pelo WhatsApp
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-7 py-3.5 rounded-md transition-colors"
+            style="background:#1e2a44;color:#ffffff;border:1px solid rgba(245,240,232,0.30)"
+            onmouseover="this.style.background='#162036'"
+            onmouseout="this.style.background='#1e2a44'"
+          >
+            Agendar Online
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // MVV Tabs
+  const tabs = document.querySelectorAll('.mvv-tab');
+  const panels = document.querySelectorAll('.mvv-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = (tab as HTMLElement).dataset.tab;
+      tabs.forEach(t => {
+        (t as HTMLElement).style.background = '#ffffff';
+        (t as HTMLElement).style.color = '#1e2a44';
+        (t as HTMLElement).style.borderColor = 'rgba(30,42,68,0.20)';
+      });
+      (tab as HTMLElement).style.background = '#1e2a44';
+      (tab as HTMLElement).style.color = '#f5f0e8';
+      (tab as HTMLElement).style.borderColor = '#1e2a44';
+      panels.forEach(p => {
+        if ((p as HTMLElement).dataset.panel === target) {
+          p.classList.remove('hidden');
+        } else {
+          p.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

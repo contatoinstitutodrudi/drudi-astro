@@ -1,0 +1,484 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta.";
+
+const equipamentos = [
+  {
+    id: 1,
+    nome: "OCT com Angio-OCT",
+    modelo: "Maestro 2 — Topcon",
+    destaque: "Automatizado — resultado em segundos",
+    categoria: "Diagnóstico",
+    tags: ["Retina", "Glaucoma", "Catarata"],
+    descricao: "Combina tomografia de coerência óptica (OCT) com fotografia colorida da retina e angiografia por OCT (OCTA). De forma totalmente automatizada, captura imagens de alta resolução da retina e do nervo óptico, permitindo análise detalhada da estrutura e vascularização do fundo do olho. Exame rápido, confortável e não-invasivo.",
+    imagem: "/images/tech-ervHszJT_dbcd90e3.webp",
+    icon: "eye",
+  },
+  {
+    id: 2,
+    nome: "OPD-Scan III",
+    modelo: "Nidek",
+    destaque: "5 exames em 1 único aparelho",
+    categoria: "Diagnóstico",
+    tags: ["Cirurgia Refrativa", "Catarata", "Córnea", "Lentes de Contato"],
+    descricao: "Equipamento 5 em 1 que realiza aberrometria de frente de onda, topografia de córnea, autorrefração, autoceratometria e pupilometria. Fornece análise completa e precisa do estado refrativo do olho, essencial para prescrição de óculos, cirurgias refrativas e de catarata.",
+    imagem: "/images/other-tHthjLAV_ae6c8b04.webp",
+    icon: "scan",
+  },
+  {
+    id: 3,
+    nome: "Biometria Óptica",
+    modelo: "Nidek AL-Scan",
+    destaque: "Medição em 10 segundos",
+    categoria: "Diagnóstico",
+    tags: ["Catarata", "Cirurgia Refrativa"],
+    descricao: "Realiza medições precisas do olho em apenas 10 segundos. Utilizado principalmente no planejamento de cirurgias de catarata, mede parâmetros como comprimento axial e curvatura da córnea para o cálculo da lente intraocular. Exame rápido, confortável e não invasivo.",
+    imagem: "/images/tech-ozShiKgo_1df45c7a.webp",
+    icon: "ruler",
+  },
+  {
+    id: 4,
+    nome: "Pentacam AXL",
+    modelo: "Oculus",
+    destaque: "Análise completa do segmento anterior",
+    categoria: "Diagnóstico",
+    tags: ["Cirurgia Refrativa", "Catarata", "Glaucoma"],
+    descricao: "Tomógrafo que realiza análise completa do segmento anterior do olho, desde a córnea até o cristalino. Realiza topografia e tomografia de córnea, paquimetria, análise do ângulo da câmara anterior e biometria óptica. Fundamental para diagnósticos precisos e cálculo de lentes intraoculares.",
+    imagem: "/images/tech-BjIDRRibGgbqaEgW_c47e0e8a.webp",
+    icon: "layers",
+  },
+  {
+    id: 5,
+    nome: "Microscopia Especular",
+    modelo: "Nidek CEM-530",
+    destaque: "Avaliação celular da córnea",
+    categoria: "Diagnóstico",
+    tags: ["Córnea", "Catarata"],
+    descricao: "Analisa a camada mais interna da córnea (endotélio), avaliando a quantidade e qualidade de suas células. Fundamental no pré-operatório de cirurgias de catarata e refrativas, garantindo a saúde da córnea e a segurança do procedimento. Resultados precisos em segundos.",
+    imagem: "/images/UwIXSSFFnZALlTMB_3c76430e.webp",
+    icon: "microscope",
+  },
+  {
+    id: 6,
+    nome: "Ultrassom Ocular",
+    modelo: "Nidek US-500",
+    destaque: "Preciso mesmo em cataratas densas",
+    categoria: "Diagnóstico",
+    tags: ["Catarata", "Córnea"],
+    descricao: "Realiza biometria e paquimetria ultrassônica. Mede o comprimento axial do olho para cálculo de lentes intraoculares em cirurgias de catarata e a espessura da córnea. Algoritmos avançados garantem medições precisas mesmo em casos de catarata densa.",
+    imagem: "/images/MBbvIaDoHGwYuFaf_6a28f773.webp",
+    icon: "activity",
+  },
+  {
+    id: 7,
+    nome: "Campo Visual",
+    modelo: "Humphrey 750i — Zeiss",
+    destaque: "Padrão-ouro para glaucoma",
+    categoria: "Diagnóstico",
+    tags: ["Glaucoma", "Retina"],
+    descricao: "Mapeia o campo de visão do paciente para detectar e monitorar a progressão de doenças como o glaucoma, que afetam a visão periférica. Exame rápido, confortável e não invasivo, fornecendo informações precisas para diagnóstico precoce e tratamento eficaz.",
+    imagem: "/images/tech-uqfZPyapWiDmhgjZ_6136865e.webp",
+    icon: "target",
+  },
+  {
+    id: 8,
+    nome: "Retinógrafo Portátil",
+    modelo: "Eyer II — Phelcom",
+    destaque: "Portátil — sem dilatação da pupila",
+    categoria: "Diagnóstico",
+    tags: ["Retina", "Glaucoma"],
+    descricao: "Dispositivo portátil e não-midriático que captura imagens de alta resolução do fundo do olho. Permite exames de retina em qualquer local, sem necessidade de dilatar a pupila, aumentando o conforto e a rapidez do procedimento. Fundamental para diagnóstico de retinopatia diabética.",
+    imagem: "/images/ImNsrMQWFdGNUnQQ_3e8d0e02.webp",
+    icon: "camera",
+  },
+  {
+    id: 9,
+    nome: "Laser de Argônio Multipoint",
+    modelo: "Vitra 2 — Quantel Medical",
+    destaque: "Multispot — tratamento mais rápido",
+    categoria: "Tratamento",
+    tags: ["Retina"],
+    descricao: "Equipamento de fotocoagulação a laser de 532nm para tratamento de patologias da retina. Possui modos SingleSpot e Multispot, permitindo a entrega de múltiplos pontos de laser de forma extremamente rápida e precisa. Tratamento mais confortável e rápido para o paciente.",
+    imagem: "/images/tech-LUSoVEgfmutwLJEX_87a665d8.webp",
+    icon: "zap",
+  },
+  {
+    id: 10,
+    nome: "Yag Laser",
+    modelo: "Optimis II — Quantel Medical",
+    destaque: "Precisão com mínima energia",
+    categoria: "Cirúrgico",
+    tags: ["Catarata", "Glaucoma"],
+    descricao: "Integra laser YAG de alta performance com lâmpada de fenda premium. Utilizado para capsulotomia e iridotomia, essenciais no tratamento de catarata e glaucoma. Mínimos níveis de energia evitam danos a tecidos adjacentes, garantindo recuperação mais confortável.",
+    imagem: "/images/other-uNpBHQmk_5cf97577.webp",
+    icon: "zap",
+  },
+  {
+    id: 11,
+    nome: "Topografia de Córnea",
+    modelo: "Eyer — Phelcom",
+    destaque: "Mapeamento 3D da córnea",
+    categoria: "Diagnóstico",
+    tags: ["Córnea", "Cirurgia Refrativa", "Catarata"],
+    descricao: "Realiza mapeamento tridimensional da superfície da córnea. Gera mapas coloridos que permitem avaliar curvatura e regularidade da córnea. Fundamental para diagnóstico de ceratocone, adaptação de lentes de contato e planejamento de cirurgias refrativas e de catarata.",
+    imagem: "/images/other-hKzbMMpI_079be3f2.webp",
+    icon: "map",
+  },
+  {
+    id: 12,
+    nome: "OCT",
+    modelo: "Nidek RS-3000 Advance 2",
+    destaque: "Detecção precoce de alterações",
+    categoria: "Diagnóstico",
+    tags: ["Retina", "Glaucoma"],
+    descricao: "Tomógrafo de coerência óptica de alta resolução que cria imagens transversais detalhadas da retina e do nervo óptico. Essencial para diagnóstico e acompanhamento de doenças da retina e glaucoma, detectando alterações antes que o paciente perceba qualquer sintoma.",
+    imagem: "/images/other-lTOdtQwq_02a4b0dd.webp",
+    icon: "eye",
+  },
+  {
+    id: 13,
+    nome: "Biometria Óptica",
+    modelo: "Topcon Aladdin",
+    destaque: "9 medições em um único dispositivo",
+    categoria: "Diagnóstico",
+    tags: ["Catarata", "Cirurgia Refrativa"],
+    descricao: "Combina biometria óptica e topografia da córnea em um único dispositivo. Realiza nove medições essenciais do olho de forma rápida e não invasiva, incluindo comprimento axial, ceratometria e análise de frente de onda. Fundamental para planejamento de cirurgias de catarata.",
+    imagem: "/images/tech-yOzCinuW_ab0f4e2d.webp",
+    icon: "ruler",
+  },
+  {
+    id: 14,
+    nome: "Tonômetro de Sopro",
+    modelo: "Topcon CT-80",
+    destaque: "Sem contato — sem colírio",
+    categoria: "Diagnóstico",
+    tags: ["Glaucoma", "Oftalmologia Geral"],
+    descricao: "Mede a pressão intraocular (PIO) de forma rápida, precisa e confortável. Utiliza sopro de ar suave para medição sem contato, eliminando a necessidade de colírios anestésicos. Tecnologia de sensor duplo garante resultados confiáveis para diagnóstico e acompanhamento do glaucoma.",
+    imagem: "/images/other-mEkHZNLf_8ce24ea4.webp",
+    icon: "wind",
+  },
+];
+
+const categorias = ["Todos", "Diagnóstico", "Tratamento", "Cirúrgico"];
+
+const iconPaths: Record<string, string> = {
+  eye: "M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z",
+  scan: "M3 7V5a2 2 0 0 1 2-2h2 M17 3h2a2 2 0 0 1 2 2v2 M21 17v2a2 2 0 0 1-2 2h-2 M7 21H5a2 2 0 0 1-2-2v-2",
+  ruler: "M3 3l18 18 M3 9l6-6 M9 3l6 6 M15 9l6-6 M9 15l6 6 M15 21l6-6",
+  layers: "M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5",
+  microscope: "M6 18h8 M3 22h18 M14 22a7 7 0 1 0 0-14h-1 M9 14l2 2 M9 6l2 2 M9 10l2 2",
+  activity: "M22 12h-4l-3 9L9 3l-3 9H2",
+  target: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+  camera: "M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",
+  zap: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+  map: "M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z M8 2v16 M16 6v16",
+  wind: "M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2",
+};
+---
+
+<BaseLayout
+  title="Tecnologia Oftalmológica | Drudi e Almeida"
+  description="Conheça os 14 equipamentos de última geração da Drudi e Almeida Oftalmologia. OCT, Pentacam, Humphrey, Laser e muito mais para diagnóstico e tratamento ocular em SP."
+>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative min-h-[70vh] flex items-center overflow-hidden">
+    <!-- Pintura de Monet: Ponte Japonesa -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/monet-japanese-bridge_7feeb7be.webp')"></div>
+    <!-- Gradiente sutil apenas na esquerda para legibilidade do texto, preservando a arte -->
+    <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/50 to-transparent"></div>
+    <!-- Vinheta suave nas bordas -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 50%, transparent 40%, rgba(0,0,0,0.25) 100%)"></div>
+
+    <div class="relative container py-20">
+      <div class="max-w-xl">
+        <nav class="flex items-center gap-2 font-ui text-xs text-cream/60 mb-6">
+          <a href="/" class="hover:text-cream transition-colors">Home</a>
+          <span>/</span>
+          <span class="text-cream">Tecnologia</span>
+        </nav>
+        <!-- Citação artística acima do título -->
+        <div class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-1.5 mb-5">
+          <span class="font-ui text-xs font-semibold text-gold tracking-wide">Arte &amp; Ciência a Serviço da Visão</span>
+        </div>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-5">
+          Tecnologia de Ponta em <span class="text-gold italic">Oftalmologia</span>
+        </h1>
+        <p class="font-body text-lg text-cream/80 leading-relaxed mb-3">
+          Investimos continuamente nos equipamentos mais modernos para garantir diagnósticos precisos e tratamentos seguros.
+        </p>
+        <!-- Crédito da obra de arte -->
+        <p class="font-ui text-xs text-cream/40 italic">
+          Claude Monet — <em>Le Bassin aux Nymphéas</em>, 1899
+        </p>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent"></div>
+  </section>
+
+  <!-- ========== STATS ========== -->
+  <section class="relative -mt-8 z-10">
+    <div class="container">
+      <div class="glass rounded-xl shadow-lg border border-border/50 grid grid-cols-2 md:grid-cols-4 divide-x divide-border/50">
+        <div class="px-6 py-6 text-center">
+          <div class="font-display text-3xl md:text-4xl text-gold font-bold">14</div>
+          <div class="font-ui text-xs text-navy font-semibold mt-1">Equipamentos</div>
+          <div class="font-body text-xs text-muted-foreground">de última geração</div>
+        </div>
+        <div class="px-6 py-6 text-center">
+          <div class="font-display text-3xl md:text-4xl text-gold font-bold">5</div>
+          <div class="font-ui text-xs text-navy font-semibold mt-1">Institutos</div>
+          <div class="font-body text-xs text-muted-foreground">especializados</div>
+        </div>
+        <div class="px-6 py-6 text-center">
+          <div class="font-display text-3xl md:text-4xl text-gold font-bold">5</div>
+          <div class="font-ui text-xs text-navy font-semibold mt-1">Unidades</div>
+          <div class="font-body text-xs text-muted-foreground">em São Paulo</div>
+        </div>
+        <div class="px-6 py-6 text-center">
+          <div class="font-display text-3xl md:text-4xl text-gold font-bold">100%</div>
+          <div class="font-ui text-xs text-navy font-semibold mt-1">Digital</div>
+          <div class="font-body text-xs text-muted-foreground">prontuário eletrônico</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EQUIPAMENTOS ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center mb-10">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Infraestrutura</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Nossos Equipamentos</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Cada equipamento foi selecionado para oferecer o máximo de precisão e segurança em cada procedimento.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-5"></div>
+      </div>
+
+      <!-- Filtros e Busca -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-8 bg-white rounded-xl border border-border/40 p-4 shadow-sm">
+        <div class="flex flex-wrap gap-2">
+          {categorias.map((cat, i) => (
+            <button
+              class={`cat-btn font-ui text-xs font-semibold px-4 py-2 rounded-full border transition-all ${i === 0 ? 'bg-navy text-cream border-navy' : 'border-border/60 text-navy hover:border-navy/40'}`}
+              data-cat={cat === "Todos" ? "" : cat}
+            >
+              {cat}
+              {cat === "Todos" && <span class="ml-1.5 bg-gold/20 text-gold rounded-full px-1.5 py-0.5 text-[10px] font-bold">14</span>}
+              {cat === "Diagnóstico" && <span class="ml-1.5 bg-gold/20 text-gold rounded-full px-1.5 py-0.5 text-[10px] font-bold">12</span>}
+              {cat === "Tratamento" && <span class="ml-1.5 bg-gold/20 text-gold rounded-full px-1.5 py-0.5 text-[10px] font-bold">1</span>}
+              {cat === "Cirúrgico" && <span class="ml-1.5 bg-gold/20 text-gold rounded-full px-1.5 py-0.5 text-[10px] font-bold">1</span>}
+            </button>
+          ))}
+        </div>
+        <div class="relative w-full sm:w-64">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="equip-search"
+            placeholder="Buscar equipamento..."
+            class="w-full pl-9 pr-4 py-2.5 border border-border/60 rounded-lg font-body text-sm text-navy focus:ring-2 focus:ring-gold/30 focus:border-gold outline-none transition-all"
+          />
+        </div>
+      </div>
+
+      <!-- Grid de Equipamentos -->
+      <div id="equip-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {equipamentos.map((eq) => (
+          <div
+            class="equip-card group bg-white rounded-xl border border-border/40 hover:border-gold/30 hover:shadow-lg transition-all duration-300 overflow-hidden"
+            data-cat={eq.categoria}
+            data-nome={eq.nome.toLowerCase()}
+            data-modelo={eq.modelo.toLowerCase()}
+            data-desc={eq.descricao.toLowerCase()}
+          >
+            <!-- Imagem do equipamento -->
+            <div class="relative overflow-hidden">
+              <img
+                src={eq.imagem}
+                alt={`${eq.nome} ${eq.modelo} — Drudi e Almeida`}
+                class="w-full h-52 object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute top-3 right-3">
+                <span class={`font-ui text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase ${
+                  eq.categoria === 'Diagnóstico' ? 'bg-blue-600/90 text-white' :
+                  eq.categoria === 'Tratamento' ? 'bg-emerald-600/90 text-white' :
+                  'bg-violet-600/90 text-white'
+                }`}>
+                  {eq.categoria}
+                </span>
+              </div>
+            </div>
+            <!-- Header do card -->
+            <div class="px-6 pt-5 pb-2">
+              <h3 class="font-display text-lg text-navy mb-0.5 group-hover:text-gold transition-colors">{eq.nome}</h3>
+              <p class="font-ui text-xs text-gold">{eq.modelo}</p>
+            </div>
+
+            <!-- Destaque -->
+            <div class="px-6 py-3 border-b border-border/30 bg-gold/5">
+              <div class="flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="font-ui text-xs font-semibold text-gold">{eq.destaque}</span>
+              </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="px-6 py-4">
+              <p class="font-body text-sm text-muted-foreground leading-relaxed line-clamp-4">{eq.descricao}</p>
+            </div>
+
+            <!-- Tags -->
+            <div class="px-6 pb-5 flex flex-wrap gap-1.5">
+              {eq.tags.map(tag => (
+                <span class="inline-flex items-center bg-navy/5 text-navy font-ui text-[10px] font-semibold px-2.5 py-1 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="equip-empty" class="hidden text-center py-16">
+        <svg class="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <p class="font-display text-lg text-navy mb-2">Nenhum equipamento encontrado</p>
+        <p class="font-body text-sm text-muted-foreground">Tente buscar por outro termo ou categoria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPROMISSO COM A INOVAÇÃO ========== -->
+  <section class="section-padding bg-navy">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold mb-4 block">Nossa Filosofia</span>
+        <h2 class="font-display text-3xl md:text-4xl text-cream mb-6">
+          Compromisso com a Inovação
+        </h2>
+        <p class="font-body text-lg text-cream/80 leading-relaxed mb-10">
+          Participamos ativamente de congressos nacionais e internacionais para garantir que nossos pacientes tenham acesso ao que existe de mais moderno em oftalmologia.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-base text-cream mb-2">Diagnóstico Preciso</h3>
+            <p class="font-body text-sm text-cream/60 leading-relaxed">Equipamentos de última geração para exames com máxima acurácia e conforto.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-base text-cream mb-2">Atualização Contínua</h3>
+            <p class="font-body text-sm text-cream/60 leading-relaxed">Participamos de congressos e treinamentos para trazer o que há de mais moderno.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+            <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-base text-cream mb-2">Cuidado Humanizado</h3>
+            <p class="font-body text-sm text-cream/60 leading-relaxed">Tecnologia a serviço do paciente, com acolhimento e atenção em cada etapa.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md hover:bg-gold/90 transition-colors"
+          >
+            Agendar Consulta
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a
+            href="https://wa.me/5511916544653?text=Olá! Gostaria de falar com um especialista."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-7 py-3.5 rounded-md hover:bg-cream/10 transition-colors"
+          >
+            Fale pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // Filtro por categoria
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const equipCards = document.querySelectorAll('.equip-card');
+  const equipEmpty = document.getElementById('equip-empty');
+  const searchInput = document.getElementById('equip-search') as HTMLInputElement;
+
+  let activeCategory = '';
+  let searchTerm = '';
+
+  function filterEquipamentos() {
+    let visible = 0;
+    equipCards.forEach((card) => {
+      const el = card as HTMLElement;
+      const cat = el.dataset.cat || '';
+      const nome = el.dataset.nome || '';
+      const modelo = el.dataset.modelo || '';
+      const desc = el.dataset.desc || '';
+
+      const matchesCat = activeCategory === '' || cat === activeCategory;
+      const matchesSearch = searchTerm === '' ||
+        nome.includes(searchTerm) ||
+        modelo.includes(searchTerm) ||
+        desc.includes(searchTerm);
+
+      if (matchesCat && matchesSearch) {
+        el.style.display = '';
+        visible++;
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (equipEmpty) {
+      equipEmpty.classList.toggle('hidden', visible > 0);
+    }
+  }
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => {
+        b.classList.remove('bg-navy', 'text-cream', 'border-navy');
+        b.classList.add('border-border/60', 'text-navy');
+      });
+      btn.classList.add('bg-navy', 'text-cream', 'border-navy');
+      btn.classList.remove('border-border/60');
+      activeCategory = (btn as HTMLElement).dataset.cat || '';
+      filterEquipamentos();
+    });
+  });
+
+  searchInput?.addEventListener('input', () => {
+    searchTerm = searchInput.value.toLowerCase().trim();
+    filterEquipamentos();
+  });
+</script>
