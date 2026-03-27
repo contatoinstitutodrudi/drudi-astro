@@ -1,0 +1,44 @@
+---
+/**
+ * Schema.org Physician para páginas dos médicos.
+ * Schema 2.3 — Physician × 2 médicos
+ */
+export interface Props {
+  name: string;
+  image: string;
+  url: string;
+  description: string;
+  crm: string;
+  rqe: string;
+  jobTitle: string;
+  specialties: string[];
+}
+
+const { name, image, url, description, crm, rqe, jobTitle, specialties } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": name,
+  "image": `https://institutodrudiealmeida.com.br${image}`,
+  "url": `https://institutodrudiealmeida.com.br${url}`,
+  "description": description,
+  "jobTitle": jobTitle,
+  "identifier": [
+    { "@type": "PropertyValue", "name": "CRM", "value": crm },
+    { "@type": "PropertyValue", "name": "RQE", "value": rqe }
+  ],
+  "medicalSpecialty": specialties.map(s => ({ "@type": "MedicalSpecialty", "name": s })),
+  "telephone": "+55-11-5430-2421",
+  "memberOf": {
+    "@type": "MedicalOrganization",
+    "name": "Conselho Brasileiro de Oftalmologia"
+  },
+  "worksFor": {
+    "@type": "MedicalOrganization",
+    "name": "Drudi e Almeida Clínicas Oftalmológicas",
+    "url": "https://institutodrudiealmeida.com.br"
+  }
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

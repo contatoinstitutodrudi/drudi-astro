@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQSchema from '../../components/FAQSchema.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de receber o preço da cirurgia de catarata.";
 const PHONE = "(11) 91654-4653";
@@ -80,6 +81,7 @@ const clinicas = [
   title="Cirurgia de Catarata em SP | Drudi e Almeida"
   description="Cirurgia de catarata com facoemulsificação e lentes premium em SP. Especialistas renomados, 5 unidades em São Paulo e Guarulhos. Agende sua avaliação."
 >
+  <FAQSchema items={faqItems} slot="head-schema" />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -804,5 +806,41 @@ const clinicas = [
     playIcon?.classList.remove('hidden');
     pauseIcon?.classList.add('hidden');
     if (progressBar) progressBar.style.width = '0%';
+  });
+
+  // ===== WhatsApp dinâmico: atualiza mensagem conforme unidade selecionada =====
+  // whatsapp-dynamic
+  const WA_BASE = 'https://wa.me/5511916544653';
+  const WA_MSG_BASE = 'Olá! Gostaria de receber o preço da cirurgia de catarata';
+
+  function buildWaUrl(unidadeNome: string): string {
+    const texto = unidadeNome ? `${WA_MSG_BASE} na unidade ${unidadeNome}.` : `${WA_MSG_BASE}.`;
+    return `${WA_BASE}?text=${encodeURIComponent(texto)}`;
+  }
+
+  const selHero = document.getElementById('unidade-hero') as HTMLSelectElement | null;
+  const selCta  = document.getElementById('unidade-cta')  as HTMLSelectElement | null;
+  const waLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href*="wa.me/5511916544653"]'));
+
+  function syncWaLinks(unidadeNome: string) {
+    const url = buildWaUrl(unidadeNome);
+    waLinks.forEach(a => { a.href = url; });
+  }
+
+  function getUnidadeName(sel: HTMLSelectElement | null): string {
+    if (!sel || !sel.value) return '';
+    return sel.options[sel.selectedIndex].text.split(' —')[0].trim();
+  }
+
+  selHero?.addEventListener('change', () => {
+    const nome = getUnidadeName(selHero);
+    syncWaLinks(nome);
+    if (selCta) selCta.value = selHero.value;
+  });
+
+  selCta?.addEventListener('change', () => {
+    const nome = getUnidadeName(selCta);
+    syncWaLinks(nome);
+    if (selHero) selHero.value = selCta.value;
   });
 </script>

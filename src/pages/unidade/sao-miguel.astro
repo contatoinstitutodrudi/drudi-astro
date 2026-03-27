@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema.astro";
 
 const unidade = {
   slug: "sao-miguel",
@@ -33,6 +34,20 @@ const unidade = {
   title="Oftalmologista em São Miguel Paulista — Drudi e Almeida"
   description="Clínica oftalmológica em São Miguel Paulista, São Paulo. Rua Bernardo Marcondes, 108. Consultas, exames e cirurgias com os melhores especialistas. Agende: (11) 5430-2421."
 >
+  <LocalBusinessSchema
+    slot="head-schema"
+    nome="São Miguel Paulista"
+    url="/unidade/sao-miguel"
+    image="/images/sala_espera_sofa_bege_v4_0b2982e6.webp"
+    rua="Rua Bernardo Marcondes, 108"
+    bairro="São Miguel Paulista"
+    cidade="São Paulo"
+    cep="08000-000"
+    lat={-23.4963}
+    lng={-46.4432}
+    telefone="(11) 5430-2421"
+    whatsapp="5511916544653"
+  />
   <!-- ========== HERO ========== -->
   <section class="relative min-h-[55vh] flex items-center overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${unidade.heroImg}')`}></div>
@@ -131,6 +146,69 @@ const unidade = {
     </div>
   </section>
 
+
+  <!-- ========== TRANSPORTE ========== -->
+  <section id="transporte-section" class="section-padding bg-cream/30">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">COMO CHEGAR DE TRANSPORTE</span>
+          <h2 class="font-display text-3xl text-navy mt-3 mb-8">Acesso à unidade</h2>
+          <div class="space-y-5">
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-lg bg-navy/8 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-ui text-sm font-semibold text-navy">Metrô</h4>
+                <p class="font-body text-sm text-muted-foreground">Metrô São Miguel Paulista (Linha 12-Safira) — 12 min a pé</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-lg bg-navy/8 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 11h8M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-ui text-sm font-semibold text-navy">Ônibus</h4>
+                <p class="font-body text-sm text-muted-foreground">Linhas 4700-10, 4700-21 — parada na Rua Bernardo Marcondes</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-lg bg-navy/8 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h10l2-2z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-ui text-sm font-semibold text-navy">Carro</h4>
+                <p class="font-body text-sm text-muted-foreground">Estacionamento disponível nas proximidades</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-border/50 p-8">
+          <h3 class="font-display text-xl text-navy mb-4">Sobre esta unidade</h3>
+          <p class="font-body text-base text-muted-foreground leading-relaxed">
+            A unidade de São Miguel Paulista leva o cuidado oftalmológico de excelência para a zona leste extrema de São Paulo. Localizada na Rua Bernardo Marcondes, atende pacientes de São Miguel Paulista, Itaim Paulista, Ermelino Matarazzo e região, democratizando o acesso a tratamentos especializados.
+          </p>
+          <div class="mt-6 pt-6 border-t border-border/50">
+            <p class="font-ui text-xs font-semibold text-navy mb-3">EQUIPAMENTOS DISPONÍVEIS</p>
+            <ul class="space-y-2 font-body text-sm text-muted-foreground">
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tomógrafo de Coerência Óptica (OCT)</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Topógrafo de Córnea</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Campo Visual Computadorizado</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Retinógrafo Digital</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Biometria Óptica (IOL Master)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- ========== ESPECIALIDADES ========== -->
   <section class="section-padding bg-cream/30">
     <div class="container">

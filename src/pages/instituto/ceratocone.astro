@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQSchema from '../../components/FAQSchema.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de saber mais sobre o tratamento de ceratocone.";
 const PHONE = "(11) 91654-4653";
@@ -58,6 +59,7 @@ const clinicas = [
   title="Tratamento do Ceratocone com excelentes especialistas | Drudi e Almeida"
   description="Tratamento de ceratocone em SP: crosslinking, anel de Ferrara, lentes esclerais e transplante de córnea. Diagnóstico com Pentacam. 5 unidades. Agende sua consulta."
 >
+  <FAQSchema items={faqItems} slot="head-schema" />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -355,21 +357,21 @@ const clinicas = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div class="rounded-2xl overflow-hidden shadow-lg aos-element">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/ceratocone-crosslinking-new-gkCp8BLvdCjyunZ9jwb35q.webp" alt="Crosslinking corneano para ceratocone" class="w-full h-[220px] object-cover" loading="lazy" />
+          <img src="/images/ceratocone-crosslinking-new-gkCp8BLvdCjyunZ9jwb35q.webp" alt="Crosslinking corneano para ceratocone" class="w-full h-[220px] object-cover" loading="lazy" />
           <div class="p-4 bg-white border border-border/40 border-t-0 rounded-b-2xl">
             <h3 class="font-display text-base text-navy mb-1">Crosslinking Corneano</h3>
             <p class="font-body text-xs text-muted-foreground">Estabilização da progressão do ceratocone com taxa de sucesso superior a 95%</p>
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-lg aos-element">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/ceratocone-anel-ferrara-new-b6M8G2wEBtnGvnd597uGja.webp" alt="Anel de Ferrara para ceratocone" class="w-full h-[220px] object-cover" loading="lazy" />
+          <img src="/images/ceratocone-anel-ferrara-new-b6M8G2wEBtnGvnd597uGja.webp" alt="Anel de Ferrara para ceratocone" class="w-full h-[220px] object-cover" loading="lazy" />
           <div class="p-4 bg-white border border-border/40 border-t-0 rounded-b-2xl">
             <h3 class="font-display text-base text-navy mb-1">Anel de Ferrara</h3>
             <p class="font-body text-xs text-muted-foreground">Segmentos intracorneanos para aplanar a córnea e melhorar a acuidade visual</p>
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-lg aos-element">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/ceratocone-lentes-esclerais-new-6vAWv6ea6FGcUJiernzqCn.webp" alt="Lentes esclerais para ceratocone" class="w-full h-[220px] object-cover" loading="lazy" />
+          <img src="/images/ceratocone-lentes-esclerais-new-6vAWv6ea6FGcUJiernzqCn.webp" alt="Lentes esclerais para ceratocone" class="w-full h-[220px] object-cover" loading="lazy" />
           <div class="p-4 bg-white border border-border/40 border-t-0 rounded-b-2xl">
             <h3 class="font-display text-base text-navy mb-1">Lentes Esclerais</h3>
             <p class="font-body text-xs text-muted-foreground">Lentes especiais que proporcionam visão nítida mesmo em ceratocones avançados</p>
@@ -751,4 +753,41 @@ const clinicas = [
       }
     });
   });
+
+  // ===== WhatsApp dinâmico: atualiza mensagem conforme unidade selecionada =====
+  // whatsapp-dynamic
+  const WA_BASE = 'https://wa.me/5511916544653';
+  const WA_MSG_BASE = 'Olá! Gostaria de saber mais sobre o tratamento de ceratocone';
+
+  function buildWaUrl(unidadeNome) {
+    const texto = unidadeNome ? `${WA_MSG_BASE} na unidade ${unidadeNome}.` : `${WA_MSG_BASE}.`;
+    return `${WA_BASE}?text=${encodeURIComponent(texto)}`;
+  }
+
+  const selHero = document.getElementById('unidade-hero');
+  const selCta  = document.getElementById('unidade-cta');
+  const waLinks = Array.from(document.querySelectorAll('a[href*="wa.me/5511916544653"]'));
+
+  function syncWaLinks(unidadeNome) {
+    const url = buildWaUrl(unidadeNome);
+    waLinks.forEach(a => { a.href = url; });
+  }
+
+  function getUnidadeName(sel) {
+    if (!sel || !sel.value) return '';
+    return sel.options[sel.selectedIndex].text.split(' —')[0].trim();
+  }
+
+  selHero?.addEventListener('change', () => {
+    const nome = getUnidadeName(selHero);
+    syncWaLinks(nome);
+    if (selCta) selCta.value = selHero.value;
+  });
+
+  selCta?.addEventListener('change', () => {
+    const nome = getUnidadeName(selCta);
+    syncWaLinks(nome);
+    if (selHero) selHero.value = selCta.value;
+  });
+
 </script>

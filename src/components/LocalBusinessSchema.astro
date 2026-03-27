@@ -1,0 +1,74 @@
+---
+/**
+ * Schema.org LocalBusiness (MedicalBusiness) para páginas de unidade.
+ * Schema 2.2 — LocalBusiness × 5 unidades
+ */
+export interface Props {
+  nome: string;
+  url: string;
+  image: string;
+  rua: string;
+  bairro: string;
+  cidade: string;
+  cep: string;
+  lat: number;
+  lng: number;
+  telefone: string;
+  whatsapp: string;
+  ratingValue?: string;
+  reviewCount?: string;
+}
+
+const {
+  nome, url, image, rua, bairro, cidade, cep,
+  lat, lng, telefone, whatsapp,
+  ratingValue = "4.9", reviewCount = "200",
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": `Drudi e Almeida Oftalmologia — ${nome}`,
+  "image": `https://institutodrudiealmeida.com.br${image}`,
+  "url": `https://institutodrudiealmeida.com.br${url}`,
+  "telephone": telefone.replace(/\D/g, '').replace(/^(\d{2})(\d{2})(\d{4,5})(\d{4})$/, '+$1 $2 $3-$4'),
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": rua,
+    "addressLocality": cidade.split(' —')[0].trim(),
+    "addressRegion": "SP",
+    "postalCode": cep,
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": lat,
+    "longitude": lng
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "12:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": ratingValue,
+    "reviewCount": reviewCount
+  },
+  "parentOrganization": {
+    "@type": "MedicalOrganization",
+    "name": "Drudi e Almeida Clínicas Oftalmológicas",
+    "url": "https://institutodrudiealmeida.com.br"
+  }
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

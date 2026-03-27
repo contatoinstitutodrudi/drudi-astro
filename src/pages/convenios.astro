@@ -223,6 +223,151 @@ const diferenciais = [
     </div>
   </section>
 
+  <!-- ========== PROCEDIMENTOS COBERTOS ========== -->
+  <section class="section-padding bg-background">
+    <div class="container">
+      <div class="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">O QUE É COBERTO</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Procedimentos Cobertos pelos Convênios</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Todos os convênios listados cobrem os principais procedimentos oftalmológicos. Confira o que está incluso na sua cobertura.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            categoria: "Consultas",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>`,
+            itens: ["Consulta oftalmológica", "Retorno pós-operatório", "Urgência oftalmológica", "Consulta com especialista"]
+          },
+          {
+            categoria: "Exames",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>`,
+            itens: ["OCT (Tomografia de Coerência Óptica)", "Topografia de Córnea", "Campo Visual", "Retinografia", "Biometria Óptica", "Angiofluoresceinografia"]
+          },
+          {
+            categoria: "Cirurgias",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>`,
+            itens: ["Cirurgia de Catarata", "Cirurgia de Glaucoma", "Cirurgia de Estrabismo", "Vitrectomia", "Crosslinking Corneano", "Transplante de Córnea"]
+          },
+          {
+            categoria: "Tratamentos",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>`,
+            itens: ["Injeção Intravítrea (anti-VEGF)", "Laser para Retina", "Laser YAG", "Trabeculoplastia a Laser", "Iridotomia a Laser"]
+          },
+        ].map(cat => (
+          <div class="bg-white rounded-xl border border-border/50 p-6 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-navy/8 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Fragment set:html={cat.icon} />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg text-navy mb-4">{cat.categoria}</h3>
+            <ul class="space-y-2">
+              {cat.itens.map(item => (
+                <li class="flex items-start gap-2 font-body text-sm text-muted-foreground">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-6">
+        <div class="flex gap-3">
+          <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p class="font-body text-sm text-amber-800 leading-relaxed">
+            <strong>Importante:</strong> A cobertura pode variar conforme o plano contratado, a carência e o tipo de procedimento. Consulte sempre a sua operadora ou entre em contato conosco para verificar a cobertura específica do seu plano antes de agendar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ CONVÊNIOS ========== -->
+  <section class="section-padding bg-cream/30">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">DÚVIDAS FREQUENTES</span>
+          <h2 class="font-display text-3xl text-navy mt-3 mb-4">Perguntas sobre Convênios</h2>
+          <div class="gold-line max-w-[80px] mx-auto mt-4"></div>
+        </div>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: "Preciso de encaminhamento médico para consultar com convênio?",
+              a: "Depende do seu plano. Alguns convênios exigem encaminhamento do médico de família ou clínico geral, enquanto outros permitem acesso direto ao especialista. Verifique com a sua operadora ou entre em contato conosco — nossa equipe pode ajudá-lo a entender as regras do seu plano."
+            },
+            {
+              q: "Como funciona a autorização para cirurgia pelo convênio?",
+              a: "Nossa equipe administrativa cuida de todo o processo de autorização. Após a indicação cirúrgica pelo médico, enviamos toda a documentação necessária ao convênio. O prazo de autorização varia de 5 a 15 dias úteis dependendo do plano e do procedimento."
+            },
+            {
+              q: "A cirurgia de catarata é coberta pelo convênio?",
+              a: "Sim, a cirurgia de catarata é coberta pela maioria dos convênios. No entanto, a cobertura da lente intraocular pode variar: alguns planos cobrem apenas a lente monofocal padrão, enquanto outros cobrem lentes premium (multifocais, tóricas). Nossa equipe pode orientá-lo sobre as opções disponíveis no seu plano."
+            },
+            {
+              q: "O Crosslinking para ceratocone é coberto pelo convênio?",
+              a: "O Crosslinking corneano é coberto pela maioria dos convênios listados, pois é um procedimento reconhecido pela ANS. Porém, é necessário solicitar autorização prévia com a documentação adequada (laudo médico, topografia de córnea, etc.). Nossa equipe auxilia em todo esse processo."
+            },
+            {
+              q: "Posso usar o convênio em todas as unidades da Drudi e Almeida?",
+              a: "Sim, todos os convênios listados são aceitos em todas as nossas 5 unidades: Santana, Lapa, Tatuapé, São Miguel Paulista e Guarulhos. Você pode escolher a unidade mais conveniente para você."
+            },
+            {
+              q: "E se meu convênio não estiver na lista?",
+              a: "Nossa rede de convênios está em constante expansão. Entre em contato pelo WhatsApp (11) 91654-4653 ou pelo telefone (11) 5430-2421 para verificar se já credenciamos o seu plano. Também oferecemos condições especiais para atendimento particular."
+            },
+          ].map((faq, i) => (
+            <div class="faq-item-conv bg-white rounded-xl px-6 transition-all" style="border:1px solid #f0ece6">
+              <button class="faq-trigger-conv w-full text-left font-display text-base py-5 flex items-center justify-between gap-4" style="color:#1e2a44" aria-expanded="false">
+                <span>{faq.q}</span>
+                <svg class="faq-icon-conv w-5 h-5 flex-shrink-0 transition-transform" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="faq-content-conv overflow-hidden" style="max-height:0;transition:max-height 0.3s ease">
+                <p class="font-body text-sm leading-relaxed pb-5" style="color:#6b7280">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.faq-trigger-conv').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item-conv');
+        const content = item?.querySelector('.faq-content-conv') as HTMLElement;
+        const icon = btn.querySelector('.faq-icon-conv') as HTMLElement;
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-item-conv').forEach(el => {
+          const c = el.querySelector('.faq-content-conv') as HTMLElement;
+          const b = el.querySelector('.faq-trigger-conv');
+          const ic = el.querySelector('.faq-icon-conv') as HTMLElement;
+          if (c) c.style.maxHeight = '0';
+          if (b) b.setAttribute('aria-expanded', 'false');
+          if (ic) ic.style.transform = 'rotate(0deg)';
+        });
+        if (!isOpen && content) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+          if (icon) icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
+
   <!-- ========== DIFERENCIAIS ========== -->
   <section class="section-padding bg-cream/40">
     <div class="container">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQSchema from '../../components/FAQSchema.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de receber informações sobre o tratamento de estrabismo.";
 const PHONE = "(11) 91654-4653";
@@ -67,6 +68,7 @@ const clinicas = [
   title="Tratamento de Estrabismo em SP | Especialistas Drudi e Almeida"
   description="Tratamento especializado de estrabismo para crianças e adultos em São Paulo e Guarulhos. Cirurgia com suturas ajustáveis, diagnóstico preciso e 5 unidades. Agende: (11) 5430-2421."
 >
+  <FAQSchema items={faqItems} slot="head-schema" />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -800,4 +802,41 @@ const clinicas = [
       }
     });
   });
+
+  // ===== WhatsApp dinâmico: atualiza mensagem conforme unidade selecionada =====
+  // whatsapp-dynamic
+  const WA_BASE = 'https://wa.me/5511916544653';
+  const WA_MSG_BASE = 'Olá! Gostaria de receber informações sobre o tratamento de estrabismo';
+
+  function buildWaUrl(unidadeNome) {
+    const texto = unidadeNome ? `${WA_MSG_BASE} na unidade ${unidadeNome}.` : `${WA_MSG_BASE}.`;
+    return `${WA_BASE}?text=${encodeURIComponent(texto)}`;
+  }
+
+  const selHero = document.getElementById('unidade-hero');
+  const selCta  = document.getElementById('unidade-cta');
+  const waLinks = Array.from(document.querySelectorAll('a[href*="wa.me/5511916544653"]'));
+
+  function syncWaLinks(unidadeNome) {
+    const url = buildWaUrl(unidadeNome);
+    waLinks.forEach(a => { a.href = url; });
+  }
+
+  function getUnidadeName(sel) {
+    if (!sel || !sel.value) return '';
+    return sel.options[sel.selectedIndex].text.split(' —')[0].trim();
+  }
+
+  selHero?.addEventListener('change', () => {
+    const nome = getUnidadeName(selHero);
+    syncWaLinks(nome);
+    if (selCta) selCta.value = selHero.value;
+  });
+
+  selCta?.addEventListener('change', () => {
+    const nome = getUnidadeName(selCta);
+    syncWaLinks(nome);
+    if (selHero) selHero.value = selCta.value;
+  });
+
 </script>

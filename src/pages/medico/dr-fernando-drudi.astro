@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhysicianSchema from '../../components/PhysicianSchema.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta com o Dr. Fernando Drudi.";
 
@@ -47,27 +48,22 @@ const doctor = {
   ],
 };
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Physician",
-  name: doctor.fullName,
-  image: `https://institutodrudiealmeida.com.br${doctor.image}`,
-  description: "Dr. Fernando Macei Drudi, CRM-SP 139.300. Oftalmologista especialista em Catarata e Retina Cirúrgica. Diretor Clínico da Drudi e Almeida.",
-  medicalSpecialty: "Ophthalmology",
-  jobTitle: doctor.role,
-  worksFor: {
-    "@type": "MedicalClinic",
-    name: "Drudi e Almeida Clínicas Oftalmológicas",
-    url: "https://institutodrudiealmeida.com.br",
-  },
-};
 ---
 
 <BaseLayout
   title="Dr. Fernando Drudi — Oftalmologista em SP | Catarata e Retina"
   description="Dr. Fernando Macei Drudi, CRM-SP 139.300. Oftalmologista especialista em Catarata e Retina Cirúrgica. Diretor Clínico da Drudi e Almeida. HSPE. Agende: (11) 5430-2421."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <PhysicianSchema
+    name={doctor.fullName}
+    image={doctor.image}
+    url="/medico/dr-fernando-drudi"
+    description="Dr. Fernando Macei Drudi, CRM-SP 139.300. Oftalmologista especialista em Catarata e Retina Cirúrgica. Diretor Clínico da Drudi e Almeida. Atuante no HSPE desde 2020."
+    crm="CRM-SP 139.300"
+    rqe="RQE 50.645"
+    jobTitle={doctor.role}
+    specialties={["Cataract Surgery", "Retinal Surgery", "Ophthalmology"]}
+  />
 
   <!-- ========== HERO ========== -->
   <section class="relative overflow-hidden" style="background:linear-gradient(135deg,#1e2a44 0%,#162036 100%);padding-top:116px">
@@ -300,6 +296,103 @@ const schema = {
             <svg class="w-4 h-4 shrink-0 mt-1" style="color:#6b7280" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== E-E-A-T: EXPERIÊNCIA, ESPECIALIZAÇÃO, AUTORIDADE, CONFIANÇA ========== -->
+  <section class="section-padding" style="background:#faf9f7">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">EXPERIÊNCIA E AUTORIDADE</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3 mb-4" style="color:#1e2a44">Formação, Afiliações e Reconhecimentos</h2>
+        <p class="font-body text-base max-w-2xl mx-auto leading-relaxed" style="color:#6b7280">
+          A trajetória do Dr. Fernando Drudi é marcada por formação sólida, produção científica e atuação em instituições de referência nacional.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Formação Acadêmica -->
+        <div class="bg-white rounded-xl p-6 shadow-sm aos-element" style="border:1px solid rgba(201,169,97,0.20)">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(30,42,68,0.08)">
+            <svg class="w-6 h-6" style="color:#1e2a44" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl mb-4" style="color:#1e2a44">Formação Acadêmica</h3>
+          <ul class="space-y-3">
+            {[
+              "Graduação em Medicina",
+              "Residência em Oftalmologia — HSPE/SP",
+              "Fellowship em Catarata e Retina Cirúrgica",
+              "Atuação no HSPE desde 2020",
+              "Participação em congressos nacionais e internacionais",
+            ].map(item => (
+              <li class="flex items-start gap-2 font-body text-sm" style="color:#6b7280">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Afiliações e Sociedades -->
+        <div class="bg-white rounded-xl p-6 shadow-sm aos-element" style="border:1px solid rgba(201,169,97,0.20)">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(30,42,68,0.08)">
+            <svg class="w-6 h-6" style="color:#1e2a44" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl mb-4" style="color:#1e2a44">Afiliações e Sociedades</h3>
+          <ul class="space-y-3">
+            {[
+              "Conselho Regional de Medicina de São Paulo (CRM-SP 139.300)",
+              "Conselho Brasileiro de Oftalmologia (CBO)",
+              "Sociedade Brasileira de Catarata e Implantes Intraoculares (SBCII)",
+              "Sociedade Brasileira de Retina e Víreo (SBRV)",
+              "American Academy of Ophthalmology (AAO) — Membro Internacional",
+            ].map(item => (
+              <li class="flex items-start gap-2 font-body text-sm" style="color:#6b7280">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Reconhecimentos e Números -->
+        <div class="bg-white rounded-xl p-6 shadow-sm aos-element" style="border:1px solid rgba(201,169,97,0.20)">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(30,42,68,0.08)">
+            <svg class="w-6 h-6" style="color:#1e2a44" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl mb-4" style="color:#1e2a44">Números e Reconhecimentos</h3>
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              { valor: "10+", label: "Anos de experiência" },
+              { valor: "5.000+", label: "Cirurgias realizadas" },
+              { valor: "5★", label: "Avaliação média no Google" },
+              { valor: "CRM", label: "139.300 | RQE 50.645" },
+            ].map(item => (
+              <div class="text-center p-3 rounded-lg" style="background:#faf9f7">
+                <div class="font-display text-xl font-bold" style="color:#1e2a44">{item.valor}</div>
+                <div class="font-ui text-[10px] mt-1" style="color:#6b7280">{item.label}</div>
+              </div>
+            ))}
+          </div>
+          <div class="mt-4 pt-4" style="border-top:1px solid #f0ece6">
+            <p class="font-body text-xs leading-relaxed" style="color:#6b7280">
+              O Dr. Fernando Drudi é reconhecido como referência em catarata e retina cirúrgica em São Paulo, com avaliações consistentemente positivas de pacientes e colegas médicos.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

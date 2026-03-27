@@ -1,5 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQSchema from '../components/FAQSchema.astro';
+
+const homeFAQ = [
+  { question: "Quais convênios a Drudi e Almeida aceita?", answer: "Atendemos os principais planos de saúde: Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Instituto Pró-PM e Ameplam. Para confirmar a cobertura do seu plano específico, entre em contato conosco pelo WhatsApp." },
+  { question: "Como faço para agendar uma consulta?", answer: "Você pode agendar pelo WhatsApp (11) 91654-4653, pelo telefone (11) 5430-2421, ou pelo nosso sistema de agendamento online. Respondemos em até 5 minutos pelo WhatsApp durante o horário de atendimento." },
+  { question: "A cirurgia de catarata dói? Como é a recuperação?", answer: "A cirurgia de catarata é realizada com anestesia local e sedação leve, portanto não há dor durante o procedimento. A recuperação é rápida: a maioria dos pacientes já enxerga melhor no dia seguinte. Recomendamos repouso por 24h e evitar esforços por 1 semana." },
+  { question: "O que é ceratocone e qual o tratamento?", answer: "Ceratocone é uma doença progressiva em que a córnea se afina e assume formato cônico, causando visão distorcida. O tratamento depende do estágio: lentes de contato especiais para casos leves, Crosslinking para estabilizar a progressão, e anel de Ferrara para casos moderados." },
+  { question: "Glaucoma tem cura? Como é o tratamento?", answer: "O glaucoma não tem cura, mas tem controle. Com diagnóstico precoce e tratamento adequado (colírios, laser ou cirurgia), é possível preservar a visão por toda a vida. O mais importante é o diagnóstico precoce, pois a visão perdida pelo glaucoma não pode ser recuperada." },
+  { question: "Com que idade devo levar meu filho ao oftalmologista?", answer: "O primeiro exame deve ser o Teste do Olhinho, feito na maternidade. Depois, recomendamos consultas aos 6 meses, 1 ano, 3 anos e antes de entrar na escola (5-6 anos). A partir daí, anualmente." },
+  { question: "Sou diabético. Com que frequência devo fazer exame de vista?", answer: "Pacientes diabéticos devem fazer exame de fundo de olho (mapeamento de retina) pelo menos uma vez ao ano. A retinopatia diabética é uma das principais causas de cegueira no mundo e pode progredir silenciosamente." },
+  { question: "Quais são as unidades da Drudi e Almeida?", answer: "Temos 5 unidades na Grande São Paulo: Santana (Rua Dr. César, 130), Tatuaípé (Rua Tuiuti, 2429), Lapa (Rua Barão de Jundiaí, 221), São Miguel Paulista (Rua Bernardo Marcondes, 108) e Guarulhos (Rua Sete de Setembro, 375)." },
+];
 ---
 
 <BaseLayout
@@ -7,6 +19,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Oftalmologista em São Paulo com 5 institutos especializados: catarata, ceratocone, glaucoma, retina e estrabismo. Agende sua consulta."
   canonicalPath="/"
 >
+  <FAQSchema items={homeFAQ} slot="head-schema" />
 
   <!-- ========== HERO ========== -->
   <!-- top-bar: 36px + header: 80px = 116px -->

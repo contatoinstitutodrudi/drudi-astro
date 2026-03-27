@@ -53,33 +53,70 @@ const fullTitle = title.includes('Drudi') ? title : `${title} | Drudi e Almeida`
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <!-- Fonts: Playfair Display + Source Sans 3 + Montserrat -->
+    <!-- Perf 3.1: Preload hero image na home -->
+    {canonicalPath === '/' && (
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-monet-resized_00e348d0.webp"
+        imagesrcset="/images/hero-monet-360w.webp 360w, /images/hero-monet-480w_5af50fa4_d2802f0a.webp 480w, /images/hero-monet-960w-q55_opt.webp 960w, /images/hero-monet-resized_00e348d0.webp 1920w"
+        imagesizes="100vw"
+        fetchpriority="high"
+      />
+    )}
+
+    <!-- Perf 3.6: Fonts com display=swap (já incluso na URL) + preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Perf 3.6: display=swap garante FOUT em vez de FOIT -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Montserrat:wght@500;600;700&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Montserrat:wght@500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Montserrat:wght@500;600;700&display=swap"
+      />
+    </noscript>
 
-    <!-- Schema.org: MedicalOrganization -->
+    <!-- Schema.org: MedicalOrganization (2.1) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "MedicalOrganization",
       "name": "Drudi e Almeida Clínicas Oftalmológicas",
+      "alternateName": "Instituto Drudi e Almeida",
       "url": "https://institutodrudiealmeida.com.br",
       "logo": "https://institutodrudiealmeida.com.br/images/logo-footer-200w_56b3dc2d.webp",
+      "image": "https://institutodrudiealmeida.com.br/images/hero-monet-resized_00e348d0.webp",
+      "description": "Referência em oftalmologia em São Paulo com 5 institutos especializados em catarata, ceratocone, glaucoma, retina e estrabismo. 5 unidades em SP e Guarulhos.",
       "telephone": "+55-11-5430-2421",
       "email": "contato@drudiealmeida.com",
+      "medicalSpecialty": "Ophthalmology",
+      "foundingDate": "2015",
+      "numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 10 },
+      "areaServed": { "@type": "City", "name": "São Paulo" },
       "address": [
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "Rua Voluntários da Pátria, 2863, sala 1203",
-          "addressLocality": "São Paulo",
-          "addressRegion": "SP",
-          "postalCode": "02402-400",
-          "addressCountry": "BR"
-        }
+        { "@type": "PostalAddress", "streetAddress": "Rua Dr. César, 130", "addressLocality": "São Paulo", "addressRegion": "SP", "postalCode": "02013-001", "addressCountry": "BR" },
+        { "@type": "PostalAddress", "streetAddress": "Rua Barão de Jundiaí, 221", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
+        { "@type": "PostalAddress", "streetAddress": "Rua Tuiuti, 2429", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
+        { "@type": "PostalAddress", "streetAddress": "Rua Bernardo Marcondes, 108", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
+        { "@type": "PostalAddress", "streetAddress": "Rua Sete de Setembro, 375", "addressLocality": "Guarulhos", "addressRegion": "SP", "addressCountry": "BR" }
+      ],
+      "department": [
+        { "@type": "MedicalClinic", "name": "Instituto da Catarata — Drudi e Almeida", "medicalSpecialty": "Ophthalmology", "url": "https://institutodrudiealmeida.com.br/instituto/catarata" },
+        { "@type": "MedicalClinic", "name": "Instituto do Ceratocone — Drudi e Almeida", "medicalSpecialty": "Ophthalmology", "url": "https://institutodrudiealmeida.com.br/instituto/ceratocone" },
+        { "@type": "MedicalClinic", "name": "Instituto do Glaucoma — Drudi e Almeida", "medicalSpecialty": "Ophthalmology", "url": "https://institutodrudiealmeida.com.br/instituto/glaucoma" },
+        { "@type": "MedicalClinic", "name": "Instituto da Retina — Drudi e Almeida", "medicalSpecialty": "Ophthalmology", "url": "https://institutodrudiealmeida.com.br/instituto/retina" },
+        { "@type": "MedicalClinic", "name": "Instituto de Estrabismo — Drudi e Almeida", "medicalSpecialty": "Ophthalmology", "url": "https://institutodrudiealmeida.com.br/instituto/estrabismo" }
       ],
       "sameAs": [
         "https://www.instagram.com/drudiealmeida",
@@ -87,6 +124,19 @@ const fullTitle = title.includes('Drudi') ? title : `${title} | Drudi e Almeida`
       ]
     }
     </script>
+
+    <!-- Schema.org: BreadcrumbList dinâmico (2.5) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://institutodrudiealmeida.com.br/" },
+        ...(canonicalPath !== '/' ? [{ "@type": "ListItem", "position": 2, "name": fullTitle.split(' |')[0], "item": canonicalUrl }] : [])
+      ]
+    })} />
+
+    <!-- Slot para schemas específicos de página -->
+    <slot name="head-schema" />
   </head>
   <body>
     <!-- Top Bar: Horário + Contatos -->
