@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Não indexar landing pages (conteúdo similar aos institutos)
+Disallow: /lp/
+
+# Sitemap
+Sitemap: https://institutodrudiealmeida.com.br/sitemap-index.xml

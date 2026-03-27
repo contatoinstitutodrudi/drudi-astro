@@ -134,15 +134,9 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
       />
     )}
 
-    <!-- Perf 3.6: Fonts com display=swap (já incluso na URL) + preconnect -->
+    <!-- Fontes: preconnect + carregamento assíncrono (evita render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Perf 3.6: display=swap garante FOUT em vez de FOIT -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Montserrat:wght@500;600;700&display=swap"
-    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=Montserrat:wght@500;600;700&display=swap"
