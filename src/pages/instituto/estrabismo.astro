@@ -64,8 +64,8 @@ const clinicas = [
 ---
 
 <BaseLayout
-  title="Cirurgia de Estrabismo em SP | Drudi e Almeida"
-  description="Cirurgia de estrabismo para crianças e adultos. Diagnóstico preciso e técnicas modernas de correção. 5 unidades em São Paulo e Guarulhos."
+  title="Tratamento de Estrabismo em SP | Especialistas Drudi e Almeida"
+  description="Tratamento especializado de estrabismo para crianças e adultos em São Paulo e Guarulhos. Cirurgia com suturas ajustáveis, diagnóstico preciso e 5 unidades. Agende: (11) 5026-8521."
 >
 
   <!-- ========== 1. HERO ========== -->
@@ -80,18 +80,18 @@ const clinicas = [
           <span class="font-ui text-xs font-semibold text-gold tracking-wide">INSTITUTO DE ESTRABISMO</span>
         </div>
 
-        <!-- Breadcrumb -->
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-4 aos-element" style="color:#ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+          Tratamento de <em class="not-italic" style="color:#c9a84c; font-style:italic;">Estrabismo</em><br class="hidden md:block" /><span style="color:#ffffff;">para crianças e adultos</span>
+        </h1>
+
+        <!-- Breadcrumb (posicionado após o H1) -->
         <nav class="flex items-center gap-2 mb-5 text-cream/60 text-xs font-ui" aria-label="Breadcrumb">
           <a href="/" class="hover:text-cream transition-colors">Home</a>
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <a href="/" class="hover:text-cream transition-colors">Institutos</a>
+          <a href="/institutos" class="hover:text-cream transition-colors">Institutos</a>
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
           <span class="text-gold">Instituto de Estrabismo</span>
         </nav>
-
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-6 aos-element" style="color:#ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
-          Tratamento de <em class="not-italic" style="color:#c9a84c; font-style:italic;">Estrabismo</em><br class="hidden md:block" /><span style="color:#ffffff;">para crianças e adultos</span>
-        </h1>
 
         <p class="font-body text-lg text-cream/80 leading-relaxed mb-8 max-w-xl aos-element">
           Tratamento especializado para crianças e adultos. Selecione sua unidade e receba informações sobre diagnóstico e cirurgia de estrabismo.
@@ -113,9 +113,9 @@ const clinicas = [
               Receber Informações
             </a>
             <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
+              class="w-full inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-all">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Agendar Online — Consulta disponível em até 48h
+              Agendar Online
             </a>
             <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
               class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
@@ -281,7 +281,7 @@ const clinicas = [
           Agende pelo WhatsApp
         </a>
         <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 border border-navy/20 text-navy font-ui text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-navy/5 transition-all">
+          class="inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-navy/90 transition-all">
           Agendar Online
         </a>
       </div>
@@ -357,6 +357,294 @@ const clinicas = [
                   <p class="font-body text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEO: DIAGNÓSTICO ========== -->
+  <section class="section-padding bg-slate-50">
+    <div class="container">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Diagnóstico</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+            Como é feito o <span class="text-gold">diagnóstico do estrabismo</span>?
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div class="aos-element space-y-5">
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              O diagnóstico do estrabismo é realizado por um <strong class="text-navy">oftalmologista especializado</strong> por meio de uma série de testes clínicos. O exame completo avalia o alinhamento dos olhos, a acuidade visual de cada olho separadamente e a presença de ambliopia.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              O <strong class="text-navy">teste de cobertura (cover test)</strong> é o exame mais importante: o médico cobre um olho e observa se o outro se move para fixar o objeto — se houver movimento, confirma o desvio. O teste de cobertura alternada revela desvios latentes (foria) que só aparecem quando a fusão binocular é quebrada.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Em crianças pequenas, o exame é realizado com recursos especiais para manter a atenção. O <strong class="text-navy">reflexo de Hirschberg</strong> — observação do reflexo luminoso na córnea — permite estimar o grau do desvio mesmo em bebês. A cicloplegia (colírio para dilatar a pupila) é usada para medir com precisão o erro refrativo associado.
+            </p>
+          </div>
+          <div class="aos-element">
+            <div class="bg-white rounded-2xl border border-border/40 overflow-hidden">
+              <div class="bg-navy px-6 py-4">
+                <h3 class="font-display text-lg text-cream">Exames utilizados no diagnóstico</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                {[
+                  { nome: "Cover Test (Teste de Cobertura)", desc: "Confirma e quantifica o desvio ocular horizontal e vertical" },
+                  { nome: "Reflexo de Hirschberg", desc: "Estimativa rápida do desvio — útil em bebês e crianças pequenas" },
+                  { nome: "Teste de Krimsky", desc: "Quantificação do desvio com prismas em crianças não colaborativas" },
+                  { nome: "Acuidade Visual (Snellen/LogMAR)", desc: "Avalia a visão de cada olho separadamente para detectar ambliopia" },
+                  { nome: "Cicloplegia + Refração", desc: "Mede o erro refrativo real sem influência da acomodação" },
+                  { nome: "Motilidade Ocular", desc: "Avalia a função de cada músculo extraocular em 9 posições do olhar" },
+                ].map(e => (
+                  <div class="flex gap-3">
+                    <svg class="w-4 h-4 text-gold shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <div>
+                      <p class="font-display text-sm text-navy">{e.nome}</p>
+                      <p class="font-body text-xs text-muted-foreground">{e.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEO: ESTRABISMO EM CRIANÇAS ========== -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Pediatria</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+            Estrabismo em <span class="text-gold">crianças</span>: por que tratar cedo?
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div class="aos-element space-y-5">
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              O sistema visual humano se desenvolve nos primeiros anos de vida. Quando uma criança tem estrabismo, o cérebro recebe imagens diferentes de cada olho e, para evitar a visão dupla, começa a <strong class="text-navy">suprimir a imagem do olho desviado</strong>. Com o tempo, essa supressão causa a ambliopia — o chamado "olho preguiçoso".
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A janela de tratamento mais eficaz é antes dos <strong class="text-navy">6 a 8 anos de idade</strong>, quando o sistema visual ainda é plástico e pode ser estimulado. Após esse período, a ambliopia tende a se tornar permanente e resistente ao tratamento. Por isso, o diagnóstico e o início do tratamento precoces são fundamentais.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              O tratamento da ambliopia em crianças envolve: correção óptica com óculos, oclusão do olho bom com tampão (patch) por horas determinadas ao dia, e — quando necessário — cirurgia do estrabismo para realinhar os olhos e permitir que o cérebro desenvolva a visão binocular normal.
+            </p>
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+              <p class="font-display text-sm text-blue-900 mb-2">Recomendação da Academia Americana de Oftalmologia</p>
+              <p class="font-body text-sm text-blue-800 leading-relaxed">
+                Toda criança deve ter o primeiro exame oftalmológico entre 6 meses e 1 ano de idade, mesmo sem sintomas aparentes. O rastreamento precoce é a melhor forma de prevenir sequelas visuais permanentes.
+              </p>
+            </div>
+          </div>
+          <div class="aos-element">
+            <div class="grid grid-cols-2 gap-4">
+              {[
+                { valor: "4%", desc: "da população tem estrabismo", cor: "bg-navy" },
+                { valor: "50%", desc: "dos casos cursam com ambliopia", cor: "bg-gold" },
+                { valor: "6-8 anos", desc: "período crítico para tratamento", cor: "bg-navy" },
+                { valor: "90%", desc: "de sucesso com tratamento precoce", cor: "bg-gold" },
+              ].map(stat => (
+                <div class={`${stat.cor} rounded-2xl p-5 text-center`}>
+                  <p class="font-display text-2xl text-cream font-bold mb-1">{stat.valor}</p>
+                  <p class="font-body text-xs text-cream/80 leading-snug">{stat.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEO: ESTRABISMO EM ADULTOS ========== -->
+  <section class="section-padding bg-slate-50">
+    <div class="container">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Adultos</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+            Estrabismo em <span class="text-gold">adultos</span>: nunca é tarde para tratar
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div class="aos-element space-y-5">
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Existe um mito de que o estrabismo em adultos não pode ser tratado. Isso é falso. A cirurgia de estrabismo em adultos tem <strong class="text-navy">excelentes resultados funcionais e estéticos</strong>, independentemente da idade. Adultos com estrabismo desde a infância que nunca foram tratados também podem se beneficiar da cirurgia.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Em adultos, o estrabismo pode ser congênito (presente desde a infância e nunca tratado) ou adquirido (surgiu na vida adulta por causas como AVC, diabetes, trauma craniano, tumores ou doenças da tireoide). O estrabismo adquirido frequentemente causa <strong class="text-navy">visão dupla (diplopia)</strong> — sintoma que raramente ocorre em crianças porque o cérebro suprime a imagem.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Além dos benefícios funcionais, a cirurgia de estrabismo em adultos tem impacto significativo na <strong class="text-navy">qualidade de vida, autoestima e relações sociais e profissionais</strong>. Estudos mostram que adultos submetidos à cirurgia de estrabismo relatam melhora substancial na confiança e nas interações sociais.
+            </p>
+          </div>
+          <div class="aos-element space-y-4">
+            <h3 class="font-display text-xl text-navy mb-4">Causas do estrabismo adquirido em adultos</h3>
+            {[
+              { causa: "Acidente Vascular Cerebral (AVC)", desc: "Paralisia de nervos cranianos que controlam os músculos oculares" },
+              { causa: "Diabetes mellitus", desc: "Neuropatia diabética pode afetar os nervos III, IV e VI" },
+              { causa: "Doença de Graves (tireoide)", desc: "Oftalmopatia tireoidiana causa fibrose dos músculos extraoculares" },
+              { causa: "Trauma craniano ou orbital", desc: "Lesão direta nos músculos ou nos nervos que os controlam" },
+              { causa: "Tumores cerebrais", desc: "Compressão dos nervos oculomotores por massas intracranianas" },
+              { causa: "Miastenia gravis", desc: "Doença autoimune que causa fraqueza muscular variável" },
+            ].map(c => (
+              <div class="flex gap-3 bg-white rounded-xl p-4 border border-border/40">
+                <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <div>
+                  <p class="font-display text-sm text-navy">{c.causa}</p>
+                  <p class="font-body text-xs text-muted-foreground">{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEO: TÉCNICAS CIRÚRGICAS ========== -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Procedimento Cirúrgico</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+            Técnicas da <span class="text-gold">cirurgia de estrabismo</span>
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div class="aos-element space-y-5">
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A cirurgia de estrabismo é um procedimento oftalmológico realizado nos <strong class="text-navy">músculos extraoculares</strong> — os seis músculos que controlam o movimento de cada olho. O objetivo é alterar a força ou posição desses músculos para realinhar os olhos.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              O procedimento é realizado sob <strong class="text-navy">anestesia geral em crianças</strong> e, em adultos, pode ser feito com anestesia local associada à sedação. A cirurgia dura em média 45 a 90 minutos, dependendo do número de músculos operados e da complexidade do caso.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A técnica de <strong class="text-navy">suturas ajustáveis</strong> representa um avanço importante: os pontos são deixados acessíveis para ajuste fino no pós-operatório imediato, permitindo uma correção mais precisa. Esta técnica é especialmente útil em reoperações e casos complexos, melhorando significativamente os resultados.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A taxa de sucesso na primeira cirurgia varia de <strong class="text-navy">60% a 90%</strong>, dependendo do tipo e grau do estrabismo. Em casos complexos ou reoperações, pode ser necessária uma segunda intervenção. O acompanhamento pós-operatório é fundamental para avaliar o resultado e ajustar o tratamento.
+            </p>
+          </div>
+          <div class="aos-element space-y-4">
+            <div class="bg-slate-50 rounded-2xl p-6 border border-border/40">
+              <h3 class="font-display text-lg text-navy mb-4">Técnicas cirúrgicas disponíveis</h3>
+              <div class="space-y-4">
+                {[
+                  { tecnica: "Recessão muscular", desc: "O músculo é recuado (enfraquecido) para reduzir sua força de tração. Indicado quando o músculo está hiperativo." },
+                  { tecnica: "Ressecção muscular", desc: "Uma porção do músculo é removida (fortalecido). Indicado quando o músculo está hipoativo." },
+                  { tecnica: "Plicatura", desc: "O músculo é dobrado sobre si mesmo para encurtá-lo. Alternativa à ressecção com menor risco." },
+                  { tecnica: "Transposição muscular", desc: "Um músculo é reposicionado para compensar a paralisia de outro. Usada no estrabismo paralítico." },
+                  { tecnica: "Suturas ajustáveis", desc: "Pontos acessíveis para ajuste fino no pós-operatório. Melhora a precisão em adultos." },
+                ].map(t => (
+                  <div class="flex gap-3">
+                    <div class="w-2 h-2 rounded-full bg-gold shrink-0 mt-2"></div>
+                    <div>
+                      <p class="font-display text-sm text-navy">{t.tecnica}</p>
+                      <p class="font-body text-xs text-muted-foreground leading-relaxed">{t.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEO: PÓS-OPERATÓRIO ========== -->
+  <section class="section-padding bg-slate-50">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10 aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Pós-operatório</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+            Recuperação após a <span class="text-gold">cirurgia de estrabismo</span>
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {[
+            { periodo: "Primeiras 24-48h", cor: "border-amber-300 bg-amber-50", items: ["Olho vermelho e lacrimejante", "Desconforto leve — sensação de areia", "Uso de colírio antibiótico + anti-inflamatório", "Repouso relativo em casa"] },
+            { periodo: "1ª semana", cor: "border-blue-300 bg-blue-50", items: ["Retorno às atividades normais leves", "Evitar piscina, mar e esportes de contato", "Continuar os colírios prescritos", "Visão pode parecer dupla — é temporário"] },
+            { periodo: "1 mês e além", cor: "border-emerald-300 bg-emerald-50", items: ["Consulta de revisão para avaliar alinhamento", "Resultado final estabiliza em 4-6 semanas", "Óculos podem ser ajustados após cirurgia", "Retorno a todas as atividades normais"] },
+          ].map(fase => (
+            <div class={`rounded-2xl p-6 border-2 ${fase.cor} aos-element`}>
+              <h3 class="font-display text-base text-navy mb-4">{fase.periodo}</h3>
+              <ul class="space-y-2">
+                {fase.items.map(item => (
+                  <li class="flex gap-2 font-body text-sm text-muted-foreground">
+                    <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-border/40 aos-element">
+          <p class="font-body text-base text-muted-foreground leading-relaxed">
+            A maioria dos pacientes descreve o desconforto pós-operatório como <strong class="text-navy">"sensação de areia no olho"</strong> — leve a moderado e bem controlado com analgésicos comuns. A vermelhidão ocular (hiperemia conjuntival) é normal e desaparece gradualmente em 2 a 4 semanas. A visão dupla transitória pode ocorrer nos primeiros dias, especialmente em adultos, e tende a se resolver à medida que o sistema visual se adapta ao novo alinhamento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEO: QUALIDADE DE VIDA ========== -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Impacto na Vida</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+            Estrabismo e <span class="text-gold">qualidade de vida</span>
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div class="aos-element space-y-5">
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              O estrabismo vai muito além de uma questão estética. Quando não tratado, impacta profundamente a vida da pessoa em múltiplas dimensões: visual, social, emocional e profissional. Compreender esses impactos é fundamental para motivar a busca pelo tratamento adequado.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Do ponto de vista <strong class="text-navy">visual</strong>, o estrabismo não tratado pode resultar em perda permanente da visão binocular — a capacidade de usar os dois olhos juntos para perceber profundidade e distâncias. Isso afeta atividades cotidianas como dirigir, praticar esportes e realizar tarefas que exigem precisão manual.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Do ponto de vista <strong class="text-navy">social e emocional</strong>, estudos mostram que adultos com estrabismo relatam dificuldades no contato visual durante conversas, constrangimento em situações sociais e impacto negativo na autoestima. Em crianças, o estrabismo pode ser alvo de bullying e afetar o desenvolvimento social e o desempenho escolar.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A boa notícia é que o tratamento — seja clínico ou cirúrgico — tem impacto positivo comprovado em todas essas dimensões. Pacientes tratados relatam melhora significativa na <strong class="text-navy">confiança, nas relações interpessoais e na qualidade de vida geral</strong>.
+            </p>
+          </div>
+          <div class="aos-element space-y-4">
+            <div class="bg-navy rounded-2xl p-6 text-cream">
+              <h3 class="font-display text-lg text-cream mb-4">Benefícios do tratamento</h3>
+              <div class="space-y-3">
+                {[
+                  "Eliminação ou redução da visão dupla",
+                  "Melhora da percepção de profundidade",
+                  "Prevenção ou reversão da ambliopia",
+                  "Melhora da autoestima e confiança",
+                  "Facilidade no contato visual",
+                  "Melhor desempenho em esportes e atividades",
+                  "Impacto positivo nas relações sociais e profissionais",
+                  "Redução da fadiga visual e dores de cabeça",
+                ].map(b => (
+                  <div class="flex gap-2">
+                    <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    <p class="font-body text-sm text-cream/85">{b}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -487,7 +775,7 @@ const clinicas = [
               Agendar pelo WhatsApp
             </a>
             <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
+              class="w-full inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-all">
               Agendar Online
             </a>
           </div>
