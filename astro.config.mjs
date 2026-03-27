@@ -11,6 +11,7 @@ export default defineConfig({
   adapter: cloudflare({
     platformProxy: { enabled: true },
     imageService: 'passthrough',
+    sessions: false,
   }),
   site: 'https://institutodrudiealmeida.com.br',
   integrations: [

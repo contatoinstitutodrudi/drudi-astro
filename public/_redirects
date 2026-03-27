@@ -62,8 +62,6 @@
 /unidades       /contato    301
 
 # ============================================================
-# LP estáticas — exceções ao fallback SPA (v2)
+# LP estáticas — passthrough (Cloudflare Workers serve diretamente)
 /lp/*  /lp/:splat  200
 /instituto/lp/*  /instituto/lp/:splat  200
-# SPA fallback — deve ser a última regra
-/*    /index.html   200

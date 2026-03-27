@@ -9,7 +9,7 @@
     {
       "binding": "DB",
       "database_name": "drudi-agendamentos",
-      "database_id": "PLACEHOLDER_REPLACE_WITH_REAL_ID",
+      "database_id": "ca7f3a2d-83a5-47a9-83d0-c6025038652a",
       "migrations_dir": "./migrations"
     }
   ]
