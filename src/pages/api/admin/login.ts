@@ -1,11 +1,12 @@
 // POST /api/admin/login
+import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { createAdminToken, makeAdminCookie } from '../../../lib/auth';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const env = (locals as { runtime: { env: Env } }).runtime.env;
+export const POST: APIRoute = async ({ request }) => {
+  const cfEnv = env as unknown as Env;
 
   let body: { password?: string };
   try {
@@ -17,14 +18,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   }
 
-  if (!body.password || body.password !== env.ADMIN_PASSWORD) {
+  if (!body.password || body.password !== cfEnv.ADMIN_PASSWORD) {
     return new Response(JSON.stringify({ error: 'Senha incorreta.' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  const token = await createAdminToken(env.ADMIN_JWT_SECRET);
+  const token = await createAdminToken(cfEnv.ADMIN_JWT_SECRET);
   const cookie = makeAdminCookie(token);
 
   return new Response(JSON.stringify({ success: true }), {

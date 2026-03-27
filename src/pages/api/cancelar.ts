@@ -1,4 +1,5 @@
 // GET /api/cancelar?token=xxx
+import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { getAppointmentByCancelToken, updateAppointmentStatus } from '../../lib/db';
 import { deleteCalendarEvent } from '../../lib/gcal';
@@ -6,8 +7,8 @@ import { GCAL_ENV_MAP } from '../../lib/constants';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ request, locals }) => {
-  const env = (locals as { runtime: { env: Env } }).runtime.env;
+export const GET: APIRoute = async ({ request }) => {
+  const cfEnv = env as unknown as Env;
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
 
@@ -19,7 +20,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
   }
 
   try {
-    const appt = await getAppointmentByCancelToken(env.DB, token);
+    const appt = await getAppointmentByCancelToken(cfEnv.DB, token);
     if (!appt) {
       return new Response(JSON.stringify({ error: 'Agendamento não encontrado.' }), {
         status: 404,
@@ -33,14 +34,14 @@ export const GET: APIRoute = async ({ request, locals }) => {
       });
     }
 
-    await updateAppointmentStatus(env.DB, appt.id, 'cancelled');
+    await updateAppointmentStatus(cfEnv.DB, appt.id, 'cancelled');
 
     // Remover do Google Calendar
     if (appt.gcal_event_id) {
       const calEnvKey = GCAL_ENV_MAP[appt.unit];
-      const calendarId = calEnvKey ? (env as unknown as Record<string, string>)[calEnvKey] : null;
+      const calendarId = calEnvKey ? (cfEnv as unknown as Record<string, string>)[calEnvKey] : null;
       if (calendarId) {
-        deleteCalendarEvent(env, calendarId, appt.gcal_event_id).catch(e =>
+        deleteCalendarEvent(cfEnv, calendarId, appt.gcal_event_id).catch(e =>
           console.error('[cancelar] GCal delete error:', e)
         );
       }

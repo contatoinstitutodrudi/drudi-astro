@@ -1,12 +1,12 @@
 // GET /api/agendamento/slots?date=YYYY-MM-DD&unit=Santana
+import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { getAppointmentsByDateUnit, isDayBlocked } from '../../../lib/db';
 import { BUSINESS_HOURS, MAX_PER_SLOT } from '../../../lib/constants';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ request, locals }) => {
-  const env = (locals as { runtime: { env: Env } }).runtime.env;
+export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
   const date = url.searchParams.get('date');
   const unit = url.searchParams.get('unit');
@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
   }
 
   try {
-    const db = env.DB;
+    const db = (env as unknown as Env).DB;
 
     // Verificar se o dia está bloqueado
     const blocked = await isDayBlocked(db, date, unit);

@@ -1,15 +1,8 @@
 ---
 export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { verifyAdminToken, getAdminTokenFromRequest } from '../../lib/auth';
 import { UNITS, SPECIALTIES } from '../../lib/constants';
-
-// Verificar autenticação
-const env = (Astro.locals as { runtime: { env: Env } }).runtime.env;
-const token = getAdminTokenFromRequest(Astro.request);
-if (!token || !(await verifyAdminToken(env.ADMIN_JWT_SECRET, token))) {
-  return Astro.redirect('/admin/login');
-}
+// Autenticação gerenciada pelo middleware (src/middleware.ts)
 ---
 
 <BaseLayout

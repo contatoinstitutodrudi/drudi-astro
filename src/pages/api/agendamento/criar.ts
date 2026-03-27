@@ -1,4 +1,5 @@
 // POST /api/agendamento/criar
+import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { createAppointment, getAppointmentsByDateUnit, isDayBlocked, updateGcalEventId } from '../../../lib/db';
 import { createCalendarEvent, buildCalendarEvent } from '../../../lib/gcal';
@@ -7,8 +8,8 @@ import { GCAL_ENV_MAP, MAX_PER_SLOT } from '../../../lib/constants';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const env = (locals as { runtime: { env: Env } }).runtime.env;
+export const POST: APIRoute = async ({ request }) => {
+  const cfEnv = env as unknown as Env;
 
   let body: Record<string, unknown>;
   try {
@@ -44,7 +45,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   try {
-    const db = env.DB;
+    const db = cfEnv.DB;
 
     // Verificar se o dia está bloqueado
     const blocked = await isDayBlocked(db, String(appointment_date), String(unit));
@@ -85,7 +86,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     // Criar evento no Google Calendar (assíncrono, não bloqueia resposta)
     const calEnvKey = GCAL_ENV_MAP[String(unit)];
-    const calendarId = calEnvKey ? (env as unknown as Record<string, string>)[calEnvKey] : null;
+    const calendarId = calEnvKey ? (cfEnv as unknown as Record<string, string>)[calEnvKey] : null;
 
     if (calendarId) {
       try {
@@ -102,7 +103,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
           appointment_type: String(appointment_type ?? 'primeira_vez'),
           notes: notes ? String(notes) : null,
         });
-        const gcalId = await createCalendarEvent(env, calendarId, event);
+        const gcalId = await createCalendarEvent(cfEnv, calendarId, event);
         await updateGcalEventId(db, id, gcalId);
       } catch (gcalErr) {
         console.error('[criar] GCal error (non-fatal):', gcalErr);
@@ -111,7 +112,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     // Enviar e-mails (não bloqueiam resposta)
     if (patient_email) {
-      sendConfirmationEmail(env.RESEND_API_KEY, {
+      sendConfirmationEmail(cfEnv.RESEND_API_KEY, {
         patient_name: String(patient_name),
         patient_email: String(patient_email),
         unit: String(unit),
@@ -123,7 +124,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       }).catch(e => console.error('[criar] Email error:', e));
     }
 
-    sendAdminNotificationEmail(env.RESEND_API_KEY, {
+    sendAdminNotificationEmail(cfEnv.RESEND_API_KEY, {
       patient_name: String(patient_name),
       patient_phone: String(patient_phone),
       patient_email: patient_email ? String(patient_email) : null,

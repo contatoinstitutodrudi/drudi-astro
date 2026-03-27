@@ -4,9 +4,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { verifyAdminToken, getAdminTokenFromRequest } from '../../lib/auth';
 
 // Se já autenticado, redirecionar para o painel
-const env = (Astro.locals as { runtime: { env: Env } }).runtime.env;
+const cfEnv = (Astro.locals as Record<string, unknown>).cfEnv as Env;
 const token = getAdminTokenFromRequest(Astro.request);
-if (token && await verifyAdminToken(env.ADMIN_JWT_SECRET, token)) {
+if (token && cfEnv && await verifyAdminToken(cfEnv.ADMIN_JWT_SECRET, token)) {
   return Astro.redirect('/admin/agendamentos');
 }
 ---

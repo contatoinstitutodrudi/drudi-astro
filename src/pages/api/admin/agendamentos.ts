@@ -1,15 +1,16 @@
 // GET /api/admin/agendamentos?status=all&unit=all&date=&specialty=all
+import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { listAppointments } from '../../../lib/db';
 import { verifyAdminToken, getAdminTokenFromRequest } from '../../../lib/auth';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ request, locals }) => {
-  const env = (locals as { runtime: { env: Env } }).runtime.env;
+export const GET: APIRoute = async ({ request }) => {
+  const cfEnv = env as unknown as Env;
 
   const token = getAdminTokenFromRequest(request);
-  if (!token || !(await verifyAdminToken(env.ADMIN_JWT_SECRET, token))) {
+  if (!token || !(await verifyAdminToken(cfEnv.ADMIN_JWT_SECRET, token))) {
     return new Response(JSON.stringify({ error: 'Não autorizado.' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },
@@ -23,7 +24,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
   const specialty = url.searchParams.get('specialty') ?? 'all';
 
   try {
-    const appointments = await listAppointments(env.DB, {
+    const appointments = await listAppointments(cfEnv.DB, {
       status: status !== 'all' ? status : undefined,
       unit: unit !== 'all' ? unit : undefined,
       date: date || undefined,
