@@ -28,6 +28,7 @@ const unidade = {
     { nome: "São Miguel Paulista", rua: "Rua Bernardo Marcondes, 108, São Miguel Paulista", slug: "sao-miguel" },
   ]
 };
+import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <BaseLayout
@@ -66,6 +67,8 @@ const unidade = {
       </nav>
 
       <div class="max-w-2xl">
+                <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Unidades", href: "/contato" }, { label: "Tatuapé" }]} />
+
         <h1 class="font-display text-4xl md:text-5xl text-cream leading-tight mb-4">
           Clínica Oftalmológica em<br />
           <em class="text-gold not-italic">{unidade.nome}</em>

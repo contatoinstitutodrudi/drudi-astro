@@ -80,6 +80,7 @@ const diferenciais = [
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
   },
 ];
+import Breadcrumb from '../components/Breadcrumb.astro';
 ---
 
 <BaseLayout
@@ -99,14 +100,10 @@ const diferenciais = [
 
     <!-- Conteúdo -->
     <div class="relative container py-20 md:py-24">
-      <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 mb-8" aria-label="Breadcrumb">
-        <a href="/" class="font-ui text-xs text-cream/60 hover:text-cream transition-colors">Início</a>
-        <span class="text-cream/40 text-xs">›</span>
-        <span class="font-ui text-xs text-gold">Convênios</span>
-      </nav>
 
       <div class="max-w-2xl">
+                <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Convênios" }]} />
+
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-6">
           Convênios e Planos de<br />
           <span class="text-gold italic">Saúde Aceitos</span>

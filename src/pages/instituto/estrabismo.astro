@@ -62,6 +62,7 @@ const clinicas = [
   { name: "São Miguel Paulista", city: "São Paulo - SP", address: "Rua Bernardo Marcondes, 108", phone: "(11) 5430-2421", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Sao+Miguel+Rua+Bernardo+Marcondes+108", image: "/images/sala_espera_sofa_bege_v4_0b2982e6.webp" },
   { name: "Tatuapé", city: "São Paulo - SP", address: "Rua Tuiuti, 2429", phone: "(11) 5430-2421", mapsUrl: "https://www.google.com/maps/search/Drudi+e+Almeida+Tatuape+Rua+Tuiuti+2429", image: "/images/sala_espera_sofa_bege_v3_5717e0c0.webp" },
 ];
+import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <BaseLayout
@@ -82,18 +83,12 @@ const clinicas = [
           <span class="font-ui text-xs font-semibold text-gold tracking-wide">INSTITUTO DE ESTRABISMO</span>
         </div>
 
+                <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Institutos", href: "/institutos" }, { label: "Instituto de Estrabismo" }]} />
+
+
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-4 aos-element" style="color:#ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
           Tratamento de <em class="not-italic" style="color:#c9a84c; font-style:italic;">Estrabismo</em><br class="hidden md:block" /><span style="color:#ffffff;">para crianças e adultos</span>
         </h1>
-
-        <!-- Breadcrumb (posicionado após o H1) -->
-        <nav class="flex items-center gap-2 mb-5 text-cream/60 text-xs font-ui" aria-label="Breadcrumb">
-          <a href="/" class="hover:text-cream transition-colors">Home</a>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <a href="/institutos" class="hover:text-cream transition-colors">Institutos</a>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="text-gold">Instituto de Estrabismo</span>
-        </nav>
 
         <p class="font-body text-lg text-cream/80 leading-relaxed mb-8 max-w-xl aos-element">
           Tratamento especializado para crianças e adultos. Selecione sua unidade e receba informações sobre diagnóstico e cirurgia de estrabismo.
