@@ -71,7 +71,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0);background-size:40px 40px"></div>
 
     <div class="relative container py-12 md:py-20">
-
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Nossa Equipe", href: "/sobre" }, { label: "Dr. Fernando Drudi" }]} />
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <!-- Foto -->
         <div class="relative max-w-md mx-auto lg:mx-0 aos-element">
@@ -94,9 +94,6 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
         <!-- Conteúdo -->
         <div class="aos-element">
-                  <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Nossa Equipe", href: "/sobre" }, { label: "Dr. Fernando Drudi" }]} />
-
-
           <h1 class="font-display leading-tight mb-2" style="font-size:clamp(2rem,4vw,3rem);color:#ffffff">
             {doctor.fullName}
           </h1>
