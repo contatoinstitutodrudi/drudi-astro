@@ -7,6 +7,7 @@ export interface Props {
   keywords?: string;
   canonicalPath?: string;
   ogImage?: string;
+  breadcrumbItems?: Array<{ name: string; item?: string }>;
 }
 
 const {
@@ -15,11 +16,76 @@ const {
   keywords = 'oftalmologista São Paulo, clínica de olhos SP, cirurgia de catarata, ceratocone, glaucoma, retina, estrabismo, Drudi e Almeida',
   canonicalPath = '/',
   ogImage = '/images/hero-monet-resized_00e348d0.webp',
+  breadcrumbItems,
 } = Astro.props;
 
 const siteUrl = 'https://institutodrudiealmeida.com.br';
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 const fullTitle = title.includes('Drudi') ? title : `${title} | Drudi e Almeida`;
+
+// Mapa de rótulos para cada canonicalPath
+const pathLabels: Record<string, { name: string; parent?: string; parentName?: string }> = {
+  '/sobre': { name: 'Sobre Nós' },
+  '/contato': { name: 'Contato' },
+  '/tecnologia': { name: 'Tecnologia' },
+  '/convenios': { name: 'Convênios' },
+  '/arte-e-visao': { name: 'Arte e Visão' },
+  '/blog': { name: 'Blog' },
+  '/lgpd': { name: 'LGPD' },
+  '/politica-de-privacidade': { name: 'Política de Privacidade' },
+  '/instituto/catarata': { name: 'Instituto da Catarata', parent: '/institutos', parentName: 'Institutos' },
+  '/instituto/ceratocone': { name: 'Instituto do Ceratocone', parent: '/institutos', parentName: 'Institutos' },
+  '/instituto/glaucoma': { name: 'Instituto do Glaucoma', parent: '/institutos', parentName: 'Institutos' },
+  '/instituto/retina': { name: 'Instituto da Retina', parent: '/institutos', parentName: 'Institutos' },
+  '/instituto/estrabismo': { name: 'Instituto de Estrabismo', parent: '/institutos', parentName: 'Institutos' },
+  '/medico/dr-fernando-drudi': { name: 'Dr. Fernando Drudi', parent: '/sobre', parentName: 'Sobre Nós' },
+  '/medico/dra-priscilla-almeida': { name: 'Dra. Priscilla Almeida', parent: '/sobre', parentName: 'Sobre Nós' },
+  '/unidade/guarulhos': { name: 'Guarulhos', parent: '/contato', parentName: 'Contato' },
+  '/unidade/lapa': { name: 'Lapa', parent: '/contato', parentName: 'Contato' },
+  '/unidade/santana': { name: 'Santana', parent: '/contato', parentName: 'Contato' },
+  '/unidade/sao-miguel': { name: 'São Miguel Paulista', parent: '/contato', parentName: 'Contato' },
+  '/unidade/tatuape': { name: 'Tatuapé', parent: '/contato', parentName: 'Contato' },
+};
+
+// Gerar itens do BreadcrumbList
+type BreadcrumbListItem = { "@type": string; position: number; name: string; item?: string };
+
+const breadcrumbSegments: BreadcrumbListItem[] = (() => {
+  // Se breadcrumbItems for fornecido manualmente, usa-o
+  if (breadcrumbItems) {
+    return [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": `${siteUrl}/` },
+      ...breadcrumbItems.map((b, i) => ({
+        "@type": "ListItem",
+        "position": i + 2,
+        "name": b.name,
+        ...(b.item ? { "item": b.item } : {})
+      }))
+    ];
+  }
+  // Geração automática baseada no canonicalPath
+  if (canonicalPath === '/') {
+    return [{ "@type": "ListItem", "position": 1, "name": "Início", "item": `${siteUrl}/` }];
+  }
+  const info = pathLabels[canonicalPath];
+  if (!info) {
+    // Fallback genérico para paths não mapeados (ex: /blog/[slug])
+    return [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": `${siteUrl}/` },
+      { "@type": "ListItem", "position": 2, "name": fullTitle.split(' |')[0], "item": canonicalUrl }
+    ];
+  }
+  const items: BreadcrumbListItem[] = [
+    { "@type": "ListItem", "position": 1, "name": "Início", "item": `${siteUrl}/` }
+  ];
+  if (info.parent && info.parentName) {
+    items.push({ "@type": "ListItem", "position": 2, "name": info.parentName, "item": `${siteUrl}${info.parent}` });
+    items.push({ "@type": "ListItem", "position": 3, "name": info.name, "item": canonicalUrl });
+  } else {
+    items.push({ "@type": "ListItem", "position": 2, "name": info.name, "item": canonicalUrl });
+  }
+  return items;
+})();
 ---
 
 <!doctype html>
@@ -87,9 +153,8 @@ const fullTitle = title.includes('Drudi') ? title : `${title} | Drudi e Almeida`
       />
     </noscript>
 
-    <!-- Schema.org: MedicalOrganization (2.1) -->
-    <script type="application/ld+json">
-    {
+    <!-- Schema.org: MedicalOrganization — presente em todas as páginas -->
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "MedicalOrganization",
       "name": "Drudi e Almeida Clínicas Oftalmológicas",
@@ -122,21 +187,18 @@ const fullTitle = title.includes('Drudi') ? title : `${title} | Drudi e Almeida`
         "https://www.instagram.com/drudiealmeida",
         "https://www.facebook.com/drudiealmeida"
       ]
-    }
-    </script>
+    })} />
 
-    <!-- Schema.org: BreadcrumbList dinâmico (2.5) -->
+    <!-- Schema.org: BreadcrumbList dinâmico — gerado automaticamente por canonicalPath -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://institutodrudiealmeida.com.br/" },
-        ...(canonicalPath !== '/' ? [{ "@type": "ListItem", "position": 2, "name": fullTitle.split(' |')[0], "item": canonicalUrl }] : [])
-      ]
+      "itemListElement": breadcrumbSegments
     })} />
 
-    <!-- Slot para schemas específicos de página -->
+    <!-- Slot para schemas específicos de página (Physician, LocalBusiness, FAQPage) -->
     <slot name="head-schema" />
+  </head>
   </head>
   <body>
     <!-- Top Bar: Horário + Contatos -->
