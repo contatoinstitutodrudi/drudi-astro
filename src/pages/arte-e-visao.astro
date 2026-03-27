@@ -1,0 +1,508 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQSchema from '../components/FAQSchema.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta.";
+const PHONE = "(11) 5430-2421";
+
+const artistas = [
+  {
+    nome: "Claude Monet",
+    anos: "1840 – 1926",
+    doenca: "Catarata Nuclear",
+    instituto: "Instituto da Catarata",
+    href: "/instituto/catarata",
+    imagem: "/images/monet-japanese-bridge_7feeb7be.webp",
+    imagemAlt: "Monet - Ponte Japonesa, pintada durante a progressão da catarata",
+    imagemAntes: "/images/hero-monet-960w-q65_33ebbbc1.webp",
+    imagemAntesAlt: "Obras de Monet antes da catarata — cores vibrantes e nítidas",
+    cor: "from-blue-900/80 to-blue-700/60",
+    badge: "Catarata",
+    badgeColor: "bg-blue-100 text-blue-800",
+    resumo: "A catarata nuclear de Monet transformou sua paleta de cores vibrantes em tons amarelados e acastanhados, criando obras que hoje são reconhecidas como seu período mais expressionista.",
+    conteudo: `
+      <p>Claude Monet é talvez o caso mais documentado e fascinante de como uma doença ocular moldou a história da arte. O impressionista francês, criador dos famosos nenúfares e da série da Catedral de Rouen, começou a notar problemas visuais por volta de 1908, quando tinha 68 anos. O diagnóstico: catarata nuclear bilateral progressiva.</p>
+
+      <p>A catarata nuclear — o tipo mais comum em idosos — ocorre quando o cristalino do olho amarelece e opacifica progressivamente a partir do centro. Para Monet, isso significou uma transformação radical na percepção das cores: o azul foi gradualmente filtrado, e o mundo passou a ser visto através de um véu amarelo-alaranjado, como se o artista estivesse usando óculos com lentes âmbar.</p>
+
+      <p>O impacto nas obras é visível e documentado. Compare as pinturas da Ponte Japonesa do jardim de Giverny de 1899 — com suas cores verdes e azuis vibrantes, reflexos precisos na água — com as versões pintadas entre 1918 e 1924, quando a catarata estava avançada. Nestas últimas, as formas se dissolvem em redemoinhos de laranja, vermelho e marrom. A estrutura da ponte quase desaparece. O que antes era representação torna-se expressão pura.</p>
+
+      <p>Monet ficou profundamente perturbado com a perda de visão. Em cartas, descrevia sua angústia: "As cores não têm mais a mesma intensidade para mim; o vermelho parece lamacento, os rosas desbotados, e os tons intermediários ou baixos escapam à minha percepção." Chegou a destruir diversas telas que considerava fracassadas por não conseguir mais ver as cores corretamente.</p>
+
+      <p>Em 1923, aos 82 anos, Monet finalmente aceitou se submeter à cirurgia de catarata no olho direito — na época, um procedimento muito mais invasivo e arriscado do que a facoemulsificação moderna. O resultado foi surpreendente: após a cirurgia e o período de adaptação com óculos especiais, Monet passou a enxergar luz ultravioleta que o cristalino normal filtra. Suas obras pós-cirurgia mostram tons de azul intenso e até violeta que artistas com visão normal não percebem.</p>
+
+      <p>O caso de Monet levanta uma questão fascinante: suas obras do período da catarata — hoje entre as mais valorizadas e reproduzidas do mundo — seriam o resultado de uma visão "defeituosa" ou de uma nova forma de percepção que a doença inadvertidamente criou? Para a oftalmologia moderna, o caso é um exemplo perfeito de como a catarata nuclear altera seletivamente a percepção de comprimentos de onda específicos, com consequências que, no caso de um gênio visual, produziram obras de arte inesquecíveis.</p>
+    `,
+    curiosidade: "Após a cirurgia de catarata, Monet enxergava luz ultravioleta — por isso suas obras pós-operatórias têm tons de azul e violeta que artistas com visão normal não percebem.",
+    obras: ["Nenúfares (1906)", "Ponte Japonesa (1899 vs 1922)", "Catedral de Rouen (série)"],
+  },
+  {
+    nome: "Vincent van Gogh",
+    anos: "1853 – 1890",
+    doenca: "Xantopsia e Glaucoma (hipóteses)",
+    instituto: "Instituto do Ceratocone",
+    href: "/instituto/ceratocone",
+    imagem: "/images/van-gogh-starry-night_78be1262.webp",
+    imagemAlt: "Van Gogh - Noite Estrelada, com halos e redemoinhos característicos",
+    imagemAntes: "/images/art-vangogh-600w_61afdfcd_f834e739.webp",
+    imagemAntesAlt: "Auto-retrato de Van Gogh",
+    cor: "from-indigo-900/80 to-purple-700/60",
+    badge: "Visão Distorcida",
+    badgeColor: "bg-indigo-100 text-indigo-800",
+    resumo: "Os halos luminosos, redemoinhos e a paleta amarela intensa de Van Gogh podem ser explicados por condições oculares como xantopsia (visão amarelada) e possível glaucoma, além do uso de digitálicos.",
+    conteudo: `
+      <p>Vincent van Gogh é provavelmente o artista mais estudado pela medicina e pela oftalmologia. Mais de 150 anos após sua morte, pesquisadores ainda debatem quais condições físicas e mentais moldaram sua visão única do mundo. O que é certo é que sua obra apresenta características visuais que se alinham perfeitamente com diversas condições oftalmológicas.</p>
+
+      <p>O elemento mais discutido é a presença ubíqua de halos luminosos ao redor de fontes de luz — estrelas, lampiões, a lua. Na "Noite Estrelada" (1889), pintada enquanto Van Gogh estava internado no asilo de Saint-Paul-de-Mausole, cada estrela é rodeada por anéis concêntricos de luz que se expandem em espirais. Esse fenômeno visual — chamado de halos ou fotopsias — é um sintoma clássico de glaucoma, onde o aumento da pressão intraocular causa edema na córnea, que difrata a luz em halos coloridos.</p>
+
+      <p>Outro elemento marcante é a paleta amarela intensa que domina as obras do período de Arles (1888-1889). Quadros como "Girassóis", "O Quarto em Arles" e "A Noite Estrelada" são saturados de amarelo. Uma hipótese bem documentada é a xantopsia — visão amarelada — causada pelo uso de digitálicos (especialmente a digitalina) que Van Gogh tomava para tratar epilepsia. Os digitálicos em doses elevadas causam xantopsia e visão de halos, exatamente o que vemos em suas obras desse período.</p>
+
+      <p>Há também evidências de que Van Gogh sofria de fotofobia (sensibilidade extrema à luz), o que explicaria por que ele frequentemente pintava à noite ou em ambientes de luz controlada. Cartas ao irmão Theo descrevem episódios de visão turva e sensibilidade à luz que precediam seus colapsos.</p>
+
+      <p>Uma análise publicada no Archives of Ophthalmology em 2004 sugeriu que Van Gogh pode ter sofrido de ceratocone — condição em que a córnea assume formato cônico, causando distorção visual, halos e sensibilidade à luz. Os pesquisadores apontaram que a forma como Van Gogh representava fontes de luz, com distorções assimétricas características, é consistente com a aberração visual do ceratocone.</p>
+
+      <p>O que torna o caso de Van Gogh especialmente fascinante é que, independentemente do diagnóstico correto, suas "imperfeições" visuais produziram uma linguagem pictórica revolucionária que influenciou todo o expressionismo do século XX. O mundo visto através dos olhos de Van Gogh — com suas distorções, halos e cores intensificadas — revelou uma dimensão emocional da realidade que a visão "normal" talvez nunca tivesse capturado.</p>
+    `,
+    curiosidade: "Van Gogh pintou mais de 900 obras em apenas 10 anos de carreira ativa, muitas delas durante períodos de intensa instabilidade de saúde — incluindo os episódios que podem estar relacionados a condições visuais.",
+    obras: ["Noite Estrelada (1889)", "Girassóis (1888)", "O Quarto em Arles (1888)"],
+  },
+  {
+    nome: "Edgar Degas",
+    anos: "1834 – 1917",
+    doenca: "Degeneração Macular / Retinopatia",
+    instituto: "Instituto da Retina",
+    href: "/instituto/retina",
+    imagem: "/images/art-degas-dancers_57775727.webp",
+    imagemAlt: "Degas - Bailarinas, pintadas durante a progressão da doença retiniana",
+    imagemAntes: "/images/art-degas-hero_optimized.webp",
+    imagemAntesAlt: "Degas - obras do período de visão normal",
+    cor: "from-rose-900/80 to-pink-700/60",
+    badge: "Retina",
+    badgeColor: "bg-rose-100 text-rose-800",
+    resumo: "A doença retiniana progressiva de Degas o forçou a abandonar a pintura detalhada e migrar para pastéis e esculturas. Suas bailarinas tardias, com contornos borrados, refletem diretamente a perda de acuidade central.",
+    conteudo: `
+      <p>Edgar Degas, o mestre das bailarinas e das cenas de corrida de cavalos, viveu uma das histórias mais dramáticas de adaptação artística diante de uma doença ocular progressiva. Aos 36 anos, durante a Guerra Franco-Prussiana de 1870, Degas notou os primeiros sinais de perda visual — provavelmente após exposição ao frio intenso durante o serviço militar. O que se seguiu foi uma deterioração visual progressiva que durou décadas.</p>
+
+      <p>O diagnóstico preciso de Degas é debatido até hoje, mas as evidências apontam para uma combinação de degeneração macular e possivelmente retinopatia. Cartas e diários do artista descrevem sintomas clássicos de doença macular: dificuldade para ler, perda da visão central com preservação periférica, e metamorfopsia (distorção de linhas retas). Em uma carta de 1882, escreveu: "Meu olho direito vê os objetos de lado, como se estivessem atrás de um véu."</p>
+
+      <p>A progressão da doença é claramente visível em sua obra. As pinturas dos anos 1860-1870 mostram um domínio técnico extraordinário: linhas precisas, expressões faciais detalhadas, perspectivas complexas. As obras dos anos 1890-1900, quando a visão estava gravemente comprometida, mostram figuras que parecem emergir de névoas coloridas, com contornos indefinidos e cores aplicadas em grandes manchas. Paradoxalmente, muitos críticos consideram esse período tardio o mais expressivo e emocionalmente poderoso de sua carreira.</p>
+
+      <p>A adaptação de Degas à perda visual é um estudo em resiliência criativa. Quando a pintura detalhada se tornou impossível, ele migrou para o pastel — um meio que permite trabalhar com grandes massas de cor sem exigir precisão de linha. Quando mesmo o pastel se tornou difícil, passou a criar esculturas de bailarinas e cavalos, trabalhando pelo tato além da visão. Suas esculturas em cera, descobertas após sua morte, revelam uma sensibilidade tátil extraordinária.</p>
+
+      <p>Degas também foi pioneiro na fotografia artística, possivelmente como forma de compensar a perda visual — a câmera capturava o que seus olhos já não conseguiam ver com clareza. Suas fotografias de bailarinas e autorretratos são obras de arte por si mesmas.</p>
+
+      <p>O caso de Degas é particularmente relevante para a oftalmologia moderna porque ilustra perfeitamente a progressão da doença macular: a perda da visão central (responsável pela acuidade e pelo reconhecimento de detalhes) com preservação da visão periférica. Hoje, com OCT de alta resolução e injeções de anti-VEGF, muitos casos de degeneração macular úmida — o tipo mais agressivo — podem ser estabilizados ou melhorados. Degas viveu antes dessas descobertas, mas sua obra sobreviveu como testemunho da capacidade humana de criar mesmo diante das maiores adversidades.</p>
+    `,
+    curiosidade: "Degas ficou quase completamente cego nos últimos anos de vida, mas continuou a criar esculturas de bailarinas pelo tato. Mais de 150 esculturas em cera foram encontradas em seu ateliê após sua morte.",
+    obras: ["Bailarinas Azuis (1898)", "A Classe de Dança (1874)", "L'Absinthe (1876)"],
+  },
+  {
+    nome: "El Greco",
+    anos: "1541 – 1614",
+    doenca: "Astigmatismo / Miopia Elevada (hipótese)",
+    instituto: "Instituto da Catarata",
+    href: "/instituto/catarata",
+    imagem: "/images/art-el-greco-toledo_24353633.webp",
+    imagemAlt: "El Greco - Vista de Toledo, com figuras alongadas características",
+    imagemAntes: "/images/art-el-greco-toledo_24353633.webp",
+    imagemAntesAlt: "El Greco - Vista de Toledo",
+    cor: "from-amber-900/80 to-yellow-700/60",
+    badge: "Astigmatismo",
+    badgeColor: "bg-amber-100 text-amber-800",
+    resumo: "As figuras verticalmente alongadas de El Greco geraram uma das teorias mais famosas da história da arte: o artista seria míope ou astigmata, e pintaria o que via. A teoria foi refutada, mas o debate ilumina nossa compreensão da visão.",
+    conteudo: `
+      <p>Domenikos Theotokopoulos, conhecido como El Greco, criou um dos estilos mais reconhecíveis da história da arte: figuras humanas verticalmente alongadas, cores frias e luminosas, composições dramáticas que parecem desafiar a gravidade. Desde o século XIX, médicos e críticos de arte propuseram que esse estilo peculiar seria o resultado de uma condição visual — especificamente, astigmatismo progressivo ou miopia elevada.</p>
+
+      <p>A teoria foi popularizada pelo médico espanhol Germán Beritens em 1913, que argumentou que El Greco sofria de astigmatismo que distorcia sua percepção vertical, fazendo as figuras parecerem mais altas do que eram. Para compensar, o artista as pintaria alongadas para que parecessem "normais" aos seus olhos. A teoria ganhou enorme popularidade e foi repetida em livros didáticos por décadas.</p>
+
+      <p>No entanto, a teoria foi rigorosamente refutada por oftalmologistas e historiadores de arte. O principal argumento contra ela: se El Greco pintasse figuras alongadas para compensar uma distorção visual, ao olhar para suas próprias pinturas, as figuras pareceriam ainda mais alongadas para ele — criando um ciclo sem fim. Além disso, o astigmatismo causa distorção em todas as direções, não apenas vertical.</p>
+
+      <p>A explicação mais aceita hoje é estilística e espiritual: El Greco, formado na tradição bizantina de Creta e depois influenciado pelo maneirismo veneziano, deliberadamente alongava as figuras para criar uma sensação de elevação espiritual — como se os santos e personagens religiosos que pintava estivessem se desprendendo da terra em direção ao divino. O alongamento era uma escolha artística consciente, não uma compensação visual.</p>
+
+      <p>O caso de El Greco é fascinante para a oftalmologia não pelo diagnóstico em si, mas pelo que revela sobre nossa tendência de buscar explicações médicas para fenômenos artísticos. Ele também ilustra como condições visuais reais — como astigmatismo e miopia — afetam a percepção espacial de formas que podem influenciar escolhas artísticas, mesmo que não de forma tão direta quanto a teoria popular sugeria.</p>
+
+      <p>Para os pacientes com astigmatismo hoje, o caso de El Greco oferece uma perspectiva curiosa: a condição que pode causar visão borrada e distorção de linhas foi, por décadas, associada a um dos estilos mais reconhecíveis da pintura ocidental. O astigmatismo moderno é corrigido com óculos, lentes de contato ou cirurgia refrativa — mas a obra de El Greco permanece como um lembrete de que a visão humana é sempre uma interpretação, não uma reprodução fiel da realidade.</p>
+    `,
+    curiosidade: "A teoria do astigmatismo de El Greco foi tão popular que o oftalmologista Trevor-Roper a usou como exemplo central em seu livro 'The World Through Blunted Sight' (1970), que examina como doenças oculares influenciaram grandes artistas.",
+    obras: ["Vista de Toledo (1596-1600)", "O Enterro do Conde de Orgaz (1586)", "Laocoon (1610-1614)"],
+  },
+  {
+    nome: "Rembrandt van Rijn",
+    anos: "1606 – 1669",
+    doenca: "Estrabismo (Exotropia)",
+    instituto: "Instituto de Estrabismo",
+    href: "/instituto/estrabismo",
+    imagem: "/images/rembrandt-self-portrait_19758687.webp",
+    imagemAlt: "Auto-retrato de Rembrandt, mostrando o olho desviado característico",
+    imagemAntes: "/images/rembrandt-self-portrait_19758687.webp",
+    imagemAntesAlt: "Auto-retrato de Rembrandt",
+    cor: "from-stone-900/80 to-amber-800/60",
+    badge: "Estrabismo",
+    badgeColor: "bg-stone-100 text-stone-800",
+    resumo: "Uma análise de 36 auto-retratos de Rembrandt publicada no New England Journal of Medicine revelou que o mestre holandês tinha exotropia — olho desviado para fora — o que pode ter contribuído para sua extraordinária capacidade de representar profundidade e perspectiva.",
+    conteudo: `
+      <p>Em 2004, um artigo publicado no New England Journal of Medicine — uma das revistas médicas mais prestigiosas do mundo — causou sensação ao revelar que Rembrandt van Rijn, considerado por muitos o maior mestre da pintura ocidental, provavelmente sofria de estrabismo. Especificamente, exotropia: um desvio do olho para fora, afastando-se do nariz.</p>
+
+      <p>A evidência veio de uma análise sistemática de 36 auto-retratos e gravuras do artista, realizada pelos oftalmologistas Margaret Livingstone e Bevil Conway de Harvard. Em praticamente todas as obras, o olho esquerdo de Rembrandt aparece desviado lateralmente em relação ao olho direito — uma consistência que não pode ser atribuída a escolhas estilísticas ou erros de representação.</p>
+
+      <p>O que torna o caso de Rembrandt especialmente interessante para a oftalmologia é a implicação funcional do estrabismo. Pessoas com estrabismo frequentemente desenvolvem visão monocular dominante — o cérebro aprende a suprimir a imagem do olho desviado para evitar diplopia (visão dupla). Isso significa que Rembrandt provavelmente enxergava o mundo predominantemente com um olho, sem a visão binocular que a maioria das pessoas usa para perceber profundidade tridimensional.</p>
+
+      <p>Paradoxalmente, essa limitação pode ter sido uma vantagem artística. A percepção de profundidade em uma tela bidimensional depende de pistas monoculares — perspectiva, sombreamento, sobreposição, gradiente de textura — não de visão binocular. Artistas com visão monocular podem ser mais conscientes dessas pistas e mais habilidosos em representá-las. Livingstone e Conway argumentaram que o estrabismo de Rembrandt pode ter facilitado sua extraordinária capacidade de traduzir o mundo tridimensional em uma superfície plana.</p>
+
+      <p>A teoria é consistente com o que sabemos sobre outros artistas com visão monocular: o pintor americano Charles Willson Peale e o escultor Frederic Remington também tinham visão em apenas um olho e são conhecidos por suas representações excepcionalmente convincentes de profundidade e volume.</p>
+
+      <p>Para os pacientes com estrabismo hoje, o caso de Rembrandt oferece uma perspectiva inspiradora. O desvio ocular que pode causar constrangimento social e problemas de visão binocular não impediu — e pode até ter contribuído para — a criação de algumas das obras mais admiradas da história da arte. O tratamento moderno do estrabismo, com cirurgia, oclusão e terapia visual, pode restaurar o alinhamento ocular e, em muitos casos, a visão binocular — mas a história de Rembrandt lembra que o olho humano, mesmo imperfeito, é um instrumento de percepção extraordinariamente adaptável.</p>
+    `,
+    curiosidade: "O artigo de Livingstone e Conway no NEJM (2004) foi um dos primeiros estudos sistemáticos a usar análise de imagens de obras de arte para fazer diagnósticos retrospectivos de condições oftalmológicas em artistas históricos.",
+    obras: ["Auto-retrato com dois círculos (1665-1669)", "A Ronda Noturna (1642)", "Lição de Anatomia (1632)"],
+  },
+  {
+    nome: "Leonardo da Vinci",
+    anos: "1452 – 1519",
+    doenca: "Exotropia Intermitente",
+    instituto: "Instituto de Estrabismo",
+    href: "/instituto/estrabismo",
+    imagem: "/images/da-vinci-strabismus_b1164d80.webp",
+    imagemAlt: "Leonardo da Vinci - retrato mostrando o estrabismo intermitente",
+    imagemAntes: "/images/da-vinci-strabismus_b1164d80.webp",
+    imagemAntesAlt: "Leonardo da Vinci",
+    cor: "from-emerald-900/80 to-teal-700/60",
+    badge: "Estrabismo",
+    badgeColor: "bg-emerald-100 text-emerald-800",
+    resumo: "Um estudo de 2018 publicado no JAMA Ophthalmology analisou 5 retratos e esculturas atribuídos a Da Vinci e concluiu que ele tinha exotropia intermitente — o que pode ter contribuído para sua capacidade única de representar objetos tridimensionais em superfícies planas.",
+    conteudo: `
+      <p>Leonardo da Vinci — pintor, escultor, arquiteto, músico, matemático, engenheiro, inventor, anatomista, geólogo, botânico e escritor — é frequentemente descrito como o maior gênio da história humana. Em 2018, um estudo publicado no JAMA Ophthalmology adicionou mais uma dimensão à sua complexidade: Da Vinci provavelmente tinha exotropia intermitente, um tipo de estrabismo em que um olho desvia para fora em certas condições.</p>
+
+      <p>O estudo, conduzido pelo professor Christopher Tyler do City University of London, analisou cinco obras que se acredita serem autorretratos ou representações de Da Vinci: a escultura de terracota atribuída a Gian Cristoforo Romano, o "Homem Vitruviano", o "Salvador Mundi", o "David" de Verrocchio (para o qual Da Vinci posou) e um desenho de perfil. Em quatro das cinco obras, o olho esquerdo apresentava desvio lateral consistente com exotropia.</p>
+
+      <p>A exotropia intermitente — diferente da exotropia constante — significa que o desvio ocorre em certas situações, especialmente quando o indivíduo está cansado, distraído ou olhando para objetos distantes. Em condições de concentração intensa, o alinhamento pode ser normal. Isso é relevante para entender como Da Vinci funcionava: durante o trabalho criativo intenso, seus olhos provavelmente estavam alinhados; em momentos de relaxamento, o desvio emergia.</p>
+
+      <p>A implicação para sua arte é a mesma discutida no caso de Rembrandt: a visão monocular facilita a representação de profundidade em superfícies planas. Da Vinci era famoso por suas técnicas de perspectiva e sfumato — a técnica de sombreamento gradual que cria a ilusão de profundidade e atmosfera. Sua capacidade de representar objetos tridimensionais com precisão extraordinária pode ter sido facilitada pela supressão monocular que acompanha o estrabismo.</p>
+
+      <p>Da Vinci também era fascinado pela óptica e pela visão humana. Seus cadernos contêm estudos detalhados do olho humano, da câmera escura e da percepção visual. É possível que sua própria experiência visual — com a alternância entre visão binocular e monocular — tenha alimentado seu interesse científico pelo funcionamento do olho.</p>
+
+      <p>O caso de Da Vinci é um lembrete de que a visão humana é muito mais complexa do que simplesmente "ver claramente". A forma como o cérebro processa e interpreta os sinais visuais — incluindo as adaptações que faz diante de condições como o estrabismo — pode criar percepções únicas que, em mentes excepcionais, se traduzem em criações igualmente excepcionais.</p>
+    `,
+    curiosidade: "Da Vinci descreveu o olho como 'a janela da alma' e dedicou extensos estudos nos seus cadernos à anatomia ocular e à óptica — possivelmente motivado por sua própria experiência visual incomum.",
+    obras: ["A Última Ceia (1495-1498)", "Mona Lisa (1503-1519)", "Homem Vitruviano (1490)"],
+  },
+];
+
+const faqItems = [
+  { question: "As doenças oculares realmente influenciaram a arte dos grandes mestres?", answer: "Sim, há evidências científicas sólidas para vários casos. O mais documentado é o de Claude Monet, cujos registros médicos confirmam a catarata e cuja evolução artística é claramente visível nas obras. Para outros artistas como Degas, Van Gogh e Rembrandt, as evidências vêm de análise sistemática de obras, cartas e documentos históricos, publicadas em revistas médicas de alto impacto como o New England Journal of Medicine e o JAMA Ophthalmology." },
+  { question: "Monet poderia ter sido tratado com a medicina moderna?", answer: "Absolutamente. A cirurgia de catarata moderna (facoemulsificação com implante de lente intraocular) é um dos procedimentos mais seguros e eficazes da medicina, com taxa de sucesso superior a 98%. O procedimento dura cerca de 15 minutos, é realizado com anestesia local e o paciente retorna às atividades no dia seguinte. Monet se submeteu à cirurgia em 1923, mas a técnica da época era muito mais invasiva — hoje, ele teria recuperado a visão em dias, não meses." },
+  { question: "A degeneração macular de Degas poderia ser tratada hoje?", answer: "Depende do tipo. A DMRI úmida — que causa perda visual rápida por vasos anormais que sangram sob a retina — é tratável com injeções de anti-VEGF (Ranibizumabe, Aflibercept, Bevacizumabe) com excelentes resultados quando iniciadas precocemente. A DMRI seca progride mais lentamente e não tem tratamento específico, mas suplementos AREDS2 podem retardar a progressão. Se Degas vivesse hoje, provavelmente teria mantido visão funcional por muito mais tempo." },
+  { question: "O estrabismo de Rembrandt e Da Vinci realmente ajudou sua arte?", answer: "Esta é uma hipótese científica plausível, não uma certeza. A teoria, publicada no NEJM e no JAMA Ophthalmology, argumenta que a supressão monocular que acompanha o estrabismo pode facilitar a representação de profundidade em superfícies planas. Artistas com visão monocular são mais conscientes das pistas monoculares de profundidade (perspectiva, sombreamento, sobreposição) porque não dependem da visão binocular. Mas é impossível provar que o estrabismo foi a causa do gênio artístico — apenas que pode ter sido um fator contribuinte." },
+  { question: "Os halos de Van Gogh eram realmente causados por uma doença ocular?", answer: "Há múltiplas hipóteses. A mais documentada é a xantopsia (visão amarelada) e halos causados pelo uso de digitálicos para epilepsia. A hipótese de glaucoma também é plausível — o aumento da pressão intraocular causa edema da córnea que difrata a luz em halos. A hipótese de ceratocone foi publicada no Archives of Ophthalmology em 2004. O mais provável é que múltiplos fatores — medicamentos, condições oculares e sua sensibilidade artística extraordinária — contribuíram para sua visão única do mundo." },
+  { question: "Onde posso fazer um exame de vista completo em São Paulo?", answer: "A Drudi e Almeida Oftalmologia tem 5 unidades em São Paulo e Guarulhos, com consultas de rotina e exames especializados como mapeamento de retina, OCT, topografia de córnea e campo visual. Ligue para (11) 5430-2421 ou agende pelo WhatsApp (11) 91654-4653." },
+];
+---
+
+<BaseLayout
+  title="Arte e Visão: Doenças Oculares que Transformaram a História da Arte | Drudi e Almeida"
+  description="Monet tinha catarata, Degas perdia a visão por doença retiniana, Rembrandt tinha estrabismo. Descubra como doenças oftalmológicas moldaram as obras dos grandes mestres da pintura e o que a medicina moderna poderia ter feito por eles."
+  keywords="doenças oculares artistas, catarata Monet, estrabismo Da Vinci, degeneração macular Degas, Van Gogh visão, arte e oftalmologia, doenças oculares história da arte"
+  canonicalPath="/arte-e-visao"
+>
+  <FAQSchema items={faqItems} slot="head-schema" />
+
+  <!-- ========== HERO ========== -->
+  <section class="relative min-h-[85vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/art-degas-hero_optimized.webp')"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,10,20,0.97) 0%, rgba(10,10,20,0.75) 50%, rgba(10,10,20,0.30) 100%)"></div>
+
+    <div class="relative container pb-16 pt-32">
+      <nav class="flex items-center gap-2 font-ui text-xs mb-6" style="color:rgba(245,240,232,0.50)" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-cream transition-colors" style="color:rgba(245,240,232,0.50)">Home</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span style="color:#c9a961">Arte e Visão</span>
+      </nav>
+
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5" style="background:rgba(201,169,97,0.15);border:1px solid rgba(201,169,97,0.30)">
+          <svg class="w-3.5 h-3.5" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="font-ui text-xs font-semibold tracking-wide" style="color:#c9a961">ARTE E VISÃO</span>
+        </div>
+
+        <h1 class="font-display leading-[1.1] mb-5" style="font-size:clamp(2rem,5vw,3.5rem);color:#ffffff">
+          Quando a Doença <em class="not-italic" style="color:#c9a961">Transformou</em><br/>
+          a História da Arte
+        </h1>
+
+        <p class="font-body text-lg leading-relaxed mb-8" style="color:rgba(245,240,232,0.75);max-width:600px">
+          Monet pintava com catarata. Degas perdia a visão por doença retiniana. Rembrandt e Da Vinci tinham estrabismo. Descubra como condições oftalmológicas moldaram as obras dos maiores gênios da pintura — e o que a medicina moderna poderia ter feito por eles.
+        </p>
+
+        <!-- Stats rápidos -->
+        <div class="flex flex-wrap gap-8 mb-10">
+          {[
+            { v: "6", l: "Artistas analisados" },
+            { v: "5", l: "Doenças oftalmológicas" },
+            { v: "500+", l: "Anos de história" },
+          ].map(s => (
+            <div>
+              <div class="font-display text-3xl font-bold" style="color:#c9a961">{s.v}</div>
+              <div class="font-ui text-xs mt-1" style="color:rgba(245,240,232,0.50)">{s.l}</div>
+            </div>
+          ))}
+        </div>
+
+        <a href="#artistas" class="inline-flex items-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-full border transition-all" style="border-color:rgba(201,169,97,0.40);color:#c9a961;background:rgba(201,169,97,0.08)" onmouseover="this.style.background='rgba(201,169,97,0.15)'" onmouseout="this.style.background='rgba(201,169,97,0.08)'">
+          Explorar os artistas
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INTRODUÇÃO ========== -->
+  <section class="section-padding" style="background:#0a0a14">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase mb-3 block" style="color:#c9a961">A Ciência por Trás da Arte</span>
+        <h2 class="font-display text-3xl md:text-4xl mb-6" style="color:#f5f0e8">Por que a visão dos artistas importa?</h2>
+        <p class="font-body text-base leading-relaxed mb-4" style="color:rgba(245,240,232,0.65)">
+          A história da arte e a história da medicina se cruzam de formas surpreendentes. Grandes mestres da pintura viveram antes dos avanços da oftalmologia moderna — sem cirurgia de catarata segura, sem injeções de anti-VEGF, sem correção cirúrgica do estrabismo. Suas condições oculares, não tratadas ou tratadas de forma rudimentar, moldaram diretamente o que eles viam e, consequentemente, o que eles pintavam.
+        </p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color:rgba(245,240,232,0.65)">
+          O que é fascinante — e profundamente humano — é que muitos desses artistas não apenas sobreviveram às suas limitações visuais, mas as transformaram em linguagens artísticas revolucionárias. A catarata de Monet criou o impressionismo tardio. A doença retiniana de Degas forçou uma abstração que antecipou o expressionismo. O estrabismo de Rembrandt pode ter aguçado sua percepção de profundidade.
+        </p>
+        <p class="font-body text-base leading-relaxed" style="color:rgba(245,240,232,0.65)">
+          Hoje, a medicina pode oferecer o que esses gênios nunca tiveram: diagnóstico precoce, tratamento eficaz e preservação da visão. As histórias a seguir são um convite a refletir sobre como cuidamos dos nossos olhos — e sobre o que podemos perder quando não o fazemos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARTISTAS ========== -->
+  <section id="artistas" class="section-padding" style="background:#0d0d1a">
+    <div class="container">
+      <div class="space-y-32">
+        {artistas.map((artista, i) => (
+          <article class="max-w-5xl mx-auto aos-element" id={artista.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}>
+
+            <!-- Header do artista -->
+            <div class="flex flex-wrap items-start justify-between gap-4 mb-8 pb-6" style="border-bottom:1px solid rgba(245,240,232,0.08)">
+              <div>
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${artista.badgeColor}`}>{artista.badge}</span>
+                  <a href={artista.href} class="inline-flex items-center gap-1 font-ui text-xs font-semibold transition-colors" style="color:#c9a961" onmouseover="this.style.color='#e0c070'" onmouseout="this.style.color='#c9a961'">
+                    {artista.instituto}
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+                <h2 class="font-display text-3xl md:text-4xl" style="color:#f5f0e8">{artista.nome}</h2>
+                <p class="font-ui text-sm mt-1" style="color:rgba(245,240,232,0.40)">{artista.anos}</p>
+              </div>
+              <div class="text-right hidden md:block">
+                <p class="font-ui text-xs font-semibold tracking-wider uppercase mb-1" style="color:rgba(245,240,232,0.40)">Condição</p>
+                <p class="font-display text-lg" style="color:#c9a961">{artista.doenca}</p>
+              </div>
+            </div>
+
+            <!-- Layout principal: imagem + texto -->
+            <div class={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-start ${i % 2 !== 0 ? 'lg:[direction:rtl]' : ''}`}>
+
+              <!-- Imagem -->
+              <div class={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                  <img
+                    src={artista.imagem}
+                    alt={artista.imagemAlt}
+                    class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    width="600"
+                    height="420"
+                  />
+                  <div class={`absolute inset-0 bg-gradient-to-t ${artista.cor}`}></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <p class="font-display text-lg" style="color:#f5f0e8">{artista.nome}</p>
+                    <p class="font-body text-xs mt-1" style="color:rgba(245,240,232,0.60)">{artista.imagemAlt}</p>
+                  </div>
+                </div>
+
+                <!-- Curiosidade -->
+                <div class="mt-4 rounded-xl p-4" style="background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.20)">
+                  <div class="flex items-start gap-3">
+                    <svg class="w-4 h-4 shrink-0 mt-0.5" style="color:#c9a961" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                    <p class="font-body text-xs leading-relaxed" style="color:rgba(245,240,232,0.65)">{artista.curiosidade}</p>
+                  </div>
+                </div>
+
+                <!-- Obras principais -->
+                <div class="mt-4">
+                  <p class="font-ui text-xs font-semibold tracking-wider uppercase mb-2" style="color:rgba(245,240,232,0.40)">Obras Principais</p>
+                  <div class="flex flex-wrap gap-2">
+                    {artista.obras.map(obra => (
+                      <span class="font-body text-xs px-3 py-1 rounded-full" style="background:rgba(245,240,232,0.06);color:rgba(245,240,232,0.60);border:1px solid rgba(245,240,232,0.10)">{obra}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conteúdo -->
+              <div class={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
+                <p class="font-body text-sm leading-relaxed mb-6 italic" style="color:#c9a961;border-left:3px solid rgba(201,169,97,0.40);padding-left:1rem">{artista.resumo}</p>
+                <div class="prose-custom space-y-4" set:html={artista.conteudo.trim().replace(/<p>/g, '<p class="font-body text-sm leading-relaxed" style="color:rgba(245,240,232,0.65)">').replace(/<strong>/g, '<strong style="color:#f5f0e8">')}></div>
+
+                <!-- CTA para o instituto -->
+                <div class="mt-8 p-5 rounded-xl" style="background:rgba(30,42,68,0.40);border:1px solid rgba(201,169,97,0.15)">
+                  <p class="font-ui text-xs font-semibold tracking-wider uppercase mb-2" style="color:#c9a961">Tratamento Moderno</p>
+                  <p class="font-body text-sm mb-4" style="color:rgba(245,240,232,0.65)">
+                    A condição de {artista.nome} hoje seria tratada no nosso {artista.instituto}. Agende uma consulta e cuide da sua visão antes que ela afete sua qualidade de vida.
+                  </p>
+                  <a href={artista.href} class="inline-flex items-center gap-2 font-ui text-xs font-semibold px-4 py-2 rounded-lg transition-all" style="background:#c9a961;color:#1e2a44" onmouseover="this.style.background='#b8975a'" onmouseout="this.style.background='#c9a961'">
+                    Conhecer o {artista.instituto}
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TABELA COMPARATIVA ========== -->
+  <section class="section-padding" style="background:#0a0a14">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase mb-3 block" style="color:#c9a961">Comparativo</span>
+        <h2 class="font-display text-3xl md:text-4xl" style="color:#f5f0e8">Arte, Doença e Medicina Moderna</h2>
+        <p class="font-body text-base max-w-2xl mx-auto mt-4 leading-relaxed" style="color:rgba(245,240,232,0.55)">
+          O que a medicina moderna poderia ter oferecido a cada um desses artistas?
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto overflow-x-auto aos-element">
+        <table class="w-full text-left" style="border-collapse:collapse">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(201,169,97,0.30)">
+              <th class="font-ui text-xs font-semibold tracking-wider uppercase py-3 pr-6" style="color:#c9a961">Artista</th>
+              <th class="font-ui text-xs font-semibold tracking-wider uppercase py-3 pr-6" style="color:#c9a961">Condição</th>
+              <th class="font-ui text-xs font-semibold tracking-wider uppercase py-3 pr-6" style="color:#c9a961">Impacto na Arte</th>
+              <th class="font-ui text-xs font-semibold tracking-wider uppercase py-3" style="color:#c9a961">Tratamento Hoje</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { artista: "Claude Monet", cond: "Catarata nuclear", impacto: "Paleta amarelada, formas borradas no período tardio", trat: "Facoemulsificação com LIO — 15 min, retorno em 24h" },
+              { artista: "Edgar Degas", cond: "Degeneração macular", impacto: "Abandono da pintura detalhada, migração para pastéis", trat: "Anti-VEGF intravítreo para DMRI úmida; OCT de monitoramento" },
+              { artista: "Vincent van Gogh", cond: "Xantopsia / Glaucoma (hipótese)", impacto: "Halos luminosos, paleta amarela intensa", trat: "Colírios hipotensores, laser ou cirurgia para glaucoma" },
+              { artista: "El Greco", cond: "Astigmatismo (hipótese refutada)", impacto: "Figuras alongadas — provavelmente escolha estilística", trat: "Óculos, lentes de contato ou cirurgia refrativa" },
+              { artista: "Rembrandt", cond: "Exotropia (estrabismo)", impacto: "Visão monocular — possível vantagem para perspectiva", trat: "Cirurgia de estrabismo, prismas, terapia visual" },
+              { artista: "Leonardo da Vinci", cond: "Exotropia intermitente", impacto: "Visão monocular — facilita representação de profundidade", trat: "Cirurgia de estrabismo, oclusão, terapia visual" },
+            ].map((row, i) => (
+              <tr style={`border-bottom:1px solid rgba(245,240,232,${i % 2 === 0 ? '0.04' : '0.02'})`}>
+                <td class="font-display text-sm py-4 pr-6" style="color:#f5f0e8">{row.artista}</td>
+                <td class="font-body text-xs py-4 pr-6" style="color:#c9a961">{row.cond}</td>
+                <td class="font-body text-xs py-4 pr-6 leading-relaxed" style="color:rgba(245,240,232,0.55)">{row.impacto}</td>
+                <td class="font-body text-xs py-4 leading-relaxed" style="color:rgba(245,240,232,0.55)">{row.trat}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section-padding" style="background:#0d0d1a">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase mb-3 block" style="color:#c9a961">Perguntas Frequentes</span>
+        <h2 class="font-display text-3xl md:text-4xl" style="color:#f5f0e8">Dúvidas sobre Arte e Visão</h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-3">
+        {faqItems.map((item, i) => (
+          <div class="rounded-xl overflow-hidden aos-element" style="border:1px solid rgba(245,240,232,0.08);background:rgba(245,240,232,0.03)">
+            <button class="faq-btn w-full flex items-center justify-between px-6 py-4 text-left" data-index={i}>
+              <span class="font-display text-sm font-semibold pr-4" style="color:#f5f0e8">{item.question}</span>
+              <svg class="faq-icon w-5 h-5 shrink-0 transition-transform" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-5">
+              <p class="font-body text-sm leading-relaxed" style="color:rgba(245,240,232,0.60)">{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ========== -->
+  <section class="relative section-padding overflow-hidden" style="background:#0a0a14">
+    <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/art-degas-dancers_57775727.webp')"></div>
+    <div class="relative container text-center z-10 aos-element">
+      <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase mb-4 block" style="color:#c9a961">Cuide da Sua Visão</span>
+      <h2 class="font-display text-3xl md:text-4xl mb-4" style="color:#f5f0e8">
+        Não espere a visão afetar<br/><em class="not-italic" style="color:#c9a961">sua qualidade de vida</em>
+      </h2>
+      <p class="font-body text-base max-w-lg mx-auto mb-8 leading-relaxed" style="color:rgba(245,240,232,0.55)">
+        Monet, Degas e Van Gogh não tinham acesso ao que temos hoje. Você tem. Agende uma consulta e preserve o que há de mais precioso: a sua visão.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 font-ui text-sm font-bold px-7 py-3.5 rounded-lg transition-all"
+          style="background:#c9a961;color:#1e2a44"
+          onmouseover="this.style.background='#b8975a'"
+          onmouseout="this.style.background='#c9a961'"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+        <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-7 py-3.5 rounded-lg transition-all"
+          style="background:rgba(245,240,232,0.08);color:#f5f0e8;border:1px solid rgba(245,240,232,0.20)"
+          onmouseover="this.style.background='rgba(245,240,232,0.15)'"
+          onmouseout="this.style.background='rgba(245,240,232,0.08)'"
+        >
+          Agendar Online
+        </a>
+        <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
+          class="inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-7 py-3.5 rounded-lg transition-all"
+          style="background:transparent;color:rgba(245,240,232,0.70);border:1px solid rgba(245,240,232,0.15)"
+          onmouseover="this.style.color='#f5f0e8'"
+          onmouseout="this.style.color='rgba(245,240,232,0.70)'"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.55 5.55l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          {PHONE}
+        </a>
+      </div>
+
+      <!-- Links para os institutos -->
+      <div class="mt-12 pt-10" style="border-top:1px solid rgba(245,240,232,0.08)">
+        <p class="font-ui text-xs font-semibold tracking-wider uppercase mb-6" style="color:rgba(245,240,232,0.30)">Nossos Institutos</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          {[
+            { name: "Instituto da Catarata", href: "/instituto/catarata" },
+            { name: "Instituto do Ceratocone", href: "/instituto/ceratocone" },
+            { name: "Instituto do Glaucoma", href: "/instituto/glaucoma" },
+            { name: "Instituto da Retina", href: "/instituto/retina" },
+            { name: "Instituto de Estrabismo", href: "/instituto/estrabismo" },
+          ].map(inst => (
+            <a href={inst.href} class="font-ui text-xs font-semibold px-4 py-2 rounded-full transition-all" style="border:1px solid rgba(245,240,232,0.12);color:rgba(245,240,232,0.50)" onmouseover="this.style.color='#c9a961';this.style.borderColor='rgba(201,169,97,0.40)'" onmouseout="this.style.color='rgba(245,240,232,0.50)';this.style.borderColor='rgba(245,240,232,0.12)'">{inst.name}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = !answer.classList.contains('hidden');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(i => (i as HTMLElement).style.transform = '');
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>

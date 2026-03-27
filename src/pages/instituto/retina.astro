@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FAQSchema from '../../components/FAQSchema.astro';
+import LocalBusinessSchema from '../../components/LocalBusinessSchema.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de receber informações sobre o tratamento de retina.";
-const PHONE = "(11) 91654-4653";
+const PHONE = "(11) 5430-2421";
+const PHONE_WA = "(11) 91654-4653";
 
 const unidades = [
   { id: "guarulhos-centro", name: "Guarulhos Centro", address: "Guarulhos - SP" },
@@ -14,32 +16,221 @@ const unidades = [
 ];
 
 const doencas = [
-  { title: "Retinopatia Diabética", desc: "Complicação microvascular do diabetes que afeta os vasos sanguíneos da retina. É a principal causa de cegueira em adultos em idade produtiva.", badge: "Mais Comum", badgeColor: "bg-blue-100 text-blue-800", detail: "Afeta 35% dos diabéticos" },
-  { title: "Descolamento de Retina", desc: "Separação da retina neurossensorial do epitélio pigmentar. É uma emergência oftalmológica que requer tratamento urgente.", badge: "Emergência", badgeColor: "bg-red-100 text-red-800", detail: "Tratamento em até 24-48h" },
-  { title: "Degeneração Macular (DMRI)", desc: "Principal causa de cegueira em idosos acima de 60 anos. A forma úmida causa perda rápida por vasos anormais que sangram sob a mácula.", badge: "Idade > 60", badgeColor: "bg-amber-100 text-amber-800", detail: "Forma úmida: tratável com anti-VEGF" },
-  { title: "Oclusões Vasculares", desc: "Bloqueio dos vasos sanguíneos da retina — veias (mais comum) ou artérias. A oclusão arterial é uma emergência com perda súbita de visão.", badge: "Vascular", badgeColor: "bg-orange-100 text-orange-800", detail: "Associada a fatores cardiovasculares" },
-  { title: "Membrana Epirretiniana", desc: "Tecido fibroso que cresce sobre a superfície da retina, causando distorção e embaçamento visual. Tratamento cirúrgico com vitrectomia.", badge: "Cirúrgico", badgeColor: "bg-violet-100 text-violet-800", detail: "Vitrectomia com peeling" },
-  { title: "Buraco Macular", desc: "Abertura na mácula que causa perda da visão central e distorção de imagens. Tratamento: vitrectomia com peeling de membrana limitante interna.", badge: "Cirúrgico", badgeColor: "bg-emerald-100 text-emerald-800", detail: "Taxa de fechamento > 90%" },
+  {
+    title: "Retinopatia Diabética",
+    desc: "Complicação microvascular do diabetes que afeta os vasos sanguíneos da retina. É a principal causa de cegueira em adultos em idade produtiva no Brasil.",
+    badge: "Mais Comum",
+    badgeColor: "bg-blue-100 text-blue-800",
+    detail: "Afeta 35% dos diabéticos",
+    expanded: "A retinopatia diabética evolui em estágios: não-proliferativa (leve, moderada e grave) e proliferativa. Na fase não-proliferativa, microaneurismas e hemorragias puntiformes surgem na retina. Na fase proliferativa, novos vasos frágeis crescem sobre a retina e o vítreo, podendo causar hemorragia vítrea e descolamento de retina tracional. O controle rigoroso da glicemia, pressão arterial e colesterol é fundamental para retardar a progressão. O tratamento inclui laser (fotocoagulação panretiniana), injeções de anti-VEGF e, nos casos avançados, vitrectomia.",
+  },
+  {
+    title: "Descolamento de Retina",
+    desc: "Separação da retina neurossensorial do epitélio pigmentar. É uma emergência oftalmológica que requer tratamento urgente para preservar a visão.",
+    badge: "Emergência",
+    badgeColor: "bg-red-100 text-red-800",
+    detail: "Tratamento em até 24-48h",
+    expanded: "O descolamento de retina regmatogênico — o mais comum — ocorre quando uma rasgadura na retina permite que o líquido vítreo passe por baixo dela, separando-a do epitélio pigmentar. Fatores de risco incluem miopia elevada, trauma ocular, cirurgia de catarata prévia e história familiar. Os sintomas clássicos são aparecimento súbito de moscas volantes, flashes de luz e uma 'cortina' ou sombra no campo visual. O tratamento cirúrgico (vitrectomia, escleral buckle ou pneumopexia) tem taxa de sucesso superior a 90% quando realizado precocemente.",
+  },
+  {
+    title: "Degeneração Macular (DMRI)",
+    desc: "Principal causa de cegueira em idosos acima de 60 anos. A forma úmida causa perda rápida por vasos anormais que sangram sob a mácula.",
+    badge: "Idade > 60",
+    badgeColor: "bg-amber-100 text-amber-800",
+    detail: "Forma úmida: tratável com anti-VEGF",
+    expanded: "A DMRI afeta a mácula — a região central da retina responsável pela visão de detalhes, leitura e reconhecimento de faces. A forma seca (90% dos casos) progride lentamente com acúmulo de drusas e atrofia geográfica. A forma úmida (10%) é mais agressiva: membranas neovasculares coroideanas crescem sob a retina, vazando sangue e líquido que destroem os fotorreceptores. O OCT com angio-OCT é o exame padrão-ouro para diagnóstico e monitoramento. O tratamento da DMRI úmida com injeções de anti-VEGF (Ranibizumabe, Aflibercept, Bevacizumabe) estabiliza ou melhora a visão em 90% dos casos quando iniciado precocemente.",
+  },
+  {
+    title: "Oclusões Vasculares Retinianas",
+    desc: "Bloqueio dos vasos sanguíneos da retina — veias (mais comum) ou artérias. A oclusão arterial é uma emergência com perda súbita de visão.",
+    badge: "Vascular",
+    badgeColor: "bg-orange-100 text-orange-800",
+    detail: "Associada a fatores cardiovasculares",
+    expanded: "As oclusões venosas (de ramo ou central) causam edema macular e hemorragias retinianas. O edema macular é tratado com injeções de anti-VEGF ou implante de dexametasona (Ozurdex). A oclusão arterial central é uma emergência — causa perda visual súbita e indolor, semelhante a um AVC ocular. Requer avaliação cardiovascular urgente. Fatores de risco incluem hipertensão, diabetes, dislipidemia, tabagismo e doenças da coagulação.",
+  },
+  {
+    title: "Membrana Epirretiniana",
+    desc: "Tecido fibroso que cresce sobre a superfície da retina, causando distorção e embaçamento visual progressivos.",
+    badge: "Cirúrgico",
+    badgeColor: "bg-violet-100 text-violet-800",
+    detail: "Vitrectomia com peeling",
+    expanded: "A membrana epirretiniana (ou pucker macular) é uma proliferação celular sobre a superfície da retina que contrai e distorce a mácula. O principal sintoma é a metamorfopsia — linhas retas parecem onduladas. O diagnóstico é feito por OCT, que mostra o espessamento e a distorção das camadas retinianas. O tratamento cirúrgico (vitrectomia com peeling da membrana) melhora a acuidade visual e reduz a distorção em 80-90% dos casos. A recuperação é gradual, podendo levar 3-6 meses.",
+  },
+  {
+    title: "Buraco Macular",
+    desc: "Abertura na mácula que causa perda da visão central e distorção de imagens. Tratamento cirúrgico com alta taxa de sucesso.",
+    badge: "Cirúrgico",
+    badgeColor: "bg-emerald-100 text-emerald-800",
+    detail: "Taxa de fechamento > 90%",
+    expanded: "O buraco macular ocorre quando as forças de tração do vítreo criam uma abertura na fóvea — o ponto de máxima acuidade visual. O paciente percebe uma mancha escura ou distorção no centro do campo visual. O OCT classifica o buraco em estágios (1 a 4) e guia a indicação cirúrgica. A vitrectomia com peeling da membrana limitante interna (MLI) e tamponamento com gás tem taxa de fechamento superior a 90% para buracos de estágio 2-3. O paciente precisa manter posição de cabeça inclinada para baixo por 5-7 dias após a cirurgia.",
+  },
+  {
+    title: "Edema Macular Diabético (EMD)",
+    desc: "Acúmulo de líquido na mácula causado pelo diabetes. É a principal causa de perda visual em diabéticos, mesmo sem retinopatia proliferativa.",
+    badge: "Diabetes",
+    badgeColor: "bg-teal-100 text-teal-800",
+    detail: "Anti-VEGF como 1ª linha",
+    expanded: "O edema macular diabético resulta da quebra da barreira hematorretiniana pelos produtos da hiperglicemia crônica. O líquido se acumula nas camadas da mácula, reduzindo a acuidade visual. O OCT quantifica o espessamento macular e guia o tratamento. As injeções de anti-VEGF são o tratamento de primeira linha, com melhora visual em 50-70% dos pacientes. O implante de dexametasona (Ozurdex) é uma alternativa para casos refratários. O controle metabólico rigoroso é indispensável para o sucesso do tratamento.",
+  },
+  {
+    title: "Retinopatia da Prematuridade (ROP)",
+    desc: "Doença vascular da retina em prematuros. O rastreamento e tratamento precoce previnem a cegueira em bebês de alto risco.",
+    badge: "Neonatal",
+    badgeColor: "bg-pink-100 text-pink-800",
+    detail: "Rastreamento obrigatório",
+    expanded: "A ROP afeta prematuros com menos de 32 semanas ou menos de 1.500g. O desenvolvimento vascular retiniano incompleto pode levar à neovascularização e descolamento de retina. O rastreamento com mapeamento de retina é obrigatório e deve ser iniciado entre 4-6 semanas de vida. O tratamento com laser ou injeção de anti-VEGF (bevacizumabe) nos estágios iniciais previne a progressão para cegueira em mais de 90% dos casos.",
+  },
 ];
 
 const sintomasZigzag = [
-  { title: "Moscas Volantes (Floaters)", desc: "Pequenos pontos, manchas ou filamentos que parecem flutuar no campo visual. O aparecimento súbito de muitas moscas volantes pode indicar descolamento de retina.", img: "/images/retina-moscas_342e4065.webp" },
-  { title: "Flashes de Luz (Fotopsias)", desc: "Percepção de clarões ou relâmpagos de luz, especialmente na visão periférica. Flashes novos e frequentes são um sinal de alerta importante para descolamento de retina.", img: "/images/retina-flashes_d202f399.webp" },
-  { title: "Cortina Escura na Visão", desc: "Sensação de uma sombra ou cortina que se move sobre o campo visual. Este é o sintoma clássico do descolamento de retina e constitui uma emergência oftalmológica.", img: "/images/retina-cortina-escura_47c312ee.webp" },
-  { title: "Distorção de Imagens (Metamorfopsia)", desc: "Linhas retas parecem onduladas ou tortas. É o sintoma característico de doenças maculares como DMRI úmida, membrana epirretiniana e edema macular.", img: "/images/retina-distorcao_ba546c8b.webp" },
-  { title: "Perda Súbita de Visão", desc: "Perda repentina e indolor da visão em um olho pode indicar oclusão vascular retiniana ou hemorragia vítrea. É uma emergência médica — procure atendimento imediatamente.", img: "/images/retina-perda-visao_52f0c4c7.webp" },
+  { title: "Moscas Volantes (Floaters)", desc: "Pequenos pontos, manchas ou filamentos que parecem flutuar no campo visual. O aparecimento súbito de muitas moscas volantes — especialmente acompanhado de flashes — pode indicar descolamento de retina e exige avaliação urgente.", img: "/images/retina-moscas_342e4065.webp" },
+  { title: "Flashes de Luz (Fotopsias)", desc: "Percepção de clarões ou relâmpagos de luz, especialmente na visão periférica. Flashes novos e frequentes são um sinal de alerta importante para tração vítreorretiniana e risco de descolamento de retina.", img: "/images/retina-flashes_d202f399.webp" },
+  { title: "Cortina Escura na Visão", desc: "Sensação de uma sombra ou cortina que se move sobre o campo visual. Este é o sintoma clássico do descolamento de retina e constitui uma emergência oftalmológica — procure atendimento imediatamente.", img: "/images/retina-cortina-escura_47c312ee.webp" },
+  { title: "Distorção de Imagens (Metamorfopsia)", desc: "Linhas retas parecem onduladas ou tortas ao olhar para uma grade ou texto. É o sintoma característico de doenças maculares como DMRI úmida, membrana epirretiniana e edema macular. Teste com a Grade de Amsler em casa.", img: "/images/retina-distorcao_ba546c8b.webp" },
+  { title: "Perda Súbita de Visão", desc: "Perda repentina e indolor da visão em um olho pode indicar oclusão vascular retiniana ou hemorragia vítrea. É uma emergência médica — procure atendimento nas próximas horas para maximizar as chances de recuperação visual.", img: "/images/retina-perda-visao_52f0c4c7.webp" },
+];
+
+const examesDiagnostico = [
+  {
+    title: "OCT com Angio-OCT",
+    badge: "Padrão-Ouro",
+    badgeColor: "bg-gold/10 text-navy border border-gold/30",
+    desc: "Tomografia de coerência óptica que produz cortes transversais da retina em resolução de micrômetros. O Angio-OCT mapeia a vascularização retiniana sem necessidade de contraste injetável. Permite visualizar cada camada da retina individualmente, detectando edema, membranas, buracos e alterações estruturais mínimas.",
+    icon: "eye",
+  },
+  {
+    title: "Angiofluoresceinografia (AFG)",
+    badge: "Vascular",
+    badgeColor: "bg-blue-50 text-blue-800 border border-blue-200",
+    desc: "Fotografa os vasos da retina com contraste fluorescente injetado na veia do braço. Detecta vazamentos, oclusões, neovascularização e alterações da barreira hematorretiniana. Essencial para planejamento do laser e monitoramento de tratamentos.",
+    icon: "camera",
+  },
+  {
+    title: "Mapeamento de Retina",
+    badge: "Preventivo",
+    badgeColor: "bg-emerald-50 text-emerald-800 border border-emerald-200",
+    desc: "Exame completo com dilatação da pupila para avaliar toda a retina periférica e central. Detecta rasgaduras, degenerações periféricas, nevos e tumores. Indicado para míopes, diabéticos, familiares de portadores de descolamento e pacientes com sintomas visuais.",
+    icon: "scan",
+  },
+  {
+    title: "Retinografia Digital",
+    badge: "Documentação",
+    badgeColor: "bg-violet-50 text-violet-800 border border-violet-200",
+    desc: "Fotografia de alta resolução do fundo do olho para documentação e acompanhamento longitudinal de doenças retinianas. Permite comparar exames ao longo do tempo e detectar progressão de doenças como retinopatia diabética e DMRI.",
+    icon: "image",
+  },
+  {
+    title: "Ecografia Ocular (B-scan)",
+    badge: "Estrutural",
+    badgeColor: "bg-slate-100 text-slate-700 border border-slate-200",
+    desc: "Ultrassonografia ocular que permite avaliar o vítreo e a retina mesmo quando os meios oculares estão turvos (catarata densa, hemorragia vítrea). Fundamental para diagnóstico de descolamento de retina, tumores e corpos estranhos intraoculares.",
+    icon: "activity",
+  },
+  {
+    title: "Campo Visual (Perimetria)",
+    badge: "Funcional",
+    badgeColor: "bg-amber-50 text-amber-800 border border-amber-200",
+    desc: "Avalia a extensão e qualidade da visão periférica. Detecta perdas de campo visual causadas por doenças retinianas, glaucoma e doenças neurológicas. O Humphrey Field Analyzer é o equipamento padrão-ouro para esta avaliação.",
+    icon: "grid",
+  },
+];
+
+const tratamentos = [
+  {
+    title: "Injeção Intravítrea (Anti-VEGF)",
+    badge: "1ª Linha",
+    badgeColor: "bg-blue-100 text-blue-800",
+    desc: "Tratamento padrão para DMRI úmida, edema macular diabético e oclusões venosas. Os medicamentos anti-VEGF (Ranibizumabe, Bevacizumabe, Aflibercept) bloqueiam o fator de crescimento vascular que causa vazamento dos vasos anormais.",
+    details: ["Procedimento ambulatorial com anestesia tópica", "Duração de 5-10 minutos", "Retorno às atividades no dia seguinte", "Monitoramento com OCT a cada consulta"],
+    img: "/images/retina-injecao_154af844.webp",
+  },
+  {
+    title: "Vitrectomia Via Pars Plana",
+    badge: "Cirurgia",
+    badgeColor: "bg-navy/10 text-navy",
+    desc: "Cirurgia para remoção do vítreo e tratamento de descolamentos de retina, membranas epirretinianas, buracos maculares e hemorragias vítreas. Instrumentos de calibre 25-27G com incisões auto-selantes.",
+    details: ["Incisões de 0,5mm sem suturas", "Anestesia local ou geral", "Internação de 1 dia", "Recuperação em 2-4 semanas"],
+    img: "/images/tech-oct-scan_d39e3a25.webp",
+  },
+];
+
+const posOperatorio = [
+  {
+    fase: "Primeiras 24-48 horas",
+    icon: "clock",
+    items: [
+      "Repouso relativo em casa — evitar esforço físico intenso",
+      "Colírios antibiótico e anti-inflamatório conforme prescrição",
+      "Protetor ocular durante o sono",
+      "Posição de cabeça (para buracos maculares): face para baixo por 5-7 dias",
+      "Evitar nadar, mergulhar ou expor o olho à água",
+    ],
+  },
+  {
+    fase: "1ª Semana",
+    icon: "calendar",
+    items: [
+      "Retorno ao consultório para avaliação da pressão intraocular",
+      "Visão turva é normal — o gás ou silicone no olho causa embaçamento temporário",
+      "Evitar voos de avião se houver gás intraocular (risco de expansão)",
+      "Atividades leves permitidas a partir do 3º dia",
+      "Dirigir somente após liberação médica",
+    ],
+  },
+  {
+    fase: "1 Mês em diante",
+    icon: "trending-up",
+    items: [
+      "Retorno progressivo às atividades normais",
+      "Melhora visual gradual — pode levar 3-6 meses para estabilizar",
+      "Consultas de acompanhamento com OCT mensais no primeiro trimestre",
+      "Troca de óculos somente após estabilização da refração (3-4 meses)",
+      "Atividade física liberada progressivamente conforme orientação médica",
+    ],
+  },
+];
+
+const convenios = [
+  "Unimed", "Bradesco Saúde", "SulAmérica", "Amil", "Porto Seguro Saúde",
+  "Prevent Senior", "Notre Dame Intermédica", "São Cristóvão Saúde",
+  "Cassi", "Postal Saúde", "Geap", "Fusex",
+];
+
+const depoimentos = [
+  {
+    nome: "Maria Aparecida S.",
+    doenca: "DMRI Úmida",
+    texto: "Fui diagnosticada com DMRI úmida com 67 anos. Estava com medo de perder a visão. O Dr. Fernando me explicou tudo com calma e iniciamos as injeções. Após 6 meses, minha visão melhorou muito. Hoje consigo ler e ver o rosto dos meus netos.",
+    estrelas: 5,
+    unidade: "Santana",
+  },
+  {
+    nome: "Roberto M.",
+    doenca: "Descolamento de Retina",
+    texto: "Acordei com uma cortina escura no olho. Liguei para a clínica e fui atendido no mesmo dia. O Dr. Fernando operou na manhã seguinte. Hoje, 8 meses depois, recuperei quase toda a visão. A agilidade da equipe fez toda a diferença.",
+    estrelas: 5,
+    unidade: "Guarulhos",
+  },
+  {
+    nome: "Claudia F.",
+    doenca: "Retinopatia Diabética",
+    texto: "Sou diabética há 15 anos e nunca havia feito mapeamento de retina. Quando fui à Drudi e Almeida, descobri retinopatia em estágio inicial. Com o laser e controle do diabetes, conseguimos estabilizar. Hoje faço acompanhamento semestral.",
+    estrelas: 5,
+    unidade: "Tatuapé",
+  },
 ];
 
 const faqItems = [
-  { question: "A injeção intravítrea é dolorosa?", answer: "Não. O procedimento é realizado com anestesia tópica (colírios anestésicos) e é bem tolerado. Os pacientes relatam desconforto mínimo — uma leve pressão, mas não dor. O procedimento dura poucos minutos." },
-  { question: "Quantas injeções de anti-VEGF vou precisar?", answer: "O número varia conforme a doença e a resposta individual. Para DMRI úmida, geralmente inicia-se com 3 injeções mensais (fase de ataque) seguidas de intervalos progressivamente maiores. O acompanhamento com OCT guia as decisões de retratamento." },
-  { question: "Descolamento de retina é uma emergência?", answer: "Sim! O descolamento de retina é uma emergência oftalmológica. Quanto mais rápido o tratamento (idealmente em 24-48 horas), maiores as chances de preservar a visão. Se notar flashes de luz, muitas moscas volantes novas ou uma sombra/cortina no campo visual, procure atendimento imediatamente." },
-  { question: "Diabético precisa fazer exame de fundo de olho?", answer: "Sim, obrigatoriamente. Todo paciente diabético deve fazer mapeamento de retina pelo menos uma vez por ano, mesmo sem sintomas visuais. A retinopatia diabética pode estar presente sem causar sintomas nos estágios iniciais." },
-  { question: "O que é DMRI e como prevenir?", answer: "A Degeneração Macular Relacionada à Idade (DMRI) é o envelhecimento da mácula. Fatores de prevenção: não fumar, dieta rica em vegetais verdes e peixes, uso de óculos de sol com proteção UV, suplementos AREDS2 e controle de pressão arterial e colesterol." },
-  { question: "A vitrectomia é uma cirurgia segura?", answer: "Sim, a vitrectomia moderna é um procedimento seguro e eficaz. Com instrumentos de calibre 25-27G (0,5mm), as incisões são auto-selantes, sem necessidade de suturas. A maioria dos pacientes retorna às atividades normais em 2-4 semanas." },
-  { question: "Qual a diferença entre DMRI seca e úmida?", answer: "A DMRI seca (90% dos casos) progride lentamente com acúmulo de drusas e atrofia. Não tem tratamento específico, mas suplementos AREDS2 podem retardar a progressão. A DMRI úmida (10%) é mais agressiva — vasos anormais crescem sob a retina e vazam sangue/líquido. É tratável com injeções de anti-VEGF." },
-  { question: "Posso ficar cego por retinopatia diabética?", answer: "Se não tratada, sim. A retinopatia diabética é a principal causa de cegueira em adultos em idade produtiva. Porém, com controle glicêmico adequado, exames regulares e tratamento oportuno (laser, anti-VEGF), a grande maioria dos pacientes mantém visão funcional." },
-  { question: "O que é a grade de Amsler?", answer: "A grade de Amsler é um teste simples de autoavaliação que detecta distorções na visão central. É uma folha quadriculada com um ponto central. Linhas onduladas, manchas ou áreas faltantes podem indicar doença macular. Pacientes com DMRI devem fazer este teste semanalmente em casa." },
+  { question: "A injeção intravítrea é dolorosa?", answer: "Não. O procedimento é realizado com anestesia tópica (colírios anestésicos) e é bem tolerado. Os pacientes relatam desconforto mínimo — uma leve pressão, mas não dor. O procedimento dura poucos minutos e o paciente retorna às atividades normais no dia seguinte." },
+  { question: "Quantas injeções de anti-VEGF vou precisar?", answer: "O número varia conforme a doença e a resposta individual. Para DMRI úmida, geralmente inicia-se com 3 injeções mensais (fase de ataque) seguidas de intervalos progressivamente maiores (protocolos T&E ou PRN). O acompanhamento com OCT a cada consulta guia as decisões de retratamento. Para edema macular diabético, o protocolo é similar." },
+  { question: "Descolamento de retina é uma emergência?", answer: "Sim! O descolamento de retina é uma emergência oftalmológica. Quanto mais rápido o tratamento (idealmente em 24-48 horas), maiores as chances de preservar a visão central. Se notar flashes de luz, muitas moscas volantes novas ou uma sombra/cortina no campo visual, procure atendimento imediatamente." },
+  { question: "Diabético precisa fazer exame de fundo de olho?", answer: "Sim, obrigatoriamente. Todo paciente diabético deve fazer mapeamento de retina pelo menos uma vez por ano, mesmo sem sintomas visuais. A retinopatia diabética pode estar presente sem causar sintomas nos estágios iniciais. O diagnóstico precoce permite tratamento antes da perda visual." },
+  { question: "O que é DMRI e como prevenir?", answer: "A Degeneração Macular Relacionada à Idade (DMRI) é o envelhecimento da mácula. Fatores de prevenção: não fumar (o tabagismo triplica o risco), dieta rica em vegetais verdes folhosos e peixes ricos em ômega-3, uso de óculos de sol com proteção UV, suplementos AREDS2 (para DMRI intermediária) e controle de pressão arterial e colesterol." },
+  { question: "A vitrectomia é uma cirurgia segura?", answer: "Sim, a vitrectomia moderna é um procedimento seguro e eficaz. Com instrumentos de calibre 25-27G (0,5mm), as incisões são auto-selantes, sem necessidade de suturas. A maioria dos pacientes retorna às atividades normais em 2-4 semanas. As complicações são raras e incluem catarata (em olhos fácicos), aumento de pressão intraocular e, raramente, infecção." },
+  { question: "Qual a diferença entre DMRI seca e úmida?", answer: "A DMRI seca (90% dos casos) progride lentamente com acúmulo de drusas e atrofia geográfica. Não tem tratamento específico, mas suplementos AREDS2 podem retardar a progressão em 25%. A DMRI úmida (10%) é mais agressiva — membranas neovasculares coroideanas crescem sob a retina e vazam sangue/líquido. É tratável com injeções de anti-VEGF com excelentes resultados quando iniciado precocemente." },
+  { question: "Posso ficar cego por retinopatia diabética?", answer: "Se não tratada, sim. A retinopatia diabética é a principal causa de cegueira em adultos em idade produtiva. Porém, com controle glicêmico adequado (HbA1c < 7%), exames regulares e tratamento oportuno (laser, anti-VEGF), a grande maioria dos pacientes mantém visão funcional por toda a vida." },
+  { question: "O que é a grade de Amsler?", answer: "A grade de Amsler é um teste simples de autoavaliação que detecta distorções na visão central. É uma folha quadriculada com um ponto central. Linhas onduladas, manchas ou áreas faltantes podem indicar doença macular ativa. Pacientes com DMRI devem fazer este teste semanalmente em casa, alternando cada olho." },
+  { question: "A injeção intravítrea é coberta pelo convênio?", answer: "Depende do convênio e da indicação. A maioria dos planos de saúde cobre injeções de anti-VEGF para DMRI úmida e edema macular diabético quando há indicação documentada. O implante de dexametasona (Ozurdex) também tem cobertura na maioria dos planos. Nossa equipe auxilia na solicitação de autorização prévia." },
 ];
 
 const clinicas = [
@@ -52,8 +243,10 @@ const clinicas = [
 ---
 
 <BaseLayout
-  title="Retina Cirúrgica em SP | Drudi e Almeida"
-  description="Retina cirúrgica em SP: vitrectomia, injeções intravítreas e retinopatia diabética. Dr. Fernando Drudi, especialista. 5 unidades. Agende."
+  title="Instituto da Retina em SP | Vitrectomia, Anti-VEGF e DMRI | Drudi e Almeida"
+  description="Instituto da Retina em São Paulo: tratamento de DMRI, retinopatia diabética, descolamento de retina e injeção intravítrea. Dr. Fernando Drudi, especialista em retina cirúrgica. 5 unidades em SP e Guarulhos."
+  keywords="retina SP, instituto da retina São Paulo, injeção intravítrea SP, DMRI tratamento, retinopatia diabética, descolamento de retina, vitrectomia SP, anti-VEGF, mapeamento de retina"
+  canonicalPath="/instituto/retina"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
 
@@ -64,10 +257,14 @@ const clinicas = [
 
     <div class="relative container py-14">
       <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-1.5 mb-6 aos-element">
+        <div class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-1.5 mb-4 aos-element">
           <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="font-ui text-xs font-semibold text-gold tracking-wide">INSTITUTO DA RETINA</span>
         </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-4 aos-element" style="color:#ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+          Especialistas em <em class="not-italic" style="color:#c9a84c; font-style:italic;">Retina</em><br class="hidden md:block" /><span style="color:#ffffff;">em São Paulo</span>
+        </h1>
 
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 mb-5 text-cream/60 text-xs font-ui" aria-label="Breadcrumb">
@@ -78,13 +275,23 @@ const clinicas = [
           <span class="text-gold">Instituto da Retina</span>
         </nav>
 
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-6 aos-element" style="color:#ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
-          Tratamentos avançados para <em class="not-italic" style="color:#c9a84c; font-style:italic;">Retina</em><br class="hidden md:block" /><span style="color:#ffffff;">preserve cada detalhe da visão</span>
-        </h1>
-
         <p class="font-body text-lg text-cream/80 leading-relaxed mb-8 max-w-xl aos-element">
-          A retina é responsável por transformar luz em visão. Selecione sua unidade e receba informações sobre diagnóstico e tratamento com nossos especialistas.
+          A retina é responsável por transformar luz em visão. Nosso Instituto da Retina oferece diagnóstico avançado e tratamento cirúrgico para todas as doenças retinianas — de DMRI a descolamento de retina. Selecione sua unidade e agende.
         </p>
+
+        <!-- Stats rápidos -->
+        <div class="flex flex-wrap gap-6 mb-8 aos-element">
+          {[
+            { valor: "10+", label: "Anos em retina cirúrgica" },
+            { valor: "5", label: "Unidades em SP" },
+            { valor: "OCT", label: "Angio-OCT disponível" },
+          ].map(s => (
+            <div class="text-center">
+              <div class="font-display text-2xl font-bold" style="color:#c9a84c">{s.valor}</div>
+              <div class="font-ui text-[10px] text-cream/60 mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
 
         <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-cream/10 max-w-md aos-element">
           <div class="space-y-4">
@@ -99,15 +306,16 @@ const clinicas = [
             </div>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
               class="w-full inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
-              Receber Informações
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
+              Agendar pelo WhatsApp
             </a>
             <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Agendar Online — Consulta disponível em até 48h
+              class="w-full inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-all border border-navy">
+              Agendar Online
             </a>
             <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
               class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.55 5.55l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
               Ligar: {PHONE}
             </a>
           </div>
@@ -122,53 +330,100 @@ const clinicas = [
       <div class="max-w-3xl mx-auto text-center">
         <div class="inline-flex items-center gap-2 bg-red-100 border border-red-300 rounded-full px-4 py-1.5 mb-3">
           <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <span class="font-ui text-xs font-semibold text-red-700">EMERGÊNCIA</span>
+          <span class="font-ui text-xs font-semibold text-red-700">EMERGÊNCIA OFTALMOLÓGICA</span>
         </div>
         <p class="font-body text-sm text-red-800 leading-relaxed">
-          <strong>Flashes de luz, muitas moscas volantes novas ou cortina escura no campo visual?</strong> Esses podem ser sinais de descolamento de retina. Procure atendimento imediatamente — o tratamento deve ser feito em até 24-48 horas.
+          <strong>Flashes de luz, muitas moscas volantes novas ou cortina escura no campo visual?</strong> Esses podem ser sinais de descolamento de retina — uma emergência que exige tratamento em até 24-48 horas.
+          <a href={`tel:+55${PHONE.replace(/\D/g, "")}`} class="font-bold underline ml-1">Ligue agora: {PHONE}</a>
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ========== 3. DOENÇAS DA RETINA ========== -->
+  <!-- ========== 3. O QUE É A RETINA ========== -->
   <section class="section-padding bg-white">
     <div class="container">
-      <div class="text-center mb-10 aos-element">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+        <div class="aos-element">
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Entenda</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-6">O que é a retina e por que ela é tão importante?</h2>
+          <div class="space-y-4">
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A retina é uma fina camada de tecido nervoso que reveste a parte interna do olho. Ela funciona como o "filme fotográfico" do olho: capta a luz, converte em sinais elétricos e os envia ao cérebro pelo nervo óptico, onde se formam as imagens que enxergamos.
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              A <strong class="text-navy">mácula</strong> — região central da retina — é responsável pela visão de detalhes, leitura, reconhecimento de faces e percepção de cores. A <strong class="text-navy">fóvea</strong>, no centro da mácula, é o ponto de máxima acuidade visual, com a maior concentração de cones (fotorreceptores para cor e detalhe).
+            </p>
+            <p class="font-body text-base text-muted-foreground leading-relaxed">
+              Por ser tecido nervoso, a retina <strong class="text-navy">não se regenera</strong>. Doenças retinianas tratadas tardiamente podem causar perda visual irreversível. Por isso, o diagnóstico precoce e o tratamento oportuno são fundamentais para preservar a qualidade de vida.
+            </p>
+          </div>
+          <div class="grid grid-cols-3 gap-4 mt-8">
+            {[
+              { valor: "10 camadas", label: "de tecido nervoso" },
+              { valor: "130M", label: "fotorreceptores" },
+              { valor: "0,2mm", label: "espessura da fóvea" },
+            ].map(s => (
+              <div class="text-center p-3 rounded-lg bg-navy/5">
+                <div class="font-display text-lg font-bold text-navy">{s.valor}</div>
+                <div class="font-ui text-[10px] text-muted-foreground mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
+          <img src="/images/tech-oct-scan_d39e3a25.webp" alt="OCT da retina mostrando as camadas retinianas" class="w-full h-[420px] object-cover" loading="lazy" width="600" height="420" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. DOENÇAS DA RETINA ========== -->
+  <section class="section-padding bg-slate-50">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
         <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Especialidades</span>
         <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
           Doenças da <span class="text-gold">Retina</span> que tratamos
         </h2>
         <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
-          Nossos especialistas em retina tratam todas as principais doenças retinianas com tecnologia de última geração.
+          Nossos especialistas em retina tratam todas as principais doenças retinianas com tecnologia de última geração e protocolos baseados em evidências.
         </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {doencas.map(d => (
-          <div class="rounded-2xl p-6 border border-border/40 bg-white hover:shadow-md transition-shadow aos-element">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {doencas.map((d, i) => (
+          <div class="rounded-2xl p-6 border border-border/40 bg-white hover:shadow-md transition-shadow aos-element group">
             <div class="flex items-center justify-between mb-3">
               <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${d.badgeColor}`}>{d.badge}</span>
               <span class="font-body text-xs text-muted-foreground">{d.detail}</span>
             </div>
-            <h3 class="font-display text-base text-navy mb-2">{d.title}</h3>
-            <p class="font-body text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+            <h3 class="font-display text-lg text-navy mb-2 group-hover:text-gold transition-colors">{d.title}</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-3">{d.desc}</p>
+            <details class="group/details">
+              <summary class="font-ui text-xs font-semibold text-navy cursor-pointer hover:text-gold transition-colors flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 transition-transform group-open/details:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                Saiba mais sobre {d.title}
+              </summary>
+              <p class="font-body text-xs text-muted-foreground leading-relaxed mt-3 pt-3 border-t border-border/40">{d.expanded}</p>
+            </details>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ========== 4. SINTOMAS (ZIGZAG) ========== -->
-  <section class="section-padding bg-slate-50">
+  <!-- ========== 5. SINTOMAS (ZIGZAG) ========== -->
+  <section class="section-padding bg-white">
     <div class="container">
-      <div class="text-center mb-8 aos-element">
+      <div class="text-center mb-12 aos-element">
         <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Fique Atento</span>
         <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
           Sinais de <span class="text-gold">alerta</span> para doenças da retina
         </h2>
         <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
-          Alguns sintomas exigem avaliação urgente. Conheça os sinais que não devem ser ignorados.
+          Alguns sintomas exigem avaliação urgente. Conheça os sinais que não devem ser ignorados — o tempo é fundamental para preservar a visão.
         </p>
       </div>
 
@@ -177,10 +432,13 @@ const clinicas = [
           <div class={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center aos-element ${i % 2 !== 0 ? 'md:[direction:rtl]' : ''}`}>
             <div class={i % 2 !== 0 ? 'md:[direction:ltr]' : ''}>
               <div class="rounded-2xl overflow-hidden shadow-lg">
-                <img src={s.img} alt={s.title} class="w-full h-[280px] object-cover" loading="lazy" />
+                <img src={s.img} alt={s.title} class="w-full h-[280px] object-cover" loading="lazy" width="560" height="280" />
               </div>
             </div>
             <div class={i % 2 !== 0 ? 'md:[direction:ltr]' : ''}>
+              <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
               <h3 class="font-display text-xl text-navy mb-3">{s.title}</h3>
               <p class="font-body text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </div>
@@ -190,43 +448,101 @@ const clinicas = [
 
       <div class="text-center mt-12 flex flex-wrap justify-center gap-3 aos-element">
         <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-emerald-700 transition-all shadow-lg">
-          Agende pelo WhatsApp
+          class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
+          Agendar pelo WhatsApp
         </a>
         <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 border border-navy/20 text-navy font-ui text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-navy/5 transition-all">
+          class="inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-navy/90 transition-all">
           Agendar Online
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ========== 5. DIAGNÓSTICO ========== -->
-  <section class="section-padding bg-white">
+  <!-- ========== 6. DIAGNÓSTICO ========== -->
+  <section class="section-padding bg-slate-50">
     <div class="container">
-      <div class="text-center mb-10 aos-element">
+      <div class="text-center mb-12 aos-element">
         <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Diagnóstico</span>
         <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
           Exames para <span class="text-gold">diagnóstico</span> da retina
         </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          Nosso Instituto da Retina dispõe dos exames mais modernos para diagnóstico preciso e monitoramento do tratamento.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto mb-12">
-        <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="/images/tech-oct-scan_d39e3a25.webp" alt="OCT - Tomografia de Coerência Óptica" class="w-full h-[350px] object-cover" loading="lazy" />
-        </div>
-        <div class="aos-element">
-          <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-3 py-1 mb-4">
-            <span class="font-ui text-xs font-semibold text-gold">PADRÃO-OURO</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {examesDiagnostico.map(exame => (
+          <div class="bg-white rounded-2xl p-6 border border-border/40 hover:shadow-md transition-shadow aos-element">
+            <div class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold mb-4 ${exame.badgeColor}`}>{exame.badge}</div>
+            <h3 class="font-display text-base text-navy mb-3">{exame.title}</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed">{exame.desc}</p>
           </div>
-          <h3 class="font-display text-2xl text-navy mb-4">OCT — Tomografia de Coerência Óptica</h3>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. TRATAMENTOS ========== -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Tratamentos</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+          Opções de <span class="text-gold">tratamento</span> para doenças da retina
+        </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          Cada doença retiniana tem um protocolo de tratamento específico. Nosso especialista indicará a melhor opção após avaliação completa.
+        </p>
+      </div>
+
+      <!-- Injeção Intravítrea -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto mb-16">
+        <div class="aos-element">
+          <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-3 py-1 mb-4">
+            <span class="font-ui text-xs font-semibold text-blue-800">TRATAMENTO 1ª LINHA</span>
+          </div>
+          <h3 class="font-display text-2xl text-navy mt-2 mb-4">Injeção Intravítrea (Anti-VEGF)</h3>
           <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
-            Exame não-invasivo que produz cortes transversais da retina em altíssima resolução (micrômetros). Permite visualizar cada camada da retina individualmente, detectando edema macular, membranas, buracos e alterações estruturais mínimas.
+            As injeções intravítreas de anti-VEGF são o tratamento padrão para DMRI úmida, edema macular diabético e oclusões venosas. Os medicamentos (Ranibizumabe, Bevacizumabe, Aflibercept) bloqueiam o fator de crescimento vascular que causa o vazamento dos vasos anormais, estabilizando ou melhorando a visão em 90% dos casos quando iniciados precocemente.
+          </p>
+          <ul class="space-y-2 mb-4">
+            {["Procedimento ambulatorial com anestesia tópica (colírios)", "Duração de 5-10 minutos — sem internação", "Retorno às atividades normais no dia seguinte", "Monitoramento com OCT a cada consulta", "Cobertura pela maioria dos planos de saúde"].map(item => (
+              <li class="flex items-start gap-2 font-body text-sm text-navy/80">
+                <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <p class="font-body text-sm text-blue-800 leading-relaxed">
+              <strong>Implante de Dexametasona (Ozurdex):</strong> Para casos refratários ao anti-VEGF ou edema macular de origem inflamatória/vascular, o implante biodegradável de dexametasona libera corticoide diretamente no vítreo por 4-6 meses.
+            </p>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
+          <img src="/images/retina-injecao_154af844.webp" alt="Injeção intravítrea anti-VEGF para tratamento de DMRI e retinopatia diabética" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
+        </div>
+      </div>
+
+      <!-- Vitrectomia -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto mb-16">
+        <div class="rounded-2xl overflow-hidden shadow-xl aos-element order-2 lg:order-1">
+          <img src="/images/tech-oct-scan_d39e3a25.webp" alt="Vitrectomia via pars plana para tratamento de descolamento de retina" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
+        </div>
+        <div class="aos-element order-1 lg:order-2">
+          <div class="inline-flex items-center gap-2 bg-navy/10 border border-navy/20 rounded-full px-3 py-1 mb-4">
+            <span class="font-ui text-xs font-semibold text-navy">CIRURGIA</span>
+          </div>
+          <h3 class="font-display text-2xl text-navy mt-2 mb-4">Vitrectomia Via Pars Plana</h3>
+          <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+            A vitrectomia moderna utiliza instrumentos de calibre 25-27G (0,5mm de diâmetro), com incisões auto-selantes que dispensam suturas. É o tratamento cirúrgico para descolamento de retina, membranas epirretinianas, buracos maculares, hemorragias vítreas e complicações da retinopatia diabética proliferativa.
           </p>
           <ul class="space-y-2">
-            {["Resolução de micrômetros", "Visualização de cada camada da retina", "Detecção precoce de edema macular", "Monitoramento do tratamento com anti-VEGF"].map(item => (
-              <li class="flex items-center gap-2 font-body text-sm text-navy/80">
-                <svg class="w-4 h-4 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            {["Incisões de 0,5mm — sem suturas", "Anestesia local ou geral conforme indicação", "Internação de 1 dia (cirurgia ambulatorial)", "Taxa de sucesso > 90% para descolamento primário", "Recuperação completa em 4-8 semanas"].map(item => (
+              <li class="flex items-start gap-2 font-body text-sm text-navy/80">
+                <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 {item}
               </li>
             ))}
@@ -234,83 +550,155 @@ const clinicas = [
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <!-- Outros tratamentos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
         {[
-          { title: "Angiofluoresceinografia (AFG)", desc: "Fotografa os vasos da retina com contraste fluorescente. Detecta vazamentos, oclusões e neovascularização." },
-          { title: "Mapeamento de Retina", desc: "Exame completo com dilatação da pupila para avaliar toda a retina periférica e central." },
-          { title: "Retinografia Digital", desc: "Fotografia de alta resolução do fundo do olho para documentação e acompanhamento de doenças retinianas." },
-        ].map(exame => (
-          <div class="bg-slate-50 rounded-xl p-5 border border-border/40 aos-element">
-            <h3 class="font-display text-sm text-navy mb-2">{exame.title}</h3>
-            <p class="font-body text-xs text-muted-foreground leading-relaxed">{exame.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== 6. TRATAMENTOS ========== -->
-  <section class="section-padding bg-slate-50">
-    <div class="container">
-      <div class="text-center mb-10 aos-element">
-        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Tratamentos</span>
-        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
-          Opções de <span class="text-gold">tratamento</span> para doenças da retina
-        </h2>
-      </div>
-
-      <!-- Injeção Intravítrea -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto mb-16">
-        <div class="aos-element">
-          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Tratamento 1</span>
-          <h3 class="font-display text-2xl text-navy mt-2 mb-4">Injeção Intravítrea (Anti-VEGF)</h3>
-          <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
-            As injeções intravítreas de anti-VEGF (Ranibizumabe, Bevacizumabe, Aflibercept) são o tratamento padrão para DMRI úmida, edema macular diabético e oclusões venosas. Bloqueiam o fator de crescimento vascular que causa o vazamento dos vasos anormais.
-          </p>
-          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
-            <p class="font-body text-sm text-blue-800 leading-relaxed">
-              <strong>Procedimento ambulatorial:</strong> Realizado no consultório com anestesia tópica. Duração de 5-10 minutos. O paciente retorna às atividades normais no dia seguinte.
-            </p>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="/images/retina-injecao_154af844.webp" alt="Injeção intravítrea anti-VEGF" class="w-full h-[350px] object-cover" loading="lazy" />
-        </div>
-      </div>
-
-      <!-- Vitrectomia e Laser -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {[
-          { title: "Vitrectomia", desc: "Cirurgia para remoção do vítreo e tratamento de descolamentos de retina, membranas epirretinianas, buracos maculares e hemorragias vítreas. Instrumentos de calibre 25-27G com incisões auto-selantes.", badge: "Cirurgia" },
-          { title: "Laser Retiniano", desc: "Fotocoagulação a laser para tratar retinopatia diabética proliferativa, rasgaduras de retina e oclusões vasculares. Procedimento ambulatorial que sela os vasos anormais e previne o descolamento.", badge: "Laser" },
-          { title: "Crioterapia", desc: "Aplicação de frio extremo para tratar rasgaduras de retina, especialmente quando o laser não é possível. Cria uma cicatriz que sela a rasgadura e previne o descolamento.", badge: "Preventivo" },
-          { title: "Pneumopexia", desc: "Injeção de gás no vítreo para tamponar o descolamento de retina. Procedimento minimamente invasivo para descolamentos selecionados, realizado no consultório.", badge: "Minimamente Invasivo" },
+          { title: "Laser Retiniano", desc: "Fotocoagulação para retinopatia diabética proliferativa, rasgaduras e oclusões vasculares. Procedimento ambulatorial de 15-30 minutos.", badge: "Laser" },
+          { title: "Crioterapia", desc: "Aplicação de frio extremo para tratar rasgaduras de retina periférica. Alternativa ao laser quando os meios oculares estão turvos.", badge: "Preventivo" },
+          { title: "Pneumopexia", desc: "Injeção de gás no vítreo para tamponar descolamentos selecionados. Procedimento minimamente invasivo realizado no consultório.", badge: "Minimamente Invasivo" },
+          { title: "Escleral Buckle", desc: "Banda de silicone ao redor do olho para indentação escleral. Indicado para descolamentos de retina em pacientes jovens sem proliferação vítreorretiniana.", badge: "Cirurgia" },
         ].map(t => (
-          <div class="bg-white rounded-xl p-6 border border-border/40 aos-element">
+          <div class="bg-slate-50 rounded-xl p-5 border border-border/40 aos-element">
             <div class="flex items-center gap-2 mb-3">
               <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-navy/10 text-navy">{t.badge}</span>
             </div>
-            <h3 class="font-display text-base text-navy mb-2">{t.title}</h3>
-            <p class="font-body text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
+            <h3 class="font-display text-sm text-navy mb-2">{t.title}</h3>
+            <p class="font-body text-xs text-muted-foreground leading-relaxed">{t.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ========== 7. NOSSAS UNIDADES ========== -->
+  <!-- ========== 8. PÓS-OPERATÓRIO ========== -->
+  <section class="section-padding" style="background:#faf9f7">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Recuperação</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+          Pós-operatório da <span class="text-gold">vitrectomia</span>
+        </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          Entender o processo de recuperação ajuda a ter expectativas realistas e a seguir as orientações corretamente para o melhor resultado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {posOperatorio.map((fase, i) => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-border/40 aos-element">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background:rgba(30,42,68,0.08)">
+              <span class="font-display text-xl font-bold text-navy">{i + 1}</span>
+            </div>
+            <h3 class="font-display text-lg text-navy mb-4">{fase.fase}</h3>
+            <ul class="space-y-2.5">
+              {fase.items.map(item => (
+                <li class="flex items-start gap-2 font-body text-xs text-muted-foreground leading-relaxed">
+                  <svg class="w-3.5 h-3.5 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 9. CONVÊNIOS ========== -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Planos de Saúde</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+          Tratamento de retina pelo <span class="text-gold">convênio</span>
+        </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          A maioria dos procedimentos de retina — incluindo injeções de anti-VEGF, laser e vitrectomia — tem cobertura pelos principais planos de saúde. Nossa equipe auxilia na solicitação de autorização prévia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-4xl mx-auto mb-10">
+        {convenios.map(conv => (
+          <div class="bg-slate-50 rounded-xl px-3 py-3 text-center border border-border/40 aos-element">
+            <span class="font-ui text-xs font-semibold text-navy">{conv}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="max-w-3xl mx-auto bg-navy/5 rounded-2xl p-6 border border-navy/10 aos-element">
+        <h3 class="font-display text-lg text-navy mb-4">Procedimentos cobertos pelos convênios</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            "Mapeamento de retina (fundo de olho)",
+            "OCT e Angio-OCT da retina",
+            "Injeção intravítrea de anti-VEGF (DMRI, edema macular)",
+            "Implante de dexametasona (Ozurdex)",
+            "Fotocoagulação a laser retiniano",
+            "Vitrectomia via pars plana",
+            "Crioterapia retiniana",
+            "Angiofluoresceinografia (AFG)",
+          ].map(proc => (
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="font-body text-sm text-muted-foreground">{proc}</span>
+            </div>
+          ))}
+        </div>
+        <p class="font-body text-xs text-muted-foreground mt-4 leading-relaxed">
+          * A cobertura varia conforme o plano e o contrato. Consulte nossa equipe para verificar a cobertura do seu plano específico e obter auxílio na solicitação de autorização prévia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 10. DEPOIMENTOS ========== -->
+  <section class="section-padding bg-slate-50">
+    <div class="container">
+      <div class="text-center mb-12 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Depoimentos</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">
+          O que nossos pacientes <span class="text-gold">dizem</span>
+        </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          Histórias reais de pacientes que recuperaram ou preservaram a visão com tratamento especializado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {depoimentos.map(dep => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-border/40 aos-element">
+            <div class="flex items-center gap-1 mb-4">
+              {Array(dep.estrelas).fill(0).map(() => (
+                <svg class="w-4 h-4 text-gold fill-gold" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4 italic">"{dep.texto}"</p>
+            <div class="pt-4 border-t border-border/40">
+              <p class="font-ui text-xs font-semibold text-navy">{dep.nome}</p>
+              <p class="font-body text-xs text-muted-foreground">{dep.doenca} · Unidade {dep.unidade}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 11. NOSSAS UNIDADES ========== -->
   <section class="section-padding bg-white">
     <div class="container">
       <div class="text-center mb-12 aos-element">
         <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Nossas Clínicas</span>
         <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">Conheça nossas unidades</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          5 unidades em São Paulo e Guarulhos para facilitar o acesso ao tratamento especializado de retina.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {clinicas.map(clinica => (
           <div class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border/40 hover:shadow-lg hover:border-gold/30 transition-all aos-element">
             <div class="relative overflow-hidden">
-              <img loading="lazy" src={clinica.image} alt={`Unidade Drudi e Almeida ${clinica.name}`} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img loading="lazy" src={clinica.image} alt={`Unidade Drudi e Almeida ${clinica.name}`} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" width="400" height="192" />
               <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
               <div class="absolute bottom-3 left-4">
                 <span class="font-ui text-xs font-bold text-white bg-gold/80 rounded-full px-3 py-1">{clinica.city}</span>
@@ -339,13 +727,13 @@ const clinicas = [
     </div>
   </section>
 
-  <!-- ========== 8. FAQ ========== -->
+  <!-- ========== 12. FAQ ========== -->
   <section class="section-padding bg-slate-50">
     <div class="container">
       <div class="text-center mb-10 aos-element">
         <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Dúvidas Frequentes</span>
         <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">Perguntas Frequentes</h2>
-        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4">Tire suas dúvidas sobre doenças da retina e seus tratamentos.</p>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4">Tire suas dúvidas sobre doenças da retina, tratamentos e convênios.</p>
       </div>
 
       <div class="max-w-3xl mx-auto space-y-3">
@@ -380,7 +768,7 @@ const clinicas = [
         ].map(inst => (
           <a href={inst.href} class="group block bg-white rounded-2xl p-6 border border-border/40 hover:border-gold/50 hover:shadow-lg transition-all text-center aos-element">
             <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-navy/5 flex items-center justify-center group-hover:bg-gold/10 transition-colors">
-              <img src={inst.logo} alt={inst.name} class="w-12 h-12 object-contain" loading="lazy" />
+              <img src={inst.logo} alt={inst.name} class="w-12 h-12 object-contain" loading="lazy" width="48" height="48" />
             </div>
             <p class="font-display text-sm text-navy group-hover:text-gold transition-colors font-semibold mb-1">{inst.name}</p>
             <p class="font-body text-xs text-muted-foreground">{inst.desc}</p>
@@ -397,15 +785,16 @@ const clinicas = [
   <!-- ========== CTA FINAL ========== -->
   <section class="relative min-h-[500px] flex items-center overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/retina-hero_cb57f973.webp')"></div>
-    <div class="absolute inset-0 bg-navy/75"></div>
+    <div class="absolute inset-0 bg-navy/80"></div>
 
     <div class="relative container py-14 md:py-16">
       <div class="max-w-2xl mx-auto text-center aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold mb-4 block">Agende Sua Consulta</span>
         <h2 class="font-display text-3xl md:text-4xl text-cream mb-4">
-          Agende sua <span class="text-gold">consulta de avaliação</span>
+          Cuide da sua retina com <span class="text-gold">quem entende</span>
         </h2>
         <p class="font-body text-base text-cream/70 mb-8 leading-relaxed">
-          Nossos especialistas em retina estão prontos para avaliar seu caso e indicar o melhor tratamento.
+          Nossos especialistas em retina estão prontos para avaliar seu caso, indicar o melhor tratamento e acompanhá-lo em todas as etapas. Não espere os sintomas piorarem.
         </p>
 
         <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-cream/10 max-w-md mx-auto mb-8">
@@ -418,11 +807,16 @@ const clinicas = [
             </select>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
               class="w-full inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
               Agendar pelo WhatsApp
             </a>
             <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
+              class="w-full inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-all border border-navy/50">
               Agendar Online
+            </a>
+            <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
+              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
+              Ligar: {PHONE}
             </a>
           </div>
         </div>
@@ -448,25 +842,24 @@ const clinicas = [
   });
 
   // ===== WhatsApp dinâmico: atualiza mensagem conforme unidade selecionada =====
-  // whatsapp-dynamic
   const WA_BASE = 'https://wa.me/5511916544653';
   const WA_MSG_BASE = 'Olá! Gostaria de receber informações sobre o tratamento de retina';
 
-  function buildWaUrl(unidadeNome) {
+  function buildWaUrl(unidadeNome: string) {
     const texto = unidadeNome ? `${WA_MSG_BASE} na unidade ${unidadeNome}.` : `${WA_MSG_BASE}.`;
     return `${WA_BASE}?text=${encodeURIComponent(texto)}`;
   }
 
-  const selHero = document.getElementById('unidade-hero');
-  const selCta  = document.getElementById('unidade-cta');
-  const waLinks = Array.from(document.querySelectorAll('a[href*="wa.me/5511916544653"]'));
+  const selHero = document.getElementById('unidade-hero') as HTMLSelectElement | null;
+  const selCta  = document.getElementById('unidade-cta') as HTMLSelectElement | null;
+  const waLinks = Array.from(document.querySelectorAll('a[href*="wa.me/5511916544653"]')) as HTMLAnchorElement[];
 
-  function syncWaLinks(unidadeNome) {
+  function syncWaLinks(unidadeNome: string) {
     const url = buildWaUrl(unidadeNome);
     waLinks.forEach(a => { a.href = url; });
   }
 
-  function getUnidadeName(sel) {
+  function getUnidadeName(sel: HTMLSelectElement | null) {
     if (!sel || !sel.value) return '';
     return sel.options[sel.selectedIndex].text.split(' —')[0].trim();
   }
@@ -474,13 +867,12 @@ const clinicas = [
   selHero?.addEventListener('change', () => {
     const nome = getUnidadeName(selHero);
     syncWaLinks(nome);
-    if (selCta) selCta.value = selHero.value;
+    if (selCta) selCta.value = selHero!.value;
   });
 
   selCta?.addEventListener('change', () => {
     const nome = getUnidadeName(selCta);
     syncWaLinks(nome);
-    if (selHero) selHero.value = selCta.value;
+    if (selHero) selHero.value = selCta!.value;
   });
-
 </script>
