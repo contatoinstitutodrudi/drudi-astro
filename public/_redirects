@@ -50,12 +50,10 @@
 /medicos        /sobre      301
 /nossas-unidades /contato   301
 
-# /agendar → WhatsApp (temporário até o sistema de agendamento online estar pronto)
-# Usar 302 (temporário) para facilitar a troca quando o sistema estiver pronto
-/agendar        https://wa.me/5511916544653?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta.   302
-/agendamento    https://wa.me/5511916544653?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta.   302
-/agendamento-1  https://wa.me/5511916544653?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta.   302
-/agendar-consulta https://wa.me/5511916544653?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta. 302
+# /agendar → página de agendamento online (sistema ativo)
+/agendamento    /agendar    301
+/agendamento-1  /agendar    301
+/agendar-consulta /agendar  301
 
 # /institutos → seção de institutos na home
 /institutos     /   302

@@ -1,0 +1,108 @@
+---
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { verifyAdminToken, getAdminTokenFromRequest } from '../../lib/auth';
+
+// Se já autenticado, redirecionar para o painel
+const env = (Astro.locals as { runtime: { env: Env } }).runtime.env;
+const token = getAdminTokenFromRequest(Astro.request);
+if (token && await verifyAdminToken(env.ADMIN_JWT_SECRET, token)) {
+  return Astro.redirect('/admin/agendamentos');
+}
+---
+
+<BaseLayout
+  title="Admin — Login | Drudi e Almeida"
+  description="Painel administrativo."
+  canonicalPath="/admin/login"
+>
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/5 to-background px-4">
+    <div class="w-full max-w-sm">
+      <!-- Logo -->
+      <div class="text-center mb-8">
+        <img src="/images/logo-horizontal.png" alt="Drudi e Almeida" class="h-14 mx-auto mb-4" onerror="this.style.display='none'" />
+        <p class="font-ui text-xs tracking-[0.2em] uppercase text-muted-foreground">Painel Administrativo</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg border border-border/50 p-8">
+        <h1 class="font-display text-2xl text-navy mb-6 text-center">Entrar</h1>
+
+        <div id="error-msg" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm text-center"></div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="font-ui text-sm font-medium mb-1.5 block text-foreground">Senha</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              class="w-full border border-border rounded-lg px-3 py-2.5 text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-navy/30"
+            />
+          </div>
+          <button
+            id="btn-login"
+            type="button"
+            class="w-full bg-navy text-cream font-ui text-sm font-bold py-3 rounded-lg hover:bg-navy/90 transition-colors flex items-center justify-center gap-2"
+          >
+            <span id="btn-text">Entrar</span>
+            <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-muted-foreground mt-6">
+        <a href="/" class="hover:text-navy transition-colors">← Voltar ao site</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+const btn = document.getElementById('btn-login') as HTMLButtonElement;
+const pwdInput = document.getElementById('password') as HTMLInputElement;
+const errMsg = document.getElementById('error-msg')!;
+const btnText = document.getElementById('btn-text')!;
+const btnSpinner = document.getElementById('btn-spinner')!;
+
+async function doLogin() {
+  const password = pwdInput.value;
+  if (!password) return;
+
+  btn.disabled = true;
+  btnText.textContent = 'Entrando...';
+  btnSpinner.classList.remove('hidden');
+  errMsg.classList.add('hidden');
+
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    const data = await res.json() as { success?: boolean; error?: string };
+
+    if (data.success) {
+      window.location.href = '/admin/agendamentos';
+    } else {
+      errMsg.textContent = data.error ?? 'Senha incorreta.';
+      errMsg.classList.remove('hidden');
+      btn.disabled = false;
+      btnText.textContent = 'Entrar';
+      btnSpinner.classList.add('hidden');
+    }
+  } catch {
+    errMsg.textContent = 'Erro de conexão. Tente novamente.';
+    errMsg.classList.remove('hidden');
+    btn.disabled = false;
+    btnText.textContent = 'Entrar';
+    btnSpinner.classList.add('hidden');
+  }
+}
+
+btn.addEventListener('click', doLogin);
+pwdInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+</script>

@@ -1,0 +1,151 @@
+// POST /api/agendamento/criar
+import type { APIRoute } from 'astro';
+import { createAppointment, getAppointmentsByDateUnit, isDayBlocked, updateGcalEventId } from '../../../lib/db';
+import { createCalendarEvent, buildCalendarEvent } from '../../../lib/gcal';
+import { sendConfirmationEmail, sendAdminNotificationEmail } from '../../../lib/email';
+import { GCAL_ENV_MAP, MAX_PER_SLOT } from '../../../lib/constants';
+
+export const prerender = false;
+
+export const POST: APIRoute = async ({ request, locals }) => {
+  const env = (locals as { runtime: { env: Env } }).runtime.env;
+
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json() as Record<string, unknown>;
+  } catch {
+    return new Response(JSON.stringify({ error: 'JSON inválido.' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const {
+    patient_name,
+    patient_phone,
+    patient_email,
+    unit,
+    specialty,
+    health_plan,
+    appointment_date,
+    appointment_hour,
+    appointment_minute,
+    appointment_type,
+    notes,
+  } = body as Record<string, string | number | null>;
+
+  // Validações básicas
+  if (!patient_name || !patient_phone || !unit || !specialty || !health_plan ||
+      !appointment_date || appointment_hour === undefined || appointment_minute === undefined) {
+    return new Response(JSON.stringify({ error: 'Campos obrigatórios ausentes.' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  try {
+    const db = env.DB;
+
+    // Verificar se o dia está bloqueado
+    const blocked = await isDayBlocked(db, String(appointment_date), String(unit));
+    if (blocked) {
+      return new Response(JSON.stringify({ error: 'Este dia não está disponível para agendamento.' }), {
+        status: 409,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Verificar disponibilidade do slot
+    const existing = await getAppointmentsByDateUnit(db, String(appointment_date), String(unit));
+    const slotCount = existing.filter(
+      a => a.appointment_hour === Number(appointment_hour) && a.appointment_minute === Number(appointment_minute)
+    ).length;
+
+    if (slotCount >= MAX_PER_SLOT) {
+      return new Response(JSON.stringify({ error: 'Horário não disponível. Por favor, escolha outro.' }), {
+        status: 409,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Criar agendamento no banco
+    const { id, cancel_token } = await createAppointment(db, {
+      patient_name: String(patient_name),
+      patient_phone: String(patient_phone),
+      patient_email: patient_email ? String(patient_email) : null,
+      unit: String(unit),
+      specialty: String(specialty),
+      health_plan: String(health_plan),
+      appointment_date: String(appointment_date),
+      appointment_hour: Number(appointment_hour),
+      appointment_minute: Number(appointment_minute),
+      appointment_type: String(appointment_type ?? 'primeira_vez'),
+      notes: notes ? String(notes) : null,
+    });
+
+    // Criar evento no Google Calendar (assíncrono, não bloqueia resposta)
+    const calEnvKey = GCAL_ENV_MAP[String(unit)];
+    const calendarId = calEnvKey ? (env as unknown as Record<string, string>)[calEnvKey] : null;
+
+    if (calendarId) {
+      try {
+        const event = buildCalendarEvent({
+          patient_name: String(patient_name),
+          patient_phone: String(patient_phone),
+          patient_email: patient_email ? String(patient_email) : null,
+          unit: String(unit),
+          specialty: String(specialty),
+          health_plan: String(health_plan),
+          appointment_date: String(appointment_date),
+          appointment_hour: Number(appointment_hour),
+          appointment_minute: Number(appointment_minute),
+          appointment_type: String(appointment_type ?? 'primeira_vez'),
+          notes: notes ? String(notes) : null,
+        });
+        const gcalId = await createCalendarEvent(env, calendarId, event);
+        await updateGcalEventId(db, id, gcalId);
+      } catch (gcalErr) {
+        console.error('[criar] GCal error (non-fatal):', gcalErr);
+      }
+    }
+
+    // Enviar e-mails (não bloqueiam resposta)
+    if (patient_email) {
+      sendConfirmationEmail(env.RESEND_API_KEY, {
+        patient_name: String(patient_name),
+        patient_email: String(patient_email),
+        unit: String(unit),
+        specialty: String(specialty),
+        appointment_date: String(appointment_date),
+        appointment_hour: Number(appointment_hour),
+        appointment_minute: Number(appointment_minute),
+        cancel_token,
+      }).catch(e => console.error('[criar] Email error:', e));
+    }
+
+    sendAdminNotificationEmail(env.RESEND_API_KEY, {
+      patient_name: String(patient_name),
+      patient_phone: String(patient_phone),
+      patient_email: patient_email ? String(patient_email) : null,
+      unit: String(unit),
+      specialty: String(specialty),
+      health_plan: String(health_plan),
+      appointment_date: String(appointment_date),
+      appointment_hour: Number(appointment_hour),
+      appointment_minute: Number(appointment_minute),
+      appointment_type: String(appointment_type ?? 'primeira_vez'),
+      notes: notes ? String(notes) : null,
+    }).catch(e => console.error('[criar] Admin email error:', e));
+
+    return new Response(JSON.stringify({ success: true, id, cancel_token }), {
+      status: 201,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    console.error('[criar] Error:', err);
+    return new Response(JSON.stringify({ error: 'Erro ao criar agendamento. Tente novamente.' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+};

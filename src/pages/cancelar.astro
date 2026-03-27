@@ -1,0 +1,90 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const token = Astro.url.searchParams.get('token') ?? '';
+---
+
+<BaseLayout
+  title="Cancelar Consulta | Drudi e Almeida"
+  description="Cancelamento de consulta na Drudi e Almeida Oftalmologia."
+  canonicalPath="/cancelar"
+>
+  <section class="min-h-[60vh] flex items-center section-padding">
+    <div class="container">
+      <div class="max-w-md mx-auto text-center">
+        <div id="loading" class="py-12">
+          <svg class="w-10 h-10 animate-spin text-navy mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+          </svg>
+          <p class="text-muted-foreground">Processando cancelamento...</p>
+        </div>
+
+        <div id="success" class="hidden py-12">
+          <div class="w-16 h-16 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h1 class="font-display text-2xl text-navy mb-3">Consulta Cancelada</h1>
+          <p class="text-muted-foreground mb-6">Sua consulta foi cancelada com sucesso.</p>
+          <a href="/agendar" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-colors">
+            Agendar nova consulta
+          </a>
+        </div>
+
+        <div id="already" class="hidden py-12">
+          <div class="w-16 h-16 mx-auto rounded-full bg-amber-100 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h1 class="font-display text-2xl text-navy mb-3">Já Cancelado</h1>
+          <p class="text-muted-foreground mb-6">Esta consulta já foi cancelada anteriormente.</p>
+          <a href="/agendar" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-colors">
+            Agendar nova consulta
+          </a>
+        </div>
+
+        <div id="error" class="hidden py-12">
+          <div class="w-16 h-16 mx-auto rounded-full bg-red-100 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </div>
+          <h1 class="font-display text-2xl text-navy mb-3">Link Inválido</h1>
+          <p class="text-muted-foreground mb-6">O link de cancelamento é inválido ou expirou.</p>
+          <a href="/" class="inline-flex items-center gap-2 border border-border text-foreground font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-muted/50 transition-colors">
+            Voltar ao início
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ token }}>
+(async function () {
+  const show = (id) => document.getElementById(id).classList.remove('hidden');
+  const hide = (id) => document.getElementById(id).classList.add('hidden');
+
+  if (!token) {
+    hide('loading');
+    show('error');
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/cancelar?token=${encodeURIComponent(token)}`);
+    const data = await res.json();
+    hide('loading');
+    if (data.already) show('already');
+    else if (data.success) show('success');
+    else show('error');
+  } catch {
+    hide('loading');
+    show('error');
+  }
+})();
+</script>

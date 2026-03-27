@@ -1,0 +1,16 @@
+{
+  "compatibility_date": "2026-03-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "name": "drudi-almeida-astro",
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "drudi-agendamentos",
+      "database_id": "PLACEHOLDER_REPLACE_WITH_REAL_ID",
+      "migrations_dir": "./migrations"
+    }
+  ]
+}
