@@ -142,7 +142,7 @@ const tratamentos = [
     badgeColor: "bg-blue-100 text-blue-800",
     desc: "Tratamento padrão para DMRI úmida, edema macular diabético e oclusões venosas. Os medicamentos anti-VEGF (Ranibizumabe, Bevacizumabe, Aflibercept) bloqueiam o fator de crescimento vascular que causa vazamento dos vasos anormais.",
     details: ["Procedimento ambulatorial com anestesia tópica", "Duração de 5-10 minutos", "Retorno às atividades no dia seguinte", "Monitoramento com OCT a cada consulta"],
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/retina-injecao-pt_15c4bc8e.png",
+    img: "/images/retina-injecao-pt_15c4bc8e.webp",
   },
   {
     title: "Vitrectomia Via Pars Plana",
@@ -150,7 +150,7 @@ const tratamentos = [
     badgeColor: "bg-navy/10 text-navy",
     desc: "Cirurgia para remoção do vítreo e tratamento de descolamentos de retina, membranas epirretinianas, buracos maculares e hemorragias vítreas. Instrumentos de calibre 25-27G com incisões auto-selantes.",
     details: ["Incisões de 0,5mm sem suturas", "Anestesia local ou geral", "Internação de 1 dia", "Recuperação em 2-4 semanas"],
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/retina-oct-exame_9c52bb71.png",
+    img: "/images/retina-oct-exame_9c52bb71.webp",
   },
 ];
 
@@ -247,6 +247,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   description="Instituto da Retina em São Paulo: tratamento de DMRI, retinopatia diabética, descolamento de retina e injeção intravítrea. Dr. Fernando Drudi, especialista em retina cirúrgica. 5 unidades em SP e Guarulhos."
   keywords="retina SP, instituto da retina São Paulo, injeção intravítrea SP, DMRI tratamento, retinopatia diabética, descolamento de retina, vitrectomia SP, anti-VEGF, mapeamento de retina"
   canonicalPath="/instituto/retina"
+  heroImage="/images/retina-hero_cb57f973.webp"
+  heroImageSrcset="/images/retina-hero-480w.webp 480w, /images/retina-hero-768w.webp 768w, /images/retina-hero_cb57f973.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
 
@@ -255,7 +257,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/retina-hero_cb57f973.webp')"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-transparent"></div>
 
-    <div class="relative container pb-14 pt-28">
+    <div class="relative container pb-14 pt-[100px] md:pt-[120px]">
       <div class="max-w-2xl">
 
                 <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Institutos", href: "/institutos" }, { label: "Instituto da Retina" }]} />
@@ -295,12 +297,12 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               </select>
             </div>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-[#1ebe5d] transition-all shadow-[0_4px_14px_rgba(37,211,102,0.35)]">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
               Agendar pelo WhatsApp
             </a>
-            <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-all border border-navy">
+            <a href="https://drudi-almeida-astro.drudiealmeida.workers.dev/agendar" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-white text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               Agendar Online
             </a>
             <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
@@ -348,7 +350,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               Por ser tecido nervoso, a retina <strong class="text-navy">não se regenera</strong>. Doenças retinianas tratadas tardiamente podem causar perda visual irreversível. Por isso, o diagnóstico precoce e o tratamento oportuno são fundamentais para preservar a qualidade de vida.
             </p>
           </div>
-          <div class="grid grid-cols-3 gap-4 mt-8">
+          <div class="grid grid-cols-3 gap-3 mt-8">
             {[
               { valor: "10 camadas", label: "de tecido nervoso" },
               { valor: "130M", label: "fotorreceptores" },
@@ -362,7 +364,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/retina-oct-exame_9c52bb71.png" alt="OCT da retina mostrando as camadas retinianas" class="w-full h-[420px] object-cover" loading="lazy" width="600" height="420" />
+          <img src="/images/retina-oct-exame_9c52bb71.webp" alt="OCT da retina mostrando as camadas retinianas" class="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover" loading="lazy" width="600" height="420" />
         </div>
       </div>
     </div>
@@ -438,11 +440,11 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
       <div class="text-center mt-12 flex flex-wrap justify-center gap-3 aos-element">
         <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
+          class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-[#1ebe5d] transition-all shadow-[0_4px_14px_rgba(37,211,102,0.35)]">
           Agendar pelo WhatsApp
         </a>
-        <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-navy/90 transition-all">
+        <a href="https://drudi-almeida-astro.drudiealmeida.workers.dev/agendar" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-white text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
           Agendar Online
         </a>
       </div>
@@ -512,14 +514,14 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/retina-injecao-pt_15c4bc8e.png" alt="Injeção intravítrea anti-VEGF para tratamento de DMRI e retinopatia diabética" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
+          <img src="/images/retina-injecao-pt_15c4bc8e.webp" alt="Injeção intravítrea anti-VEGF para tratamento de DMRI e retinopatia diabética" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
         </div>
       </div>
 
       <!-- Vitrectomia -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto mb-16">
         <div class="rounded-2xl overflow-hidden shadow-xl aos-element order-2 lg:order-1">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/retina-oct-exame_9c52bb71.png" alt="Vitrectomia via pars plana para tratamento de descolamento de retina" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
+          <img src="/images/retina-oct-exame_9c52bb71.webp" alt="Vitrectomia via pars plana para tratamento de descolamento de retina" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
         </div>
         <div class="aos-element order-1 lg:order-2">
           <div class="inline-flex items-center gap-2 bg-navy/10 border border-navy/20 rounded-full px-3 py-1 mb-4">
@@ -796,12 +798,12 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               ))}
             </select>
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-[#1ebe5d] transition-all shadow-[0_4px_14px_rgba(37,211,102,0.35)]">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
               Agendar pelo WhatsApp
             </a>
-            <a href="https://app.drudi.com.br" target="_blank" rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-all border border-navy/50">
+            <a href="https://drudi-almeida-astro.drudiealmeida.workers.dev/agendar" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-white text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-md border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               Agendar Online
             </a>
             <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}

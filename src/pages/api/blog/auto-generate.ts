@@ -3,7 +3,8 @@
 import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { generateArticleWithGemini, getAuthorForCategory, TOPIC_BANK } from '../../../lib/blog-ai';
-import { createPost, listAllPosts } from '../../../lib/blog-db';
+import { createPost, listAllPosts, updatePostImage } from '../../../lib/blog-db';
+import { generateCoverImage } from '../../../lib/blog-image';
 
 export const prerender = false;
 
@@ -79,6 +80,31 @@ export const POST: APIRoute = async ({ request }) => {
     const timestamp = Date.now();
     const slug = article.slug || `${category.toLowerCase()}-${timestamp}`;
 
+    // 2. Gerar imagem de capa via Cloudflare Workers AI (SDXL)
+    let imageUrl = '';
+    const aiBinding = (cfEnv as unknown as Record<string, Ai>)['AI'];
+    if (aiBinding) {
+      console.log(`[auto-generate] Gerando imagem de capa para "${article.title}"...`);
+      try {
+        const imageBuffer = await generateCoverImage(cfEnv, category, article.title);
+        if (imageBuffer) {
+          const kv = (cfEnv as unknown as Record<string, KVNamespace>)['SESSION'];
+          if (kv) {
+            const kvKey = `blog-img:${slug}`;
+            await kv.put(kvKey, imageBuffer, {
+              expirationTtl: 60 * 60 * 24 * 365,
+              metadata: { contentType: 'image/png', slug },
+            });
+            imageUrl = `/api/blog/image/${encodeURIComponent(slug)}`;
+            console.log(`[auto-generate] ✅ Imagem gerada: ${imageUrl}`);
+          }
+        }
+      } catch (imgErr) {
+        console.error('[auto-generate] ⚠️ Falha ao gerar imagem (continuando sem imagem):', imgErr);
+      }
+    }
+
+    // 3. Salvar artigo no banco D1
     const { id } = await createPost(cfEnv.DB, {
       slug,
       title: article.title,
@@ -86,7 +112,7 @@ export const POST: APIRoute = async ({ request }) => {
       category,
       keywords: article.keywords,
       content: article.content,
-      image_url: '',
+      image_url: imageUrl,
       author: authorInfo.author,
       author_crm: authorInfo.crm,
       author_img: authorInfo.img,
@@ -100,7 +126,7 @@ export const POST: APIRoute = async ({ request }) => {
       generated_by_ai: 1,
     });
 
-    console.log(`[auto-generate] ✅ Artigo criado: ID ${id}, slug: ${slug}`);
+    console.log(`[auto-generate] ✅ Artigo criado: ID ${id}, slug: ${slug}, imagem: ${imageUrl ? 'sim' : 'não'}`);
 
     return new Response(JSON.stringify({
       success: true,

@@ -3,6 +3,7 @@
 
 interface Env {
   DB: D1Database;
+  AI: Ai;
   ADMIN_PASSWORD: string;
   ADMIN_JWT_SECRET: string;
   RESEND_API_KEY: string;

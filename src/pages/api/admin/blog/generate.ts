@@ -2,6 +2,7 @@
 import { env } from "cloudflare:workers";
 import type { APIRoute } from 'astro';
 import { generateArticleWithGemini, getAuthorForCategory } from '../../../../lib/blog-ai';
+import { generateCoverImage } from '../../../../lib/blog-image';
 import { createPost, getPostBySlugAdmin } from '../../../../lib/blog-db';
 import { verifyAdminToken, getAdminTokenFromRequest } from '../../../../lib/auth';
 
@@ -50,6 +51,28 @@ export const POST: APIRoute = async ({ request }) => {
 
     const authorInfo = getAuthorForCategory(body.category);
 
+    // Gerar imagem de capa via Cloudflare Workers AI (SDXL)
+    let imageUrl = '';
+    const aiBinding = (cfEnv as unknown as Record<string, Ai>)['AI'];
+    if (aiBinding) {
+      try {
+        const imageBuffer = await generateCoverImage(cfEnv, body.category, article.title);
+        if (imageBuffer) {
+          const kv = (cfEnv as unknown as Record<string, KVNamespace>)['SESSION'];
+          if (kv) {
+            const kvKey = `blog-img:${article.slug}`;
+            await kv.put(kvKey, imageBuffer, {
+              expirationTtl: 60 * 60 * 24 * 365,
+              metadata: { contentType: 'image/png', slug: article.slug },
+            });
+            imageUrl = `/api/blog/image/${encodeURIComponent(article.slug)}`;
+          }
+        }
+      } catch (imgErr) {
+        console.error('[admin/blog/generate] ⚠️ Falha ao gerar imagem:', imgErr);
+      }
+    }
+
     // Salvar no banco
     const { id } = await createPost(cfEnv.DB, {
       slug: article.slug,
@@ -58,7 +81,7 @@ export const POST: APIRoute = async ({ request }) => {
       category: body.category,
       keywords: article.keywords,
       content: article.content,
-      image_url: '',
+      image_url: imageUrl,
       author: authorInfo.author,
       author_crm: authorInfo.crm,
       author_img: authorInfo.img,

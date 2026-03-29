@@ -1,16 +1,31 @@
 {
-  "compatibility_date": "2026-03-17",
-  "compatibility_flags": ["nodejs_compat"],
-  "name": "drudi-almeida-astro",
-  "observability": {
-    "enabled": true
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "drudi-agendamentos",
-      "database_id": "ca7f3a2d-83a5-47a9-83d0-c6025038652a",
-      "migrations_dir": "./migrations"
-    }
-  ]
+	"compatibility_date": "2026-03-17",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"name": "drudi-almeida-astro",
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "drudi-agendamentos",
+			"database_id": "ca7f3a2d-83a5-47a9-83d0-c6025038652a",
+			"migrations_dir": "./migrations"
+		}
+	],
+	"ai": {
+		"binding": "AI"
+	},
+	"routes": [
+		{
+			"pattern": "institutodrudiealmeida.com.br",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.institutodrudiealmeida.com.br",
+			"custom_domain": true
+		}
+	]
 }

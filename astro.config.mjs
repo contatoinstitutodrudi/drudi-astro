@@ -9,17 +9,27 @@ import react from '@astrojs/react';
 export default defineConfig({
   output: 'static',
   adapter: cloudflare({
-    platformProxy: { enabled: true },
+    platformProxy: { enabled: false },
     imageService: 'passthrough',
     sessions: false,
   }),
   site: 'https://institutodrudiealmeida.com.br',
   integrations: [
     sitemap({
-      // Excluir landing pages (/lp/) do sitemap — evitar conteúdo duplicado
-      filter: (page) => !page.includes('/lp/') && !page.includes('/admin/'),
-      // Definir prioridades e frequência de atualização
-      customPages: [],
+      // Excluir landing pages, admin, cancelar e 404 do sitemap
+      filter: (page) => !page.includes('/lp/') && !page.includes('/admin/') && !page.includes('/cancelar') && !page.includes('/404'),
+      // Posts de blog dinâmicos (prerender=false não são detectados automaticamente)
+      customPages: [
+        'https://institutodrudiealmeida.com.br/blog/injecao-antivegf-o-que-e',
+        'https://institutodrudiealmeida.com.br/blog/crosslinking-ceratocone-sp',
+        'https://institutodrudiealmeida.com.br/blog/lente-intraocular-monofocal-multifocal-trifocal',
+        'https://institutodrudiealmeida.com.br/blog/cirurgia-catarata-convenio',
+        'https://institutodrudiealmeida.com.br/blog/cirurgia-catarata-sp-preco',
+        'https://institutodrudiealmeida.com.br/blog/glaucoma-tem-cura',
+        'https://institutodrudiealmeida.com.br/blog/tratamento-glaucoma-sp',
+        'https://institutodrudiealmeida.com.br/blog/cirurgia-estrabismo-adultos',
+        'https://institutodrudiealmeida.com.br/blog/cirurgia-estrabismo-sp',
+      ],
       serialize(item) {
         // Home e institutos têm prioridade máxima
         if (item.url === 'https://institutodrudiealmeida.com.br/') {

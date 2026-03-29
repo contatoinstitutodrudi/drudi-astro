@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo — Botão Agendar Online | Drudi e Almeida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2a44;
+      --navy-dark: #162036;
+      --gold: #c9a961;
+      --gold-light: #d4b978;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0ede8;
+      color: var(--navy);
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      background: var(--navy);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .page-header p {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.65);
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 28px;
+    }
+
+    /* ── Variação cards ── */
+    .variation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .var-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(30,42,68,0.10);
+    }
+
+    .var-card-label {
+      background: var(--navy);
+      color: var(--cream);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+    }
+
+    .var-card-preview {
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .var-card-preview.dark-bg {
+      background: var(--navy);
+    }
+
+    .var-card-preview.light-bg {
+      background: var(--cream);
+    }
+
+    .var-card-preview.white-bg {
+      background: #ffffff;
+    }
+
+    .var-card-desc {
+      padding: 16px 20px;
+      border-top: 1px solid #f0ede8;
+    }
+    .var-card-desc p {
+      font-size: 0.8rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .var-card-desc strong {
+      color: var(--navy);
+    }
+
+    /* ── Context preview ── */
+    .context-section {
+      margin-bottom: 56px;
+    }
+
+    .context-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      padding: 28px 32px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .context-row.dark { background: var(--navy); }
+    .context-row.light { background: var(--cream); }
+    .context-row.white { background: #ffffff; border: 1px solid #e8e4de; }
+
+    .context-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      color: #888;
+    }
+
+    /* ── BOTÕES — VARIAÇÃO A: Navy Sólido ── */
+    .btn-ao-a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(30,42,68,0.25);
+    }
+    .btn-ao-a:hover { background: var(--navy-dark); box-shadow: 0 4px 16px rgba(30,42,68,0.35); }
+
+    .btn-ao-a-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-a-sm:hover { background: var(--navy-dark); }
+
+    /* Outline para fundo escuro */
+    .btn-ao-a-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-a-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+
+    /* ── BOTÕES — VARIAÇÃO B: Dourado ── */
+    .btn-ao-b {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(201,169,97,0.30);
+    }
+    .btn-ao-b:hover { background: var(--gold-light); box-shadow: 0 4px 16px rgba(201,169,97,0.45); }
+
+    .btn-ao-b-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-b-sm:hover { background: var(--gold-light); }
+
+    /* Outline dourado para fundo escuro */
+    .btn-ao-b-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(201,169,97,0.55);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-b-outline:hover { background: rgba(201,169,97,0.10); border-color: var(--gold); }
+
+    /* ── BOTÕES — VARIAÇÃO C: Navy Outline (elegante) ── */
+    .btn-ao-c {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: 2px solid var(--navy);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-c:hover { background: var(--navy); color: var(--white); }
+
+    .btn-ao-c-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 2px solid var(--navy);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-c-sm:hover { background: var(--navy); color: var(--white); }
+
+    /* Outline para fundo escuro */
+    .btn-ao-c-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: 2px solid rgba(245,240,232,0.45);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+    .btn-ao-c-outline:hover { background: rgba(245,240,232,0.10); border-color: var(--cream); }
+
+    /* ── SVG ícone calendário ── */
+    .icon-cal { width: 16px; height: 16px; flex-shrink: 0; }
+    .icon-cal-sm { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── Pair preview (WA + Agendar Online) ── */
+    .pair-section {
+      margin-bottom: 56px;
+    }
+    .pair-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      padding: 28px 32px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+    .pair-row.dark { background: var(--navy); }
+    .pair-row.light { background: var(--cream); }
+    .pair-row.white { background: #ffffff; border: 1px solid #e8e4de; }
+
+    /* WA button (já aprovado) */
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.35);
+    }
+    .btn-wa:hover { background: #1ebe5d; }
+
+    .btn-wa-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-wa-sm:hover { background: #1ebe5d; }
+
+    /* ── Recomendação ── */
+    .recommendation {
+      background: white;
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 8px rgba(30,42,68,0.08);
+    }
+    .recommendation h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .recommendation p {
+      font-size: 0.82rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--cream);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    .badge.gold { background: var(--gold); color: var(--navy); }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 48px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Botão "Agendar Online" — Modelos</h1>
+    <p>Drudi e Almeida Oftalmologia · Escolha o padrão visual preferido</p>
+  </div>
+
+  <div class="container">
+
+    <!-- ── VARIAÇÕES INDIVIDUAIS ── -->
+    <p class="section-title">3 Variações Propostas</p>
+    <p class="section-sub">Cada variação é mostrada em 3 tamanhos: padrão (CTA principal), pequeno (header), e outline (sobre fundo escuro)</p>
+
+    <div class="variation-grid">
+
+      <!-- VARIAÇÃO A: Navy Sólido -->
+      <div class="var-card">
+        <div class="var-card-label">Variação A — Navy Sólido</div>
+        <div class="var-card-preview white-bg">
+          <a href="#" class="btn-ao-a" onclick="return false">
+            <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+          <a href="#" class="btn-ao-a-sm" onclick="return false">
+            <svg class="icon-cal-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+        </div>
+        <div class="var-card-preview dark-bg">
+          <a href="#" class="btn-ao-a-outline" onclick="return false">
+            <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+        </div>
+        <div class="var-card-desc">
+          <p><strong>Navy sólido</strong> com texto branco. Clássico, sóbrio e profissional. Hierarquia clara: WA verde (primário) + Navy (secundário). Funciona em qualquer fundo.</p>
+        </div>
+      </div>
+
+      <!-- VARIAÇÃO B: Dourado -->
+      <div class="var-card">
+        <div class="var-card-label">Variação B — Dourado da Marca</div>
+        <div class="var-card-preview white-bg">
+          <a href="#" class="btn-ao-b" onclick="return false">
+            <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+          <a href="#" class="btn-ao-b-sm" onclick="return false">
+            <svg class="icon-cal-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+        </div>
+        <div class="var-card-preview dark-bg">
+          <a href="#" class="btn-ao-b-outline" onclick="return false">
+            <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+        </div>
+        <div class="var-card-desc">
+          <p><strong>Dourado da marca</strong> com texto navy. Máxima coerência com a identidade visual. Transmite exclusividade. Sobre fundo escuro usa outline dourado.</p>
+        </div>
+      </div>
+
+      <!-- VARIAÇÃO C: Outline Navy -->
+      <div class="var-card">
+        <div class="var-card-label">Variação C — Outline Elegante</div>
+        <div class="var-card-preview white-bg">
+          <a href="#" class="btn-ao-c" onclick="return false">
+            <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+          <a href="#" class="btn-ao-c-sm" onclick="return false">
+            <svg class="icon-cal-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+        </div>
+        <div class="var-card-preview dark-bg">
+          <a href="#" class="btn-ao-c-outline" onclick="return false">
+            <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Agendar Online
+          </a>
+        </div>
+        <div class="var-card-desc">
+          <p><strong>Outline navy</strong> transparente. Hierarquia visual máxima: WA verde chama mais atenção (primário), Agendar Online fica discreto (secundário). Hover preenche de navy.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- ── PAR WA + AGENDAR ONLINE ── -->
+    <p class="section-title">Como ficam os dois botões juntos</p>
+    <p class="section-sub">O botão WhatsApp (já aprovado) ao lado do Agendar Online — nos 3 contextos de fundo do site</p>
+
+    <div class="pair-section">
+
+      <!-- Fundo escuro (hero) -->
+      <div class="context-label">Fundo escuro — Hero, seções navy</div>
+      <div class="pair-row dark">
+        <a href="#" class="btn-wa" onclick="return false">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+        <span style="color:rgba(245,240,232,0.4);font-size:0.8rem">+</span>
+        <span style="color:rgba(245,240,232,0.5);font-size:0.75rem">Variação A:</span>
+        <a href="#" class="btn-ao-a-outline" onclick="return false">
+          <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+        <span style="color:rgba(245,240,232,0.5);font-size:0.75rem">Variação B:</span>
+        <a href="#" class="btn-ao-b-outline" onclick="return false">
+          <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+        <span style="color:rgba(245,240,232,0.5);font-size:0.75rem">Variação C:</span>
+        <a href="#" class="btn-ao-c-outline" onclick="return false">
+          <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+      </div>
+
+      <!-- Fundo creme (seções) -->
+      <div class="context-label" style="margin-top:20px">Fundo creme — Seções de conteúdo</div>
+      <div class="pair-row light">
+        <a href="#" class="btn-wa" onclick="return false">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+        <span style="color:#999;font-size:0.75rem">Variação A:</span>
+        <a href="#" class="btn-ao-a" onclick="return false">
+          <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+        <span style="color:#999;font-size:0.75rem">Variação B:</span>
+        <a href="#" class="btn-ao-b" onclick="return false">
+          <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+        <span style="color:#999;font-size:0.75rem">Variação C:</span>
+        <a href="#" class="btn-ao-c" onclick="return false">
+          <svg class="icon-cal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+      </div>
+
+      <!-- Header (pequeno) -->
+      <div class="context-label" style="margin-top:20px">Header — Botão pequeno no topo</div>
+      <div class="pair-row" style="background:#1e2a44;gap:8px;">
+        <a href="#" class="btn-wa-sm" onclick="return false">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <span style="color:rgba(245,240,232,0.4);font-size:0.75rem">A:</span>
+        <a href="#" class="btn-ao-a-sm" onclick="return false">
+          <svg class="icon-cal-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+        <span style="color:rgba(245,240,232,0.4);font-size:0.75rem">B:</span>
+        <a href="#" class="btn-ao-b-sm" onclick="return false">
+          <svg class="icon-cal-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+        <span style="color:rgba(245,240,232,0.4);font-size:0.75rem">C:</span>
+        <a href="#" class="btn-ao-c-sm" style="border-color:rgba(245,240,232,0.45);color:var(--cream)" onclick="return false">
+          <svg class="icon-cal-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Agendar Online
+        </a>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- ── RECOMENDAÇÃO ── -->
+    <div class="recommendation">
+      <h3>Recomendação técnica</h3>
+      <p>
+        <span class="badge gold">Variação B</span> é a escolha mais coerente com a identidade visual da marca — o dourado já é usado no logo, nos títulos e nos destaques. Cria uma hierarquia clara: <strong>verde WhatsApp = contato imediato</strong>, <strong>dourado = agendamento formal</strong>. Funciona bem em todos os contextos.<br><br>
+        <span class="badge">Variação A</span> (navy sólido) é a opção mais conservadora e segura — navy é a cor principal da marca e garante máximo contraste. Hierarquia: verde (urgente) vs navy (formal).<br><br>
+        <span class="badge">Variação C</span> (outline) cria a hierarquia mais forte entre os dois botões — o WA verde domina visualmente, o Agendar Online fica como opção secundária elegante.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

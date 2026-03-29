@@ -20,16 +20,20 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "Physician",
   "name": name,
-  "image": `https://institutodrudiealmeida.com.br${image}`,
+  "image": {
+    "@type": "ImageObject",
+    "url": `https://institutodrudiealmeida.com.br${image}`
+  },
   "url": `https://institutodrudiealmeida.com.br${url}`,
+  "@id": `https://institutodrudiealmeida.com.br${url}`,
   "description": description,
   "jobTitle": jobTitle,
   "identifier": [
     { "@type": "PropertyValue", "name": "CRM", "value": crm },
     { "@type": "PropertyValue", "name": "RQE", "value": rqe }
   ],
-  "medicalSpecialty": specialties.map(s => ({ "@type": "MedicalSpecialty", "name": s })),
-  "telephone": "+55-11-5430-2421",
+  "medicalSpecialty": specialties,
+  "telephone": "+551154302421",
   "memberOf": {
     "@type": "MedicalOrganization",
     "name": "Conselho Brasileiro de Oftalmologia"
@@ -37,7 +41,7 @@ const schema = {
   "worksFor": {
     "@type": "MedicalOrganization",
     "name": "Drudi e Almeida Clínicas Oftalmológicas",
-    "url": "https://institutodrudiealmeida.com.br"
+    "url": "https://institutodrudiealmeida.com.br/"
   }
 };
 ---

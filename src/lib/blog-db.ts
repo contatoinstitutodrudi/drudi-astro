@@ -46,6 +46,8 @@ export interface BlogPostInput {
   meta_description?: string;
   schema_faq?: Array<{ q: string; a: string }>;
   generated_by_ai?: number;
+  published_at?: number; // Unix timestamp em segundos
+  cover_image_url?: string; // alias para image_url
 }
 
 // ─── Listar posts publicados (para o site público) ───────────────────────────
@@ -117,7 +119,10 @@ export async function listAllPosts(
 // ─── Criar post ──────────────────────────────────────────────────────────────
 export async function createPost(db: D1Database, input: BlogPostInput): Promise<{ id: number }> {
   const now = Math.floor(Date.now() / 1000);
-  const publishedAt = input.status === 'published' ? now : null;
+  // Aceitar published_at explícito (para artigos gerados com data retroativa)
+  const publishedAt = input.published_at ?? (input.status === 'published' ? now : null);
+  // Aceitar cover_image_url como alias para image_url
+  const imageUrl = input.cover_image_url ?? input.image_url ?? '';
 
   const result = await db.prepare(`
     INSERT INTO blog_posts (
@@ -133,7 +138,7 @@ export async function createPost(db: D1Database, input: BlogPostInput): Promise<
     input.category,
     input.keywords,
     input.content,
-    input.image_url ?? '',
+    imageUrl,
     input.author ?? 'Dr. Fernando Macei Drudi',
     input.author_crm ?? 'CRM-SP 139.300',
     input.author_img ?? '/images/dr-fernando-800w.webp',
@@ -179,6 +184,7 @@ export async function updatePost(
     meta_title: input.meta_title,
     meta_description: input.meta_description,
     generated_by_ai: input.generated_by_ai,
+    image_url: input.cover_image_url ?? input.image_url,
   };
 
   for (const [key, val] of Object.entries(map)) {
@@ -197,8 +203,12 @@ export async function updatePost(
     params.push(JSON.stringify(input.schema_faq));
   }
 
-  // Se publicando, definir published_at
-  if (input.status === 'published') {
+  // Se published_at for fornecido explicitamente, usar o valor informado
+  if (input.published_at !== undefined) {
+    fields.push(`published_at = ?`);
+    params.push(input.published_at);
+  } else if (input.status === 'published') {
+    // Se publicando sem data explícita, usar a data atual apenas se ainda não tiver
     fields.push(`published_at = COALESCE(published_at, ?)`);
     params.push(now);
   }
@@ -283,4 +293,16 @@ export async function updateAiQueueStatus(
   await db.prepare(
     `UPDATE blog_ai_queue SET status = ?, post_id = ?, error_msg = ?, processed_at = ? WHERE id = ?`
   ).bind(status, postId ?? null, errorMsg ?? null, Math.floor(Date.now() / 1000), id).run();
+}
+
+// ─── Atualizar apenas a imagem de capa de um post ────────────────────────────
+export async function updatePostImage(
+  db: D1Database,
+  slug: string,
+  imageUrl: string
+): Promise<void> {
+  await db
+    .prepare('UPDATE blog_posts SET image_url = ?, updated_at = ? WHERE slug = ?')
+    .bind(imageUrl, Math.floor(Date.now() / 1000), slug)
+    .run();
 }

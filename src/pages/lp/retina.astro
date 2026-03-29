@@ -2,9 +2,11 @@
 // LP Retina — Réplica fiel de lp-retina.institutodrudiealmeida.com.br
 const WA_LINK = "https://wa.me/5511916544653";
 const WA_AGENDAR = `${WA_LINK}?text=Olá! Gostaria de agendar uma avaliação de retina.`;
+const WA_PRECO = `https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma avaliação de retina.`;
 const WA_CONVENIO = `${WA_LINK}?text=Olá! Gostaria de verificar se meu convênio cobre o tratamento de retina.`;
 const WA_DUVIDA = `${WA_LINK}?text=Olá! Tenho uma dúvida sobre doenças da retina.`;
 const PHONE = "tel:+5511916544653";
+const PHONE_DISPLAY = "(11) 91654-4653";
 
 const unidades = [
   { nome: "Guarulhos Centro", endereco: "R. Sete de Setembro, 375", maps: "https://maps.google.com/?q=Drudi+e+Almeida+Guarulhos" },
@@ -29,95 +31,139 @@ const unidades = [
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #1a2e44;
-      --navy-light: #243b55;
+      --navy: #2c3e50;
+      --navy-deep: #1a2637;
       --gold: #c9a961;
       --gold-light: #d4b97a;
-      --cream: #f5f0e8;
-      --cream-dark: #ede8df;
+      --cream: #fafaf8;
+      --cream-dark: #f2f2f0;
       --white: #ffffff;
       --gray: #6b7280;
-      --gray-light: #f3f4f6;
       --green: #16a34a;
       --red: #dc2626;
     }
-    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.6; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.6;       padding-bottom: 64px;
+    }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; height: auto; }
 
-    .announcement-bar {
-      background: var(--navy);
+    .ann-bar {
+      background: var(--navy-deep);
       color: var(--cream);
       text-align: center;
-      padding: 10px 16px;
+      padding: 9px 16px;
       font-size: 13px;
       font-weight: 500;
+      letter-spacing: 0.01em;
     }
-    .announcement-bar strong { color: var(--gold); }
+    .ann-bar strong { color: var(--gold); }
 
     .lp-header {
       background: var(--white);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      padding: 14px 24px;
+      border-bottom: 1px solid rgba(44,62,80,0.1);
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      z-index: 200;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
     }
-    .lp-header img { height: 40px; }
-    .header-phone {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--navy);
-      color: var(--white);
-      padding: 8px 18px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
+    .lp-header img { height: 42px; }
+    .header-cta { display: flex; align-items: center; gap: 12px; }
+    .btn-header-phone {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--navy); color: var(--white);
+      padding: 9px 18px; border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+    }
+    .btn-header-wa {
+      display: flex; align-items: center; gap: 7px;
+      background: #25d366; color: var(--white);
+      padding: 9px 18px; border-radius: 6px;
+      font-size: 13px; font-weight: 700;
     }
 
-    .hero { background: var(--cream); padding: 48px 24px 56px; }
-    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/images/starry-night-hero-v3-JqwHFQEiozpvaSGrn5zcqj.webp');
+      background-size: cover;
+      background-position: center top;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, rgba(26,38,55,0.93) 0%, rgba(26,38,55,0.78) 55%, rgba(26,38,55,0.48) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 32px 60px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--navy);
+      background: rgba(201,169,97,0.18);
+      border: 1px solid rgba(201,169,97,0.4);
       color: var(--gold);
       padding: 6px 14px;
       border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      margin-bottom: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-size: clamp(2.2rem, 4.2vw, 3.5rem);
       font-weight: 500;
       line-height: 1.15;
-      color: var(--navy);
-      margin-bottom: 20px;
+      color: var(--cream);
+      margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
     }
     .hero h1 em { color: var(--gold); font-style: italic; }
-    .hero-desc { font-size: 15px; color: #4b5563; margin-bottom: 24px; line-height: 1.7; }
-    .hero-checks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .hero-check {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--navy);
-      color: var(--white);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
+    .hero-desc {
+      font-size: 15px;
+      color: rgba(245,240,232,0.80);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      max-width: 520px;
     }
+    .hero-checks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0; }
+    .hero-check {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--navy); color: var(--white);
+      padding: 7px 14px; border-radius: 20px;
+      font-size: 12px; font-weight: 600;
+      border: 1px solid rgba(201,169,97,0.2);
+    }
+    .hero-check .check-icon { color: var(--gold); font-weight: 700; }
 
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 0 20px;
+    }
     .form-card {
       background: var(--white);
       border-radius: 12px;
@@ -138,7 +184,7 @@ const unidades = [
       outline: none;
     }
     .form-card select:focus { border-color: var(--gold); }
-    .btn-wa {
+    .btn-wa-primary {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -153,7 +199,7 @@ const unidades = [
       margin-bottom: 10px;
       transition: background 0.2s;
     }
-    .btn-wa:hover { background: #1fb855; }
+    .btn-wa-primary:hover { background: #1fb855; }
     .btn-phone {
       display: flex;
       align-items: center;
@@ -388,7 +434,7 @@ const unidades = [
     .lp-footer a { color: rgba(255,255,255,0.6); text-decoration: underline; }
 
     .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; grid-template-columns: 1fr auto; z-index: 200; box-shadow: 0 -4px 16px rgba(0,0,0,0.15); }
-    .sticky-cta .btn-wa { border-radius: 0; margin: 0; font-size: 14px; padding: 14px; }
+    .sticky-cta .btn-wa-primary { border-radius: 0; margin: 0; font-size: 14px; padding: 14px; }
     .sticky-cta .btn-phone { border-radius: 0; width: auto; padding: 14px 20px; }
 
     @media (max-width: 900px) {
@@ -402,6 +448,22 @@ const unidades = [
       .media-grid { grid-template-columns: 1fr 1fr; }
       .addresses-grid { grid-template-columns: 1fr 1fr; }
       .sticky-cta { display: grid; }
+          .btn-header-wa { display: none; }
+      .form-card { max-width: 480px; margin: 0 auto; }
+      .lp-header { padding: 12px 20px; }
+    }
+    @media (max-width: 860px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .form-card { max-width: 480px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .addresses-grid { grid-template-columns: 1fr 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .sticky-cta { display: grid; }
+      .lp-header { padding: 12px 20px; }
+      .btn-header-wa { display: none; }
+      body { padding-bottom: 60px; }
     }
     @media (max-width: 600px) {
       .treatments-grid { grid-template-columns: 1fr; }
@@ -412,83 +474,129 @@ const unidades = [
       .specialist-card { flex-direction: column; }
       .specialist-img { width: 100%; height: 200px; }
       .units-box ul { grid-template-columns: 1fr; }
+          .btn-header-phone { display: none; }
+      .lp-header { padding: 10px 16px; }
+      .btn-header-wa { font-size: 11px; padding: 7px 12px; }
     }
-  </style>
+  
+    /* Form card title/subtitle */
+    .form-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+    .form-card-sub {
+      font-size: 13px;
+      color: #6b7280;
+      margin: 0 0 16px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: .03em;
+    }
+    .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--white);
+      appearance: auto;
+      cursor: pointer;
+      outline: none;
+      margin-bottom: 12px;
+    }
+    .form-select:focus { border-color: var(--gold); }
+    .btn-phone-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 14px;
+      transition: background .2s;
+    }
+    .btn-phone-main:hover { background: #1a2d3d; }
+    </style>
 </head>
 <body>
 
   <!-- Announcement Bar -->
-  <div class="announcement-bar">
-    Avaliação especializada em doenças da retina — <strong>Agende sua consulta</strong>
+  <div class="ann-bar">
+    Avaliação de retina com tecnologia de ponta — <strong>vagas limitadas esta semana</strong>
   </div>
 
   <!-- Header -->
   <header class="lp-header">
-    <a href="/"><img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" /></a>
-    <a href={PHONE} class="header-phone">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-      (11) 91654-4653
+    <a href="/">
+      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" />
     </a>
+    <div class="header-cta">
+      <a href={WA_AGENDAR} target="_blank" rel="noopener noreferrer" class="btn-header-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L0 24l6.335-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.378l-.36-.214-3.724.882.935-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
+        Agendar Avaliação
+      </a>
+      <a href={PHONE} class="btn-header-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        {PHONE_DISPLAY}
+      </a>
+    </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-inner">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
       <div>
-        <div class="hero-badge">Instituto da Retina — Drudi e Almeida</div>
-        <h1>Proteja sua visão com quem é <em>especialista em retina</em></h1>
-        <p class="hero-desc">Diagnóstico avançado e tratamentos de ponta para doenças da retina: DMRI, retinopatia diabética, descolamento de retina e mais. Equipe especializada em <strong>5 unidades em SP</strong>.</p>
+        <div class="hero-badge">· Instituto da Retina — Drudi e Almeida</div>
+        <h1>A retina não dói — mas quando <em>falha</em>, a visão some para sempre</h1>
+        <p class="hero-desc">As doenças da retina — DMRI, retinopatia diabética, descolamento — são <strong style="color:var(--cream)">silenciosas e irreversíveis</strong> quando não tratadas a tempo. Diagnóstico precoce é a única forma de preservar sua visão.</p>
         <div class="hero-checks">
-          <span class="hero-check">✓ Injeção Intravítrea</span>
-          <span class="hero-check">✓ Vitrectomia</span>
-          <span class="hero-check">✓ Laser de Retina</span>
-          <span class="hero-check">✓ Aceita Convênios</span>
+          <span class="hero-check"><span class="check-icon">✓</span> OCT de Alta Resolução</span>
+          <span class="hero-check"><span class="check-icon">✓</span> Injeção Intravítrea</span>
+          <span class="hero-check"><span class="check-icon">✓</span> Cirurgia de Retina</span>
+          <span class="hero-check"><span class="check-icon">✓</span> Aceita Convênios</span>
         </div>
 
-        <div class="form-card">
-          <select>
-            <option value="">Selecione a unidade mais próxima</option>
-            {unidades.map(u => <option value={u.nome}>{u.nome}</option>)}
-          </select>
-          <a href={WA_AGENDAR} target="_blank" class="btn-wa">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Agendar Avaliação
-          </a>
-          <a href={PHONE} class="btn-phone">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-            (11) 91654-4653
-          </a>
-          <div class="google-rating">
-            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-            <strong>4.9</strong>
-            <span class="stars">★★★★★</span>
-            <span>847+ avaliações</span>
-          </div>
-        </div>
       </div>
 
-      <div>
-        <div class="testimonial-card">
-          <span class="stars">★★★★★</span>
-          <blockquote>"Faço acompanhamento de retina com o Dr. Fernando há 3 anos. Profissional excepcional, explica tudo com clareza e a equipe é muito acolhedora. Minha visão se mantém estável graças ao tratamento."</blockquote>
-          <div class="testimonial-author">
-            <div class="author-avatar">JM</div>
-            <div>
-              <div class="author-name">José Marcos P.</div>
-              <div class="author-detail">Acompanhamento de Retina — Santana</div>
-              <div class="verified">✓ Verificado no Google</div>
-            </div>
-          </div>
-        </div>
-        <div class="units-box">
-          <h4>5 UNIDADES EM SP</h4>
-          <ul>
-            <li>Guarulhos</li>
-            <li>Santana</li>
-            <li>Tatuapé</li>
-            <li>Lapa</li>
-            <li>São Miguel</li>
-          </ul>
+      <!-- Form Card -->
+      <div class="form-card">
+        <p class="form-card-title">Agende sua avaliação</p>
+        <p class="form-card-sub">Sem compromisso · Resposta em até 2h</p>
+        <div class="gold-divider"></div>
+        <label class="form-label" for="unitSelect">Sua unidade mais próxima</label>
+        <select id="unitSelect" class="form-select">
+          <option value="">Selecione a unidade</option>
+          {unidades.map(u => <option value={u.nome}>{u.nome}</option>)}
+        </select>
+        <a href={WA_AGENDAR} target="_blank" rel="noopener noreferrer" class="btn-wa-primary" id="btnWa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L0 24l6.335-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.378l-.36-.214-3.724.882.935-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+        <a href={PHONE} class="btn-phone-main">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          {PHONE_DISPLAY}
+        </a>
+        <div class="google-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#4285F4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span><strong style="color:var(--navy)">4.9</strong> · 847+ avaliações</span>
         </div>
       </div>
     </div>
@@ -530,11 +638,11 @@ const unidades = [
           <div class="symptom-desc">Lampejos repentinos no campo visual</div>
         </div>
         <div class="symptom-card urgent">
-          <div class="symptom-title">⚠ Perda súbita de visão</div>
+          <div class="symptom-title">Perda súbita de visão</div>
           <div class="symptom-desc">Escurecimento parcial ou total — emergência</div>
         </div>
         <div class="symptom-card urgent">
-          <div class="symptom-title">⚠ "Cortina" no campo visual</div>
+          <div class="symptom-title">"Cortina" no campo visual</div>
           <div class="symptom-desc">Sombra que cobre parte da visão lateral</div>
         </div>
         <div class="symptom-card">
@@ -562,37 +670,37 @@ const unidades = [
 
       <div class="treatments-grid">
         <div class="treatment-card">
-          <div class="treatment-icon">💉</div>
+          <div class="treatment-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2l4 4-4 4M14 6l-4 4-2-2-4 4 2 2-2 2 4 4 2-2 2 2 4-4-2-2 4-4-4-4z"/></svg></div>
           <h3>Injeção Intravítrea</h3>
           <p>Aplicação de medicamentos anti-VEGF diretamente no interior do olho para bloquear o crescimento de vasos anormais e reduzir o edema na retina. Procedimento rápido, com anestesia local (colírio), realizado em ambiente ambulatorial.</p>
           <div class="treatment-tag">Indicações: DMRI úmida, edema macular diabético, oclusão vascular da retina, edema macular cistoide.</div>
         </div>
         <div class="treatment-card">
-          <div class="treatment-icon">🔬</div>
+          <div class="treatment-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
           <h3>Vitrectomia</h3>
           <p>Cirurgia minimamente invasiva para remoção do vítreo e tratamento direto da retina. Realizada com microincisões e instrumentos de alta precisão, com anestesia local e sedação. Permite tratar as condições mais complexas da retina.</p>
           <div class="treatment-tag">Indicações: Descolamento de retina, buraco macular, membrana epirretiniana, hemorragia vítrea.</div>
         </div>
         <div class="treatment-card">
-          <div class="treatment-icon">⚡</div>
+          <div class="treatment-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg></div>
           <h3>Fotocoagulação a Laser</h3>
           <p>Aplicação de laser na retina para selar rasgos, tratar vasos anormais e prevenir o descolamento. Procedimento ambulatorial com anestesia tópica. Fundamental no controle da retinopatia diabética.</p>
           <div class="treatment-tag">Indicações: Retinopatia diabética proliferativa, rasgos na retina, prevenção de descolamento.</div>
         </div>
         <div class="treatment-card">
-          <div class="treatment-icon">🌊</div>
+          <div class="treatment-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>Terapia Fotodinâmica (PDT)</h3>
           <p>Tratamento que combina um medicamento fotossensível (verteporfina) com laser de baixa intensidade para destruir seletivamente vasos anormais sem danificar o tecido saudável da retina.</p>
           <div class="treatment-tag">Indicações: Coriorretinopatia serosa central crônica.</div>
         </div>
         <div class="treatment-card">
-          <div class="treatment-icon">🫧</div>
+          <div class="treatment-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
           <h3>Retinopexia Pneumática</h3>
           <p>Procedimento minimamente invasivo que utiliza uma bolha de gás injetada no olho para reposicionar a retina descolada. Combinado com crioterapia ou laser, permite a recuperação sem necessidade de cirurgia aberta em casos selecionados.</p>
           <div class="treatment-tag">Indicações: Descolamento de retina simples, com rasgo único na porção superior.</div>
         </div>
         <div class="treatment-card">
-          <div class="treatment-icon">🔭</div>
+          <div class="treatment-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <h3>Diagnóstico Avançado</h3>
           <p>Equipamentos de última geração para diagnóstico preciso: OCT, angiofluoresceinografia, retinografia e mapeamento de retina. Exames rápidos, não invasivos e fundamentais para o planejamento do tratamento.</p>
           <div class="treatment-tag">Exames: OCT, angiofluoresceinografia, retinografia, mapeamento de retina, campo visual.</div>
@@ -750,44 +858,55 @@ const unidades = [
   </section>
 
   <!-- Na Mídia -->
-  <section class="section" style="background: var(--cream-dark);">
-    <div class="section-inner">
-      <div class="section-label">NA MÍDIA</div>
-      <h2 class="section-title">Referência em grandes veículos nacionais</h2>
-      <div class="gold-line"></div>
-
-      <div class="media-grid">
-        <div class="media-card">
-          <div class="media-thumb">
-            <img src="/images/midia-cnn.webp" alt="Dr. Fernando Drudi na CNN Brasil" loading="lazy" />
+  <section style="background:var(--white,#fff);padding:64px 32px;border-top:1px solid rgba(0,0,0,.06);">
+    <div style="max-width:1100px;margin:0 auto;text-align:center;">
+      <span style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold,#c9a961);display:block;margin-bottom:10px;">Na Mídia</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:500;color:var(--navy,#2c3e50);margin-bottom:8px;">Presença em grandes <em style="color:var(--gold,#c9a961);font-style:italic;">veículos nacionais</em></h2>
+      <p style="font-size:14px;color:#6b7280;max-width:560px;margin:0 auto 40px;line-height:1.7;">A Dra. Priscilla de Almeida é presença frequente nos principais programas de saúde do Brasil, levando informação oftalmológica de qualidade ao grande público.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:960px;margin:0 auto;">
+        <!-- Card 1: Você Bonita -->
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
+          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
+            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Gazeta</div>
           </div>
-          <div class="media-badge">★ CNN BRASIL — DESTAQUE</div>
-          <h4>Dr. Fernando na CNN Brasil</h4>
-          <p>Participação ao vivo abordando avanços da oftalmologia e doenças da retina.</p>
+          <div style="padding:14px 16px;">
+            <p style="font-size:13px;font-weight:700;color:var(--navy,#2c3e50);margin:0 0 4px;line-height:1.4;">Você Bonita</p>
+            <p style="font-size:12px;color:#6b7280;margin:0;line-height:1.5;">Saúde ocular e cuidados com os olhos</p>
+          </div>
         </div>
-        <div class="media-card">
-          <div class="media-thumb">
-            <img src="/images/midia-ressoar.webp" alt="Dr. Fernando Drudi no Programa Ressoar" loading="lazy" />
+        <!-- Card 2: CNN Brasil -->
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
+          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
+            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">CNN Brasil</div>
           </div>
-          <div class="media-badge">INSTITUTO RESSOAR — RECORD</div>
-          <h4>Dr. Fernando no Programa Ressoar</h4>
-          <p>Projeto humanitário de cirurgias gratuitas para comunidades ribeirinhas da Amazônia.</p>
+          <div style="padding:14px 16px;">
+            <p style="font-size:13px;font-weight:700;color:var(--navy,#2c3e50);margin:0 0 4px;line-height:1.4;">Correspondente Médico</p>
+            <p style="font-size:12px;color:#6b7280;margin:0;line-height:1.5;">Oftalmologia e saúde visual</p>
+          </div>
         </div>
-        <div class="media-card">
-          <div class="media-thumb">
-            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla de Almeida no Você Bonita TV Gazeta" loading="lazy" />
+        <!-- Card 3: Programa Interioriza -->
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
+          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
+            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Cultura</div>
           </div>
-          <div class="media-badge">VOCÊ BONITA — TV GAZETA</div>
-          <h4>Dra. Priscilla no Você Bonita</h4>
-          <p>Orientações sobre saúde ocular, retina e prevenção de perda de visão.</p>
+          <div style="padding:14px 16px;">
+            <p style="font-size:13px;font-weight:700;color:var(--navy,#2c3e50);margin:0 0 4px;line-height:1.4;">Programa Interioriza</p>
+            <p style="font-size:12px;color:#6b7280;margin:0;line-height:1.5;">Democratizando a saúde ocular</p>
+          </div>
         </div>
-        <div class="media-card">
-          <div class="media-thumb">
-            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla e Dr. Fernando no Programa Interioriza" loading="lazy" />
+        <!-- Card 4: Ressoar -->
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
+          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
+            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Ressoar</div>
           </div>
-          <div class="media-badge">PROGRAMA INTERIORIZA</div>
-          <h4>Dra. Priscilla e Dr. Fernando no Interioriza</h4>
-          <p>Saúde ocular e cirurgias levadas ao interior de São Paulo.</p>
+          <div style="padding:14px 16px;">
+            <p style="font-size:13px;font-weight:700;color:var(--navy,#2c3e50);margin:0 0 4px;line-height:1.4;">Ressoar</p>
+            <p style="font-size:12px;color:#6b7280;margin:0;line-height:1.5;">Saúde e bem-estar</p>
+          </div>
         </div>
       </div>
     </div>
@@ -841,7 +960,7 @@ const unidades = [
       <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Agendar Avaliação pelo WhatsApp
     </a>
-    <p class="final-cta-trust">🛡️ Sem compromisso · Resposta em até 2h · Atendimento humanizado</p>
+    <p class="final-cta-trust">Sem compromisso · Resposta em até 2h · Atendimento humanizado</p>
     <p class="final-cta-info">Nossa equipe atende de seg. a sáb. das 8h às 18h. <strong>Agende agora sua avaliação com o retinólogo.</strong></p>
   </section>
 

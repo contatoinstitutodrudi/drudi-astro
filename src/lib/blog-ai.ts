@@ -234,3 +234,69 @@ export function selectNextTopic(
 
   return null; // todos os tópicos usados
 }
+
+// ─── Gerar imagem de capa com Gemini Imagen ──────────────────────────────────
+/**
+ * Gera uma imagem de capa para o artigo usando Gemini Imagen 3.
+ * Retorna a imagem como base64 (PNG) ou null se falhar.
+ */
+export async function generateCoverImageWithGemini(
+  geminiApiKey: string,
+  topic: string,
+  category: string
+): Promise<{ base64: string; mimeType: string } | null> {
+  // Prompt otimizado para imagens médicas oftalmológicas profissionais
+  const categoryVisuals: Record<string, string> = {
+    'Catarata': 'close-up of a human eye with cloudy lens, medical illustration, ophthalmology',
+    'Ceratocone': 'corneal topography map showing keratoconus, medical imaging, eye examination',
+    'Glaucoma': 'optic nerve head with glaucomatous cupping, fundus photography, ophthalmology',
+    'Retina': 'retinal fundus photograph showing blood vessels and optic disc, ophthalmology',
+    'Estrabismo': 'eyes showing strabismus misalignment, pediatric ophthalmology, medical',
+    'Saúde Ocular': 'professional eye examination with slit lamp biomicroscope, ophthalmology clinic',
+  };
+
+  const visual = categoryVisuals[category] ?? categoryVisuals['Saúde Ocular'];
+  const prompt = `Professional medical photography for ophthalmology article about "${topic}". ${visual}. Clean white background, high resolution, clinical setting, Brazilian medical clinic, no text, photorealistic, 16:9 aspect ratio, soft lighting.`;
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${geminiApiKey}`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        instances: [{ prompt }],
+        parameters: {
+          sampleCount: 1,
+          aspectRatio: '16:9',
+          safetyFilterLevel: 'block_only_high',
+          personGeneration: 'allow_adult',
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      const err = await response.text();
+      console.error(`[generateCoverImage] Imagen API error ${response.status}: ${err}`);
+      return null;
+    }
+
+    const data = await response.json() as {
+      predictions?: Array<{ bytesBase64Encoded?: string; mimeType?: string }>;
+    };
+
+    const prediction = data.predictions?.[0];
+    if (!prediction?.bytesBase64Encoded) {
+      console.error('[generateCoverImage] Nenhuma imagem retornada');
+      return null;
+    }
+
+    return {
+      base64: prediction.bytesBase64Encoded,
+      mimeType: prediction.mimeType ?? 'image/png',
+    };
+  } catch (err) {
+    console.error('[generateCoverImage] Erro:', err);
+    return null;
+  }
+}
