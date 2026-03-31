@@ -97,14 +97,30 @@ import { UNITS, HEALTH_PLANS, APPOINTMENT_TYPES, SPECIALTIES, WHATSAPP_LINK } fr
               <span id="badge-unit-name"></span>
             </span>
           </div>
-          <!-- Calendário horizontal -->
+          <!-- Calendário mensal completo -->
           <div class="mb-6">
-            <div class="flex items-center justify-between mb-3">
-              <button id="cal-prev" type="button" class="w-8 h-8 rounded-lg border border-border hover:border-gold/50 flex items-center justify-center text-muted-foreground hover:text-gold transition-all"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>
-              <span id="cal-month" class="font-ui text-sm font-semibold text-navy"></span>
-              <button id="cal-next" type="button" class="w-8 h-8 rounded-lg border border-border hover:border-gold/50 flex items-center justify-center text-muted-foreground hover:text-gold transition-all"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+            <!-- Cabeçalho do mês -->
+            <div class="flex items-center justify-between mb-4">
+              <button id="cal-prev" type="button" class="w-9 h-9 rounded-xl border border-border hover:border-gold/50 flex items-center justify-center text-muted-foreground hover:text-gold transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <span id="cal-month" class="font-display text-lg font-semibold text-navy capitalize"></span>
+              <button id="cal-next" type="button" class="w-9 h-9 rounded-xl border border-border hover:border-gold/50 flex items-center justify-center text-muted-foreground hover:text-gold transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </button>
             </div>
-            <div id="cal-days" class="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory" style="-webkit-overflow-scrolling:touch"></div>
+            <!-- Dias da semana -->
+            <div class="grid grid-cols-7 mb-1">
+              <div class="text-center font-ui text-[11px] font-semibold text-rose-400 py-1.5">Dom</div>
+              <div class="text-center font-ui text-[11px] font-semibold text-muted-foreground py-1.5">Seg</div>
+              <div class="text-center font-ui text-[11px] font-semibold text-muted-foreground py-1.5">Ter</div>
+              <div class="text-center font-ui text-[11px] font-semibold text-muted-foreground py-1.5">Qua</div>
+              <div class="text-center font-ui text-[11px] font-semibold text-muted-foreground py-1.5">Qui</div>
+              <div class="text-center font-ui text-[11px] font-semibold text-muted-foreground py-1.5">Sex</div>
+              <div class="text-center font-ui text-[11px] font-semibold text-muted-foreground py-1.5">Sáb</div>
+            </div>
+            <!-- Grade de dias -->
+            <div id="cal-grid" class="grid grid-cols-7 gap-1.5"></div>
           </div>
           <!-- Horários -->
           <div id="slots-wrap" class="hidden">
@@ -247,12 +263,15 @@ import { UNITS, HEALTH_PLANS, APPOINTMENT_TYPES, SPECIALTIES, WHATSAPP_LINK } fr
 <style>
   .step-panel{animation:fadeUp .4s ease-out}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-  #cal-days::-webkit-scrollbar{height:4px}
-  #cal-days::-webkit-scrollbar-thumb{background:#c9a961;border-radius:4px}
-  .day-card{min-width:68px;scroll-snap-align:start;transition:all .2s}
-  .day-card:not(.off):hover{border-color:rgba(201,169,97,.5);box-shadow:0 4px 12px rgba(201,169,97,.15)}
-  .day-card.sel{border-color:#c9a961;background:linear-gradient(135deg,rgba(201,169,97,.12),rgba(201,169,97,.04));box-shadow:0 4px 16px rgba(201,169,97,.2)}
-  .day-card.off{opacity:.35;cursor:not-allowed}
+  /* Calendário mensal */
+  .cal-day{min-height:40px;border:2px solid transparent}
+  .cal-day-avail{background:#fff;border-color:rgba(0,0,0,.08);color:#2c3e50;cursor:pointer}
+  .cal-day-avail:hover{border-color:rgba(201,169,97,.6);background:rgba(201,169,97,.06);box-shadow:0 2px 8px rgba(201,169,97,.15);transform:scale(1.05)}
+  .cal-day-today{background:#fff;border-color:#c9a961;color:#2c3e50;cursor:pointer}
+  .cal-day-today:hover{background:rgba(201,169,97,.08);transform:scale(1.05)}
+  .cal-day-sel{background:#c9a961;border-color:#c9a961;color:#2c3e50;box-shadow:0 4px 12px rgba(201,169,97,.35);transform:scale(1.08)}
+  .cal-day-sel span{font-weight:800}
+  .cal-day-off{background:transparent;border-color:transparent;color:#ccc;cursor:not-allowed;opacity:.4}
   .slot-btn{transition:all .2s}
   .slot-btn:not(:disabled):hover{border-color:#c9a961;background:rgba(201,169,97,.08);transform:translateY(-1px);box-shadow:0 2px 8px rgba(201,169,97,.15)}
   .slot-btn.sel{background:#c9a961;color:#2c3e50;border-color:#c9a961;font-weight:700;box-shadow:0 4px 12px rgba(201,169,97,.3)}
@@ -300,40 +319,66 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  // ── Passo 2: Calendário ──
+  // ── Passo 2: Calendário mensal ──
+  // calOff agora é offset de mês (0 = mês atual, 1 = próximo, etc.)
   function buildCal(){
-    const cont=$('cal-days'),ml=$('cal-month');if(!cont||!ml)return;
-    cont.innerHTML='';
+    const grid=$('cal-grid'),ml=$('cal-month');if(!grid||!ml)return;
+    grid.innerHTML='';
     const today=new Date();today.setHours(0,0,0,0);
-    const start=new Date(today);start.setDate(start.getDate()+calOff*7);
-    if(start<today)start.setTime(today.getTime());
-    let fm='';
-    for(let i=0;i<14;i++){
-      const d=new Date(start);d.setDate(d.getDate()+i);
-      const diff=Math.floor((d.getTime()-today.getTime())/864e5);
-      if(diff>=DAYS)break;
+    // Mês a exibir
+    const viewDate=new Date(today.getFullYear(),today.getMonth()+calOff,1);
+    const year=viewDate.getFullYear();
+    const month=viewDate.getMonth();
+    ml.textContent=`${MO[month]} ${year}`;
+    // Primeiro dia da semana do mês (0=Dom)
+    const firstDow=new Date(year,month,1).getDay();
+    // Total de dias no mês
+    const daysInMonth=new Date(year,month+1,0).getDate();
+    // Células vazias antes do primeiro dia
+    for(let i=0;i<firstDow;i++){
+      const empty=document.createElement('div');empty.className='h-10';
+      grid.appendChild(empty);
+    }
+    // Dias do mês
+    for(let day=1;day<=daysInMonth;day++){
+      const d=new Date(year,month,day);
+      const ds=`${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      const isPast=d<today;
       const isSun=d.getDay()===0;
-      const ds=d.toISOString().split('T')[0];
       const isToday=d.getTime()===today.getTime();
       const isSel=ds===date;
-      if(!fm)fm=`${MO[d.getMonth()]} ${d.getFullYear()}`;
+      const isDisabled=isPast||isSun;
       const btn=document.createElement('button');btn.type='button';
-      btn.className=`day-card flex flex-col items-center justify-center py-3 px-2 rounded-xl border-2 bg-white cursor-pointer ${isSun?'off border-border/30':'border-border/40'} ${isSel?'sel':''}`;
       btn.dataset.date=ds;
-      if(isSun)(btn as HTMLButtonElement).disabled=true;
-      btn.innerHTML=`<span class="font-ui text-[10px] uppercase tracking-wider ${isSun?'text-muted-foreground/50':'text-muted-foreground'}">${WD[d.getDay()]}</span><span class="font-display text-xl ${isSel?'text-gold font-bold':isSun?'text-muted-foreground/50':'text-navy font-semibold'}">${d.getDate()}</span><span class="font-ui text-[9px] ${isSun?'text-muted-foreground/50':'text-muted-foreground'}">${MO[d.getMonth()].substring(0,3)}</span>${isToday?'<span class="w-1.5 h-1.5 rounded-full bg-gold mt-1"></span>':''}`;
-      if(!isSun)btn.addEventListener('click',()=>pickDate(ds));
-      cont.appendChild(btn);
+      (btn as HTMLButtonElement).disabled=isDisabled;
+      let cls='cal-day w-full aspect-square rounded-xl flex flex-col items-center justify-center transition-all duration-200 relative ';
+      if(isSel)cls+='cal-day-sel ';
+      else if(isToday)cls+='cal-day-today ';
+      else if(isDisabled)cls+='cal-day-off ';
+      else cls+='cal-day-avail ';
+      btn.className=cls;
+      btn.innerHTML=`<span class="font-ui text-sm font-semibold leading-none">${day}</span>${isToday&&!isSel?'<span class="w-1 h-1 rounded-full bg-gold absolute bottom-1.5"></span>':''}`;
+      if(!isDisabled)btn.addEventListener('click',()=>pickDate(ds));
+      grid.appendChild(btn);
     }
-    ml.textContent=fm;
   }
   $('cal-prev')?.addEventListener('click',()=>{if(calOff>0){calOff--;buildCal();}});
-  $('cal-next')?.addEventListener('click',()=>{if(calOff<Math.ceil(DAYS/7)-1){calOff++;buildCal();}});
+  $('cal-next')?.addEventListener('click',()=>{calOff++;buildCal();});
 
   async function pickDate(ds:string){
     date=ds;hour=-1;minute=-1;
-    document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('sel'));
-    document.querySelector(`.day-card[data-date="${ds}"]`)?.classList.add('sel');
+    // Atualizar visual do calendário
+    document.querySelectorAll('.cal-day').forEach(c=>{
+      const el=c as HTMLElement;
+      const d=el.dataset.date;
+      if(!d)return;
+      el.classList.remove('cal-day-sel','cal-day-today','cal-day-avail');
+      const dObj=new Date(d+'T12:00:00');
+      const todayObj=new Date();todayObj.setHours(0,0,0,0);
+      if(d===ds)el.classList.add('cal-day-sel');
+      else if(dObj.getTime()===todayObj.getTime())el.classList.add('cal-day-today');
+      else el.classList.add('cal-day-avail');
+    });
     const sw=$('slots-wrap'),ld=$('slots-loading'),gr=$('slots-grid'),em=$('slots-empty'),doff=$('slots-dayoff'),dlbl=$('slots-date-lbl');
     if(sw)sw.classList.remove('hidden');
     if(ld)ld.classList.remove('hidden');
