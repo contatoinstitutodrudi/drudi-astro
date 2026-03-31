@@ -396,10 +396,18 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
       aria-label="Menu de navegação"
     >
       <!-- Cabeçalho do drawer -->
-      <div style="background:#0d2240;padding:18px 20px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
-        <img src="/images/logo-footer-200w_56b3dc2d.webp" alt="Drudi e Almeida" style="height:34px;width:auto;object-fit:contain;" />
-        <button id="menu-close-btn" aria-label="Fechar menu" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.14);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <div style="background:linear-gradient(135deg,#0a1a35 0%,#0d2240 60%,#112a50 100%);padding:22px 20px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid rgba(201,169,97,0.2);">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:44px;height:44px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(201,169,97,0.25);">
+            <img src="/images/logo-footer-200w_56b3dc2d.webp" alt="Drudi e Almeida" style="width:36px;height:36px;object-fit:contain;" />
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#fff;letter-spacing:0.02em;line-height:1.2;">Drudi e Almeida</div>
+            <div style="font-size:11px;color:rgba(201,169,97,0.85);letter-spacing:0.04em;margin-top:1px;">Oftalmologia</div>
+          </div>
+        </div>
+        <button id="menu-close-btn" aria-label="Fechar menu" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;transition:background 0.15s;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
 
@@ -407,20 +415,14 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
       <nav style="padding:4px 0 0;flex:1;">
 
         <!-- Home -->
-        <a href="/" class="mob-link" style="display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;transition:background 0.15s;">
-          <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </span>
+        <a href="/" class="mob-link" style="display:block;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
           Home
         </a>
 
         <!-- Sobre — acordeão -->
         <div class="mob-accordion">
-          <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">
-            <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </span>
-            <span style="flex:1;">Sobre</span>
+          <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">
+            <span>Sobre</span>
             <svg class="mob-acc-icon" width="16" height="16" fill="none" stroke="#c9a961" stroke-width="2.5" viewBox="0 0 24 24" style="transition:transform 0.25s;flex-shrink:0;"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="mob-acc-content" style="display:none;background:#fafbfc;border-bottom:1px solid #f0f2f5;">
@@ -432,44 +434,23 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
 
         <!-- Institutos — acordeão -->
         <div class="mob-accordion">
-          <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">
-            <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-            </span>
-            <span style="flex:1;">Institutos</span>
+          <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">
+            <span>Institutos</span>
             <svg class="mob-acc-icon" width="16" height="16" fill="none" stroke="#c9a961" stroke-width="2.5" viewBox="0 0 24 24" style="transition:transform 0.25s;flex-shrink:0;"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="mob-acc-content" style="display:none;background:#fafbfc;border-bottom:1px solid #f0f2f5;">
-            <a href="/instituto/catarata" class="mob-link" style="display:flex;align-items:center;gap:10px;padding:10px 20px 10px 20px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">
-              <img src="/images/logo-catarata-128_4016b3c8.webp" alt="" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;" />
-              Instituto da Catarata
-            </a>
-            <a href="/instituto/ceratocone" class="mob-link" style="display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">
-              <img src="/images/logo-ceratocone-128_5f37b031.webp" alt="" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;" />
-              Instituto do Ceratocone
-            </a>
-            <a href="/instituto/glaucoma" class="mob-link" style="display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">
-              <img src="/images/logo-glaucoma-128_c3ccf9c1.webp" alt="" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;" />
-              Instituto do Glaucoma
-            </a>
-            <a href="/instituto/retina" class="mob-link" style="display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">
-              <img src="/images/logo-retina-128_88ef0fac.webp" alt="" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;" />
-              Instituto da Retina
-            </a>
-            <a href="/instituto/estrabismo" class="mob-link" style="display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:14px;color:#4b5563;text-decoration:none;">
-              <img src="/images/logo-estrabismo-128_b8ca4997.webp" alt="" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;" />
-              Instituto de Estrabismo
-            </a>
+            <a href="/instituto/catarata" class="mob-link" style="display:block;padding:11px 20px 11px 28px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Instituto da Catarata</a>
+            <a href="/instituto/ceratocone" class="mob-link" style="display:block;padding:11px 20px 11px 28px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Instituto do Ceratocone</a>
+            <a href="/instituto/glaucoma" class="mob-link" style="display:block;padding:11px 20px 11px 28px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Instituto do Glaucoma</a>
+            <a href="/instituto/retina" class="mob-link" style="display:block;padding:11px 20px 11px 28px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Instituto da Retina</a>
+            <a href="/instituto/estrabismo" class="mob-link" style="display:block;padding:11px 20px 11px 28px;font-size:14px;color:#4b5563;text-decoration:none;">Instituto de Estrabismo</a>
           </div>
         </div>
 
         <!-- Unidades — acordeão -->
         <div class="mob-accordion">
-          <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">
-            <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            </span>
-            <span style="flex:1;">Unidades</span>
+          <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">
+            <span>Unidades</span>
             <svg class="mob-acc-icon" width="16" height="16" fill="none" stroke="#c9a961" stroke-width="2.5" viewBox="0 0 24 24" style="transition:transform 0.25s;flex-shrink:0;"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="mob-acc-content" style="display:none;background:#fafbfc;border-bottom:1px solid #f0f2f5;">
@@ -482,31 +463,19 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
         </div>
 
         <!-- Links simples -->
-        <a href="/tecnologia" class="mob-link" style="display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
-          <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-          </span>
+        <a href="/tecnologia" class="mob-link" style="display:block;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
           Tecnologia
         </a>
 
-        <a href="/convenios" class="mob-link" style="display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
-          <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </span>
+        <a href="/convenios" class="mob-link" style="display:block;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
           Convênios
         </a>
 
-        <a href="/blog" class="mob-link" style="display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
-          <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </span>
+        <a href="/blog" class="mob-link" style="display:block;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
           Blog
         </a>
 
-        <a href="/contato" class="mob-link" style="display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
-          <span style="width:32px;height:32px;border-radius:8px;background:#f5f0e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="15" height="15" fill="none" stroke="#c9a961" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.41 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          </span>
+        <a href="/contato" class="mob-link" style="display:block;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;text-decoration:none;border-bottom:1px solid #f0f2f5;">
           Contato
         </a>
 
@@ -514,8 +483,7 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
 
       <!-- CTA Agendar — destaque no final -->
       <div style="padding:20px 20px 36px;">
-        <a href="/agendar" class="mob-link" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;background:linear-gradient(135deg,#0d2240 0%,#1a3a6e 100%);color:#fff;font-size:15px;font-weight:700;text-decoration:none;border-radius:12px;box-shadow:0 4px 20px rgba(13,34,64,0.28);letter-spacing:0.01em;">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <a href="/agendar" class="mob-link" style="display:flex;align-items:center;justify-content:center;padding:16px 24px;background:linear-gradient(135deg,#0d2240 0%,#1a3a6e 100%);color:#fff;font-size:15px;font-weight:700;text-decoration:none;border-radius:12px;box-shadow:0 4px 20px rgba(13,34,64,0.28);letter-spacing:0.02em;">
           Agendar Consulta Online
         </a>
         <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px;font-family:sans-serif;">Confirmação imediata por e-mail</p>
