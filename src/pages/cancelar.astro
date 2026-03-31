@@ -21,14 +21,20 @@ const token = Astro.url.searchParams.get('token') ?? '';
           <p class="text-muted-foreground">Processando cancelamento...</p>
         </div>
 
-        <div id="success" class="hidden py-12">
-          <div class="w-16 h-16 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div id="success" class="hidden py-8">
+          <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
           </div>
-          <h1 class="font-display text-2xl text-navy mb-3">Consulta Cancelada</h1>
-          <p class="text-muted-foreground mb-6">Sua consulta foi cancelada com sucesso.</p>
+          <h1 class="font-display text-2xl text-navy mb-2">Consulta Cancelada</h1>
+          <p class="text-muted-foreground mb-6">Seu cancelamento foi processado com sucesso.</p>
+          <div class="bg-[#f8f7f4] border border-border/50 rounded-xl p-5 text-left mb-6 space-y-2">
+            <p class="font-body text-sm text-muted-foreground"><span class="font-semibold text-navy">Paciente:</span> <span id="cancel-name"></span></p>
+            <p class="font-body text-sm text-muted-foreground"><span class="font-semibold text-navy">Data:</span> <span id="cancel-date"></span></p>
+            <p class="font-body text-sm text-muted-foreground"><span class="font-semibold text-navy">Unidade:</span> <span id="cancel-unit"></span></p>
+          </div>
+          <p class="font-body text-sm text-muted-foreground mb-6">Se desejar, você pode agendar uma nova consulta a qualquer momento.</p>
           <a href="/agendar" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-semibold px-6 py-3 rounded-lg hover:bg-navy/90 transition-colors">
             Agendar nova consulta
           </a>
@@ -76,12 +82,35 @@ const token = Astro.url.searchParams.get('token') ?? '';
   }
 
   try {
-    const res = await fetch(`/api/cancelar?token=${encodeURIComponent(token)}`);
+    const res = await fetch('/api/agendamento/cancelar/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
     const data = await res.json();
     hide('loading');
-    if (data.already) show('already');
-    else if (data.success) show('success');
-    else show('error');
+    if (res.status === 409) {
+      if (data.error && data.error.includes('já foi cancelado')) show('already');
+      else show('error');
+    } else if (data.success) {
+      // Preencher detalhes na tela de sucesso
+      const appt = data.appointment;
+      const nameEl = document.getElementById('cancel-name');
+      const dateEl = document.getElementById('cancel-date');
+      const unitEl = document.getElementById('cancel-unit');
+      if (nameEl && appt) nameEl.textContent = appt.patient_name;
+      if (dateEl && appt) {
+        const [y,m,d] = appt.appointment_date.split('-');
+        const months = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+        const h = String(appt.appointment_hour).padStart(2,'0');
+        const mi = appt.appointment_minute > 0 ? String(appt.appointment_minute).padStart(2,'0') : '';
+        dateEl.textContent = `${d} de ${months[+m-1]} de ${y} às ${h}h${mi}`;
+      }
+      if (unitEl && appt) unitEl.textContent = appt.unit;
+      show('success');
+    } else {
+      show('error');
+    }
   } catch {
     hide('loading');
     show('error');

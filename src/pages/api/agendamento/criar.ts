@@ -8,8 +8,10 @@ import { GCAL_ENV_MAP, MAX_PER_SLOT } from '../../../lib/constants';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   const cfEnv = env as unknown as Env;
+  // Em Astro v6 + @astrojs/cloudflare, o ExecutionContext fica em locals.cfContext
+  const cfContext = (locals as Record<string, unknown>).cfContext as { waitUntil: (p: Promise<unknown>) => void } | undefined;
 
   let body: Record<string, unknown>;
   try {
@@ -110,33 +112,46 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // Enviar e-mails (não bloqueiam resposta)
+    // Enviar e-mails usando cfContext.waitUntil para garantir execução
+    // mesmo após a resposta ser enviada (obrigatório no Cloudflare Workers)
+    const emailTasks: Promise<void>[] = [];
+
     if (patient_email) {
-      sendConfirmationEmail(cfEnv.RESEND_API_KEY, {
+      emailTasks.push(
+        sendConfirmationEmail(cfEnv.RESEND_API_KEY, {
+          patient_name: String(patient_name),
+          patient_email: String(patient_email),
+          unit: String(unit),
+          specialty: String(specialty),
+          appointment_date: String(appointment_date),
+          appointment_hour: Number(appointment_hour),
+          appointment_minute: Number(appointment_minute),
+          cancel_token,
+        }).catch(e => console.error('[criar] Email paciente error:', e))
+      );
+    }
+
+    emailTasks.push(
+      sendAdminNotificationEmail(cfEnv.RESEND_API_KEY, {
         patient_name: String(patient_name),
-        patient_email: String(patient_email),
+        patient_phone: String(patient_phone),
+        patient_email: patient_email ? String(patient_email) : null,
         unit: String(unit),
         specialty: String(specialty),
+        health_plan: String(health_plan),
         appointment_date: String(appointment_date),
         appointment_hour: Number(appointment_hour),
         appointment_minute: Number(appointment_minute),
-        cancel_token,
-      }).catch(e => console.error('[criar] Email error:', e));
-    }
+        appointment_type: String(appointment_type ?? 'primeira_vez'),
+        notes: notes ? String(notes) : null,
+      }).catch(e => console.error('[criar] Email clínica error:', e))
+    );
 
-    sendAdminNotificationEmail(cfEnv.RESEND_API_KEY, {
-      patient_name: String(patient_name),
-      patient_phone: String(patient_phone),
-      patient_email: patient_email ? String(patient_email) : null,
-      unit: String(unit),
-      specialty: String(specialty),
-      health_plan: String(health_plan),
-      appointment_date: String(appointment_date),
-      appointment_hour: Number(appointment_hour),
-      appointment_minute: Number(appointment_minute),
-      appointment_type: String(appointment_type ?? 'primeira_vez'),
-      notes: notes ? String(notes) : null,
-    }).catch(e => console.error('[criar] Admin email error:', e));
+    if (cfContext?.waitUntil) {
+      cfContext.waitUntil(Promise.all(emailTasks));
+    } else {
+      await Promise.all(emailTasks);
+    }
 
     return new Response(JSON.stringify({ success: true, id, cancel_token }), {
       status: 201,

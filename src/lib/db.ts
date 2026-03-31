@@ -173,3 +173,156 @@ export async function getAppointmentByCancelToken(
     .bind(token)
     .first<Appointment>();
 }
+
+// Bloquear dia para uma unidade
+export async function blockDay(
+  db: D1Database,
+  unit: string,
+  date: string,
+  reason: string | null
+): Promise<{ alreadyBlocked: boolean }> {
+  const existing = await db
+    .prepare(`SELECT id FROM day_blocks WHERE unit = ? AND blocked_date = ? LIMIT 1`)
+    .bind(unit, date)
+    .first<{ id: number }>();
+  if (existing) return { alreadyBlocked: true };
+  await db
+    .prepare(`INSERT INTO day_blocks (unit, blocked_date, reason) VALUES (?, ?, ?)`)
+    .bind(unit, date, reason ?? null)
+    .run();
+  return { alreadyBlocked: false };
+}
+
+// Remover bloqueio de dia
+export async function unblockDay(
+  db: D1Database,
+  id: number
+): Promise<void> {
+  await db.prepare(`DELETE FROM day_blocks WHERE id = ?`).bind(id).run();
+}
+
+// Listar bloqueios de dias
+export async function listDayBlocks(
+  db: D1Database,
+  unit?: string
+): Promise<DayBlock[]> {
+  let query = 'SELECT * FROM day_blocks WHERE 1=1';
+  const params: string[] = [];
+  if (unit && unit !== 'all') {
+    query += ' AND unit = ?';
+    params.push(unit);
+  }
+  query += ' ORDER BY blocked_date DESC';
+  const result = await db.prepare(query).bind(...params).all<DayBlock>();
+  return result.results;
+}
+
+// Contar agendamentos por status (dashboard)
+export async function countAppointmentsByStatus(
+  db: D1Database
+): Promise<{ pending: number; confirmed: number; cancelled: number; total: number }> {
+  const result = await db
+    .prepare(
+      `SELECT
+        SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) as pending,
+        SUM(CASE WHEN status='confirmed' THEN 1 ELSE 0 END) as confirmed,
+        SUM(CASE WHEN status='cancelled' THEN 1 ELSE 0 END) as cancelled,
+        COUNT(*) as total
+       FROM appointments`
+    )
+    .first<{ pending: number; confirmed: number; cancelled: number; total: number }>();
+  return result ?? { pending: 0, confirmed: 0, cancelled: 0, total: 0 };
+}
+
+// Agendamentos de hoje por unidade (dashboard)
+export async function getTodayAppointments(
+  db: D1Database,
+  todayDate: string
+): Promise<Appointment[]> {
+  const result = await db
+    .prepare(
+      `SELECT * FROM appointments
+       WHERE appointment_date = ? AND status != 'cancelled'
+       ORDER BY unit, appointment_hour, appointment_minute`
+    )
+    .bind(todayDate)
+    .all<Appointment>();
+  return result.results;
+}
+
+// Próximos agendamentos (próximos 7 dias)
+export async function getUpcomingAppointments(
+  db: D1Database,
+  fromDate: string,
+  toDate: string
+): Promise<Appointment[]> {
+  const result = await db
+    .prepare(
+      `SELECT * FROM appointments
+       WHERE appointment_date >= ? AND appointment_date <= ? AND status != 'cancelled'
+       ORDER BY appointment_date, appointment_hour, appointment_minute`
+    )
+    .bind(fromDate, toDate)
+    .all<Appointment>();
+  return result.results;
+}
+
+// Criar agendamento manual (pelo admin)
+export async function createManualAppointment(
+  db: D1Database,
+  data: {
+    patient_name: string;
+    patient_phone: string;
+    patient_email: string | null;
+    unit: string;
+    specialty: string;
+    health_plan: string;
+    appointment_date: string;
+    appointment_hour: number;
+    appointment_minute: number;
+    appointment_type: string;
+    notes: string | null;
+    status: 'pending' | 'confirmed';
+  }
+): Promise<{ id: number; cancel_token: string }> {
+  const cancelToken = generateCancelToken();
+  const result = await db
+    .prepare(
+      `INSERT INTO appointments
+        (patient_name, patient_phone, patient_email, unit, specialty, health_plan,
+         appointment_date, appointment_hour, appointment_minute, appointment_type,
+         status, notes, cancel_token)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       RETURNING id`
+    )
+    .bind(
+      data.patient_name,
+      data.patient_phone,
+      data.patient_email ?? null,
+      data.unit,
+      data.specialty,
+      data.health_plan,
+      data.appointment_date,
+      data.appointment_hour,
+      data.appointment_minute,
+      data.appointment_type,
+      data.status,
+      data.notes ?? null,
+      cancelToken
+    )
+    .first<{ id: number }>();
+  if (!result) throw new Error('Falha ao criar agendamento.');
+  return { id: result.id, cancel_token: cancelToken };
+}
+
+// Formatar data para exibição
+export function formatDateBR(dateStr: string): string {
+  if (!dateStr) return '';
+  const [y, m, d] = dateStr.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+// Formatar hora para exibição
+export function formatHour(hour: number, minute: number = 0): string {
+  return `${String(hour).padStart(2, '0')}h${String(minute).padStart(2, '0')}`;
+}

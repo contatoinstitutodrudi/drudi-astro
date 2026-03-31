@@ -359,7 +359,7 @@ if (!adminUser) {
 
       try {
         const params = new URLSearchParams({ status, category, limit: String(PAGE_SIZE), offset: String(offset) });
-        const res = await fetch(`/api/admin/blog/posts?${params}`, {
+        const res = await fetch(`/api/admin/blog/posts/?${params}`, {
           headers: { 'Authorization': `Bearer ${getToken()}` }
         });
         const posts = await res.json();
@@ -430,7 +430,7 @@ if (!adminUser) {
       await patchPost(id, { status: 'draft' });
     }
     async function patchPost(id, data) {
-      const res = await fetch(`/api/admin/blog/post/${id}`, {
+      const res = await fetch(`/api/admin/blog/post/${id}/`, {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -450,7 +450,7 @@ if (!adminUser) {
     }
     async function confirmDelete() {
       const id = document.getElementById('deletePostId').value;
-      const res = await fetch(`/api/admin/blog/post/${id}`, {
+      const res = await fetch(`/api/admin/blog/post/${id}/`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${getToken()}` },
       });
@@ -477,7 +477,7 @@ if (!adminUser) {
 
     async function editPost(id) {
       // Buscar post completo via API
-      const res = await fetch(`/api/admin/blog/posts?limit=200`, {
+      const res = await fetch(`/api/admin/blog/posts/?limit=200`, {
         headers: { 'Authorization': `Bearer ${getToken()}` }
       });
       const posts = await res.json();
@@ -485,7 +485,7 @@ if (!adminUser) {
       if (!post) return alert('Post não encontrado.');
 
       // Buscar conteúdo completo
-      const res2 = await fetch(`/api/admin/blog/post-full/${id}`, {
+      const res2 = await fetch(`/api/admin/blog/post-full/${id}/`, {
         headers: { 'Authorization': `Bearer ${getToken()}` }
       });
       let fullPost = post;
@@ -535,13 +535,13 @@ if (!adminUser) {
       try {
         let res;
         if (id) {
-          res = await fetch(`/api/admin/blog/post/${id}`, {
+          res = await fetch(`/api/admin/blog/post/${id}/`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           });
         } else {
-          res = await fetch('/api/admin/blog/posts', {
+          res = await fetch('/api/admin/blog/posts/', {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
@@ -614,7 +614,7 @@ if (!adminUser) {
       status.textContent = '⏳ Gerando artigo com Gemini... isso pode levar 20-40 segundos.';
 
       try {
-        const res = await fetch('/api/admin/blog/generate', {
+        const res = await fetch('/api/admin/blog/generate/', {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ topic, category, publish }),
@@ -641,7 +641,7 @@ if (!adminUser) {
     // ─── Logout ──────────────────────────────────────────────────────────────
     document.getElementById('logoutBtn').addEventListener('click', async (e) => {
       e.preventDefault();
-      await fetch('/api/admin/logout', { method: 'POST' });
+      await fetch('/api/admin/logout/', { method: 'POST' });
       window.location.href = '/admin/login';
     });
 
