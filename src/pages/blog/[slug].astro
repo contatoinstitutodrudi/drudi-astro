@@ -107,6 +107,14 @@ const categoryColors: Record<string, string> = {
   "Estrabismo": "bg-violet-100 text-violet-800",
   "Saúde Ocular": "bg-teal-100 text-teal-800",
 };
+const catInstitutoMap: Record<string, { href: string; label: string }> = {
+  'Catarata': { href: '/instituto/catarata', label: 'Instituto da Catarata' },
+  'Ceratocone': { href: '/instituto/ceratocone', label: 'Instituto do Ceratocone' },
+  'Glaucoma': { href: '/instituto/glaucoma', label: 'Instituto do Glaucoma' },
+  'Retina': { href: '/instituto/retina', label: 'Instituto da Retina' },
+  'Estrabismo': { href: '/instituto/estrabismo', label: 'Instituto de Estrabismo' },
+};
+const relatedInstituto = post?.category ? catInstitutoMap[post.category] : null;
 ---
 
 <BaseLayout
@@ -170,8 +178,15 @@ const categoryColors: Record<string, string> = {
         <!-- Texto do artigo -->
         <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-strong:text-navy prose-a:text-gold prose-a:no-underline hover:prose-a:underline" set:html={post.content} />
 
+        <!-- Disclaimer médico -->
+        <div class="mt-10 p-4 bg-amber-50 border border-amber-200 rounded-xl flex gap-3 items-start">
+          <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-sm text-amber-800 leading-relaxed">
+            <strong>Aviso importante:</strong> Este conteúdo tem caráter exclusivamente educativo e informativo. Não substitui a consulta, o diagnóstico ou o tratamento por um médico oftalmologista. Em caso de sintomas ou dúvidas sobre sua saúde ocular, procure atendimento médico especializado.
+          </p>
+        </div>
         <!-- CTA inline -->
-        <div class="mt-12 p-6 bg-navy rounded-xl text-center">
+        <div class="mt-8 p-6 bg-navy rounded-xl text-center">
           <p class="text-cream/80 text-sm mb-1">Ficou com dúvidas ou quer agendar uma consulta?</p>
           <h3 class="font-display text-2xl text-cream mb-4">Fale com nossos especialistas</h3>
           <a
@@ -214,6 +229,19 @@ const categoryColors: Record<string, string> = {
               <li>• São Miguel — SP</li>
             </ul>
           </div>
+          <!-- Linkagem interna: instituto relacionado ao artigo -->
+          {relatedInstituto && (
+            <div class="mt-4 pt-4 border-t border-border/40">
+              <div class="text-xs text-gray-500 font-semibold mb-2">Especialidade relacionada</div>
+              <a
+                href={relatedInstituto.href}
+                class="flex items-center gap-2 text-sm text-navy font-semibold hover:text-gold transition-colors group"
+              >
+                <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                {relatedInstituto.label}
+              </a>
+            </div>
+          )}
         </div>
       </aside>
     </div>

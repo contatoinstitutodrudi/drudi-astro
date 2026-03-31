@@ -132,7 +132,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               Agendar Avaliação
             </a>
             <a href="/agendar"
-              class="w-full inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-6 py-3 rounded-lg border-2 border-white hover:bg-navy hover:text-white hover:border-navy transition-all shadow-sm">
+              class="w-full inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-6 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               <span class="flex items-center gap-2 text-sm leading-tight">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Agendar Online
@@ -208,7 +208,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
             Agende pelo WhatsApp
           </a>
           <a href="/agendar"
-            class="inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-7 py-3 rounded-lg border-2 border-white hover:bg-navy hover:text-white hover:border-navy transition-all shadow-sm">
+            class="inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-7 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
             <span class="flex items-center gap-2 text-sm leading-tight">
               <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               Agendar Online
@@ -678,6 +678,43 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     </div>
   </section>
 
+    <!-- ========== ARTIGOS SOBRE CERATOCONE ========== -->
+  <section class="section-padding bg-white">
+    <div class="container">
+      <div class="text-center mb-10 aos-element">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Aprofunde seu Conhecimento</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3">Artigos sobre Ceratocone</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto mt-4 leading-relaxed">
+          Entenda melhor o ceratocone, os tratamentos disponíveis e como cuidar da sua visão.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {[
+          { title: "Crosslinking para Ceratocone: Como Funciona e Quando é Indicado", desc: "Entenda o procedimento de crosslinking, como ele estabiliza o ceratocone e o que esperar da recuperação.", time: "7 min", href: "/blog/crosslinking-ceratocone-como-funciona-tratamento" },
+          { title: "Lentes de Contato para Ceratocone: Tipos, Indicações e Cuidados", desc: "Conheça os tipos de lentes de contato indicadas para ceratocone e como elas podem melhorar sua qualidade de visão.", time: "6 min", href: "/blog/lentes-contato-ceratocone-tipos-indicacoes-cuidados" },
+        ].map(artigo => (
+          <a href={artigo.href} class="group block bg-[#faf9f7] rounded-2xl p-6 border border-border/40 hover:border-gold/30 hover:shadow-lg transition-all aos-element">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-ui text-[10px] font-bold text-gold bg-gold/10 rounded-full px-2.5 py-1 uppercase tracking-wide">Ceratocone</span>
+              <span class="font-body text-xs text-muted-foreground">{artigo.time}</span>
+            </div>
+            <h3 class="font-display text-base text-navy mb-3 leading-snug group-hover:text-gold transition-colors">{artigo.title}</h3>
+            <p class="font-body text-xs text-muted-foreground leading-relaxed mb-4">{artigo.desc}</p>
+            <span class="inline-flex items-center gap-1 font-ui text-xs font-semibold text-gold">
+              Ler artigo
+              <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8 aos-element">
+        <a href="/blog" class="inline-flex items-center gap-2 font-ui text-sm font-semibold text-navy hover:text-gold transition-colors">
+          Ver todos os artigos do blog
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
   <!-- ========== VEJA TAMBÉM ========== -->
   <section class="section-padding" style="background:#faf9f7">
     <div class="container">
