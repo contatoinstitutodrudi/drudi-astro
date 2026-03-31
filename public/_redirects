@@ -65,3 +65,35 @@
 # LP estáticas — passthrough (Cloudflare Workers serve diretamente)
 /lp/*  /lp/:splat  200
 /instituto/lp/*  /instituto/lp/:splat  200
+
+# ============================================================
+# Trailing slash 301 — evitar 307 temporário do Cloudflare Workers
+# ============================================================
+/sobre                  /sobre/                 301
+/contato                /contato/               301
+/tecnologia             /tecnologia/            301
+/convenios              /convenios/             301
+/arte-e-visao           /arte-e-visao/          301
+/instituto/catarata     /instituto/catarata/    301
+/instituto/ceratocone   /instituto/ceratocone/  301
+/instituto/glaucoma     /instituto/glaucoma/    301
+/instituto/retina       /instituto/retina/      301
+/instituto/estrabismo   /instituto/estrabismo/  301
+/unidade/santana        /unidade/santana/       301
+/unidade/tatuape        /unidade/tatuape/       301
+/unidade/lapa           /unidade/lapa/          301
+/unidade/sao-miguel     /unidade/sao-miguel/    301
+/unidade/guarulhos      /unidade/guarulhos/     301
+/medico/dr-fernando-drudi       /medico/dr-fernando-drudi/      301
+/medico/dra-priscilla-almeida   /medico/dra-priscilla-almeida/  301
+/lgpd                   /lgpd/                  301
+/politica-de-privacidade        /politica-de-privacidade/       301
+/blog/injecao-antivegf-o-que-e  /blog/injecao-antivegf-o-que-e/  301
+/blog/crosslinking-ceratocone-sp  /blog/crosslinking-ceratocone-sp/  301
+/blog/lente-intraocular-monofocal-multifocal-trifocal  /blog/lente-intraocular-monofocal-multifocal-trifocal/  301
+/blog/cirurgia-catarata-convenio  /blog/cirurgia-catarata-convenio/  301
+/blog/cirurgia-catarata-sp-preco  /blog/cirurgia-catarata-sp-preco/  301
+/blog/glaucoma-tem-cura  /blog/glaucoma-tem-cura/  301
+/blog/tratamento-glaucoma-sp  /blog/tratamento-glaucoma-sp/  301
+/blog/cirurgia-estrabismo-adultos  /blog/cirurgia-estrabismo-adultos/  301
+/blog/cirurgia-estrabismo-sp  /blog/cirurgia-estrabismo-sp/  301
