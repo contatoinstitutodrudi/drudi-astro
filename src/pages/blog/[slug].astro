@@ -159,7 +159,7 @@ const categoryColors: Record<string, string> = {
       <article>
         <!-- Autor -->
         <div class="flex items-center gap-4 p-4 bg-cream rounded-xl border border-border/40 mb-8">
-          <img src={post.authorImg} alt={post.author} class="w-14 h-14 rounded-full object-cover object-top flex-shrink-0" />
+          <img src={post.authorImg} alt={post.author} class="w-14 h-14 rounded-full object-cover object-top flex-shrink-0" width="56" height="56" loading="lazy" />
           <div>
             <div class="font-ui text-xs text-gold font-bold uppercase tracking-wider mb-0.5">Autor</div>
             <div class="font-semibold text-navy">{post.author}</div>

@@ -144,7 +144,7 @@ const homeFAQ = [
                 <h3 class="font-display text-xl mb-2 group-hover:transition-colors" style="color:#1e2a44">{inst.name}</h3>
                 <p class="font-body text-sm leading-relaxed mb-4" style="color:#6b7280">{inst.desc}</p>
                 <span class="inline-flex items-center gap-1.5 font-ui text-xs font-semibold" style="color:#1e2a44">
-                  Saiba mais
+                  Conhecer o {inst.name}
                   <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </span>
               </div>
@@ -627,6 +627,10 @@ const homeFAQ = [
         </div>
       </div>
 
+      <!-- TODO SEO PRIORIDADE ALTA: Substituir depoimentos ilustrativos abaixo por avaliações reais do Google.
+           Depoimentos fabricados violam as diretrizes E-E-A-T do Google e podem causar penalização.
+           Integrar via Google Places API: GET /maps/api/place/details/json?place_id=PLACE_ID&fields=reviews
+           Referência: https://developers.google.com/maps/documentation/places/web-service/details -->
       <!-- Individual Reviews -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {[

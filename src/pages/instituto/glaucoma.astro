@@ -113,6 +113,36 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   heroImageSrcset="/images/glaucoma-hero-480w.webp 480w, /images/glaucoma-hero-768w.webp 768w, /images/glaucoma-hero_degas_a3f7c912.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    "name": "Glaucoma",
+    "alternateName": "Neuropatia Óptica Glaucomatosa",
+    "description": "Grupo de doenças que causam dano progressivo ao nervo óptico, geralmente associado à pressão intraocular elevada. Principal causa de cegueira irreversível no mundo.",
+    "code": { "@type": "MedicalCode", "code": "H40", "codingSystem": "ICD-10" },
+    "possibleTreatment": [
+      {
+        "@type": "MedicalProcedure",
+        "name": "Trabeculoplastia a Laser (SLT)",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Laser seletivo aplicado na malha trabecular para melhorar a drenagem do humor aquoso e reduzir a pressão intraocular."
+      },
+      {
+        "@type": "MedicalProcedure",
+        "name": "Trabeculectomia",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Cirurgia filtrante que cria uma via alternativa de drenagem do humor aquoso para reduzir a pressão intraocular em casos refratários."
+      }
+    ],
+    "signOrSymptom": [
+      { "@type": "MedicalSymptom", "name": "Perda de campo visual periférico" },
+      { "@type": "MedicalSymptom", "name": "Pressão intraocular elevada" },
+      { "@type": "MedicalSymptom", "name": "Dor ocular intensa (glaucoma agudo)" },
+      { "@type": "MedicalSymptom", "name": "Halos coloridos ao redor de luzes" }
+    ],
+    "associatedAnatomy": { "@type": "AnatomicalStructure", "name": "Nervo Óptico" },
+    "relevantSpecialty": "http://schema.org/Optometric"
+  })} />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">

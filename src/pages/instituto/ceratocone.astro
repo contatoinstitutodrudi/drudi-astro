@@ -57,13 +57,42 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <BaseLayout
-  title="Tratamento do Ceratocone com excelentes especialistas | Drudi e Almeida"
+  title="Ceratocone em SP: Crosslinking e Lentes Esclerais | Drudi e Almeida"
   description="Tratamento de ceratocone em SP: crosslinking, anel de Ferrara, lentes esclerais e transplante de córnea. Diagnóstico com Pentacam. 5 unidades. Agende sua consulta."
   canonicalPath="/instituto/ceratocone"
   heroImage="/images/ceratocone-hero_4839850a.webp"
   heroImageSrcset="/images/ceratocone-hero-480w.webp 480w, /images/ceratocone-hero-768w.webp 768w, /images/ceratocone-hero_4839850a.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    "name": "Ceratocone",
+    "description": "Doença progressiva da córnea em que ela se afina e assume formato cônico, causando distorção visual e miopia progressiva. Mais comum em jovens entre 10 e 25 anos.",
+    "code": { "@type": "MedicalCode", "code": "H18.6", "codingSystem": "ICD-10" },
+    "possibleTreatment": [
+      {
+        "@type": "MedicalProcedure",
+        "name": "Crosslinking Corneano (CXL)",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Tratamento com riboflavina (vitamina B2) e luz ultravioleta-A para fortalecer as fibras de colágeno da córnea e interromper a progressão do ceratocone."
+      },
+      {
+        "@type": "MedicalProcedure",
+        "name": "Anel de Ferrara (Implante de Anel Intracorneano)",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Implante de segmentos de anel plástico no estroma corneano para regularizar a curvatura da córnea e melhorar a acuidade visual."
+      }
+    ],
+    "signOrSymptom": [
+      { "@type": "MedicalSymptom", "name": "Visão turva ou distorcida" },
+      { "@type": "MedicalSymptom", "name": "Miopia e astigmatismo progressivos" },
+      { "@type": "MedicalSymptom", "name": "Sensibilidade à luz" },
+      { "@type": "MedicalSymptom", "name": "Troca frequente de grau dos óculos" }
+    ],
+    "associatedAnatomy": { "@type": "AnatomicalStructure", "name": "Córnea" },
+    "relevantSpecialty": "http://schema.org/Optometric"
+  })} />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -249,7 +278,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="relative rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="/images/ceratocone-pentacam_54c0177a.webp" alt="Exame Pentacam para diagnóstico de ceratocone" class="w-full h-[240px] md:h-[340px] lg:h-[400px] object-cover" />
+          <img src="/images/ceratocone-pentacam_54c0177a.webp" alt="Exame Pentacam para diagnóstico de ceratocone" class="w-full h-[240px] md:h-[340px] lg:h-[400px] object-cover" width="800" height="400" loading="lazy" />
         </div>
       </div>
     </div>

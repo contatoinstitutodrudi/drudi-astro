@@ -12,9 +12,10 @@ export interface Props {
   rqe: string;
   jobTitle: string;
   specialties: string[];
+  dateModified?: string;
 }
 
-const { name, image, url, description, crm, rqe, jobTitle, specialties } = Astro.props;
+const { name, image, url, description, crm, rqe, jobTitle, specialties, dateModified = '2025-01-15' } = Astro.props;
 
 const schema = {
   "@context": "https://schema.org",
@@ -42,7 +43,8 @@ const schema = {
     "@type": "MedicalOrganization",
     "name": "Drudi e Almeida Clínicas Oftalmológicas",
     "url": "https://institutodrudiealmeida.com.br/"
-  }
+  },
+  "dateModified": dateModified
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />

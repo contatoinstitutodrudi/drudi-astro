@@ -83,7 +83,7 @@ if (!adminUser) {
     <span style="color:#475569">/</span>
     <a href="/admin/blog" class="current">Blog</a>
     <span style="flex:1"></span>
-    <a href="/" target="_blank">Ver site</a>
+    <a href="/" target="_blank" rel="noopener noreferrer">Ver site</a>
     <a href="/admin/login" id="logoutBtn" style="color:#ef4444">Sair</a>
   </nav>
 
@@ -392,7 +392,7 @@ if (!adminUser) {
         return `<tr>
           <td>
             <div class="post-title">
-              <a href="/blog/${p.slug}" target="_blank" title="${p.title}">${p.title}</a>
+              <a href="/blog/${p.slug}" target="_blank" rel="noopener noreferrer" title="${p.title}">${p.title}</a>
             </div>
             <div style="font-size:0.7rem;color:#64748b;margin-top:0.2rem">/blog/${p.slug}</div>
           </td>
@@ -623,7 +623,7 @@ if (!adminUser) {
 
         if (res.ok) {
           status.className = 'ai-status visible success';
-          status.innerHTML = `✅ Artigo gerado com sucesso!<br><strong>${result.title}</strong><br>Status: ${result.status} | <a href="/blog/${result.slug}" target="_blank" style="color:#86efac">Ver artigo</a>`;
+          status.innerHTML = `✅ Artigo gerado com sucesso!<br><strong>${result.title}</strong><br>Status: ${result.status} | <a href="/blog/${result.slug}" target="_blank" rel="noopener noreferrer" style="color:#86efac">Ver artigo</a>`;
           loadPosts(currentPage);
         } else {
           status.className = 'ai-status visible error';

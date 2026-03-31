@@ -5,6 +5,7 @@
 User-agent: *
 Allow: /
 Disallow: /lp/
+Disallow: /admin/
 
 # Google-Extended (Gemini / AI Overview) — acesso explícito permitido
 User-agent: Google-Extended

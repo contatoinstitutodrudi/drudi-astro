@@ -66,13 +66,36 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <BaseLayout
-  title="Tratamento de Estrabismo em SP | Especialistas Drudi e Almeida"
+  title="Tratamento de Estrabismo em SP | Drudi e Almeida"
   description="Tratamento especializado de estrabismo para crianças e adultos em São Paulo e Guarulhos. Cirurgia com suturas ajustáveis, diagnóstico preciso e 5 unidades. Agende: (11) 5430-2421."
   canonicalPath="/instituto/estrabismo"
   heroImage="/images/estrabismo-hero-salvator-mundi.webp"
   heroImageSrcset="/images/estrabismo-hero-480w.webp 480w, /images/estrabismo-hero-768w.webp 768w, /images/estrabismo-hero-salvator-mundi.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    "name": "Estrabismo",
+    "description": "Desalinhamento dos eixos visuais dos dois olhos. Pode ser convergente (esotropia), divergente (exotropia) ou vertical. Afeta crianças e adultos, podendo causar ambliopia se não tratado precocemente.",
+    "code": { "@type": "MedicalCode", "code": "H50", "codingSystem": "ICD-10" },
+    "possibleTreatment": [
+      {
+        "@type": "MedicalProcedure",
+        "name": "Cirurgia de Estrabismo",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Correção cirúrgica do desalinhamento ocular por meio de enfraquecimento ou fortalecimento dos músculos extraoculares. Realizada sob anestesia geral em crianças e local em adultos."
+      }
+    ],
+    "signOrSymptom": [
+      { "@type": "MedicalSymptom", "name": "Desalinhamento dos olhos" },
+      { "@type": "MedicalSymptom", "name": "Visão dupla (diplopia)" },
+      { "@type": "MedicalSymptom", "name": "Inclinação ou rotação da cabeça" },
+      { "@type": "MedicalSymptom", "name": "Fechamento de um olho sob luz intensa" }
+    ],
+    "associatedAnatomy": { "@type": "AnatomicalStructure", "name": "Músculos Extraoculares" },
+    "relevantSpecialty": "http://schema.org/Optometric"
+  })} />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">

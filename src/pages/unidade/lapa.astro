@@ -35,6 +35,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   title="Oftalmologista na Lapa — Drudi e Almeida"
   description="Clínica oftalmológica na Lapa, São Paulo. Rua Barão de Jundiaí, 221. Consultas, exames e cirurgias com os melhores especialistas. Agende: (11) 5430-2421."
   canonicalPath="/unidade/lapa"
+
+  heroImage={unidade.heroImg}
 >
   <LocalBusinessSchema
     slot="head-schema"
@@ -223,7 +225,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           { nome: "Estrabismo", desc: "Cirurgia para crianças e adultos", href: "/instituto/estrabismo", logo: "/images/logo-estrabismo-128_b8ca4997.webp" },
         ].map(esp => (
           <a href={esp.href} class="group flex items-center gap-4 bg-white rounded-xl border border-border/50 p-5 hover:shadow-md hover:border-gold/30 transition-all duration-300">
-            <img src={esp.logo} alt={esp.nome} class="w-12 h-12 object-contain flex-shrink-0" />
+            <img src={esp.logo} alt={esp.nome} class="w-12 h-12 object-contain flex-shrink-0" width="48" height="48" loading="lazy" />
             <div>
               <h3 class="font-ui text-sm font-bold text-navy group-hover:text-gold transition-colors">{esp.nome}</h3>
               <p class="font-body text-xs text-muted-foreground mt-0.5">{esp.desc}</p>
@@ -252,7 +254,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
             { nome: "Ameplam", logo: "/images/ameplam-resized_f387254f.webp" },
           ].map(conv => (
             <div class="bg-white border border-border/50 rounded-lg p-3 flex items-center justify-center w-28 h-16">
-              <img src={conv.logo} alt={conv.nome} class="max-h-10 max-w-full object-contain" />
+              <img src={conv.logo} alt={conv.nome} class="max-h-10 max-w-full object-contain" width="120" height="40" loading="lazy" />
             </div>
           ))}
         </div>

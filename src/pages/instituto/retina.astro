@@ -243,14 +243,44 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <BaseLayout
-  title="Instituto da Retina em SP | Vitrectomia, Anti-VEGF e DMRI | Drudi e Almeida"
-  description="Instituto da Retina em São Paulo: tratamento de DMRI, retinopatia diabética, descolamento de retina e injeção intravítrea. Dr. Fernando Drudi, especialista em retina cirúrgica. 5 unidades em SP e Guarulhos."
+  title="Instituto da Retina em SP | Anti-VEGF e DMRI | Drudi e Almeida"
+  description="Instituto da Retina em SP: DMRI, retinopatia diabética, descolamento e injeção anti-VEGF. Dr. Fernando Drudi, especialista em retina cirúrgica. Agende."
   keywords="retina SP, instituto da retina São Paulo, injeção intravítrea SP, DMRI tratamento, retinopatia diabética, descolamento de retina, vitrectomia SP, anti-VEGF, mapeamento de retina"
   canonicalPath="/instituto/retina"
   heroImage="/images/retina-hero_cb57f973.webp"
   heroImageSrcset="/images/retina-hero-480w.webp 480w, /images/retina-hero-768w.webp 768w, /images/retina-hero_cb57f973.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    "name": "Doenças da Retina",
+    "alternateName": ["Degeneração Macular (DMRI)", "Retinopatia Diabética", "Descolamento de Retina"],
+    "description": "Grupo de condições que afetam a retina — camada sensível à luz no fundo do olho. Incluem DMRI, retinopatia diabética, descolamento de retina e oclusões vasculares.",
+    "code": { "@type": "MedicalCode", "code": "H35", "codingSystem": "ICD-10" },
+    "possibleTreatment": [
+      {
+        "@type": "MedicalProcedure",
+        "name": "Injeção Intravítrea de Anti-VEGF",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Injeção de medicamento anti-VEGF (Ranibizumabe, Aflibercept ou Bevacizumabe) diretamente no vítreo para tratar DMRI úmida, edema macular diabético e oclusões vasculares."
+      },
+      {
+        "@type": "MedicalProcedure",
+        "name": "Vitrectomia",
+        "procedureType": "http://schema.org/SurgicalProcedure",
+        "description": "Cirurgia para remoção do vítreo e tratamento de descolamento de retina, hemorragia vítrea, membrana epirretiniana e buraco macular."
+      }
+    ],
+    "signOrSymptom": [
+      { "@type": "MedicalSymptom", "name": "Moscas volantes (floaters)" },
+      { "@type": "MedicalSymptom", "name": "Flashes de luz (fotopsias)" },
+      { "@type": "MedicalSymptom", "name": "Distorção de imagens (metamorfopsia)" },
+      { "@type": "MedicalSymptom", "name": "Perda súbita de visão" }
+    ],
+    "associatedAnatomy": { "@type": "AnatomicalStructure", "name": "Retina" },
+    "relevantSpecialty": "http://schema.org/Optometric"
+  })} />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">

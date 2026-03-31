@@ -86,6 +86,30 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   heroImageSrcset="/images/catarata-hero-480w.webp 480w, /images/catarata-hero-768w.webp 768w, /images/catarata-hero-art_bd1bf3f5.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    "name": "Catarata",
+    "alternateName": "Opacificação do Cristalino",
+    "description": "Opacificação progressiva do cristalino que causa embaçamento visual, sensibilidade à luz e dificuldade para enxergar à noite. Principal causa de cegueira reversível no mundo.",
+    "code": { "@type": "MedicalCode", "code": "H26", "codingSystem": "ICD-10" },
+    "possibleTreatment": {
+      "@type": "MedicalProcedure",
+      "name": "Cirurgia de Catarata com Facoemulsificação",
+      "procedureType": "http://schema.org/SurgicalProcedure",
+      "description": "Remoção do cristalino opacificado por ultrassom (facoemulsificação) e implante de lente intraocular (LIO). Procedimento ambulatorial com anestesia local, duração de 15-20 minutos e recuperação rápida.",
+      "followup": "Revisão no 1º, 7º e 30º dia pós-operatório",
+      "howPerformed": "Incisão de 2,2mm, fragmentação do cristalino por ultrassom e implante de LIO dobrável"
+    },
+    "signOrSymptom": [
+      { "@type": "MedicalSymptom", "name": "Visão embaçada ou turva" },
+      { "@type": "MedicalSymptom", "name": "Sensibilidade aumentada à luz (fotofobia)" },
+      { "@type": "MedicalSymptom", "name": "Dificuldade para enxergar à noite" },
+      { "@type": "MedicalSymptom", "name": "Visão dupla em um olho" }
+    ],
+    "associatedAnatomy": { "@type": "AnatomicalStructure", "name": "Cristalino" },
+    "relevantSpecialty": "http://schema.org/Optometric"
+  })} />
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -290,7 +314,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="relative rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="/images/cataract-eye_22b95078.webp" alt="Olho com catarata - opacificação do cristalino" class="w-full h-[240px] md:h-[340px] lg:h-[400px] object-cover" />
+          <img src="/images/cataract-eye_22b95078.webp" alt="Olho com catarata - opacificação do cristalino" class="w-full h-[240px] md:h-[340px] lg:h-[400px] object-cover" width="800" height="400" loading="lazy" />
         </div>
       </div>
     </div>
@@ -687,7 +711,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
             <p class="font-display text-sm text-navy group-hover:text-gold transition-colors font-semibold mb-1">{inst.name}</p>
             <p class="font-body text-xs text-muted-foreground">{inst.desc}</p>
             <div class="mt-3 inline-flex items-center gap-1 text-gold text-xs font-ui font-semibold">
-              Saiba mais
+              Conhecer o {inst.name}
               <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div>
           </a>

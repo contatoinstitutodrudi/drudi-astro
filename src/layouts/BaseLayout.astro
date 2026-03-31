@@ -214,7 +214,8 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
       "sameAs": [
         "https://www.instagram.com/drudiealmeida",
         "https://www.facebook.com/drudiealmeida"
-      ]
+      ],
+      "dateModified": "2025-03-31"
     })} />
 
     <!-- Schema.org: BreadcrumbList dinâmico — gerado automaticamente por canonicalPath -->
@@ -226,7 +227,8 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
 
     <!-- Slot para schemas específicos de página (Physician, LocalBusiness, FAQPage) -->
     <slot name="head-schema" />
-  </head>
+    <!-- Slot para preloads específicos de página (hero images CSS background) -->
+    <slot name="head-preload" />
   </head>
   <body>
     <!-- Top Bar: Horário + Contatos -->
