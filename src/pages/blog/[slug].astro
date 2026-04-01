@@ -5,6 +5,10 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { allPosts } from '../../data/blogPosts';
 import { getPostBySlug } from '../../lib/blog-db';
 import { env } from 'cloudflare:workers';
+import { marked } from 'marked';
+
+// Configurar marked com suporte completo a tabelas GFM
+marked.setOptions({ gfm: true, breaks: true });
 
 const WA_LINK = "https://wa.me/5511916544653";
 const WA_AGENDAR = `${WA_LINK}?text=Olá! Gostaria de agendar uma consulta.`;
@@ -38,6 +42,7 @@ try {
       metaTitle: dbPost.meta_title ?? dbPost.title,
       metaDescription: dbPost.meta_description ?? dbPost.excerpt,
       schemaFaq: dbPost.schema_faq ? JSON.parse(dbPost.schema_faq) : [],
+      wordCount: dbPost.word_count ?? null,
     };
     relatedPosts = allPosts.filter(p => post.relatedSlugs.includes(p.slug));
   }
@@ -56,6 +61,13 @@ if (!post) {
 
 // 404 se não encontrou
 if (!post) return Astro.redirect('/404');
+
+// ─── Renderizar Markdown → HTML (suporte a tabelas GFM) ─────────────────────
+// O conteúdo dos artigos gerados por IA vem em Markdown puro.
+// Detecta se o conteúdo já é HTML (começa com '<') ou precisa ser convertido.
+const renderedContent = post.content?.trimStart().startsWith('<')
+  ? post.content
+  : String(await marked.parse(post.content ?? ''));
 
 // ─── Schema.org ─────────────────────────────────────────────────────────────
 const siteUrl = 'https://institutodrudiealmeida.com.br';
@@ -120,7 +132,8 @@ const articleSchema = {
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["h1", ".prose > p:first-of-type"]
-  }
+  },
+  ...(post.wordCount ? { "wordCount": post.wordCount } : {})
 };
 
 const faqSchema = post.schemaFaq?.length > 0 ? {
@@ -224,7 +237,7 @@ const relatedInstituto = post?.category ? catInstitutoMap[post.category] : null;
         </div>
 
         <!-- Texto do artigo -->
-        <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-strong:text-navy prose-a:text-gold prose-a:no-underline hover:prose-a:underline" set:html={post.content} />
+        <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-strong:text-navy prose-a:text-gold prose-a:no-underline hover:prose-a:underline" set:html={renderedContent} />
 
         <!-- Disclaimer médico -->
         <div class="mt-10 p-4 bg-amber-50 border border-amber-200 rounded-xl flex gap-3 items-start">
