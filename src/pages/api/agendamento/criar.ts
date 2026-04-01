@@ -38,9 +38,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
   } = body as Record<string, string | number | null>;
 
   // Validações básicas
-  if (!patient_name || !patient_phone || !unit || !specialty || !health_plan ||
+  if (!patient_name || !patient_phone || !patient_email || !unit || !specialty || !health_plan ||
       !appointment_date || appointment_hour === undefined || appointment_minute === undefined) {
-    return new Response(JSON.stringify({ error: 'Campos obrigatórios ausentes.' }), {
+    return new Response(JSON.stringify({ error: 'Campos obrigatórios ausentes. O e-mail é obrigatório para envio da confirmação.' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  // Validar formato do e-mail
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(patient_email))) {
+    return new Response(JSON.stringify({ error: 'E-mail inválido. Verifique o endereço informado.' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -116,20 +123,19 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // mesmo após a resposta ser enviada (obrigatório no Cloudflare Workers)
     const emailTasks: Promise<void>[] = [];
 
-    if (patient_email) {
-      emailTasks.push(
-        sendConfirmationEmail(cfEnv.RESEND_API_KEY, {
-          patient_name: String(patient_name),
-          patient_email: String(patient_email),
-          unit: String(unit),
-          specialty: String(specialty),
-          appointment_date: String(appointment_date),
-          appointment_hour: Number(appointment_hour),
-          appointment_minute: Number(appointment_minute),
-          cancel_token,
-        }).catch(e => console.error('[criar] Email paciente error:', e))
-      );
-    }
+    // patient_email é agora obrigatório — sempre enviar confirmação ao paciente
+    emailTasks.push(
+      sendConfirmationEmail(cfEnv.RESEND_API_KEY, {
+        patient_name: String(patient_name),
+        patient_email: String(patient_email),
+        unit: String(unit),
+        specialty: String(specialty),
+        appointment_date: String(appointment_date),
+        appointment_hour: Number(appointment_hour),
+        appointment_minute: Number(appointment_minute),
+        cancel_token,
+      }).catch(e => console.error('[criar] Email paciente error:', e))
+    );
 
     emailTasks.push(
       sendAdminNotificationEmail(cfEnv.RESEND_API_KEY, {

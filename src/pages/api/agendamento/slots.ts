@@ -62,6 +62,15 @@ export const GET: APIRoute = async ({ request }) => {
       occupancy[key] = (occupancy[key] ?? 0) + 1;
     }
 
+    // Verificar se a data solicitada é hoje (para filtrar horários passados)
+    // Cloudflare Workers usa UTC; ajustar para America/Sao_Paulo (UTC-3)
+    const nowUtc = new Date();
+    const nowBrt = new Date(nowUtc.getTime() - 3 * 60 * 60 * 1000);
+    const todayStr = `${nowBrt.getUTCFullYear()}-${String(nowBrt.getUTCMonth() + 1).padStart(2, '0')}-${String(nowBrt.getUTCDate()).padStart(2, '0')}`;
+    const isToday = date === todayStr;
+    // Horário mínimo: agora + 1 hora de antecedência (em minutos totais desde meia-noite BRT)
+    const minTotalMinutes = isToday ? (nowBrt.getUTCHours() * 60 + nowBrt.getUTCMinutes() + 60) : 0;
+
     // Gerar todos os slots
     const slots: { hour: number; minute: number; available: boolean }[] = [];
     for (let h = hours.start; h < hours.end; h++) {
@@ -70,7 +79,10 @@ export const GET: APIRoute = async ({ request }) => {
         if (h === hours.end - 1 && m + BUSINESS_HOURS.interval > 60) break;
         const key = `${h}:${m}`;
         const count = occupancy[key] ?? 0;
-        slots.push({ hour: h, minute: m, available: count < MAX_PER_SLOT });
+        // Bloquear horários já passados (ou com menos de 1h de antecedência) no dia atual
+        const slotTotalMinutes = h * 60 + m;
+        const isPastSlot = isToday && slotTotalMinutes < minTotalMinutes;
+        slots.push({ hour: h, minute: m, available: !isPastSlot && count < MAX_PER_SLOT });
       }
     }
 
