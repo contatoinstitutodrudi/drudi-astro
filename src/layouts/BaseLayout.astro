@@ -605,33 +605,27 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
         </div>
       </div>
 
-      <!-- Responsável Técnica + Dados Legais (CFM Res. 2.336/2023) -->
-      <div class="border-b border-white/10">
-        <div class="container py-5">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <div class="flex flex-wrap items-center gap-x-6 gap-y-1">
-              <div class="flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                <span class="font-ui text-xs text-white/50">Responsável Técnica:</span>
-                <a href="/medico/dra-priscilla-almeida" class="font-ui text-xs text-white/70 hover:text-gold transition-colors font-semibold">Dra. Priscilla Rodrigues de Almeida — Médica</a>
-              </div>
-              <span class="font-ui text-xs text-white/40">CRM-SP 148.173</span>
-              <span class="font-ui text-xs text-white/40">RQE 59.216 — Oftalmologia</span>
-            </div>
-            <span class="font-ui text-xs text-white/40">CNPJ 40.106.607/0001-75</span>
+      <!-- Bottom bar unificado: copyright + legal + links -->
+      <div class="container py-5">
+        <div class="flex flex-col items-center gap-3 text-center sm:flex-row sm:items-start sm:justify-between sm:text-left">
+          <!-- Copyright + dados legais -->
+          <div class="space-y-1">
+            <p class="font-body text-xs text-white/40">
+              © {new Date().getFullYear()} Drudi e Almeida Clínicas Oftalmológicas. Todos os direitos reservados.
+            </p>
+            <p class="font-ui text-xs text-white/35 leading-relaxed">
+              CNPJ 40.106.607/0001-75 &nbsp;·&nbsp;
+              <span>Resp. Técnica:</span>
+              <a href="/medico/dra-priscilla-almeida" class="hover:text-gold transition-colors font-semibold">&nbsp;Dra. Priscilla Rodrigues de Almeida</a>
+              &nbsp;·&nbsp; CRM-SP 148.173 &nbsp;·&nbsp; RQE 59.216 — Oftalmologia
+            </p>
           </div>
-        </div>
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p class="font-body text-xs text-white/40">
-          © {new Date().getFullYear()} Drudi e Almeida Clínicas Oftalmológicas. Todos os direitos reservados.
-        </p>
-        <div class="flex gap-4">
-          <a href="/politica-de-privacidade" class="font-body text-xs text-white/40 hover:text-gold transition-colors">Política de Privacidade</a>
-          <a href="/lgpd" class="font-body text-xs text-white/40 hover:text-gold transition-colors">LGPD</a>
-          <a href="/admin/login" class="hidden md:inline font-body text-xs text-white/20 hover:text-white/50 transition-colors">Painel Admin</a>
+          <!-- Links legais -->
+          <div class="flex gap-4 flex-shrink-0">
+            <a href="/politica-de-privacidade" class="font-body text-xs text-white/40 hover:text-gold transition-colors">Política de Privacidade</a>
+            <a href="/lgpd" class="font-body text-xs text-white/40 hover:text-gold transition-colors">LGPD</a>
+            <a href="/admin/login" class="hidden md:inline font-body text-xs text-white/20 hover:text-white/50 transition-colors">Painel Admin</a>
+          </div>
         </div>
       </div>
     </footer>
