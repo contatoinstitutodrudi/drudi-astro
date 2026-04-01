@@ -59,29 +59,68 @@ if (!post) return Astro.redirect('/404');
 
 // ─── Schema.org ─────────────────────────────────────────────────────────────
 const siteUrl = 'https://institutodrudiealmeida.com.br';
+const canonicalUrl = `${siteUrl}/blog/${post.slug}/`;
+const imageUrl = post.image?.startsWith('http') ? post.image : `${siteUrl}${post.image}`;
 const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
+  "@type": ["MedicalWebPage", "Article"],
+  "headline": post.metaTitle ?? post.title,
   "name": post.metaTitle ?? post.title,
   "description": post.metaDescription ?? post.excerpt,
-  "url": `${siteUrl}/blog/${post.slug}`,
-  "datePublished": post.date,
-  "dateModified": post.date,
+  "url": canonicalUrl,
+  "datePublished": post.date ?? post.createdAt ?? new Date().toISOString().split('T')[0],
+  "dateModified": post.updatedAt ?? post.date ?? new Date().toISOString().split('T')[0],
+  "inLanguage": "pt-BR",
+  "keywords": post.keywords ?? '',
+  "articleSection": post.category,
   "author": {
     "@type": "Person",
-    "name": post.author,
-    "description": post.authorCRM
+    "name": post.author ?? 'Dr. Fernando Macei Drudi',
+    "jobTitle": "Médico Oftalmologista",
+    "description": post.authorCRM ?? 'CRM-SP 139.300',
+    "worksFor": {
+      "@type": "MedicalOrganization",
+      "name": "Drudi e Almeida Oftalmologia",
+      "url": siteUrl
+    }
   },
   "publisher": {
     "@type": "MedicalOrganization",
     "name": "Drudi e Almeida Oftalmologia",
     "url": siteUrl,
-    "logo": { "@type": "ImageObject", "url": `${siteUrl}/images/logo-drudi-almeida.webp` }
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/images/logo-footer-200w_56b3dc2d.webp`,
+      "width": 200,
+      "height": 60
+    }
   },
-  "image": post.image?.startsWith('http') ? post.image : `${siteUrl}${post.image}`,
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `${siteUrl}/blog/${post.slug}` },
-  "about": { "@type": "MedicalCondition", "name": post.category },
-  "specialty": "Ophthalmology"
+  "image": {
+    "@type": "ImageObject",
+    "url": imageUrl,
+    "width": 1200,
+    "height": 630
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  "about": {
+    "@type": "MedicalCondition",
+    "name": post.category,
+    "relevantSpecialty": {
+      "@type": "MedicalSpecialty",
+      "name": "Ophthalmology"
+    }
+  },
+  "medicalAudience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Patient"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".prose > p:first-of-type"]
+  }
 };
 
 const faqSchema = post.schemaFaq?.length > 0 ? {
@@ -89,8 +128,8 @@ const faqSchema = post.schemaFaq?.length > 0 ? {
   "@type": "FAQPage",
   "mainEntity": post.schemaFaq.map((item: any) => ({
     "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+    "name": item.q ?? item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a ?? item.answer }
   }))
 } : null;
 
@@ -123,6 +162,15 @@ const relatedInstituto = post?.category ? catInstitutoMap[post.category] : null;
   keywords={post.keywords}
   canonicalPath={`/blog/${post.slug}`}
   ogImage={post.image}
+  isArticle={true}
+  articlePublishedTime={post.date ?? post.createdAt}
+  articleModifiedTime={post.updatedAt ?? post.date}
+  articleAuthor={post.author ?? 'Dr. Fernando Macei Drudi'}
+  articleSection={post.category}
+  breadcrumbItems={[
+    { name: 'Blog', item: `${siteUrl}/blog/` },
+    { name: post.title }
+  ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
