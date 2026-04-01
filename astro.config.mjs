@@ -30,6 +30,7 @@ export default defineConfig({
         'https://institutodrudiealmeida.com.br/blog/tratamento-glaucoma-sp',
         'https://institutodrudiealmeida.com.br/blog/cirurgia-estrabismo-adultos',
         'https://institutodrudiealmeida.com.br/blog/cirurgia-estrabismo-sp',
+        'https://institutodrudiealmeida.com.br/blog/coriorretinopatia-serosa-central',
       ],
       serialize(item) {
         // Home e institutos têm prioridade máxima

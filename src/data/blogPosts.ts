@@ -377,4 +377,104 @@ export const allPosts: BlogPost[] = [
     `,
     relatedSlugs: ["cirurgia-estrabismo-adultos", "cirurgia-catarata-sp-preco"],
   },
+  {
+    slug: "coriorretinopatia-serosa-central",
+    title: "Coriorretinopatia Serosa Central: Causas, Sintomas e Tratamento Baseado em Evidências",
+    excerpt: "A coriorretinopatia serosa central (CSC) é uma das maculopatias exsudativas mais prevalentes, afetando principalmente homens em idade produtiva. Conheça as causas, sintomas, diagnóstico e os tratamentos mais atualizados baseados em evidências de 2024–2025.",
+    category: "Retina",
+    readTime: "11 min",
+    image: "/images/blog/blog-capa-coriorretinopatia-serosa-central-GhJ5WfYuqzM6.webp",
+    date: "2026-04-01",
+    author: "Dr. Fernando Macei Drudi",
+    authorCRM: "CRM-SP 139.300",
+    authorImg: "/images/dr-fernando-800w.webp",
+    keywords: "coriorretinopatia serosa central, CSC, fluido sub-retiniano, terapia fotodinâmica, PDT retina, mácula, retina, oftalmologista São Paulo",
+    content: `
+      <h2>O que é a Coriorretinopatia Serosa Central?</h2>
+      <p>A <strong>coriorretinopatia serosa central (CSC)</strong> é uma maculopatia exsudativa caracterizada pelo acúmulo de fluido sub-retiniano (FSR) na região macular, resultante de disfunção do epitélio pigmentado da retina (EPR) sobre uma coroide espessada e hiperpermeável. A doença se manifesta em duas formas clínicas principais, com prognósticos e abordagens terapêuticas distintas.</p>
+      <p>A forma <strong>aguda</strong> tem duração inferior a três a quatro meses e, em aproximadamente 80% dos casos, resolve-se espontaneamente sem necessidade de intervenção. A forma <strong>crônica</strong>, com fluido persistindo além de três a quatro meses, pode levar à atrofia progressiva do EPR e dos fotorreceptores, resultando em comprometimento visual permanente se não tratada adequadamente.</p>
+
+      <h2>Fisiopatologia: A Coroide como Epicentro da Doença</h2>
+      <p>Durante décadas, a CSC foi considerada primariamente uma doença do EPR. A compreensão atual, sustentada por evidências de imagem multimodal de alta resolução, posiciona a <strong>coroide como o epicentro fisiopatológico</strong> da condição. A CSC é hoje reconhecida como parte do espectro das <em>doenças pacicoroides</em> — grupo de condições caracterizadas por espessamento e dilatação dos vasos coroidais externos (vasos de Haller).</p>
+      <p>O mecanismo proposto envolve uma cascata de eventos: a disfunção da regulação do fluxo sanguíneo coroidal leva à isquemia ao nível da coriocapilar, resultando em disfunção focal ou difusa do EPR com acúmulo subsequente de fluido sub-retiniano. O papel dos <strong>mineralocorticoides</strong> nesse processo é central: receptores mineralocorticoides expressos nas células do EPR e nos vasos coroidais, quando ativados pelo cortisol ou aldosterona, promovem vasoconstrição e aumento da permeabilidade vascular — explicando a associação da CSC com estresse psicológico e uso de corticosteroides.</p>
+
+      <h2>Fatores de Risco: Quem Está Mais Vulnerável?</h2>
+      <p>A CSC afeta predominantemente <strong>homens entre 30 e 50 anos</strong>, com uma razão masculino:feminino de aproximadamente 6:1. Metanálise publicada em 2025 confirmou que o sexo masculino é fator de risco independente (odds ratio 2,73; P &lt; 0,0001), e que homens são, em média, 3,3 anos mais jovens que mulheres no momento do diagnóstico.</p>
+      <p>Os principais fatores de risco identificados na literatura incluem:</p>
+      <ul>
+        <li><strong>Uso de corticosteroides (qualquer via)</strong> — oral, inalatória, tópica, intra-articular ou colírios — pode precipitar ou agravar a CSC por ativação de receptores mineralocorticoides na coroide</li>
+        <li><strong>Hipertensão arterial sistêmica</strong> — aumenta a pressão de perfusão coroidal</li>
+        <li><strong>Tabagismo</strong> — promove vasoconstrição e estresse oxidativo</li>
+        <li><strong>Personalidade tipo A e estresse psicológico</strong> — elevam os níveis endógenos de cortisol</li>
+        <li><strong>Apneia obstrutiva do sono</strong> — hipóxia intermitente e disregulação autonômica</li>
+        <li><strong>Infecção por <em>Helicobacter pylori</em></strong> — associação emergente via inflamação sistêmica</li>
+      </ul>
+
+      <h2>Sintomas: Como a CSC se Manifesta?</h2>
+      <p>A apresentação clínica da CSC é variável. Alguns pacientes são assintomáticos, com o diagnóstico feito incidentalmente durante exame de rotina. Quando o fluido sub-retiniano compromete a fóvea central, os sintomas típicos incluem:</p>
+      <ul>
+        <li><strong>Visão turva ou embaçada</strong> no centro do campo visual, frequentemente descrita como "névoa" ou "mancha" central</li>
+        <li><strong>Metamorfopsia</strong> — distorção das imagens, com linhas retas percebidas como curvas ou onduladas, detectável pela grade de Amsler</li>
+        <li><strong>Micropsia</strong> — percepção de objetos menores do que o real, resultante do afastamento dos fotorreceptores pelo fluido sub-retiniano</li>
+        <li><strong>Escotoma central relativo</strong> — área de visão reduzida no centro do campo visual</li>
+        <li><strong>Alteração da percepção de cores</strong> e redução do contraste</li>
+      </ul>
+      <p>É importante ressaltar que a acuidade visual medida pelo optotipo pode não refletir adequadamente o impacto funcional da doença. Muitos pacientes com acuidade de 20/20 relatam dificuldade significativa em tarefas que exigem visão de contraste e discriminação de detalhes finos, como leitura prolongada ou trabalho com telas.</p>
+
+      <h2>Diagnóstico: Exames Essenciais</h2>
+      <p>O diagnóstico da CSC é fundamentalmente clínico e de imagem. A avaliação completa deve incluir:</p>
+      <p><strong>Tomografia de Coerência Óptica (OCT)</strong> é o exame de referência para diagnóstico e monitoramento. Permite visualizar o fluido sub-retiniano, os descolamentos do EPR, a espessura coroidal (EDI-OCT) e as alterações dos fotorreceptores. A presença de coroide espessada (acima de 300 µm) é achado característico da CSC dentro do espectro pacicoroides.</p>
+      <p><strong>Angiografia com Fluoresceína (AF)</strong> demonstra o ponto de vazamento ativo do EPR, classicamente em "fumaça de chaminé" (smoke-stack) ou em "tinta expansiva" (inkblot). Embora menos específica que a ICGA para avaliar a coroide, a AF é útil para identificar o local exato do vazamento e guiar tratamentos com laser.</p>
+      <p><strong>Angiografia com Verde de Indocianina (ICGA)</strong> é o exame mais sensível para avaliar a hiperpermeabilidade coroidal, demonstrando hiperfluorescência difusa nas fases tardias, dilatação dos vasos coroidais e áreas de hipoperfusão da coriocapilar. É fundamental para o planejamento da terapia fotodinâmica.</p>
+      <p><strong>OCT-Angiografia (OCT-A)</strong> permite a visualização não invasiva da vasculatura coroidal e a detecção de neovascularização coroidal (NVC), uma complicação da CSC crônica que altera substancialmente o prognóstico e o tratamento.</p>
+
+      <h2>Tratamento: Evidências Atualizadas de 2024–2025</h2>
+      <p>O tratamento da CSC evoluiu consideravelmente nos últimos anos, com publicação de ensaios clínicos randomizados de alta qualidade. A Academia Americana de Oftalmologia publicou em 2025 uma revisão sistemática abrangente, avaliando 31 estudos selecionados de 612 referências, com seis estudos de nível I de evidência.</p>
+
+      <h3>CSC Aguda: Observação e Tratamento Seletivo</h3>
+      <p>Na CSC aguda, a conduta inicial recomendada é a <strong>observação por 3 a 4 meses</strong>, dado que a maioria dos casos resolve espontaneamente. Durante esse período, devem ser identificados e eliminados fatores precipitantes, especialmente o uso de corticosteroides.</p>
+      <p>Um estudo de nível I demonstrou que a terapia fotodinâmica com meia dose de verteporfirina (PDT meia dose) para CSC aguda resultou em redução significativa do fluido sub-retiniano, com <strong>95% dos olhos tratados sem FSR aos 12 meses</strong>, comparado a 58% dos olhos não tratados (P = 0,001). Em casos selecionados — como pacientes com necessidade visual profissional urgente ou risco elevado de cronicização — o tratamento precoce pode ser considerado.</p>
+
+      <h3>CSC Crônica: PDT com Meia Dose como Padrão Ouro</h3>
+      <p>Para a CSC crônica, a <strong>terapia fotodinâmica com meia dose de verteporfirina</strong> (PDT 3 mg/m²) é o tratamento com maior nível de evidência e é considerada o padrão ouro pela maioria dos consensos internacionais. O mecanismo de ação envolve a oclusão seletiva dos vasos coroidais hiperpermeáveis, reduzindo a congestão venosa e a pressão hidrostática sobre o EPR.</p>
+      <p>Um ensaio clínico randomizado de nível I comparou PDT com meia dose versus PDT com 30% da dose, demonstrando que <strong>94,6% dos olhos no grupo meia dose não apresentavam FSR aos 12 meses</strong>, comparado a 75,4% no grupo 30% da dose (P = 0,004), confirmando a superioridade da meia dose. O ensaio PLACE também demonstrou superioridade da PDT meia dose sobre o laser micropulsado de alta densidade para CSC crônica.</p>
+
+      <h3>Antagonistas Mineralocorticoides: Evidências Controversas</h3>
+      <p>O uso de antagonistas dos receptores mineralocorticoides (ARM) — eplerenona e espironolactona — foi investigado com base na hipótese de que a ativação mineralocorticoide contribui para a hiperpermeabilidade coroidal na CSC. O ensaio clínico randomizado <strong>VICI trial</strong>, de nível I, avaliou a eplerenona versus placebo para CSC crônica e <strong>não demonstrou benefício significativo</strong>: a acuidade visual aos 12 meses foi de 79,5 letras no grupo placebo e 80,4 letras no grupo eplerenona (P = 0,24). O ensaio SPECTRA confirmou que a PDT meia dose supera a eplerenona oral tanto em eficácia quanto em segurança para CSC crônica.</p>
+
+      <h3>CSC com Neovascularização Coroidal</h3>
+      <p>Um subgrupo de pacientes com CSC crônica desenvolve <strong>neovascularização coroidal (NVC)</strong> — crescimento de novos vasos anômalos sob a retina — que altera substancialmente o prognóstico. Nesses casos, o tratamento com injeções intravítreas de agentes anti-VEGF é indicado, frequentemente em combinação com PDT. A OCT-Angiografia é fundamental para o diagnóstico precoce da NVC na CSC.</p>
+
+      <h2>Prognóstico e Seguimento a Longo Prazo</h2>
+      <p>O prognóstico da CSC aguda é geralmente favorável, com recuperação visual completa na maioria dos casos. Entretanto, estudos de seguimento a longo prazo revelam que até 40–50% dos pacientes apresentam recorrências. A CSC crônica não tratada associa-se a risco significativo de perda visual permanente por atrofia do EPR e dos fotorreceptores. Dados de seguimento de 10 anos demonstram que pacientes com CSC crônica tratada com PDT apresentam melhor preservação da acuidade visual e menor progressão da atrofia do EPR comparados aos não tratados.</p>
+      <p>O seguimento regular com OCT é recomendado para todos os pacientes, independentemente da forma clínica, para detecção precoce de recorrências, progressão para CSC crônica e desenvolvimento de NVC.</p>
+
+      <h2>Quando Procurar um Especialista em Retina?</h2>
+      <p>Qualquer paciente que apresente visão turva central de início recente, metamorfopsia ou percepção de objetos menores deve ser avaliado por um oftalmologista com brevidade. Situações que requerem avaliação urgente incluem: redução visual significativa (acuidade abaixo de 20/40), suspeita de CSC bilateral, presença de descolamento exsudativo extenso, pacientes em uso de corticosteroides sistêmicos e casos com duração superior a 3 meses sem resolução espontânea.</p>
+      <p>O <a href="/instituto/retina/"><strong>Instituto da Retina da Drudi e Almeida</strong></a> conta com tecnologia de OCT de última geração, OCT-Angiografia e terapia fotodinâmica para diagnóstico e tratamento completo da coriorretinopatia serosa central, com equipe especializada e experiência em casos complexos.</p>
+
+      <h2>Perguntas Frequentes sobre Coriorretinopatia Serosa Central</h2>
+      <h3>A CSC pode causar cegueira?</h3>
+      <p>A CSC aguda raramente causa perda visual permanente grave. A forma crônica não tratada, contudo, pode resultar em comprometimento visual significativo por atrofia da mácula. O diagnóstico e tratamento precoces são fundamentais para preservar a visão.</p>
+      <h3>O estresse causa CSC?</h3>
+      <p>O estresse psicológico é um fator de risco reconhecido, provavelmente por elevar os níveis endógenos de cortisol, que ativa receptores mineralocorticoides na coroide. Pacientes com personalidade tipo A e alta exposição ao estresse têm maior risco de desenvolver e recidivar a CSC.</p>
+      <h3>Posso usar corticosteroides se tenho CSC?</h3>
+      <p>O uso de corticosteroides deve ser evitado ou minimizado em pacientes com CSC, pois pode precipitar ou agravar a doença. Qualquer necessidade de corticoterapia deve ser discutida com o oftalmologista e o médico prescritor para avaliar alternativas terapêuticas.</p>
+      <h3>A CSC afeta os dois olhos?</h3>
+      <p>O envolvimento bilateral simultâneo ocorre em cerca de 4% dos casos no momento do diagnóstico. Ao longo da vida, até 40% dos pacientes podem apresentar envolvimento do olho contralateral.</p>
+      <h3>Quanto tempo dura o tratamento com PDT?</h3>
+      <p>A terapia fotodinâmica é realizada em sessão única ambulatorial, com duração de aproximadamente 30 minutos. A maioria dos pacientes necessita de apenas uma sessão, embora casos refratários possam requerer retratamento após 3 meses.</p>
+
+      <h2>Referências Científicas</h2>
+      <ol>
+        <li>Kim LA, Maguire MG, Weng CY, et al. Therapies for Central Serous Chorioretinopathy: A Report by the American Academy of Ophthalmology. <em>Ophthalmology</em>. 2025;132(1).</li>
+        <li>Feenstra HMA, van Dijk EHC, Cheung CMG, et al. Central serous chorioretinopathy: an evidence-based treatment guideline. <em>Progress in Retinal and Eye Research</em>. 2024;101:101236.</li>
+        <li>Frederiksen IN, et al. Global incidence of central serous chorioretinopathy: a systematic review, meta-analysis, and forecasting study. <em>Ophthalmology and Therapy</em>. 2025.</li>
+        <li>Kim YJ, et al. Treatment of central serous chorioretinopathy: new options for an old disease. <em>Eye</em>. 2025.</li>
+        <li>Chatziralli I, et al. Eplerenone for Central Serous Chorioretinopathy (VICI Trial). <em>Biomedicines</em>. 2026.</li>
+      </ol>
+      <p><em>Este artigo tem caráter exclusivamente informativo e educacional, baseado em literatura científica revisada por pares. Não substitui a consulta médica presencial. Em caso de sintomas visuais, procure imediatamente um oftalmologista especializado.</em></p>
+    `,
+    relatedSlugs: ["injecao-antivegf-o-que-e", "crosslinking-ceratocone-sp"],
+  },
 ];
