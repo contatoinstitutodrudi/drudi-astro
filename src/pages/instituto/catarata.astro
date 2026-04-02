@@ -668,6 +668,73 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     </div>
   </section>
 
+  <!-- ========== GUIA DEFINITIVO ========== -->
+  <section class="py-12 bg-gradient-to-br from-navy via-navy/95 to-navy/90">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 bg-gold/20 border border-gold/30 rounded-full px-4 py-1.5 mb-4">
+            <span class="font-ui text-xs font-semibold text-gold tracking-wide">GUIA BASEADO EM EVIDÊNCIAS</span>
+          </span>
+          <h2 class="font-display text-2xl md:text-3xl text-cream mb-4 leading-tight">
+            Guia Definitivo: Cirurgia de Catarata em São Paulo (2026)
+          </h2>
+          <p class="font-body text-cream/75 leading-relaxed mb-6">
+            Elaborado com base em 15 referências científicas de alto impacto — JAMA, New England Journal of Medicine, AAO e ESCRS. Inclui comparativo de lentes intraoculares, técnicas cirúrgicas, recuperação e perguntas frequentes.
+          </p>
+          <div class="flex items-center gap-6 mb-6">
+            <div class="text-center">
+              <div class="font-display text-2xl text-gold font-bold">4.484</div>
+              <div class="font-ui text-xs text-cream/60">palavras</div>
+            </div>
+            <div class="w-px h-10 bg-cream/20"></div>
+            <div class="text-center">
+              <div class="font-display text-2xl text-gold font-bold">15</div>
+              <div class="font-ui text-xs text-cream/60">referências</div>
+            </div>
+            <div class="w-px h-10 bg-cream/20"></div>
+            <div class="text-center">
+              <div class="font-display text-2xl text-gold font-bold">PDF</div>
+              <div class="font-ui text-xs text-cream/60">gratuito</div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="/guia/cirurgia-catarata-sp/" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+              Ler o Guia Completo
+            </a>
+            <a href="/ebooks/ebook-catarata-drudi-almeida.pdf" download class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+              ⬇ Baixar PDF
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center lg:justify-end">
+          <div class="bg-white/5 border border-cream/10 rounded-2xl p-6 max-w-sm w-full">
+            <div class="bg-navy border border-gold/20 rounded-xl p-5 mb-4">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center">
+                  <span class="text-gold text-xl">📄</span>
+                </div>
+                <div>
+                  <p class="font-ui text-xs font-bold text-cream">E-BOOK GRATUITO</p>
+                  <p class="font-body text-xs text-cream/50">PDF · 17 páginas</p>
+                </div>
+              </div>
+              <h3 class="font-display text-base text-cream mb-2">Cirurgia de Catarata em São Paulo</h3>
+              <p class="font-body text-xs text-cream/60 leading-relaxed">Tipos de lentes, técnicas cirúrgicas, convênios, recuperação e estudos clínicos.</p>
+            </div>
+            <ul class="space-y-2">
+              {['Facoemulsificação e FLACS', 'LIOs: Monofocal, Trifocal, EDOF, Tórica', 'Cobertura por convênio', 'Recuperação pós-operatória', 'Estudos: JAMA 2025, ESCRS 2025'].map(item => (
+                <li class="flex items-center gap-2 font-body text-xs text-cream/70">
+                  <span class="text-gold">✓</span>{item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== 17. FAQ ========== -->
   <section class="section-padding bg-white">
     <div class="container">
