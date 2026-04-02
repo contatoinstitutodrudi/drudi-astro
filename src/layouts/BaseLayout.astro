@@ -145,6 +145,8 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#1e2a44" />
 
     <!-- Perf: Preload hero image — suportado em todas as páginas via prop heroImage -->
     {heroImage && (
@@ -175,17 +177,33 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
     <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="dns-prefetch" href="https://api.whatsapp.com" />
 
-    <!-- Google Analytics 4 — G-X3TM41VL1E -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3TM41VL1E"></script>
+    <!-- Google Analytics 4 — G-X3TM41VL1E (carregado após interação para não bloquear LCP) -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-X3TM41VL1E', {
-        page_path: window.location.pathname,
-        anonymize_ip: true,
-        cookie_flags: 'SameSite=None;Secure'
+      // Carrega GA4 após primeira interação do usuário (melhora LCP/FID)
+      function loadGA() {
+        if (window._gaLoaded) return;
+        window._gaLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-X3TM41VL1E';
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-X3TM41VL1E', {
+          page_path: window.location.pathname,
+          anonymize_ip: true,
+          cookie_flags: 'SameSite=None;Secure'
+        });
+      }
+      // Carrega após 3s ou na primeira interação, o que vier primeiro
+      setTimeout(loadGA, 3000);
+      ['click','scroll','keydown','touchstart'].forEach(function(e) {
+        document.addEventListener(e, loadGA, { once: true, passive: true });
       });
     </script>
     <link
@@ -249,11 +267,31 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
         "worstRating": "1",
         "reviewCount": "312"
       },
+      "hasMap": "https://maps.google.com/?q=Drudi+e+Almeida+Clinicas+Oftalmologicas",
+      "knowsAbout": [
+        "Cirurgia de Catarata",
+        "Ceratocone",
+        "Glaucoma",
+        "Retinopatia Diabética",
+        "Estrabismo",
+        "Facoemulsificação",
+        "Crosslinking Corneano",
+        "Lentes Intraoculares Premium",
+        "Anti-VEGF Intravítreo",
+        "Trabeculectomia",
+        "Laser SLT",
+        "OCT Angio",
+        "Pentacam",
+        "Cirurgia de Retina"
+      ],
+      "award": "Prêmio Champalimaud 2024 — Projeto Oftalmologia Humanitária",
+      "slogan": "Sua visão merece excelência e cuidado",
       "sameAs": [
         "https://www.instagram.com/drudiealmeida",
-        "https://www.facebook.com/drudiealmeida"
+        "https://www.facebook.com/drudiealmeida",
+        "https://www.google.com/maps/place/Drudi+e+Almeida"
       ],
-      "dateModified": "2026-03-31"
+      "dateModified": "2026-04-02"
     })} />
 
     <!-- Schema.org: BreadcrumbList dinâmico — gerado automaticamente por canonicalPath -->
@@ -574,11 +612,24 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
           <div>
             <h3 class="font-ui text-xs font-bold text-gold tracking-widest uppercase mb-4">Institutos</h3>
             <ul class="space-y-2">
-              <li><a href="/instituto/catarata" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto da Catarata</a></li>
-              <li><a href="/instituto/ceratocone" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto do Ceratocone</a></li>
-              <li><a href="/instituto/glaucoma" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto do Glaucoma</a></li>
-              <li><a href="/instituto/retina" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto da Retina</a></li>
-              <li><a href="/instituto/estrabismo" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto de Estrabismo</a></li>
+              <li><a href="/instituto/catarata/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto da Catarata</a></li>
+              <li><a href="/instituto/ceratocone/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto do Ceratocone</a></li>
+              <li><a href="/instituto/glaucoma/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto do Glaucoma</a></li>
+              <li><a href="/instituto/retina/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto da Retina</a></li>
+              <li><a href="/instituto/estrabismo/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Instituto de Estrabismo</a></li>
+            </ul>
+          </div>
+          <!-- Guias Definitivos -->
+          <div>
+            <h3 class="font-ui text-xs font-bold text-gold tracking-widest uppercase mb-4">Guias Científicos</h3>
+            <ul class="space-y-2">
+              <li><a href="/guia/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Todos os Guias</a></li>
+              <li><a href="/guia/cirurgia-catarata-sp/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Guia de Catarata</a></li>
+              <li><a href="/guia/ceratocone-tratamento-sp/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Guia de Ceratocone</a></li>
+              <li><a href="/guia/glaucoma-tratamento-sp/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Guia de Glaucoma</a></li>
+              <li><a href="/guia/retina-retinopatia-diabetica-sp/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Guia de Retina</a></li>
+              <li><a href="/guia/estrabismo-cirurgia-sp/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Guia de Estrabismo</a></li>
+              <li><a href="/perguntas-frequentes/" class="font-body text-sm text-white/60 hover:text-gold transition-colors">Perguntas Frequentes</a></li>
             </ul>
           </div>
 

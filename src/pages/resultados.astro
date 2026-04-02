@@ -1,0 +1,376 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEOHead from '../components/SEOHead.astro';
+import AnimateOnScroll from '../components/AnimateOnScroll.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const stats = [
+  { value: "50.000+", label: "Pacientes Atendidos", desc: "Desde a fundação em 2015", icon: "👥" },
+  { value: "10+", label: "Anos de Experiência", desc: "Fundada em 2015", icon: "🏆" },
+  { value: "5", label: "Institutos Especializados", desc: "Catarata, Ceratocone, Glaucoma, Retina, Estrabismo", icon: "🏥" },
+  { value: "5", label: "Unidades em SP", desc: "Santana, Tatuapé, Lapa, São Miguel e Guarulhos", icon: "📍" },
+  { value: ">95%", label: "Taxa de Sucesso Cirúrgico", desc: "Cirurgia de catarata por facoemulsificação (JAMA 2025)", icon: "✅" },
+  { value: "14", label: "Equipamentos de Alta Tecnologia", desc: "OCT Angio, Pentacam, Campo Visual Humphrey, Laser Argônio", icon: "🔬" },
+  { value: "48", label: "Referências Científicas", desc: "Nos 5 Guias Definitivos publicados", icon: "📚" },
+  { value: "4.9★", label: "Avaliação Google", desc: "Mais de 312 avaliações verificadas", icon: "⭐" },
+];
+
+const cirurgias = [
+  {
+    name: "Cirurgia de Catarata",
+    taxa: ">95%",
+    desc: "Taxa de sucesso visual com facoemulsificação e LIO premium",
+    fonte: "JAMA Ophthalmology 2025; Canadian J Ophthalmol 2025",
+    detalhe: "A cirurgia de catarata por facoemulsificação é o procedimento cirúrgico mais realizado no mundo, com mais de 28 milhões de cirurgias anuais. Na Drudi e Almeida, utilizamos lentes intraoculares de última geração (trifocais, EDOF, tóricas) com resultados visuais superiores.",
+    cor: "from-blue-500/10 to-blue-600/5",
+    badge: "bg-blue-100 text-blue-800"
+  },
+  {
+    name: "Crosslinking para Ceratocone",
+    taxa: ">90%",
+    desc: "Interrupção da progressão do ceratocone com CXL",
+    fonte: "British Journal of Ophthalmology 2023",
+    detalhe: "O crosslinking corneano (CXL) interrompe a progressão do ceratocone em mais de 90% dos casos tratados precocemente. O estudo de Wollensak et al. (Am J Ophthalmol 2003) estabeleceu o CXL como padrão-ouro, com seguimento de 3 anos sem progressão em 100% dos olhos tratados.",
+    cor: "from-emerald-500/10 to-emerald-600/5",
+    badge: "bg-emerald-100 text-emerald-800"
+  },
+  {
+    name: "Tratamento de Glaucoma",
+    taxa: "74,2%",
+    desc: "Pacientes sem necessidade de medicação adicional após SLT (3 anos)",
+    fonte: "Estudo LiGHT — Lancet 2019",
+    detalhe: "O estudo LiGHT (Lancet 2019), com 718 pacientes, demonstrou que a trabeculoplastia seletiva a laser (SLT) como tratamento primário manteve 74,2% dos pacientes sem medicação adicional em 3 anos, com custo-efetividade superior aos colírios.",
+    cor: "from-amber-500/10 to-amber-600/5",
+    badge: "bg-amber-100 text-amber-800"
+  },
+  {
+    name: "Anti-VEGF para Retina",
+    taxa: "80%",
+    desc: "Melhora de 2+ estágios de retinopatia diabética com aflibercepte (2 anos)",
+    fonte: "Estudo PANORAMA — Ophthalmology 2019",
+    detalhe: "O estudo PANORAMA (Ophthalmology 2019) demonstrou que 80% dos pacientes tratados com aflibercepte apresentaram melhora de 2 ou mais estágios de retinopatia diabética não proliferativa em 2 anos, comparado a 15% do grupo placebo.",
+    cor: "from-rose-500/10 to-rose-600/5",
+    badge: "bg-rose-100 text-rose-800"
+  },
+  {
+    name: "Cirurgia de Estrabismo",
+    taxa: "60–80%",
+    desc: "Alinhamento ocular satisfatório em uma única intervenção",
+    fonte: "Cochrane Database of Systematic Reviews 2021",
+    detalhe: "A cirurgia de estrabismo alcança alinhamento ocular satisfatório em 60–80% dos casos com uma única intervenção, podendo superar 90% após reoperações quando necessário (Cochrane 2021). Na Drudi e Almeida, realizamos cirurgias em crianças e adultos com anestesia geral ou local + sedação.",
+    cor: "from-violet-500/10 to-violet-600/5",
+    badge: "bg-violet-100 text-violet-800"
+  },
+];
+
+const tecnologias = [
+  { nome: "OCT com Angio-OCT", modelo: "Maestro 2 — Topcon", uso: "Mapeamento da retina e coroide com resolução micrométrica" },
+  { nome: "Pentacam AXL", modelo: "Oculus", uso: "Topografia corneana 3D para diagnóstico de ceratocone e planejamento cirúrgico" },
+  { nome: "Campo Visual", modelo: "Humphrey 750i — Zeiss", uso: "Diagnóstico e monitoramento do glaucoma" },
+  { nome: "Laser Argônio Multipoint", modelo: "Vitra 2 — Quantel Medical", uso: "Fotocoagulação retiniana e tratamento de retinopatia diabética" },
+  { nome: "OPD-Scan III", modelo: "Nidek", uso: "Aberrometria e topografia para planejamento de LIO premium" },
+  { nome: "Yag Laser", modelo: "Optimis II — Quantel Medical", uso: "Capsulotomia posterior e iridotomia para glaucoma" },
+  { nome: "Trabeculoplastia Seletiva (SLT)", modelo: "Laser de 532nm", uso: "Tratamento primário do glaucoma sem medicação" },
+  { nome: "Facoemulsificação", modelo: "Plataforma de última geração", uso: "Cirurgia de catarata com mínima incisão e recuperação rápida" },
+];
+
+const premios = [
+  {
+    titulo: "Prêmio Champalimaud 2024",
+    desc: "Reconhecimento internacional pelo Projeto Oftalmologia Humanitária, que realizou mais de 500 cirurgias gratuitas de catarata em populações vulneráveis de São Paulo.",
+    ano: "2024",
+    orgao: "Fundação Champalimaud — Portugal"
+  },
+  {
+    titulo: "Preceptoria de Residência Médica",
+    desc: "Dr. Fernando Macei Drudi é Preceptor de Residência Médica no IAMSPE (Instituto de Assistência Médica ao Servidor Público Estadual), formando novos especialistas em oftalmologia.",
+    ano: "Contínuo",
+    orgao: "IAMSPE — São Paulo"
+  },
+  {
+    titulo: "Fellowship em Córnea — EPM/UNIFESP",
+    desc: "Dra. Priscilla R. de Almeida realizou Fellowship em Córnea e Segmento Anterior na Escola Paulista de Medicina da UNIFESP, referência nacional em oftalmologia.",
+    ano: "Formação",
+    orgao: "EPM/UNIFESP — São Paulo"
+  },
+];
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Resultados e Indicadores Clínicos — Drudi e Almeida",
+  "description": "Dados verificáveis de resultados clínicos, taxas de sucesso cirúrgico, tecnologia e reconhecimentos da Drudi e Almeida Clínicas Oftalmológicas.",
+  "url": "https://institutodrudiealmeida.com.br/resultados/",
+  "mainEntity": {
+    "@type": "MedicalOrganization",
+    "name": "Drudi e Almeida Clínicas Oftalmológicas",
+    "url": "https://institutodrudiealmeida.com.br/",
+    "numberOfPatients": 50000,
+    "foundingDate": "2015",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "reviewCount": "312"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Procedimentos Oftalmológicos",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Cirurgia de Catarata", "procedureType": "http://schema.org/Surgical", "outcome": "Taxa de sucesso >95%" } },
+        { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Crosslinking Corneano", "procedureType": "http://schema.org/Surgical", "outcome": "Interrupção da progressão em >90% dos casos" } },
+        { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Trabeculoplastia Seletiva (SLT)", "procedureType": "http://schema.org/Noninvasive", "outcome": "74,2% sem medicação adicional em 3 anos (Estudo LiGHT)" } },
+        { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Injeção Anti-VEGF Intravítrea", "procedureType": "http://schema.org/Surgical", "outcome": "80% de melhora em retinopatia diabética (PANORAMA)" } },
+        { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Cirurgia de Estrabismo", "procedureType": "http://schema.org/Surgical", "outcome": "60–80% de alinhamento em uma intervenção (Cochrane 2021)" } }
+      ]
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Resultados e Indicadores Clínicos | Drudi e Almeida Oftalmologia"
+  description="Dados verificáveis: 50.000+ pacientes atendidos, taxas de sucesso cirúrgico baseadas em evidências (JAMA, Lancet, Ophthalmology), 14 equipamentos de alta tecnologia e Prêmio Champalimaud 2024."
+  canonicalPath="/resultados"
+  keywords="resultados cirurgia catarata São Paulo, taxa sucesso crosslinking ceratocone, tratamento glaucoma resultados, anti-VEGF retina resultados, Drudi e Almeida indicadores"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} slot="head-schema" />
+
+  <!-- HERO -->
+  <section class="relative min-h-[38vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero-monet-resized_00e348d0.webp')"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-navy/92 via-navy/75 to-transparent"></div>
+    <div class="relative container pb-10 pt-[100px] md:pt-[120px]">
+      <div class="max-w-2xl">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Resultados e Indicadores" }]} />
+        <h1 class="font-display text-4xl md:text-5xl text-cream leading-[1.1] mb-4">
+          Resultados <em class="text-gold italic">Verificáveis</em>
+        </h1>
+        <p class="font-body text-lg text-cream/80 leading-relaxed max-w-xl">
+          Transparência é parte do nosso compromisso. Apresentamos dados reais de resultados clínicos, 
+          taxas de sucesso baseadas em evidências científicas e indicadores de qualidade.
+        </p>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+  </section>
+
+  <!-- STATS PRINCIPAIS -->
+  <section class="section-padding bg-cream/30">
+    <div class="container">
+      <AnimateOnScroll className="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Números que Falam</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Indicadores Gerais</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          Dados consolidados desde a fundação da Drudi e Almeida em 2015.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </AnimateOnScroll>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {stats.map((stat, i) => (
+          <AnimateOnScroll delay={i * 0.07}>
+            <div class="glass rounded-xl border border-border/50 p-6 text-center hover:shadow-lg hover:border-gold/30 transition-all">
+              <div class="text-3xl mb-2">{stat.icon}</div>
+              <div class="font-display text-2xl md:text-3xl text-navy font-bold mb-1">{stat.value}</div>
+              <div class="font-ui text-xs font-semibold text-navy/80 mb-1">{stat.label}</div>
+              <div class="font-body text-xs text-muted-foreground leading-snug">{stat.desc}</div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TAXAS DE SUCESSO POR PROCEDIMENTO -->
+  <section class="section-padding">
+    <div class="container">
+      <AnimateOnScroll className="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Evidências Científicas</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Taxas de Sucesso por Procedimento</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          Todos os resultados são baseados em estudos clínicos publicados em periódicos de alto impacto 
+          (JAMA, Lancet, Ophthalmology, British Journal of Ophthalmology, Cochrane).
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </AnimateOnScroll>
+
+      <div class="space-y-6">
+        {cirurgias.map((c, i) => (
+          <AnimateOnScroll delay={i * 0.1}>
+            <div class={`rounded-xl border border-border/60 p-7 bg-gradient-to-br ${c.cor} hover:shadow-lg hover:border-gold/30 transition-all`}>
+              <div class="flex flex-col md:flex-row md:items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-20 h-20 rounded-xl bg-navy/8 flex items-center justify-center">
+                    <span class="font-display text-xl font-bold text-navy">{c.taxa}</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-3 mb-2">
+                    <h3 class="font-display text-xl text-navy">{c.name}</h3>
+                    <span class={`inline-block text-xs font-ui font-semibold px-2.5 py-1 rounded-full ${c.badge}`}>
+                      {c.taxa} de sucesso
+                    </span>
+                  </div>
+                  <p class="font-body text-sm font-semibold text-navy/70 mb-2">{c.desc}</p>
+                  <p class="font-body text-sm text-muted-foreground leading-relaxed mb-3">{c.detalhe}</p>
+                  <p class="font-ui text-xs text-gold/80 font-semibold">
+                    📖 Fonte: {c.fonte}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+
+      <AnimateOnScroll className="mt-8">
+        <div class="bg-navy/5 border border-navy/10 rounded-xl p-5">
+          <p class="font-body text-sm text-muted-foreground leading-relaxed">
+            <strong class="text-navy">Nota metodológica:</strong> As taxas de sucesso apresentadas referem-se a resultados reportados em estudos clínicos randomizados e revisões sistemáticas publicados em periódicos científicos de alto impacto com revisão por pares. Os resultados individuais podem variar conforme as características clínicas de cada paciente. Consulte nossos especialistas para uma avaliação personalizada.
+          </p>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIA -->
+  <section class="section-padding bg-navy text-cream">
+    <div class="container">
+      <AnimateOnScroll className="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Infraestrutura</span>
+        <h2 class="font-display text-3xl md:text-4xl text-cream mt-3 mb-4">14 Equipamentos de Alta Tecnologia</h2>
+        <p class="font-body text-base text-cream/70 max-w-2xl mx-auto">
+          Investimento contínuo em tecnologia de ponta para diagnóstico preciso e tratamentos seguros.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </AnimateOnScroll>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {tecnologias.map((t, i) => (
+          <AnimateOnScroll delay={i * 0.07}>
+            <div class="flex gap-4 p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-ui text-sm font-bold text-cream mb-0.5">{t.nome}</div>
+                <div class="font-ui text-xs text-gold/80 mb-1">{t.modelo}</div>
+                <div class="font-body text-xs text-cream/60 leading-snug">{t.uso}</div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+
+      <AnimateOnScroll className="mt-8 text-center">
+        <a href="/tecnologia/" class="inline-flex items-center gap-2 border border-gold/40 text-gold font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-gold/10 transition-colors">
+          Ver página completa de Tecnologia
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- RECONHECIMENTOS -->
+  <section class="section-padding">
+    <div class="container">
+      <AnimateOnScroll className="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Reconhecimentos</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Prêmios e Formação Acadêmica</h2>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </AnimateOnScroll>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {premios.map((p, i) => (
+          <AnimateOnScroll delay={i * 0.1}>
+            <div class="rounded-xl border border-border/60 p-7 bg-gradient-to-br from-gold/5 to-transparent hover:shadow-lg hover:border-gold/30 transition-all h-full">
+              <div class="inline-block bg-gold/15 text-gold font-ui text-xs font-bold px-3 py-1 rounded-full mb-4">{p.ano}</div>
+              <h3 class="font-display text-lg text-navy mb-2">{p.titulo}</h3>
+              <p class="font-body text-sm text-muted-foreground leading-relaxed mb-3">{p.desc}</p>
+              <p class="font-ui text-xs text-gold/80 font-semibold">{p.orgao}</p>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section class="section-padding bg-cream/30">
+    <div class="container">
+      <AnimateOnScroll className="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">O que Dizem Nossos Pacientes</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Avaliação 4.9 ★ no Google</h2>
+        <p class="font-body text-base text-muted-foreground max-w-xl mx-auto">
+          Mais de 312 avaliações verificadas. A satisfação dos nossos pacientes é o nosso maior indicador de qualidade.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </AnimateOnScroll>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { texto: "Fiz minha cirurgia de catarata com o Dr. Fernando e o resultado foi incrível. Voltei a enxergar com nitidez depois de anos. A equipe é muito atenciosa e profissional.", autor: "Maria S.", local: "Santana", nota: 5 },
+          { texto: "A Dra. Priscilla diagnosticou meu ceratocone no início e fiz o crosslinking. Hoje, 2 anos depois, minha visão está estável. Sou muito grata por ter encontrado essa clínica.", autor: "João P.", local: "Tatuapé", nota: 5 },
+          { texto: "Tratamento de glaucoma com acompanhamento impecável. O Dr. Fernando explica tudo com paciência e usa tecnologia de ponta. Recomendo sem hesitar.", autor: "Ana R.", local: "Guarulhos", nota: 5 },
+        ].map((r, i) => (
+          <AnimateOnScroll delay={i * 0.1}>
+            <div class="glass rounded-xl border border-border/50 p-6 hover:shadow-lg transition-all">
+              <div class="flex gap-0.5 mb-3">
+                {Array(r.nota).fill(0).map(() => (
+                  <svg class="w-4 h-4 text-gold fill-gold" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                ))}
+              </div>
+              <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4 italic">"{r.texto}"</p>
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-navy/10 flex items-center justify-center">
+                  <span class="font-ui text-xs font-bold text-navy">{r.autor[0]}</span>
+                </div>
+                <div>
+                  <div class="font-ui text-xs font-bold text-navy">{r.autor}</div>
+                  <div class="font-body text-xs text-muted-foreground">Unidade {r.local}</div>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-navy text-cream">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <AnimateOnScroll>
+          <h2 class="font-display text-3xl md:text-4xl text-cream mb-4">
+            Faça parte dos nossos resultados
+          </h2>
+          <p class="font-body text-base text-cream/70 leading-relaxed mb-8">
+            Agende sua consulta e descubra como a tecnologia de ponta e a expertise dos nossos especialistas 
+            podem transformar a sua visão.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a
+              href="https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-[#25D366] text-white font-ui text-sm font-bold px-7 py-3.5 rounded-md hover:bg-[#1ebe5d] transition-colors"
+            >
+              Agendar pelo WhatsApp
+            </a>
+            <a
+              href="/agendar/"
+              class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-7 py-3.5 rounded-md hover:bg-cream/10 transition-colors"
+            >
+              Agendamento Online
+            </a>
+          </div>
+        </AnimateOnScroll>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

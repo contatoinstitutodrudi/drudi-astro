@@ -39,6 +39,7 @@ export default defineConfig({
         'https://institutodrudiealmeida.com.br/guia/glaucoma-tratamento-sp/',
         'https://institutodrudiealmeida.com.br/guia/retina-retinopatia-diabetica-sp/',
         'https://institutodrudiealmeida.com.br/guia/estrabismo-cirurgia-sp/',
+    'https://institutodrudiealmeida.com.br/resultados/',
       ],
       serialize(item) {
         const today = new Date().toISOString().split('T')[0];
