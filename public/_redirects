@@ -97,3 +97,9 @@
 /blog/tratamento-glaucoma-sp  /blog/tratamento-glaucoma-sp/  301
 /blog/cirurgia-estrabismo-adultos  /blog/cirurgia-estrabismo-adultos/  301
 /blog/cirurgia-estrabismo-sp  /blog/cirurgia-estrabismo-sp/  301
+# Redirects para URLs antigas indexadas pelo Google (problema canonical diferente)
+/blog/cirurgia-catarata-sp              /blog/cirurgia-catarata-sp-preco/       301
+/blog/ceratocone-sintomas-tratamento    /blog/crosslinking-ceratocone-sp/       301
+/blog/ceratocone-tratamento             /blog/crosslinking-ceratocone-sp/       301
+/blog/coriorretinopatia-serosa-central  /blog/coriorretinopatia-serosa-central/ 301
+/blog/crosslinking-ceratocone-como-funciona-tratamento /blog/crosslinking-ceratocone-sp/ 301

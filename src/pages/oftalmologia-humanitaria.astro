@@ -1,0 +1,762 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta.";
+
+// CDN URLs — WebP otimizado (97-99% menor que os PNGs originais)
+const CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz";
+const IMG = {
+  hero:      `${CDN}/hum-hero_c9dc791c.webp`,
+  pordosol:  `${CDN}/hum-pordosol_a472ce11.webp`,
+  navio:     `${CDN}/hum-navio_50735ac8.webp`,
+  navioNovo: `${CDN}/hum-navio-soares-meireles-5oKzLNzGm9j9AQrF7XX88m.webp`,
+  floresta:  `${CDN}/hum-floresta_fb2ce215.webp`,
+  cirurgia:  `${CDN}/hum-cirurgia_878bdc1b.webp`,
+  equipe:    `${CDN}/hum-equipe_f1829e6b.webp`,
+  marinha:   `${CDN}/hum-marinha_e2db6898.webp`,
+  pacientes: `${CDN}/hum-pacientes_f8f8cc9b.webp`,
+  exame:     `${CDN}/hum-exame_d005178b.webp`,
+  lente:     `${CDN}/hum-lente_0c0f26e1.webp`,
+  mapa:      `${CDN}/hum-mapa-amazonas-4TaLQ73wGsKCqA36WVf8Yz.webp`,
+};
+
+const municipios = [
+  "Manaus","Maués","Parintins","Itacoatiara","Borba","Manicoré",
+  "Humaitá","Lábrea","Tapauá","Coari","Tefé","Juruá","Eirunepé",
+  "Carauari","Fonte Boa","Tonantins","São Paulo de Olivença",
+  "Tabatinga","Benjamin Constant","Japurá","Maraã","Alvarães",
+  "Uarini","Nhamundá","Urucará",
+];
+
+const seoTitle = "Oftalmologia Humanitária na Amazônia | Drudi e Almeida";
+const seoDesc = "Há mais de 30 anos, o projeto Oftalmologia Humanitária leva cirurgias de catarata gratuitas às populações ribeirinhas do Amazonas. Mais de 10.000 cirurgias realizadas. Prêmio Champalimaud 2019.";
+const canonicalURL = "https://institutodrudiealmeida.com.br/oftalmologia-humanitaria/";
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${canonicalURL}#webpage`,
+    "url": canonicalURL,
+    "name": seoTitle,
+    "description": seoDesc,
+    "inLanguage": "pt-BR",
+    "dateModified": "2025-06-01",
+    "about": {
+      "@type": "MedicalCause",
+      "name": "Cegueira por Catarata em Populações Ribeirinhas",
+      "relevantSpecialty": "Ophthalmology"
+    },
+    "isPartOf": { "@id": "https://institutodrudiealmeida.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://institutodrudiealmeida.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Sobre Nós", "item": "https://institutodrudiealmeida.com.br/sobre/" },
+        { "@type": "ListItem", "position": 3, "name": "Oftalmologia Humanitária", "item": canonicalURL }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é o projeto Oftalmologia Humanitária?",
+        "acceptedAnswer": { "@type": "Answer", "text": "O projeto Oftalmologia Humanitária é uma iniciativa pioneira que leva cirurgias de catarata, tratamento de pterígio e distribuição gratuita de óculos às populações ribeirinhas do interior do Amazonas. Desenvolvido em parceria entre a Marinha do Brasil, UFAM, FUNDAPI e IPEPO/Unifesp, o projeto utiliza navios de assistência hospitalar para alcançar comunidades sem acesso a serviços oftalmológicos especializados." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quantas cirurgias o projeto já realizou?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Em mais de 30 anos de atuação, o projeto já realizou mais de 10.000 cirurgias de catarata gratuitas e distribuiu mais de 110.000 óculos para populações ribeirinhas. Ao todo, mais de 25 municípios do estado do Amazonas foram atendidos." }
+      },
+      {
+        "@type": "Question",
+        "name": "Por que o projeto recebeu o Prêmio Champalimaud?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Em 2019, o IPEPO (Instituto da Visão da Unifesp) foi um dos três laureados do Prêmio António Champalimaud de Visão, considerado o maior prêmio mundial em oftalmologia, com valor de €1 milhão. O prêmio reconheceu décadas de trabalho na prevenção da cegueira e no atendimento a populações vulneráveis no Brasil, incluindo o trabalho na Amazônia." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quem são os fundadores do projeto?",
+        "acceptedAnswer": { "@type": "Answer", "text": "O projeto foi fundado pelo Prof. Dr. Rubens Belfort Júnior (Unifesp/IPEPO), pelo Dr. Jacob Cohen e pelo Dr. Walton José, em parceria com a Marinha do Brasil, UFAM e FUNDAPI. O Dr. Fernando Drudi participa como cirúrgico voluntário há mais de 10 anos." }
+      },
+      {
+        "@type": "Question",
+        "name": "Como a Marinha do Brasil participa do projeto?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A Marinha do Brasil é parceira estratégica fundamental, fornecendo navios de assistência hospitalar que navegam pelos rios amazônicos para levar a equipe médica às comunidades ribeirinhas. Sem essa parceria logística, seria impossível alcançar municípios que ficam a dias de viagem fluvial de Manaus." }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual é a principal doença tratada no projeto?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A catarata é a principal causa de cegueira tratável no mundo e a condição mais frequentemente abordada pelo projeto. A exposição intensa à radiação ultravioleta na região amazônica acelera o desenvolvimento da catarata nas populações ribeirinhas. O pterígio — crescimento anormal da conjuntiva sobre a córnea — também é amplamente tratado." }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual é a participação do Dr. Fernando Drudi no projeto?",
+        "acceptedAnswer": { "@type": "Answer", "text": "O Dr. Fernando Drudi participa ativamente do projeto Oftalmologia Humanitária há mais de 10 anos como cirúrgico voluntário, levando a mesma excelência cirúrgica praticada em São Paulo às comunidades mais remotas do Brasil." }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={seoTitle}
+  description={seoDesc}
+  keywords="oftalmologia humanitária amazônia, cirurgia catarata ribeirinhos, projeto marinha brasil oftalmologia, prêmio champalimaud oftalmologia, rubens belfort junior amazônia, ipepo unifesp amazônia, catarata populações ribeirinhas, cirurgia catarata gratuita amazonas, oftalmologia social brasil, drudi almeida voluntariado"
+  ogImage={IMG.hero}
+  canonicalPath="/oftalmologia-humanitaria/"
+>
+  <!-- Preload da imagem hero para LCP máximo -->
+  <link rel="preload" as="image" href={IMG.hero} fetchpriority="high" slot="head-preload" />
+
+  <!-- JSON-LD Schemas -->
+  {schemas.map(schema => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head-schema" />
+  ))}
+
+  <!-- ========== HERO — TELA CHEIA, NARRATIVA VISUAL ========== -->
+  <section class="relative min-h-screen flex items-end overflow-hidden">
+    <!-- Foto hero: pôr do sol no rio amazônico — carregamento prioritário -->
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style={`background-image:url('${IMG.hero}')`}
+      role="img"
+      aria-label="Pôr do sol nos rios amazônicos durante expedição do projeto Oftalmologia Humanitária"
+    ></div>
+
+    <!-- Gradiente cinematográfico: escuro embaixo, transparente no topo -->
+    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(5,15,35,0.98) 0%,rgba(5,15,35,0.80) 35%,rgba(5,15,35,0.35) 65%,rgba(5,15,35,0.05) 100%)"></div>
+    <!-- Vinheta lateral esquerda -->
+    <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(5,15,35,0.60) 0%,transparent 60%)"></div>
+
+    <div class="relative container pb-20 pt-[140px] md:pt-[160px]">
+      <!-- Breadcrumb -->
+      <Breadcrumb
+        items={[
+          { label: "Início", href: "/" },
+          { label: "Sobre Nós", href: "/sobre" },
+          { label: "Oftalmologia Humanitária" }
+        ]}
+        class="mb-8"
+      />
+
+      <!-- Linha decorativa dourada -->
+      <div class="w-12 h-0.5 mb-8" style="background:#c9a961"></div>
+
+      <h1 class="font-display leading-[1.05] mb-8 max-w-4xl" style="font-size:clamp(2.6rem,6vw,4.5rem);color:#f5f0e8">
+        Onde a medicina<br>
+        alcança o coração<br>
+        <em class="not-italic" style="color:#c9a961">da Amazônia</em>
+      </h1>
+
+      <p class="font-body text-lg leading-relaxed mb-12 max-w-2xl" style="color:rgba(245,240,232,0.72)">
+        Há mais de 30 anos, médicos voluntários navegam pelos rios do Amazonas para devolver a visão
+        a quem jamais teve acesso a um oftalmologista. Mais de <strong style="color:#c9a961">10.000 cirurgias</strong> realizadas.
+        Uma missão que transformou a oftalmologia humanitária no Brasil.
+      </p>
+
+      <!-- Stats — faixa horizontal discreta -->
+      <div class="flex flex-wrap gap-px mb-12 rounded-xl overflow-hidden" style="border:1px solid rgba(201,169,97,0.18)">
+        {[
+          { n: "10.000+", l: "Cirurgias realizadas" },
+          { n: "110.000+", l: "Óculos distribuídos" },
+          { n: "25+", l: "Municípios atendidos" },
+          { n: "30+", l: "Anos de missão" },
+        ].map((s, i) => (
+          <div class="flex-1 min-w-[140px] px-6 py-5 text-center" style={`background:rgba(5,15,35,${i % 2 === 0 ? '0.70' : '0.55'});backdrop-filter:blur(10px)`}>
+            <div class="font-display text-2xl md:text-3xl font-bold" style="color:#c9a961">{s.n}</div>
+            <div class="font-ui text-[11px] mt-1 tracking-wide" style="color:rgba(245,240,232,0.55)">{s.l}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2.5 font-ui text-sm font-bold px-8 py-4 rounded-md transition-all duration-200 hover:brightness-110"
+          style="background:#c9a961;color:#0d2240">
+          Agendar Consulta
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#galeria"
+          class="inline-flex items-center gap-2.5 font-ui text-sm font-semibold px-8 py-4 rounded-md transition-all duration-200"
+          style="border:1px solid rgba(245,240,232,0.25);color:rgba(245,240,232,0.85);background:rgba(5,15,35,0.30)">
+          Ver galeria de fotos
+        </a>
+      </div>
+    </div>
+
+    <!-- Fade para o fundo da próxima seção -->
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent"></div>
+  </section>
+
+  <!-- ========== INTRODUÇÃO — NARRATIVA EMOCIONAL ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Uma missão de três décadas</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-8 leading-tight">
+            A cegueira que pode ser curada<br>
+            <em class="text-gold not-italic">não deve ser tolerada</em>
+          </h2>
+          <div class="space-y-5 font-body text-base text-muted-foreground leading-relaxed">
+            <p>
+              No interior do Amazonas, a catarata não é apenas uma doença — é uma sentença de isolamento.
+              Para o ribeirinho que vive a dias de barco de Manaus, perder a visão significa perder a
+              capacidade de pescar, de cuidar da família, de existir com dignidade.
+            </p>
+            <p>
+              Foi para romper essa barreira que os <strong class="text-navy">Profs. Drs. Rubens Belfort Júnior, Jacob Cohen e Walton José</strong>
+              fundaram o projeto Oftalmologia Humanitária, em parceria com a
+              <strong class="text-navy">Marinha do Brasil</strong>, a <strong class="text-navy">Universidade Federal do Amazonas (UFAM)</strong>
+              e a <strong class="text-navy">FUNDAPI</strong>.
+            </p>
+            <p>
+              A cada expedição, um navio de assistência hospitalar parte de Manaus carregando cirurgiões,
+              anestesistas, técnicos e equipamentos de última geração. A bordo, salas cirúrgicas completas
+              funcionam enquanto o navio navega pelos rios Negro, Solimões e Amazonas, alcançando comunidades
+              que jamais viram um médico especialista.
+            </p>
+          </div>
+
+          <!-- Citação do Dr. Drudi — destaque editorial -->
+          <blockquote class="mt-10 relative pl-6" style="border-left:3px solid #c9a961">
+            <p class="font-body text-base italic leading-relaxed" style="color:rgba(13,34,64,0.80)">
+              "Participar dessas expedições é uma das experiências mais transformadoras da minha vida.
+              Ver o momento em que um paciente remove o curativo e enxerga o rosto do filho pela primeira vez
+              em anos — isso não tem preço."
+            </p>
+            <footer class="mt-4 font-ui text-xs font-bold tracking-wide uppercase text-gold">
+              Dr. Fernando Drudi — Cirurgião Voluntário há mais de 10 anos
+            </footer>
+          </blockquote>
+        </div>
+
+        <!-- Imagem lateral com legenda -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="aspect-ratio:4/5">
+          <img
+            src={IMG.cirurgia}
+            alt="Cirurgia de catarata realizada a bordo do navio hospital durante expedição na Amazônia"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="750"
+          />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(5,15,35,0.70) 0%,transparent 55%)"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <div class="w-8 h-0.5 mb-3" style="background:#c9a961"></div>
+            <p class="font-ui text-xs font-semibold" style="color:rgba(245,240,232,0.90)">Sala cirúrgica a bordo — Expedição Maués, 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== IMPACTO — FAIXA ESCURA COM NÚMEROS ========== -->
+  <section class="relative overflow-hidden py-20" style="background:#0d2240">
+    <!-- Textura de fundo sutil -->
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:radial-gradient(circle at 15% 50%,#c9a961 0%,transparent 45%),radial-gradient(circle at 85% 20%,#c9a961 0%,transparent 40%)"></div>
+
+    <div class="relative container">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:rgba(201,169,97,0.70)">Três décadas em números</span>
+        <h2 class="font-display text-3xl md:text-4xl mt-3" style="color:#f5f0e8">O impacto que transforma vidas</h2>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        {[
+          { n: "10.000+", l: "Cirurgias de catarata", d: "Realizadas gratuitamente em 30 anos" },
+          { n: "110.000+", l: "Óculos distribuídos", d: "Em parceria com a Lupas Leitor" },
+          { n: "25+", l: "Municípios atendidos", d: "Do Alto Solimões ao Baixo Amazonas" },
+          { n: "€1M", l: "Prêmio Champalimaud", d: "O maior prêmio mundial em oftalmologia" },
+        ].map(s => (
+          <div class="text-center">
+            <div class="font-display text-4xl md:text-5xl font-bold mb-2" style="color:#c9a961">{s.n}</div>
+            <div class="font-ui text-sm font-bold mb-1" style="color:#f5f0e8">{s.l}</div>
+            <div class="font-body text-xs leading-relaxed" style="color:rgba(245,240,232,0.45)">{s.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OS FUNDADORES ========== -->
+  <section class="section-padding" style="background:linear-gradient(135deg,rgba(13,34,64,0.03) 0%,rgba(201,169,97,0.04) 100%)">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Imagem da equipe -->
+        <div class="relative rounded-2xl overflow-hidden shadow-xl" style="aspect-ratio:4/3">
+          <img
+            src={IMG.equipe}
+            alt="Equipe médica do projeto Oftalmologia Humanitária durante expedição no Amazonas"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            width="800"
+            height="600"
+          />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(5,15,35,0.55) 0%,transparent 50%)"></div>
+        </div>
+
+        <div>
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Os fundadores</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-8 leading-tight">
+            Uma visão compartilhada
+          </h2>
+          <div class="space-y-5 font-body text-base text-muted-foreground leading-relaxed">
+            <p>
+              O projeto Oftalmologia Humanitária nasceu da convergência de três grandes nomes da oftalmologia brasileira:
+              os <strong class="text-navy">Profs. Drs. Rubens Belfort Júnior, Jacob Cohen e Walton José</strong>,
+              em parceria com a Marinha do Brasil, a UFAM e a FUNDAPI. Juntos, eles idealizaram um modelo de
+              atendimento que levasse a excelência cirúrgica às populações ribeirinhas da Amazônia, onde a catarata
+              avança acelerada pela exposição à radiação UV intensa e o acesso a especialistas é quase inexistente.
+            </p>
+            <p>
+              Mais de 30 anos depois, o projeto segue ativo com voluntários de todo o Brasil. Entre eles, o
+              <strong class="text-navy">Dr. Fernando Drudi</strong>, cofundador da
+              <strong class="text-navy">Drudi e Almeida Oftalmologia</strong>, que integra a equipe há mais de
+              uma década, levando a mesma excelência cirúrgica praticada em São Paulo até os rios mais remotos do Amazonas.
+            </p>
+            <p>
+              Uma filosofia que vai além das paredes do consultório: a convicção de
+              que a visão é um direito de todos, independentemente de onde se nasce.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRÊMIO CHAMPALIMAUD — FAIXA ESCURA ========== -->
+  <section class="relative overflow-hidden py-24" style="background:linear-gradient(135deg,#0d2240 0%,#0f2d52 100%)">
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:radial-gradient(circle at 20% 50%,#c9a961 0%,transparent 50%),radial-gradient(circle at 80% 20%,#c9a961 0%,transparent 40%)"></div>
+
+    <div class="relative container">
+      <div class="max-w-4xl mx-auto">
+        <!-- Layout assimétrico: texto à esquerda, destaque à direita -->
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+          <div class="lg:col-span-3">
+            <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:rgba(201,169,97,0.70)">Reconhecimento internacional</span>
+            <h2 class="font-display text-3xl md:text-4xl lg:text-5xl mt-3 mb-6 leading-tight" style="color:#f5f0e8">
+              Prêmio António<br>
+              <span style="color:#c9a961">Champalimaud</span><br>
+              de Visão — 2019
+            </h2>
+            <p class="font-body text-base leading-relaxed mb-8" style="color:rgba(245,240,232,0.68)">
+          Em setembro de 2019, em cerimônia realizada em Lisboa, Portugal, a
+          <strong class="text-cream">Fundação Champalimaud</strong> concedeu ao projeto o mais prestigioso prêmio
+          mundial em oftalmologia, no valor de <strong class="text-gold">€1 milhão</strong>. O reconhecimento
+          internacional coroou mais de três décadas de trabalho incansável pela visão dos mais vulneráveis —
+          um legado que honra cada cirurgião voluntário que embarcou nessa missão.
+            </p>
+
+            <!-- Cobertura de mídia -->
+            <div class="rounded-xl p-5" style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,97,0.15)">
+              <p class="font-ui text-[10px] font-semibold tracking-widest uppercase mb-4" style="color:rgba(201,169,97,0.60)">Repercussão na mídia nacional</p>
+              <div class="flex flex-wrap gap-x-6 gap-y-2">
+                {["Folha de S.Paulo","Gaúcha ZH","CNN Brasil","Agência Brasil","G1 Globo","Ministério da Defesa","PAAO","Unifesp"].map(m => (
+                  <span class="font-ui text-xs" style="color:rgba(245,240,232,0.45)">{m}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Destaque numérico à direita -->
+          <div class="lg:col-span-2 flex flex-col gap-5">
+            {[
+              { t: "€1.000.000", s: "Valor do prêmio", d: "O maior prêmio mundial dedicado exclusivamente à oftalmologia." },
+              { t: "Lisboa, 2019", s: "Local e ano", d: "Cerimônia na Fundação Champalimaud, referência mundial em pesquisa médica." },
+              { t: "3 Laureados", s: "Instituições premiadas", d: "Três instituições brasileiras reconhecidas pelo trabalho na prevenção da cegueira." },
+            ].map(d => (
+              <div class="rounded-xl p-5" style="background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,97,0.20)">
+                <div class="font-display text-2xl font-bold mb-0.5" style="color:#c9a961">{d.t}</div>
+                <div class="font-ui text-[10px] font-bold tracking-wide uppercase mb-2" style="color:rgba(245,240,232,0.50)">{d.s}</div>
+                <p class="font-body text-xs leading-relaxed" style="color:rgba(245,240,232,0.55)">{d.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAPA DOS MUNICÍPIOS ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Alcance geográfico</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">
+          25 municípios alcançados
+        </h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Do Alto Solimões ao Baixo Amazonas, das fronteiras com Peru e Colômbia ao coração do Rio Negro —
+          o projeto percorre o maior estado do Brasil em busca de quem mais precisa.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Mapa artístico -->
+        <div class="rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src={IMG.mapa}
+            alt="Mapa artístico do estado do Amazonas com os 25 municípios atendidos pelo projeto Oftalmologia Humanitária marcados com pinpoints dourados"
+            class="w-full h-auto"
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="896"
+          />
+        </div>
+
+        <!-- Lista de municípios -->
+        <div>
+          <p class="font-body text-sm text-muted-foreground leading-relaxed mb-8">
+            Cada ponto dourado no mapa representa uma comunidade que recebeu cirurgias, exames e óculos
+            gratuitamente. Muitas dessas cidades ficam a mais de 1.000 km de Manaus, acessíveis apenas por via fluvial.
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {municipios.map(m => (
+              <div class="flex items-center gap-2 py-2 px-3 rounded-lg" style="background:rgba(201,169,97,0.07);border:1px solid rgba(201,169,97,0.15)">
+                <div class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#c9a961"></div>
+                <span class="font-ui text-xs text-navy font-medium">{m}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMO FUNCIONA UMA EXPEDIÇÃO ========== -->
+  <section class="section-padding" style="background:linear-gradient(135deg,rgba(13,34,64,0.03) 0%,rgba(201,169,97,0.04) 100%)">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">O processo</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Como funciona uma expedição</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Cada missão é uma operação logística de alta complexidade, que combina a precisão da medicina
+          de ponta com a resiliência exigida pela selva amazônica.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            n: "01",
+            t: "Preparação",
+            d: "A equipe embarca no navio de assistência hospitalar da Marinha com equipamentos cirúrgicos, lentes intraoculares e mais de 1.000 pares de óculos.",
+          },
+          {
+            n: "02",
+            t: "Triagem",
+            d: "Ao chegar em cada comunidade, oftalmologistas realizam triagem completa: acuidade visual, biomicroscopia, tonometria e mapeamento de retina.",
+          },
+          {
+            n: "03",
+            t: "Cirurgia",
+            d: "Os pacientes com indicação cirúrgica são operados a bordo, sob anestesia local. A facoemulsificação permite recuperação em 24 horas.",
+          },
+          {
+            n: "04",
+            t: "Retorno",
+            d: "No dia seguinte, o curativo é retirado. O paciente enxerga novamente. A equipe segue para o próximo município, repetindo o ciclo.",
+          },
+        ].map(e => (
+          <div class="relative rounded-2xl p-7 overflow-hidden" style="background:#fff;border:1px solid rgba(13,34,64,0.10);box-shadow:0 2px 16px rgba(13,34,64,0.06)">
+            <!-- Número de fundo decorativo -->
+            <div class="absolute top-4 right-5 font-display text-7xl font-bold leading-none select-none pointer-events-none" style="color:rgba(201,169,97,0.10)">{e.n}</div>
+            <div class="relative">
+              <div class="font-display text-3xl font-bold mb-4" style="color:#c9a961">{e.n}</div>
+              <h3 class="font-display text-lg text-navy mb-3">{e.t}</h3>
+              <p class="font-body text-sm text-muted-foreground leading-relaxed">{e.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Imagem do navio -->
+      <div class="mt-12 rounded-2xl overflow-hidden shadow-xl relative" style="max-height:420px">
+        <img
+          src={IMG.navio}
+          alt="Navio de assistência hospitalar da Marinha do Brasil utilizado nas expedições de cirurgia oftalmológica na Amazônia"
+          class="w-full object-cover"
+          style="height:420px"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="420"
+        />
+        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(5,15,35,0.75) 0%,transparent 55%)"></div>
+        <div class="absolute bottom-8 left-8 right-8">
+          <div class="w-8 h-0.5 mb-3" style="background:#c9a961"></div>
+          <p class="font-ui text-sm font-semibold" style="color:rgba(245,240,232,0.90)">
+            Navio de Assistência Hospitalar — Marinha do Brasil
+          </p>
+          <p class="font-body text-xs mt-1" style="color:rgba(245,240,232,0.55)">
+            Plataforma cirúrgica flutuante que alcança comunidades inacessíveis por terra
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DR. FERNANDO DRUDI ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Voluntário há mais de 10 anos</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-8 leading-tight">
+            Dr. Fernando Drudi<br>
+            <em class="text-gold not-italic">cirurgião dedicado a curar a cegueira em populações remotas</em>
+          </h2>
+          <div class="space-y-5 font-body text-base text-muted-foreground leading-relaxed">
+            <p>
+              Cirurgião de catarata com mais de 20 anos de experiência e cofundador da
+              <strong class="text-navy">Drudi e Almeida Oftalmologia</strong>, o Dr. Fernando Drudi
+              integra a equipe do projeto há mais de uma década.
+            </p>
+            <p>
+              A cada expedição, ele deixa os centros cirúrgicos de São Paulo para operar em condições completamente diferentes — a bordo de um navio, sob o calor equatorial, com geradores e equipamentos portáteis. A mesma precisão técnica, o mesmo compromisso com o resultado, em um contexto radicalmente diferente.
+            </p>
+            <p>
+              Para ele, o voluntariado na Amazônia não é apenas um ato de generosidade — é uma forma
+              de reafirmar o propósito da medicina: <strong class="text-navy">colocar o ser humano no centro de tudo</strong>.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <a href="/medico/dr-fernando-drudi"
+              class="inline-flex items-center gap-2.5 font-ui text-sm font-bold px-7 py-3.5 rounded-md transition-all duration-200 hover:brightness-110"
+              style="background:#0d2240;color:#f5f0e8">
+              Conhecer o Dr. Fernando Drudi
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navio Soares de Meireles navegando no Amazonas -->
+        <div class="rounded-2xl overflow-hidden shadow-2xl" style="aspect-ratio:16/9">
+          <img
+            src={IMG.navioNovo}
+            alt="NAsH Soares de Meireles (U21) — Navio de Assistência Hospitalar da Marinha do Brasil navegando no Rio Amazonas ao pôr do sol durante expedição humanitária"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            width="800"
+            height="450"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALERIA FOTOGRÁFICA ========== -->
+  <section id="galeria" class="section-padding" style="background:linear-gradient(135deg,rgba(13,34,64,0.03) 0%,rgba(201,169,97,0.04) 100%);padding-bottom:calc(var(--section-padding) + 2rem)">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Registro das expedições</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Galeria fotográfica</h2>
+        <p class="font-body text-base text-muted-foreground max-w-xl mx-auto">
+          Imagens reais das expedições, registradas ao longo de mais de uma década de voluntariado.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <!-- Grid fotográfico editorial — tamanhos variados para dinamismo -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-[220px]">
+        {[
+          { src: IMG.hero,      alt: "Pôr do sol nos rios amazônicos durante expedição humanitária", span: "lg:col-span-2 lg:row-span-2" },
+          { src: IMG.cirurgia,  alt: "Cirurgia de catarata a bordo do navio hospital na Amazônia", span: "" },
+          { src: IMG.equipe,    alt: "Equipe médica voluntária do projeto Oftalmologia Humanitária", span: "" },
+          { src: IMG.pacientes, alt: "Pacientes ribeirinhos aguardando atendimento oftalmológico", span: "" },
+          { src: IMG.marinha,   alt: "Navio de assistência hospitalar da Marinha do Brasil no rio Amazonas", span: "" },
+          { src: IMG.floresta,  alt: "Floresta amazônica vista durante expedição fluvial humanitária", span: "" },
+          { src: IMG.pordosol,  alt: "Pôr do sol no rio Amazonas durante retorno de expedição médica", span: "" },
+          { src: IMG.navio,     alt: "Embarcação da Marinha navegando pelos rios do Amazonas", span: "col-span-2" },
+          { src: IMG.navioNovo, alt: "NAsH Soares de Meireles — Navio de Assistência Hospitalar da Marinha do Brasil no Rio Amazonas", span: "col-span-2" },
+        ].map(f => (
+          <div class={`group relative overflow-hidden rounded-xl ${f.span}`}>
+            <img
+              src={f.src}
+              alt={f.alt}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              width="400"
+              height="400"
+            />
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(5,15,35,0.35)"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PARCEIROS ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Uma rede de compromisso</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Parceiros institucionais</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          O projeto é fruto de uma aliança única entre instituições públicas, universidades e empresas privadas
+          unidas pelo mesmo propósito: eliminar a cegueira evitável na Amazônia.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          {
+            nome: "Marinha do Brasil",
+            papel: "Parceiro logístico estratégico",
+            desc: "Fornece navios de assistência hospitalar equipados com salas cirúrgicas para as expedições pelos rios amazônicos.",
+          },
+          {
+            nome: "UFAM",
+            papel: "Universidade Federal do Amazonas",
+            desc: "Parceira acadêmica e científica, contribuindo com pesquisadores, residentes e infraestrutura para as expedições.",
+          },
+          {
+            nome: "IPEPO / Unifesp",
+            papel: "Instituto da Visão",
+            desc: "Parceiro científico e médico do projeto, contribuindo com especialistas e coordenação das expedições desde a fundação.",
+          },
+          {
+            nome: "FUNDAPI",
+            papel: "Fundação de Apoio",
+            desc: "Apoia a gestão administrativa e financeira das expedições, garantindo a continuidade do projeto ao longo dos anos.",
+          },
+          {
+            nome: "Lupas Leitor",
+            papel: "Parceiro de óculos",
+            desc: "Responsável pela doação de mais de 110.000 óculos distribuídos gratuitamente às populações ribeirinhas.",
+          },
+          {
+            nome: "Alcon",
+            papel: "Parceiro tecnológico",
+            desc: "Fornece lentes intraoculares e equipamentos cirúrgicos de última geração para as cirurgias de catarata.",
+          },
+        ].map(p => (
+          <div class="rounded-2xl p-7 transition-all duration-300 hover:shadow-lg" style="background:#fff;border:1px solid rgba(13,34,64,0.09)">
+            <div class="w-8 h-0.5 mb-5" style="background:#c9a961"></div>
+            <h3 class="font-display text-lg text-navy mb-1">{p.nome}</h3>
+            <p class="font-ui text-xs font-semibold text-gold tracking-wide mb-4 uppercase">{p.papel}</p>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LINHA DO TEMPO ========== -->
+  <section class="section-padding" style="background:linear-gradient(135deg,rgba(13,34,64,0.03) 0%,rgba(201,169,97,0.04) 100%)">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Três décadas de história</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Marcos do projeto</h2>
+        <div class="gold-line max-w-[80px] mx-auto mt-4"></div>
+      </div>
+
+      <div class="relative max-w-3xl mx-auto">
+        <!-- Linha vertical dourada -->
+        <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px" style="background:linear-gradient(to bottom,transparent,#c9a961 8%,#c9a961 92%,transparent);transform:translateX(-50%)"></div>
+
+        <div class="space-y-8">
+          {[
+            { ano: "1990", t: "Fundação do projeto", d: "Os Profs. Drs. Rubens Belfort Júnior, Jacob Cohen e Walton José, em parceria com a Marinha do Brasil e a UFAM, realizam as primeiras expedições de cirurgia de catarata nos rios amazônicos." },
+            { ano: "2000", t: "Expansão para o Alto Solimões", d: "O projeto alcança municípios próximos às fronteiras com Peru e Colômbia, como Tabatinga e Benjamin Constant." },
+            { ano: "2010", t: "10.000 óculos distribuídos", d: "A parceria com a Lupas Leitor consolida a distribuição em massa de óculos, beneficiando populações com presbiopia e outros erros refrativos." },
+            { ano: "2019", t: "Prêmio Champalimaud", d: "O IPEPO/Unifesp recebe o maior prêmio mundial em oftalmologia, em Lisboa, no valor de €1 milhão. Reconhecimento internacional de três décadas de trabalho." },
+            { ano: "2023", t: "Expedição Maués e Parintins", d: "Mais de 250 cirurgias realizadas em uma única expedição. O Dr. Fernando Drudi integra a equipe pela décima vez consecutiva." },
+            { ano: "2025+", t: "Mais de 10.000 cirurgias", d: "O projeto ultrapassa a marca histórica de 10.000 cirurgias de catarata realizadas gratuitamente, consolidando-se como o maior programa de oftalmologia humanitária do Brasil." },
+          ].map((m, i) => (
+            <div class={`relative flex gap-6 md:gap-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+              <div class={`flex-1 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'} pl-14 md:pl-0`}>
+                <div class="rounded-2xl p-6 shadow-sm" style="background:#fff;border:1px solid rgba(13,34,64,0.09)">
+                  <div class="font-display text-2xl font-bold text-gold mb-1">{m.ano}</div>
+                  <h3 class="font-display text-base text-navy mb-2">{m.t}</h3>
+                  <p class="font-body text-sm text-muted-foreground leading-relaxed">{m.d}</p>
+                </div>
+              </div>
+              <!-- Ponto na linha -->
+              <div class="absolute left-4 md:left-1/2 top-6 w-4 h-4 rounded-full border-2 border-gold bg-white" style="transform:translateX(-50%)"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section-padding">
+    <div class="container max-w-3xl">
+      <div class="text-center mb-14">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Perguntas frequentes</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Sobre o projeto</h2>
+        <div class="gold-line max-w-[80px] mx-auto mt-4"></div>
+      </div>
+
+      <div class="space-y-3" id="faq-accordion">
+        {[
+          { q: "O que é o projeto Oftalmologia Humanitária?", a: "O projeto Oftalmologia Humanitária é uma iniciativa pioneira que leva cirurgias de catarata, tratamento de pterígio e distribuição gratuita de óculos às populações ribeirinhas do interior do Amazonas. Desenvolvido em parceria entre a Marinha do Brasil, UFAM, FUNDAPI e IPEPO/Unifesp, o projeto utiliza navios de assistência hospitalar para alcançar comunidades sem acesso a serviços oftalmológicos especializados." },
+          { q: "Quantas cirurgias o projeto já realizou?", a: "Em mais de 30 anos de atuação, o projeto já realizou mais de 10.000 cirurgias de catarata gratuitas e distribuiu mais de 110.000 óculos para populações ribeirinhas. Ao todo, mais de 25 municípios do estado do Amazonas foram atendidos, beneficiando centenas de milhares de pessoas." },
+          { q: "Quem fundou o projeto?", a: "O projeto foi fundado pelo Prof. Dr. Rubens Belfort Júnior (Unifesp/IPEPO), pelo Dr. Jacob Cohen e pelo Dr. Walton José, em parceria com a Marinha do Brasil, UFAM e FUNDAPI. O Dr. Fernando Drudi integra a equipe como cirúrgico voluntário há mais de 10 anos." },
+          { q: "Por que o projeto recebeu o Prêmio Champalimaud?", a: "Em 2019, o IPEPO/Unifesp foi um dos três laureados do Prêmio António Champalimaud de Visão, considerado o maior prêmio mundial em oftalmologia, com valor de €1 milhão. O prêmio reconheceu décadas de trabalho na prevenção da cegueira e no atendimento a populações vulneráveis no Brasil, incluindo o trabalho na Amazônia." },
+          { q: "Como a Marinha do Brasil participa?", a: "A Marinha do Brasil é parceira estratégica fundamental, fornecendo navios de assistência hospitalar que navegam pelos rios amazônicos para levar a equipe médica às comunidades ribeirinhas. Sem essa parceria logística, seria impossível alcançar municípios que ficam a dias de viagem fluvial de Manaus." },
+          { q: "Qual é a principal doença tratada?", a: "A catarata é a principal causa de cegueira tratável no mundo e a condição mais frequentemente abordada pelo projeto. A exposição intensa à radiação ultravioleta na região amazônica acelera o desenvolvimento da catarata nas populações ribeirinhas. O pterígio — crescimento anormal da conjuntiva sobre a córnea — também é amplamente tratado." },
+          { q: "Como posso apoiar o projeto?", a: "O projeto é sustentado por parcerias institucionais entre a Marinha do Brasil, universidades federais e empresas privadas como Lupas Leitor e Alcon. Para mais informações sobre como contribuir, entre em contato com o IPEPO (Instituto da Visão) ou com a FUNDAPI." },
+        ].map((item, i) => (
+          <details class="group rounded-xl overflow-hidden" style="border:1px solid rgba(13,34,64,0.10)">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none list-none" style="background:#fff">
+              <span class="font-display text-base text-navy">{item.q}</span>
+              <svg class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180 text-gold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 py-5 font-body text-sm text-muted-foreground leading-relaxed" style="background:rgba(201,169,97,0.04);border-top:1px solid rgba(13,34,64,0.07)">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL — FUNDO ESCURO ========== -->
+  <section class="relative overflow-hidden py-24" style="background:#0d2240">
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:radial-gradient(circle at 30% 50%,#c9a961 0%,transparent 50%)"></div>
+    <!-- Imagem de fundo sutil -->
+    <div class="absolute inset-0 opacity-10 bg-cover bg-center" style={`background-image:url('${IMG.pordosol}')`}></div>
+
+    <div class="relative container text-center">
+      <div class="w-12 h-0.5 mx-auto mb-8" style="background:#c9a961"></div>
+      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight" style="color:#f5f0e8">
+        Cuidar da visão é<br>
+        <em class="not-italic" style="color:#c9a961">um ato de humanidade</em>
+      </h2>
+      <p class="font-body text-base leading-relaxed mb-10 max-w-2xl mx-auto" style="color:rgba(245,240,232,0.65)">
+          A mesma excelência que leva o Dr. Fernando Drudi aos rios mais remotos do Brasil
+          está disponível para você nas cinco unidades da <strong style="color:#c9a961">Drudi e Almeida Oftalmologia</strong> em São Paulo e Guarulhos.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2.5 font-ui text-sm font-bold px-8 py-4 rounded-md transition-all duration-200 hover:brightness-110"
+          style="background:#c9a961;color:#0d2240">
+          Agendar Consulta pelo WhatsApp
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/unidades"
+          class="inline-flex items-center gap-2.5 font-ui text-sm font-semibold px-8 py-4 rounded-md transition-all duration-200"
+          style="border:1px solid rgba(245,240,232,0.25);color:rgba(245,240,232,0.85)">
+          Ver nossas unidades
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -57,6 +57,7 @@ const pathLabels: Record<string, { name: string; parent?: string; parentName?: s
   '/instituto/estrabismo': { name: 'Instituto de Estrabismo', parent: '/institutos', parentName: 'Institutos' },
   '/medico/dr-fernando-drudi': { name: 'Dr. Fernando Drudi', parent: '/sobre', parentName: 'Sobre Nós' },
   '/medico/dra-priscilla-almeida': { name: 'Dra. Priscilla Almeida', parent: '/sobre', parentName: 'Sobre Nós' },
+  '/oftalmologia-humanitaria': { name: 'Oftalmologia Humanitária', parent: '/sobre', parentName: 'Sobre Nós' },
   '/unidade/guarulhos': { name: 'Guarulhos', parent: '/contato', parentName: 'Contato' },
   '/unidade/lapa': { name: 'Lapa', parent: '/contato', parentName: 'Contato' },
   '/unidade/santana': { name: 'Santana', parent: '/contato', parentName: 'Contato' },
@@ -321,6 +322,11 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
                 <a href="/sobre" class="block px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">Quem Somos</a>
                 <a href="/medico/dr-fernando-drudi" class="block px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">Dr. Fernando Drudi</a>
                 <a href="/medico/dra-priscilla-almeida" class="block px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">Dra. Priscilla Almeida</a>
+                <div class="mx-4 my-1 border-t border-navy/10"></div>
+                <a href="/oftalmologia-humanitaria" class="flex items-center gap-2 px-5 py-2.5 font-ui text-sm text-navy/80 hover:text-gold hover:bg-gold/5 transition-colors">
+                  <span class="text-base">🏆</span>
+                  Oftalmologia Humanitária
+                </a>
               </div>
             </div>
 
@@ -469,10 +475,10 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
           <div class="mob-acc-content" style="display:none;background:#fafbfc;border-bottom:1px solid #f0f2f5;">
             <a href="/sobre" style="display:block;padding:11px 20px 11px 64px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Quem Somos</a>
             <a href="/medico/dr-fernando-drudi" style="display:block;padding:11px 20px 11px 64px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Dr. Fernando Drudi</a>
-            <a href="/medico/dra-priscilla-almeida" style="display:block;padding:11px 20px 11px 64px;font-size:14px;color:#4b5563;text-decoration:none;">Dra. Priscilla Almeida</a>
+             <a href="/medico/dra-priscilla-almeida" style="display:block;padding:11px 20px 11px 64px;font-size:14px;color:#4b5563;text-decoration:none;border-bottom:1px solid #f5f5f5;">Dra. Priscilla Almeida</a>
+            <a href="/oftalmologia-humanitaria" style="display:block;padding:11px 20px 11px 64px;font-size:14px;color:#c9a961;text-decoration:none;font-weight:600;">🏆 Oftalmologia Humanitária</a>
           </div>
         </div>
-
         <!-- Institutos — acordeão -->
         <div class="mob-accordion">
           <button class="mob-acc-btn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;font-size:15px;font-weight:600;color:#0d2240;background:none;border:none;border-bottom:1px solid #f0f2f5;cursor:pointer;text-align:left;">

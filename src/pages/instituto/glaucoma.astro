@@ -114,6 +114,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   heroImageSrcset="/images/glaucoma-hero-480w.webp 480w, /images/glaucoma-hero-768w.webp 768w, /images/glaucoma-hero_degas_a3f7c912.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({"@context": "https://schema.org", "@type": "HowTo", "name": "Como é feito o diagnóstico e tratamento do glaucoma", "description": "Protocolo de diagnóstico e tratamento do glaucoma na Drudi e Almeida Oftalmologia.", "step": [{"@type": "HowToStep", "position": 1, "name": "Tonometria", "text": "Medida da pressão intraocular com tonômetro de aplanação de Goldmann. Pressão normal: 10-21 mmHg."}, {"@type": "HowToStep", "position": 2, "name": "Gonioscopia", "text": "Avaliação do ângulo camerular para classificar o tipo de glaucoma (aberto ou fechado)."}, {"@type": "HowToStep", "position": 3, "name": "OCT de nervo óptico", "text": "Tomografia de coerência óptica (OCT) da camada de fibras nervosas para detectar perda estrutural precoce."}, {"@type": "HowToStep", "position": 4, "name": "Campo visual computadorizado", "text": "Perimetria automatizada (Humphrey 750i) para mapear a perda funcional do campo visual."}, {"@type": "HowToStep", "position": 5, "name": "Tratamento individualizado", "text": "Colírios hipotensores, laser (trabeculoplastia seletiva — SLT) ou cirurgia (trabeculectomia), conforme o estágio e tipo de glaucoma."}]})} />
+
   <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "MedicalCondition",

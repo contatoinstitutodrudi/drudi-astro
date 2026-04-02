@@ -31,25 +31,34 @@ export default defineConfig({
         'https://institutodrudiealmeida.com.br/blog/cirurgia-estrabismo-adultos',
         'https://institutodrudiealmeida.com.br/blog/cirurgia-estrabismo-sp',
         'https://institutodrudiealmeida.com.br/blog/coriorretinopatia-serosa-central',
+        'https://institutodrudiealmeida.com.br/perguntas-frequentes/',
+        'https://institutodrudiealmeida.com.br/oftalmologia-humanitaria/',
       ],
       serialize(item) {
+        const today = new Date().toISOString().split('T')[0];
         // Home e institutos têm prioridade máxima
         if (item.url === 'https://institutodrudiealmeida.com.br/') {
-          return { ...item, priority: 1.0, changefreq: 'weekly' };
+          return { ...item, priority: 1.0, changefreq: 'weekly', lastmod: today };
         }
         if (item.url.includes('/instituto/')) {
-          return { ...item, priority: 0.9, changefreq: 'monthly' };
+          return { ...item, priority: 0.9, changefreq: 'monthly', lastmod: today };
         }
         if (item.url.includes('/medico/') || item.url.includes('/unidade/')) {
-          return { ...item, priority: 0.8, changefreq: 'monthly' };
+          return { ...item, priority: 0.8, changefreq: 'monthly', lastmod: today };
         }
         if (item.url.includes('/blog/')) {
-          return { ...item, priority: 0.7, changefreq: 'yearly' };
+          return { ...item, priority: 0.7, changefreq: 'yearly', lastmod: today };
+        }
+        if (item.url.includes('/perguntas-frequentes/')) {
+          return { ...item, priority: 0.9, changefreq: 'monthly', lastmod: today };
+        }
+        if (item.url.includes('/oftalmologia-humanitaria/')) {
+          return { ...item, priority: 0.8, changefreq: 'monthly', lastmod: today };
         }
         if (item.url.includes('/agendar')) {
-          return { ...item, priority: 0.9, changefreq: 'monthly' };
+          return { ...item, priority: 0.9, changefreq: 'monthly', lastmod: today };
         }
-        return { ...item, priority: 0.6, changefreq: 'monthly' };
+        return { ...item, priority: 0.6, changefreq: 'monthly', lastmod: today };
       },
     }),
     react(),

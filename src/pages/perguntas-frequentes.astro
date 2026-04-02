@@ -1,0 +1,251 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Tenho uma dúvida sobre oftalmologia.";
+
+const faqs = [
+  {
+    category: "Consultas e Agendamento",
+    items: [
+      {
+        q: "Como agendar uma consulta na Drudi e Almeida?",
+        a: "Você pode agendar pelo WhatsApp (11) 91654-4653, pelo telefone (11) 5430-2421 ou pelo agendamento online em institutodrudiealmeida.com.br/agendar. Atendemos de segunda a sexta das 8h às 18h e sábados das 8h às 12h nas unidades de Santana, Tatuapé, Lapa, São Miguel Paulista e Guarulhos."
+      },
+      {
+        q: "A Drudi e Almeida aceita convênio?",
+        a: "Sim. Aceitamos Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Instituto Pró-PM (IAMSPE) e Ameplam. Para verificar a cobertura do seu plano para um procedimento específico, entre em contato pelo telefone (11) 5430-2421."
+      },
+      {
+        q: "Qual é o valor de uma consulta oftalmológica particular?",
+        a: "Os valores variam conforme a especialidade e os exames solicitados. Entre em contato pelo WhatsApp (11) 91654-4653 ou pelo telefone (11) 5430-2421 para obter informações atualizadas sobre valores de consultas e procedimentos."
+      },
+      {
+        q: "Preciso de encaminhamento médico para consultar na Drudi e Almeida?",
+        a: "Não é necessário encaminhamento para consultas particulares. Para pacientes com convênio, verifique as regras do seu plano de saúde, pois alguns convênios exigem guia de encaminhamento para consultas com especialistas."
+      },
+    ]
+  },
+  {
+    category: "Cirurgia de Catarata",
+    items: [
+      {
+        q: "O que é cirurgia de catarata e como funciona?",
+        a: "A cirurgia de catarata remove o cristalino opacificado (catarata) e o substitui por uma lente intraocular artificial (LIO). O procedimento é realizado por facoemulsificação — uma técnica minimamente invasiva com ultrassom que fragmenta e aspira a catarata por uma incisão de apenas 2,2 mm, sem pontos. A cirurgia dura cerca de 15 a 20 minutos por olho, é realizada com anestesia local e sedação leve, e a recuperação visual começa no dia seguinte."
+      },
+      {
+        q: "A cirurgia de catarata é coberta pelo convênio?",
+        a: "Sim. A maioria dos convênios cobre a cirurgia de catarata com lente intraocular monofocal, que corrige a visão para uma distância (geralmente longe). Lentes premium — multifocal, trifocal, tórica e EDOF — proporcionam maior independência dos óculos, mas têm coparticipação do paciente. A Drudi e Almeida realiza cirurgias de catarata pelos convênios Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, IAMSPE e Ameplam."
+      },
+      {
+        q: "Qual a diferença entre lente monofocal, multifocal e EDOF?",
+        a: "A lente monofocal corrige a visão para uma distância (geralmente longe), sendo necessário óculos para perto. A lente multifocal (ou trifocal) divide a luz em focos para longe, intermediário e perto, proporcionando maior independência dos óculos. A lente EDOF (Extended Depth of Focus) oferece visão nítida de longe e intermediária com menor risco de halos e reflexos. A escolha depende do estilo de vida, profissão e expectativas do paciente."
+      },
+      {
+        q: "Quais são os riscos da cirurgia de catarata?",
+        a: "A cirurgia de catarata por facoemulsificação é considerada segura, com taxa de complicações graves inferior a 1%. As complicações mais comuns incluem opacificação da cápsula posterior (catarata secundária), que é tratada com laser YAG em minutos, e edema macular cistóide, tratado com colírios. Infecção (endoftalmite) é rara (0,03%) mas grave. O Dr. Fernando Drudi realiza centenas de cirurgias por ano com excelentes resultados."
+      },
+      {
+        q: "Quanto tempo dura a recuperação da cirurgia de catarata?",
+        a: "A recuperação visual começa no dia seguinte à cirurgia. Na primeira semana, é comum visão levemente embaçada e sensibilidade à luz. A visão estabiliza completamente em 4 a 6 semanas. O paciente usa colírios por 4 semanas e deve evitar esforço físico intenso, piscinas e exposição ao sol sem óculos escuros nas primeiras semanas."
+      },
+    ]
+  },
+  {
+    category: "Ceratocone",
+    items: [
+      {
+        q: "O que é ceratocone e quais são os sintomas?",
+        a: "O ceratocone é uma doença progressiva da córnea em que o tecido corneano perde resistência e assume uma forma cônica irregular, em vez do formato esférico normal. Os sintomas incluem visão embaçada e distorcida, sensibilidade à luz (fotofobia), halos ao redor de luzes, dificuldade de correção com óculos convencionais e necessidade frequente de troca de óculos. Acomete principalmente jovens entre 10 e 30 anos."
+      },
+      {
+        q: "O crosslinking cura o ceratocone?",
+        a: "O crosslinking (CXL) não cura o ceratocone, mas é o único tratamento comprovado para estabilizar sua progressão. O procedimento utiliza riboflavina (vitamina B2) instilada na córnea e luz ultravioleta UVA para criar novas ligações entre as fibras de colágeno, aumentando a rigidez corneana. Estudos mostram que o CXL estabiliza ou melhora o ceratocone em 90 a 95% dos casos. A Dra. Priscilla de Almeida é especialista em ceratocone e crosslinking."
+      },
+      {
+        q: "Qual é a diferença entre crosslinking epitélio-off e epitélio-on?",
+        a: "No crosslinking epitélio-off (técnica padrão), o epitélio corneano é removido para permitir maior penetração da riboflavina, resultando em maior eficácia. No epitélio-on (transepitelial), o epitélio é mantido, tornando o procedimento menos doloroso e com recuperação mais rápida, mas com eficácia ligeiramente menor. A escolha da técnica depende da espessura corneana, estágio do ceratocone e preferência do cirurgião."
+      },
+      {
+        q: "Lentes de contato ajudam no ceratocone?",
+        a: "Sim. Lentes de contato especiais são a principal forma de correção visual no ceratocone. As lentes rígidas gás-permeáveis (RGP) criam uma superfície óptica regular sobre a córnea irregular. Lentes esclerais apoiam-se na esclera (branco do olho), sendo mais confortáveis para córneas muito irregulares. Lentes híbridas combinam centro rígido com periferia mole. A Dra. Priscilla de Almeida tem expertise em adaptação de lentes especiais para ceratocone."
+      },
+    ]
+  },
+  {
+    category: "Glaucoma",
+    items: [
+      {
+        q: "O glaucoma tem cura?",
+        a: "O glaucoma não tem cura, mas tem tratamento eficaz que interrompe ou retarda significativamente a progressão da doença. O diagnóstico precoce é fundamental — o campo visual computadorizado (Humphrey 750i) e o OCT de nervo óptico permitem detectar o glaucoma antes da perda visual sintomática. O tratamento inclui colírios hipotensores, laser (trabeculoplastia seletiva — SLT) e, em casos avançados, cirurgia (trabeculectomia ou implante de válvula)."
+      },
+      {
+        q: "Quais são os sintomas do glaucoma?",
+        a: "O glaucoma de ângulo aberto — o tipo mais comum — é assintomático nas fases iniciais e intermediárias, sendo chamado de 'ladrão silencioso da visão'. Os sintomas só aparecem quando já há perda visual significativa e irreversível. Por isso, o rastreamento com tonometria (medida da pressão ocular) e exame do nervo óptico é essencial após os 40 anos, ou mais cedo em pessoas com histórico familiar, miopia alta ou diabetes."
+      },
+      {
+        q: "Pressão ocular alta significa glaucoma?",
+        a: "Não necessariamente. A pressão intraocular elevada (hipertensão ocular) é o principal fator de risco para glaucoma, mas não é sinônimo da doença. Existem pacientes com pressão normal que desenvolvem glaucoma (glaucoma de pressão normal) e pacientes com pressão elevada que nunca desenvolvem a doença. O diagnóstico de glaucoma requer avaliação completa: tonometria, gonioscopia, campo visual e OCT de nervo óptico."
+      },
+    ]
+  },
+  {
+    category: "Retina",
+    items: [
+      {
+        q: "O que é injeção intravítrea (Anti-VEGF)?",
+        a: "A injeção intravítrea é um procedimento ambulatorial que aplica medicamentos diretamente no vítreo do olho, com agulha fina e anestesia tópica. Os anti-VEGF (ranibizumabe, bevacizumabe, aflibercepte) bloqueiam o fator de crescimento vascular endotelial, inibindo o crescimento de vasos anômalos e reduzindo o edema macular. São indicados para degeneração macular relacionada à idade (DMRI) úmida, edema macular diabético, oclusão de veia central da retina e neovascularização de outras causas."
+      },
+      {
+        q: "Quais são os sintomas de descolamento de retina?",
+        a: "Os sintomas de descolamento de retina incluem flashes de luz (fotopsia), aumento súbito de moscas volantes (floaters), sombra ou cortina escura no campo visual e visão embaçada. O descolamento de retina é uma emergência oftalmológica — procure atendimento imediato se apresentar esses sintomas. O Dr. Fernando Drudi, especialista em retina cirúrgica, realiza cirurgias de descolamento de retina (vitrectomia posterior e introflexão escleral)."
+      },
+      {
+        q: "O que é degeneração macular (DMRI)?",
+        a: "A degeneração macular relacionada à idade (DMRI) é a principal causa de perda visual irreversível em maiores de 50 anos no mundo desenvolvido. Afeta a mácula — a região central da retina responsável pela visão de detalhes. A DMRI seca (atrófica) progride lentamente; a DMRI úmida (neovascular) evolui rapidamente com crescimento de vasos anômalos e pode causar perda visual grave em semanas. O tratamento com injeções intravítreas de anti-VEGF é eficaz para estabilizar e melhorar a visão na DMRI úmida."
+      },
+    ]
+  },
+  {
+    category: "Estrabismo",
+    items: [
+      {
+        q: "A cirurgia de estrabismo pode ser feita em adultos?",
+        a: "Sim. A cirurgia de estrabismo é realizada em crianças e adultos. Em adultos, os objetivos incluem correção do desvio ocular por razões funcionais (diplopia — visão dupla) e estéticas. A cirurgia é realizada sob anestesia geral em crianças e anestesia local com sedação em adultos, com duração de 30 a 60 minutos. A recuperação é rápida — o paciente retorna às atividades normais em 1 a 2 semanas."
+      },
+    ]
+  },
+];
+
+const allFaqs = faqs.flatMap(cat => cat.items);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "name": "Perguntas Frequentes — Drudi e Almeida Oftalmologia",
+  "description": "Respostas completas às dúvidas mais frequentes sobre oftalmologia, cirurgia de catarata, ceratocone, glaucoma, retina, estrabismo e agendamento na Drudi e Almeida.",
+  "mainEntity": allFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://institutodrudiealmeida.com.br/" },
+    { "@type": "ListItem", "position": 2, "name": "Perguntas Frequentes", "item": "https://institutodrudiealmeida.com.br/perguntas-frequentes/" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Perguntas Frequentes sobre Oftalmologia | Drudi e Almeida"
+  description="Tire suas dúvidas sobre cirurgia de catarata, ceratocone, glaucoma, retina, estrabismo e agendamento na Drudi e Almeida. Respostas médicas completas e baseadas em evidências."
+  canonicalPath="/perguntas-frequentes"
+  keywords="perguntas frequentes oftalmologia, dúvidas cirurgia catarata, ceratocone tratamento, glaucoma sintomas, retina injeção intravítrea, agendamento oftalmologista SP"
+>
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- ========== HERO ========== -->
+  <section class="relative overflow-hidden" style="background:linear-gradient(135deg,#1e2a44 0%,#162036 100%);padding-top:100px">
+    <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0);background-size:40px 40px"></div>
+    <div class="relative container pb-14 md:pb-20 pt-4">
+      <Breadcrumb items={[{ label: "Início", href: "/" }, { label: "Perguntas Frequentes" }]} />
+      <div class="max-w-3xl mt-6">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Tire Suas Dúvidas</span>
+        <h1 class="font-display text-4xl md:text-5xl text-cream mt-3 mb-5 leading-tight">
+          Perguntas Frequentes
+        </h1>
+        <p class="font-body text-lg leading-relaxed" style="color:rgba(245,240,232,0.75)">
+          Respostas completas e baseadas em evidências científicas para as dúvidas mais comuns sobre oftalmologia, procedimentos cirúrgicos e atendimento na Drudi e Almeida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ POR CATEGORIA ========== -->
+  <section class="section-padding" style="background:#ffffff">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+
+        {faqs.map((category, catIndex) => (
+          <div class={catIndex > 0 ? "mt-14" : ""}>
+            <!-- Cabeçalho da categoria -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class="h-px flex-1" style="background:rgba(201,169,97,0.25)"></div>
+              <span class="font-ui text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full" style="background:rgba(201,169,97,0.10);color:#c9a961;border:1px solid rgba(201,169,97,0.25)">{category.category}</span>
+              <div class="h-px flex-1" style="background:rgba(201,169,97,0.25)"></div>
+            </div>
+
+            <!-- Perguntas da categoria -->
+            <div class="space-y-3">
+              {category.items.map((faq, i) => (
+                <details class="group rounded-xl overflow-hidden" style="border:1px solid rgba(30,42,68,0.10);background:#faf9f7">
+                  <summary class="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none" style="color:#1e2a44">
+                    <span class="font-ui text-base font-semibold leading-snug">{faq.q}</span>
+                    <svg class="w-5 h-5 shrink-0 mt-0.5 transition-transform duration-300 group-open:rotate-180" style="color:#c9a961" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </summary>
+                  <div class="px-6 pb-6 pt-1">
+                    <div class="h-px mb-4" style="background:rgba(30,42,68,0.08)"></div>
+                    <p class="font-body text-base leading-relaxed" style="color:#6b7280">{faq.a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Nota médica -->
+        <div class="mt-14 rounded-xl p-6" style="background:rgba(30,42,68,0.04);border:1px solid rgba(30,42,68,0.08)">
+          <p class="font-ui text-xs font-semibold mb-2" style="color:#1e2a44">Aviso Médico</p>
+          <p class="font-body text-sm leading-relaxed" style="color:#6b7280">
+            As informações contidas nesta página têm caráter educativo e não substituem a consulta médica presencial. Cada caso é único e requer avaliação individualizada por um oftalmologista. Para diagnóstico e tratamento, agende uma consulta com nossa equipe.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section-padding" style="background:#1e2a44">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase" style="color:#c9a961">Ainda tem dúvidas?</span>
+        <h2 class="font-display text-3xl md:text-4xl text-cream mt-3 mb-4">
+          Fale com um especialista
+        </h2>
+        <p class="font-body text-base mb-8" style="color:rgba(245,240,232,0.70)">
+          Nossa equipe está pronta para responder suas dúvidas e agendar sua consulta com o especialista ideal para o seu caso.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 font-ui text-sm font-bold px-7 py-3.5 rounded-md transition-colors"
+            style="background:#c9a961;color:#1e2a44"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L0 24l6.338-1.498A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.497-5.197-1.367l-.371-.22-3.763.889.936-3.659-.241-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Falar pelo WhatsApp
+          </a>
+          <a
+            href="/agendar/"
+            class="inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3.5 rounded-md transition-colors"
+            style="border:1px solid rgba(245,240,232,0.30);color:#f5f0e8"
+          >
+            Agendar Consulta Online
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

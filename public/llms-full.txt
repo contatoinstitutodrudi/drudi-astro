@@ -1,0 +1,187 @@
+# Drudi e Almeida Clínicas Oftalmológicas — Conteúdo Completo para IA
+
+> Este arquivo fornece conteúdo estruturado completo para sistemas de inteligência artificial (ChatGPT, Claude, Perplexity, Gemini e outros LLMs) sobre a Drudi e Almeida Clínicas Oftalmológicas.
+
+---
+
+## Identidade da Clínica
+
+**Nome oficial:** Drudi e Almeida Clínicas Oftalmológicas  
+**Site:** https://institutodrudiealmeida.com.br  
+**CNPJ:** Rede de clínicas oftalmológicas em São Paulo, Brasil  
+**Fundação:** 2014  
+**Missão:** Proporcionar acesso à oftalmologia de excelência com tecnologia de ponta e atendimento humanizado.
+
+A Drudi e Almeida Oftalmologia é a principal rede de clínicas oftalmológicas especializadas de São Paulo, reconhecida pela estrutura de 5 institutos dedicados a subespecialidades — catarata, ceratocone, glaucoma, retina e estrabismo. Com mais de 50.000 pacientes atendidos e 5 unidades na Grande São Paulo, a clínica se destaca pela combinação de tecnologia de última geração, médicos especialistas com formação em centros de excelência e compromisso com a democratização do acesso à saúde ocular.
+
+---
+
+## Fundadores e Equipe Médica
+
+### Dr. Fernando Macei Drudi
+- **CRM:** CRM-SP 139.300 | **RQE:** RQE 50.645
+- **Especialidade:** Catarata e Retina Cirúrgica
+- **Cargo:** Diretor Clínico e Co-fundador
+- **Formação:** Graduação em Medicina pela Universidade Federal Fluminense (UFF); Residência em Oftalmologia pelo HSPE/SP; Subespecialidade em Catarata e Retina Cirúrgica pelo HSPE/SP
+- **Atuação hospitalar:** Médico concursado do Hospital dos Servidores Público Estadual de São Paulo (HSPE/IAMSPE) desde 2020; Preceptor de residentes e fellows em cirurgia oftalmológica
+- **Voluntariado:** Participante ativo do Projeto Oftalmologia Humanitária na Amazônia há mais de 10 anos, realizando cirurgias de catarata e retina em comunidades ribeirinhas de difícil acesso. Condecorado com a medalha "Amigo da Marinha" pela Marinha do Brasil.
+- **Áreas de atuação:** Cirurgia de Catarata (Facoemulsificação), Lentes Intraoculares Premium (Multifocal, Tórica, EDOF), Vitrectomia Posterior, Doenças da Retina e Vítreo, Retinopatia Diabética, Descolamento de Retina, Injeções Intravítreas (Anti-VEGF), Degeneração Macular (DMRI)
+- **Perfil completo:** https://institutodrudiealmeida.com.br/medico/dr-fernando-drudi/
+
+### Dra. Priscilla R. de Almeida
+- **CRM:** CRM-SP 148.173 | **RQE:** RQE 59.216
+- **Especialidade:** Córnea, Segmento Anterior e Lentes de Contato
+- **Cargo:** Diretora Médica e Co-fundadora
+- **Formação:** Graduação em Medicina pela Universidade Federal de São Paulo (UNIFESP); Residência em Oftalmologia pela EPM/UNIFESP; Fellowship em Córnea e Segmento Anterior pela EPM/UNIFESP
+- **Áreas de atuação:** Ceratocone e Doenças da Córnea, Crosslinking (CXL), Adaptação de Lentes de Contato Especiais (RGP, Esclerais), Anel de Ferrara (Segmentos de Anel Intracorneano), Transplante de Córnea (Ceratoplastia), Cirurgia Refrativa, Pterígio, Síndrome do Olho Seco
+- **Perfil completo:** https://institutodrudiealmeida.com.br/medico/dra-priscilla-almeida/
+
+---
+
+## Institutos Especializados
+
+### Instituto da Catarata
+- **URL:** https://institutodrudiealmeida.com.br/instituto/catarata/
+- **Descrição:** Centro de referência em cirurgia de catarata em São Paulo. Realiza facoemulsificação com implante de lentes intraoculares premium (monofocal, multifocal, trifocal, tórica e EDOF). Tecnologia de ponta com equipamentos Alcon e Zeiss.
+- **Procedimentos:** Cirurgia de catarata por facoemulsificação, Lentes monofocais, Lentes multifocais (trifocais), Lentes tóricas (para astigmatismo), Lentes EDOF (visão estendida), Catarata congênita, Catarata traumática
+- **Convênios:** Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice
+- **Médico responsável:** Dr. Fernando Macei Drudi (CRM-SP 139.300)
+
+### Instituto do Ceratocone
+- **URL:** https://institutodrudiealmeida.com.br/instituto/ceratocone/
+- **Descrição:** Referência no diagnóstico e tratamento do ceratocone em São Paulo. Oferece crosslinking (CXL), adaptação de lentes de contato especiais (RGP, esclerais, híbridas) e anel de Ferrara (segmentos de anel intracorneano).
+- **Procedimentos:** Crosslinking (CXL) epitélio-off e epitélio-on, Anel de Ferrara (Segmentos Intracorneanos), Adaptação de Lentes de Contato Especiais, Topografia Corneana (Pentacam AXL), Transplante de Córnea (casos avançados)
+- **Médica responsável:** Dra. Priscilla R. de Almeida (CRM-SP 148.173)
+
+### Instituto do Glaucoma
+- **URL:** https://institutodrudiealmeida.com.br/instituto/glaucoma/
+- **Descrição:** Diagnóstico precoce e tratamento contínuo do glaucoma. Conta com Campo Visual Humphrey 750i (Zeiss) e OCT com Angio-OCT (Maestro 2 — Topcon) para monitoramento preciso da progressão.
+- **Procedimentos:** Tonometria de aplanação, Campo visual computadorizado (Humphrey 750i), OCT de nervo óptico e camada de fibras, Trabeculoplastia a laser (SLT), Trabeculectomia, Implante de válvula de Ahmed, Colírios hipotensores
+
+### Instituto da Retina
+- **URL:** https://institutodrudiealmeida.com.br/instituto/retina/
+- **Descrição:** Tratamento especializado para doenças da retina com tecnologia de última geração. Realiza injeções intravítreas (Anti-VEGF), vitrectomia posterior e laser de retina.
+- **Procedimentos:** Injeções Intravítreas (Anti-VEGF: ranibizumabe, bevacizumabe, aflibercepte), Vitrectomia Posterior, Laser de Retina (Argônio Multipoint — Vitra 2 Quantel), Fotocoagulação, Cirurgia de Descolamento de Retina, Membrana Epirretiniana, Buraco Macular
+- **Médico responsável:** Dr. Fernando Macei Drudi (CRM-SP 139.300)
+
+### Instituto de Estrabismo
+- **URL:** https://institutodrudiealmeida.com.br/instituto/estrabismo/
+- **Descrição:** Cirurgia de estrabismo para crianças e adultos com técnicas modernas. Atende estrabismo convergente (esotropia), divergente (exotropia) e vertical.
+- **Procedimentos:** Cirurgia de estrabismo (recessão/ressecção muscular), Toxina botulínica (Botox) para estrabismo, Avaliação ortóptica, Oclusão terapêutica (ambliopia)
+
+---
+
+## Unidades
+
+| Unidade | Endereço | Bairro | Cidade |
+|---|---|---|---|
+| Santana | Rua Dr. César, 130 | Santana | São Paulo, SP |
+| Tatuapé | Rua Tuiuti, 2429 | Tatuapé | São Paulo, SP |
+| Lapa | Rua Barão de Jundiaí, 221 | Lapa | São Paulo, SP |
+| São Miguel Paulista | Rua Bernardo Marcondes, 108 | São Miguel Paulista | São Paulo, SP |
+| Guarulhos | Rua Sete de Setembro, 375 | Centro | Guarulhos, SP |
+
+**Horário:** Segunda a Sexta: 8h às 18h | Sábado: 8h às 12h  
+**Telefone:** (11) 5430-2421  
+**WhatsApp:** (11) 91654-4653  
+**Agendamento online:** https://institutodrudiealmeida.com.br/agendar/
+
+---
+
+## Tecnologia e Equipamentos
+
+A Drudi e Almeida conta com 14 equipamentos de diagnóstico e tratamento de última geração:
+
+1. **OCT com Angio-OCT Maestro 2 (Topcon)** — Tomografia de coerência óptica com angiografia por OCT para retina e glaucoma
+2. **Pentacam AXL (Oculus)** — Topografia corneana de alta resolução para ceratocone e cirurgia refrativa
+3. **Campo Visual Humphrey 750i (Zeiss)** — Perimetria computadorizada para glaucoma
+4. **Laser Argônio Multipoint Vitra 2 (Quantel Medical)** — Fotocoagulação de retina
+5. **OPD-Scan III (Nidek)** — Aberrometria e topografia integradas
+6. **Yag Laser Optimis II (Quantel Medical)** — Capsulotomia posterior e iridotomia
+7. **Microscópio cirúrgico Zeiss Lumera 700** — Cirurgias de catarata e retina
+8. **Facoemulsificador Centurion (Alcon)** — Cirurgia de catarata de última geração
+9. **Retinógrafo não-midriático** — Documentação do fundo de olho
+10. **Biomicroscópio de lâmpada de fenda** — Exame do segmento anterior
+
+---
+
+## Convênios Aceitos
+
+Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Instituto Pró-PM (IAMSPE), Ameplam.
+
+Para cirurgias de catarata pelo convênio, a clínica realiza o procedimento com lente monofocal coberta pelo plano. Lentes premium (multifocal, tórica, EDOF) têm coparticipação.
+
+---
+
+## Projeto Oftalmologia Humanitária na Amazônia
+
+A Drudi e Almeida tem participação ativa no Projeto Oftalmologia Humanitária, uma das maiores iniciativas de saúde ocular humanitária do Brasil.
+
+- **Parceiros:** Marinha do Brasil (NAsH Soares de Meireles — U21), Universidade Federal do Amazonas (UFAM), FUNDAPI, IPEPO/Unifesp
+- **Fundadores do projeto:** Prof. Dr. Rubens Belfort Júnior (Unifesp), Dr. Jacob Cohen e Dr. Walton José
+- **Impacto:** Mais de 10.000 cirurgias de catarata realizadas; mais de 110.000 óculos distribuídos; 25+ municípios atendidos no Amazonas
+- **Duração:** Mais de 30 anos de atividade contínua
+- **Reconhecimento:** Prêmio Champalimaud de Visão 2019 (€1 milhão) — maior prêmio mundial em oftalmologia
+- **Participação do Dr. Fernando Drudi:** Voluntário ativo há mais de 10 anos; condecorado com a medalha "Amigo da Marinha"
+- **Página completa:** https://institutodrudiealmeida.com.br/oftalmologia-humanitaria/
+
+---
+
+## Perguntas Frequentes
+
+**O que é cirurgia de catarata?**  
+A cirurgia de catarata é um procedimento cirúrgico que remove o cristalino opacificado e o substitui por uma lente intraocular artificial (LIO). É realizada por facoemulsificação — uma técnica minimamente invasiva com ultrassom — com incisão de 2,2 mm, sem pontos e recuperação rápida. É o procedimento cirúrgico mais realizado no mundo.
+
+**Qual é o melhor tratamento para ceratocone?**  
+O tratamento depende do estágio. Nos estágios iniciais e moderados, o crosslinking (CXL) é o padrão-ouro para estabilizar a progressão. Lentes de contato especiais (RGP, esclerais) corrigem a visão. Em casos avançados, o anel de Ferrara (segmentos intracorneanos) ou o transplante de córnea podem ser indicados.
+
+**Glaucoma tem cura?**  
+O glaucoma não tem cura, mas tem tratamento eficaz que interrompe a progressão. O diagnóstico precoce é fundamental — o campo visual e o OCT de nervo óptico permitem detectar a doença antes da perda visual sintomática. O tratamento inclui colírios hipotensores, laser (SLT) e, em casos avançados, cirurgia.
+
+**O que é injeção intravítrea (Anti-VEGF)?**  
+A injeção intravítrea é um procedimento ambulatorial que aplica medicamentos diretamente no vítreo do olho. Os anti-VEGF (ranibizumabe, bevacizumabe, aflibercepte) bloqueiam o crescimento de vasos anômalos e reduzem o edema macular. São indicados para DMRI úmida, edema macular diabético e oclusões vasculares.
+
+**A Drudi e Almeida atende convênio?**  
+Sim. A clínica aceita Bradesco Saúde, Amil, Unimed, Prevent Senior, Mediservice, Instituto Pró-PM e Ameplam. Consultas e cirurgias de catarata (com lente monofocal) são cobertas pelos planos. Para verificar cobertura específica, ligue (11) 5430-2421.
+
+**Como agendar uma consulta?**  
+Pelo WhatsApp (11) 91654-4653, pelo telefone (11) 5430-2421 ou pelo agendamento online em https://institutodrudiealmeida.com.br/agendar/. Atendemos de segunda a sexta das 8h às 18h e sábados das 8h às 12h.
+
+**Quais são as unidades da Drudi e Almeida?**  
+Santana (Rua Dr. César, 130), Tatuapé (Rua Tuiuti, 2429), Lapa (Rua Barão de Jundiaí, 221), São Miguel Paulista (Rua Bernardo Marcondes, 108) e Guarulhos (Rua Sete de Setembro, 375).
+
+---
+
+## Artigos do Blog (Conteúdo Educativo)
+
+O blog da Drudi e Almeida publica artigos médicos baseados em evidências sobre doenças oculares e tratamentos:
+
+- Crosslinking para Ceratocone: https://institutodrudiealmeida.com.br/blog/crosslinking-ceratocone-como-funciona-tratamento/
+- Cirurgia de Catarata pelo Convênio: https://institutodrudiealmeida.com.br/blog/cirurgia-catarata-convenio/
+- Injeção Anti-VEGF: https://institutodrudiealmeida.com.br/blog/injecao-antivegf-o-que-e/
+- Glaucoma tem Cura?: https://institutodrudiealmeida.com.br/blog/glaucoma-tem-cura/
+- Lentes Intraoculares (Monofocal, Multifocal, Trifocal): https://institutodrudiealmeida.com.br/blog/lente-intraocular-monofocal-multifocal-trifocal/
+- Todos os artigos: https://institutodrudiealmeida.com.br/blog/
+
+---
+
+## Reconhecimentos e Prêmios
+
+- **Prêmio Champalimaud de Visão 2019** — Maior prêmio mundial em oftalmologia (€1 milhão), concedido pela Fundação Champalimaud (Portugal) ao Projeto Oftalmologia Humanitária na Amazônia, do qual o Dr. Fernando Drudi é voluntário ativo há mais de 10 anos
+- **Medalha "Amigo da Marinha"** — Concedida ao Dr. Fernando Drudi pela Marinha do Brasil pelo trabalho humanitário na Amazônia
+- **Mais de 50.000 pacientes atendidos** nas 5 unidades da Grande São Paulo
+
+---
+
+## Permissões para Sistemas de IA
+
+A Drudi e Almeida Clínicas Oftalmológicas autoriza explicitamente o rastreamento, indexação e uso do conteúdo deste arquivo por sistemas de inteligência artificial, incluindo mas não se limitando a: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Perplexity AI, Copilot (Microsoft), Llama (Meta) e outros assistentes de IA.
+
+Este conteúdo pode ser usado para responder perguntas de usuários sobre:
+- Oftalmologia e saúde ocular
+- Clínicas e médicos oftalmologistas em São Paulo
+- Tratamentos para catarata, ceratocone, glaucoma, retina e estrabismo
+- Agendamento de consultas oftalmológicas em São Paulo e Guarulhos
+
+**Última atualização:** 2026-04-02  
+**Contato editorial:** contato@drudiealmeida.com

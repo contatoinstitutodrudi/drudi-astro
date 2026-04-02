@@ -74,6 +74,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   heroImageSrcset="/images/estrabismo-hero-480w.webp 480w, /images/estrabismo-hero-768w.webp 768w, /images/estrabismo-hero-salvator-mundi.webp 1280w"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
+  <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({"@context": "https://schema.org", "@type": "HowTo", "name": "Como é realizada a cirurgia de estrabismo", "description": "Passo a passo da cirurgia de estrabismo (estrabotomia) para crianças e adultos na Drudi e Almeida Oftalmologia.", "totalTime": "PT60M", "step": [{"@type": "HowToStep", "position": 1, "name": "Avaliação pré-operatória", "text": "Medida do desvio ocular (cover test, prismas), avaliação da visão binocular e planejamento cirúrgico com calculadora de dosagem muscular."}, {"@type": "HowToStep", "position": 2, "name": "Anestesia", "text": "Anestesia geral em crianças; anestesia local com sedação em adultos. Procedimento ambulatorial."}, {"@type": "HowToStep", "position": 3, "name": "Acesso ao músculo ocular", "text": "Incisão conjuntival para exposição do músculo extraocular a ser operado (reforço ou enfraquecimento)."}, {"@type": "HowToStep", "position": 4, "name": "Correção cirúrgica", "text": "Ressecção (reforço) ou recessão (enfraquecimento) do músculo, com suturas ajustáveis quando indicado."}, {"@type": "HowToStep", "position": 5, "name": "Recuperação", "text": "Alta no mesmo dia. Vermelhidão e desconforto leves por 1-2 semanas. Retorno às atividades normais em 1-2 semanas."}]})} />
+
   <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "MedicalCondition",
