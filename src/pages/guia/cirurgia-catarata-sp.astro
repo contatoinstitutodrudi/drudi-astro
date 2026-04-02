@@ -18,17 +18,8 @@ const schema = {
   "description": "Guia médico completo sobre cirurgia de catarata por facoemulsificação, tipos de lentes intraoculares, recuperação e referências científicas de alto impacto.",
   "url": "https://institutodrudiealmeida.com.br/guia/cirurgia-catarata-sp/",
   "dateModified": "2026-04-01",
-  "author": {
-    "@type": "Person",
-    "name": "Dr. Fernando Macei Drudi",
-    "description": "Especialista em Catarata e Retina Cirúrgica — HSPE/IAMSPE",
-    "identifier": "CRM-SP 139.300"
-  },
-  "publisher": {
-    "@type": "MedicalOrganization",
-    "name": "Drudi e Almeida Clínicas Oftalmológicas",
-    "url": "https://institutodrudiealmeida.com.br"
-  },
+  "author": { "@type": "Person", "name": "Dr. Fernando Macei Drudi", "description": "Especialista em Catarata e Retina Cirúrgica — HSPE/IAMSPE", "identifier": "CRM-SP 139.300" },
+  "publisher": { "@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas", "url": "https://institutodrudiealmeida.com.br" },
   "medicalAudience": { "@type": "Patient" },
   "about": { "@type": "MedicalCondition", "name": "Catarata" }
 };
@@ -42,6 +33,9 @@ const faqSchema = {
     { "@type": "Question", "name": "A catarata pode voltar após a cirurgia?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O cristalino natural é removido e substituído por uma lente artificial permanente. A catarata não pode se desenvolver novamente. O que pode ocorrer é a opacificação da cápsula posterior (OCP), tratada com laser YAG." } },
     { "@type": "Question", "name": "A cirurgia de catarata é coberta pelo plano de saúde?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, a cirurgia com lente monofocal padrão é coberta pela maioria dos planos de saúde. Lentes premium (multifocais, trifocais, EDOF e tóricas) geralmente representam um custo adicional não coberto pelos planos." } },
     { "@type": "Question", "name": "Qual a diferença entre lente monofocal e multifocal?", "acceptedAnswer": { "@type": "Answer", "text": "A lente monofocal proporciona foco nítido em uma única distância (geralmente longe), necessitando de óculos para leitura. A lente multifocal ou trifocal proporciona foco em múltiplas distâncias, com maior independência de óculos, mas com maior chance de halos e brilhos." } },
+    { "@type": "Question", "name": "Posso operar os dois olhos no mesmo dia?", "acceptedAnswer": { "@type": "Answer", "text": "A cirurgia bilateral simultânea não é recomendada pelo Conselho Federal de Medicina (CFM) devido ao risco de complicações graves como endoftalmite bilateral. O intervalo recomendado entre os olhos é de 7 a 14 dias." } },
+    { "@type": "Question", "name": "O que é a pós-catarata?", "acceptedAnswer": { "@type": "Answer", "text": "A opacificação da cápsula posterior (OCP), popularmente chamada de pós-catarata, ocorre em 10 a 30% dos pacientes nos primeiros 3 a 5 anos após a cirurgia. O tratamento é simples, rápido e indolor: uma única sessão de laser YAG em consultório." } },
+    { "@type": "Question", "name": "Qual a taxa de sucesso da cirurgia de catarata?", "acceptedAnswer": { "@type": "Answer", "text": "A cirurgia de catarata por facoemulsificação tem taxa de sucesso superior a 95%, com complicações graves inferiores a 1% em centros especializados, segundo revisão publicada no JAMA em 2025." } },
   ]
 };
 ---
@@ -78,22 +72,13 @@ const faqSchema = {
         </h1>
         <p class="font-body text-cream/80 mb-6">
           Revisão médica: <strong class="text-cream">Dr. Fernando Macei Drudi</strong> — CRM-SP 139.300 | RQE 58.695<br/>
-          <span class="text-cream/60 text-sm">Especialista em Catarata e Retina Cirúrgica — HSPE/IAMSPE · Atualizado: Abril de 2026</span>
+          <span class="text-cream/60 text-sm">Especialista em Catarata e Retina Cirúrgica — HSPE/IAMSPE · Atualizado: Abril de 2026 · Leitura: 18 min</span>
         </p>
         <div class="flex flex-wrap gap-3">
-          <a
-            data-ebook-slug="catarata"
-            href="#"
-            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors"
-          >
+          <a data-ebook-slug="catarata" href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
             ⬇ Baixar PDF Grátis
           </a>
-          <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors"
-          >
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
             Agendar Consulta
           </a>
         </div>
@@ -111,11 +96,7 @@ const faqSchema = {
           <p class="font-body text-xs text-muted-foreground">17 páginas · 15 referências científicas · Gratuito</p>
         </div>
       </div>
-      <a
-        data-ebook-slug="catarata"
-        href="#"
-        class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap"
-      >
+      <a data-ebook-slug="catarata" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">
         ⬇ Baixar PDF
       </a>
     </div>
@@ -151,7 +132,7 @@ const faqSchema = {
     </nav>
 
     <!-- Seção 1 -->
-    <section class="mb-10">
+    <section class="mb-10" id="o-que-e-a-catarata">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
         <h2 class="font-display text-2xl text-navy">1. O que é a catarata?</h2>
@@ -160,24 +141,38 @@ const faqSchema = {
         A catarata é a <strong>opacificação progressiva do cristalino</strong> — a lente natural do olho humano, localizada logo atrás da pupila. Em condições normais, o cristalino é transparente e permite que a luz passe livremente até a retina, onde as imagens são formadas. Com o envelhecimento, as proteínas que compõem o cristalino se desnaturalizam e se agregam, tornando-o gradualmente opaco e comprometendo a qualidade da visão.
       </p>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        Trata-se da <strong>principal causa de cegueira reversível no mundo</strong> e, ao mesmo tempo, da condição com maior potencial de cura na medicina moderna: uma única cirurgia, realizada em menos de 20 minutos, é capaz de restaurar a visão de forma definitiva.
+        A palavra "catarata" tem origem no grego <em>katarraktes</em> (queda d'água) e no latim <em>cataracta</em>, uma referência à aparência esbranquiçada que a pupila adquire nos casos avançados — como se uma cortina d'água cobrisse a visão. Trata-se da <strong>principal causa de cegueira reversível no mundo</strong> e, ao mesmo tempo, da condição com maior potencial de cura na medicina moderna: uma única cirurgia, realizada em menos de 20 minutos, é capaz de restaurar a visão de forma definitiva.
       </p>
       <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-4">
         <p class="font-body text-sm leading-relaxed italic">
-          "Revisão publicada no <em>JAMA</em> em 2025 por Chen, Woreta e Chang confirma que a cirurgia de catarata por facoemulsificação com implante de lente intraocular é um dos procedimentos mais seguros e eficazes da medicina moderna, com mais de 95% dos pacientes apresentando melhora significativa da visão."
+          "Revisão publicada no <em>JAMA</em> em 2025 por Chen, Woreta e Chang — uma das mais abrangentes já realizadas sobre o tema — confirma que a cirurgia de catarata por facoemulsificação com implante de lente intraocular (LIO) é o procedimento cirúrgico mais realizado no mundo, com taxas de sucesso superiores a 95% e impacto direto na qualidade de vida dos pacientes."
           <span class="not-italic text-gold text-xs ml-1">[1]</span>
         </p>
       </div>
     </section>
 
     <!-- Seção 2 -->
-    <section class="mb-10">
+    <section class="mb-10" id="epidemiologia">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">2. Epidemiologia</h2>
+        <h2 class="font-display text-2xl text-navy">2. Epidemiologia: a catarata no Brasil e no mundo</h2>
       </div>
+      <h3 class="font-display text-lg text-navy mb-3">Cenário global</h3>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        A catarata é responsável por <strong>45% de todos os casos de cegueira no mundo</strong>, afetando mais de 94 milhões de pessoas, segundo o Global Burden of Disease Study 2021.<sup class="text-gold text-xs">[2]</sup> No Brasil, é a principal causa de cegueira evitável, com mais de 1 milhão de cirurgias realizadas anualmente pelo SUS e pela rede privada.
+        A prevalência absoluta de catarata no mundo cresceu de <strong>42,3 milhões de casos em 1990 para 100,6 milhões em 2021</strong> — um aumento de quase 138% em três décadas, impulsionado principalmente pelo envelhecimento populacional global.<sup class="text-gold font-semibold">[2]</sup> Em 2020, aproximadamente <strong>94 milhões de pessoas com 50 anos ou mais</strong> experimentavam cegueira ou deficiência visual grave causada pela catarata.<sup class="text-gold font-semibold">[3]</sup>
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Os anos de vida ajustados por incapacidade (DALYs) atribuíveis à catarata saltaram de 3,4 milhões em 1990 para 6,6 milhões em 2021, representando um aumento de 92,8%.<sup class="text-gold font-semibold">[2]</sup> O impacto é desproporcionalmente maior em mulheres e em países de baixa e média renda, onde o acesso à cirurgia ainda é limitado.
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Cenário brasileiro</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        No Brasil, a catarata representa a principal causa de cegueira evitável. Estudo realizado na região Centro-Oeste do Estado de São Paulo identificou prevalência de <strong>4,94% na população geral</strong>, afetando predominantemente pessoas acima de 50 anos (92,34% dos casos) e mulheres (61,11%).<sup class="text-gold font-semibold">[4]</sup> A catarata foi responsável por deficiência visual em 0,96% e cegueira em 0,52% da população estudada.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O país realiza cerca de 130.000 cirurgias de catarata por ano pelo Sistema Único de Saúde (SUS), número que ainda é insuficiente diante da demanda reprimida. A pandemia de COVID-19 agravou o cenário: em 2020, houve <strong>redução de 23% no número de cirurgias realizadas pelo SUS</strong> em comparação com a média dos cinco anos anteriores, criando um passivo cirúrgico que ainda está sendo recuperado.<sup class="text-gold font-semibold">[5]</sup>
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A população brasileira acima de 50 anos — faixa etária de maior prevalência de catarata — cresceu <strong>32,15% entre 2010 e 2020</strong>, enquanto a população total cresceu apenas 7,83%, o que projeta um aumento expressivo na demanda por cirurgias nas próximas décadas.<sup class="text-gold font-semibold">[5]</sup>
       </p>
       <div class="overflow-x-auto mb-4">
         <table class="w-full text-sm border-collapse">
@@ -190,11 +185,12 @@ const faqSchema = {
           </thead>
           <tbody>
             {[
-              ['Prevalência global de cegueira por catarata', '45% de todos os casos', 'GBD 2021'],
-              ['Pessoas afetadas no mundo', '94 milhões', 'Lancet 2021'],
-              ['Cirurgias/ano no Brasil (SUS)', '~500.000', 'Ministério da Saúde'],
-              ['Taxa de sucesso da cirurgia', '>95%', 'JAMA 2025'],
-              ['Duração média do procedimento', '10-20 minutos', 'AAO 2021'],
+              ['Prevalência global (2021)', '100,6 milhões de casos', 'GBD 2021 [2]'],
+              ['Pessoas com cegueira/deficiência visual por catarata', '94 milhões (≥50 anos)', 'Lancet 2021 [3]'],
+              ['DALYs atribuíveis à catarata (2021)', '6,6 milhões', 'GBD 2021 [2]'],
+              ['Prevalência em São Paulo (estudo regional)', '4,94% da população geral', 'Arq Bras Oftalmol [4]'],
+              ['Redução de cirurgias no SUS (2020)', '-23% vs. média 2015-2019', 'Ministério da Saúde [5]'],
+              ['Taxa de sucesso da cirurgia', '>95%', 'JAMA 2025 [1]'],
             ].map(([ind, dado, fonte], i) => (
               <tr class={i % 2 === 0 ? 'bg-white' : 'bg-blue-50/50'}>
                 <td class="px-4 py-3 text-foreground border-b border-border/30">{ind}</td>
@@ -208,121 +204,489 @@ const faqSchema = {
     </section>
 
     <!-- Seção 3 -->
-    <section class="mb-10">
+    <section class="mb-10" id="causas-e-fatores-de-risco">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
         <h2 class="font-display text-2xl text-navy">3. Causas e fatores de risco</h2>
       </div>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        A causa mais comum é o <strong>envelhecimento natural</strong> (catarata senil), mas outros fatores podem acelerar o desenvolvimento:
+        A catarata pode ser classificada de acordo com sua etiologia:
+      </p>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Tipo</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Causa principal</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Faixa etária</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Senil (relacionada à idade)', 'Envelhecimento natural do cristalino', 'Acima de 60 anos'],
+              ['Congênita', 'Infecções intrauterinas (rubéola, toxoplasmose), alterações genéticas', 'Recém-nascidos e lactentes'],
+              ['Traumática', 'Trauma ocular contuso ou perfurante', 'Qualquer idade'],
+              ['Secundária', 'Uso prolongado de corticosteroides, diabetes, uveíte', 'Variável'],
+              ['Por radiação', 'Exposição à radiação ionizante ou UV intensa', 'Adultos e idosos'],
+            ].map(([tipo, causa, faixa], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-blue-50/50'}>
+                <td class="px-4 py-3 font-semibold text-navy border-b border-border/30">{tipo}</td>
+                <td class="px-4 py-3 text-foreground border-b border-border/30">{causa}</td>
+                <td class="px-4 py-3 text-muted-foreground border-b border-border/30">{faixa}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Fatores de risco modificáveis</h3>
+      <div class="space-y-4">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">☀️ Exposição à radiação ultravioleta (UV)</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">A exposição cumulativa à radiação UV-B é um dos fatores de risco mais bem estabelecidos para catarata cortical e subcapsular posterior. O uso regular de óculos de sol com proteção UV e chapéus de aba larga é recomendado como medida preventiva.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">🚬 Tabagismo</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">Fumantes têm risco 2 a 3 vezes maior de desenvolver catarata nuclear em comparação com não fumantes. O mecanismo envolve estresse oxidativo e acúmulo de radicais livres no cristalino.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">🩺 Diabetes mellitus</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">O diabetes aumenta o risco de catarata por múltiplos mecanismos, incluindo acúmulo de sorbitol no cristalino e glicação de proteínas. Pacientes diabéticos desenvolvem catarata em média 10 anos mais cedo do que não diabéticos.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">💊 Uso crônico de corticosteroides</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">O uso prolongado de corticosteroides sistêmicos ou tópicos está associado ao desenvolvimento de catarata subcapsular posterior, um tipo particularmente incapacitante por comprometer a visão de perto e a sensibilidade ao contraste.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">⚖️ Obesidade e sedentarismo</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">Estudos epidemiológicos associam índice de massa corporal elevado e inatividade física a maior risco de catarata.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4 -->
+    <section class="mb-10" id="sintomas-e-diagnostico">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">4. Sintomas e diagnóstico</h2>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Sintomas</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A catarata evolui de forma gradual e insidiosa. Os sintomas mais comuns incluem:
+      </p>
+      <ul class="space-y-2 mb-6">
+        {[
+          'Visão embaçada ou turva, como se estivesse olhando através de um vidro fosco ou de uma neblina persistente',
+          'Sensibilidade aumentada à luz (fotofobia) e ofuscamento ao dirigir à noite, especialmente com os faróis dos carros',
+          'Halos ao redor de fontes de luz, como lâmpadas e semáforos',
+          'Visão dupla em um único olho (diplopia monocular)',
+          'Dificuldade para distinguir cores, que parecem mais apagadas ou amareladas',
+          'Necessidade frequente de trocar os óculos, com piora progressiva do grau',
+          'Em alguns casos, melhora temporária da visão de perto nos estágios iniciais (fenômeno do "segundo olho" ou "visão de índio"), causada pelo aumento do poder refrativo do cristalino espessado',
+        ].map(s => (
+          <li class="flex items-start gap-2 font-body text-sm text-foreground">
+            <span class="text-gold mt-1">•</span>
+            <span>{s}</span>
+          </li>
+        ))}
+      </ul>
+      <h3 class="font-display text-lg text-navy mb-3">Diagnóstico</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O diagnóstico de catarata é clínico e realizado por oftalmologista durante o exame de biomicroscopia com lâmpada de fenda, que permite visualizar diretamente o cristalino e classificar o grau de opacidade. O exame de fundo de olho com dilatação pupilar é essencial para avaliar a retina e excluir outras causas de perda visual.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Para o planejamento cirúrgico, são realizados exames complementares:
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
         {[
-          { fator: 'Idade avançada', detalhe: 'Principal causa — afeta >50% das pessoas acima de 75 anos' },
-          { fator: 'Diabetes mellitus', detalhe: 'Risco 2-5x maior; catarata subcapsular posterior' },
-          { fator: 'Exposição à radiação UV', detalhe: 'Uso de óculos escuros com proteção UV é preventivo' },
-          { fator: 'Corticosteroides', detalhe: 'Uso crônico (oral, tópico ou inalatório)' },
-          { fator: 'Tabagismo', detalhe: 'Aumenta risco em 2-3x' },
-          { fator: 'Trauma ocular', detalhe: 'Catarata traumática pode ocorrer em qualquer idade' },
-          { fator: 'Miopia alta', detalhe: 'Maior risco de catarata nuclear' },
-          { fator: 'Deficiência nutricional', detalhe: 'Baixa ingestão de antioxidantes (vitaminas C, E)' },
-        ].map(({ fator, detalhe }) => (
-          <div class="flex gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
-            <span class="text-gold font-bold text-lg leading-none mt-0.5">•</span>
-            <div>
-              <p class="font-ui text-sm font-semibold text-navy">{fator}</p>
-              <p class="font-body text-xs text-muted-foreground">{detalhe}</p>
-            </div>
+          ['Biometria óptica', 'IOLMaster 700 (Zeiss): calcula o poder dióptrico da lente intraocular com alta precisão por interferometria de coerência óptica'],
+          ['Topografia corneana', 'Pentacam AXL: avalia a curvatura e irregularidades da córnea, essencial para a seleção de lentes tóricas'],
+          ['OCT de mácula', 'Avalia a retina central para identificar condições que possam comprometer o resultado visual pós-operatório'],
+          ['Microscopia especular', 'Avalia a saúde do endotélio corneano, fundamental para prever a recuperação pós-operatória'],
+        ].map(([exame, desc]) => (
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <p class="font-ui text-sm font-bold text-navy mb-1">{exame}</p>
+            <p class="font-body text-xs text-muted-foreground leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Seção 7 — Tipos de LIOs (destaque visual) -->
-    <section class="mb-10">
+    <!-- Seção 5 -->
+    <section class="mb-10" id="quando-operar">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">7. Tipos de Lentes Intraoculares (LIOs)</h2>
+        <h2 class="font-display text-2xl text-navy">5. Quando operar?</h2>
       </div>
-      <p class="font-body text-base text-foreground leading-relaxed mb-6">
-        A escolha da lente intraocular é a decisão mais importante do planejamento cirúrgico. Existem quatro categorias principais:
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A indicação cirúrgica é <strong>fundamentalmente clínica e funcional</strong>, não baseada apenas no grau de opacidade do cristalino. As diretrizes da American Academy of Ophthalmology (AAO) de 2021 estabelecem que a cirurgia está indicada quando a catarata compromete as atividades da vida diária do paciente — dirigir, ler, trabalhar, praticar esportes — e quando os benefícios esperados superam os riscos.<sup class="text-gold font-semibold">[6]</sup>
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-6">
+        <p class="font-body text-sm leading-relaxed italic">
+          "A catarata sintomática é uma condição cirúrgica. A decisão de operar deve ser compartilhada entre o médico e o paciente, levando em consideração o impacto da perda visual nas atividades cotidianas e as expectativas individuais."
+        </p>
+        <p class="font-ui text-xs text-gold mt-2 not-italic">— AAO Preferred Practice Pattern: Cataract in the Adult Eye, 2021 [6]</p>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Não existe um grau mínimo de opacidade que determine a indicação cirúrgica. Pacientes com catarata incipiente mas que exercem profissões que exigem acuidade visual precisa (pilotos, motoristas profissionais, cirurgiões) podem ter indicação cirúrgica precoce. Por outro lado, pacientes com catarata avançada mas com baixa demanda visual podem ser acompanhados clinicamente.
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Situações de indicação cirúrgica mais urgente</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {[
-          {
-            tipo: 'Monofocal',
-            descricao: 'Foco nítido em uma distância (geralmente longe). Óculos necessários para leitura.',
-            pros: ['Excelente qualidade óptica', 'Coberta por convênios', 'Mínimos halos e brilhos'],
-            cor: 'border-blue-300 bg-blue-50',
-            badge: 'Convênio',
-            badgeCor: 'bg-blue-100 text-blue-800',
-          },
-          {
-            tipo: 'Multifocal / Trifocal',
-            descricao: 'Foco em longe, intermediário e perto. Alta independência de óculos.',
-            pros: ['Máxima independência de óculos', 'PanOptix (Alcon) — 3 focos', 'Alta satisfação geral'],
-            cor: 'border-emerald-300 bg-emerald-50',
-            badge: 'Premium',
-            badgeCor: 'bg-emerald-100 text-emerald-800',
-          },
-          {
-            tipo: 'EDOF',
-            descricao: 'Zona de foco contínuo. Excelente visão de longe e intermediária com menos halos.',
-            pros: ['Menos halos que multifocal', 'Ideal para quem dirige à noite', 'Vivity (Alcon) — tecnologia não difrativa'],
-            cor: 'border-violet-300 bg-violet-50',
-            badge: 'Premium',
-            badgeCor: 'bg-violet-100 text-violet-800',
-          },
-          {
-            tipo: 'Tórica',
-            descricao: 'Corrige astigmatismo durante a cirurgia. Disponível em versões mono, multi e EDOF.',
-            pros: ['Reduz astigmatismo pré-existente', 'Resultados estáveis por 8+ anos', 'Recomendada para astigmatismo ≥1,0 D'],
-            cor: 'border-amber-300 bg-amber-50',
-            badge: 'Astigmatismo',
-            badgeCor: 'bg-amber-100 text-amber-800',
-          },
-        ].map(({ tipo, descricao, pros, cor, badge, badgeCor }) => (
-          <div class={`rounded-xl border-2 ${cor} p-5`}>
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="font-display text-lg text-navy">{tipo}</h3>
-              <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badgeCor}`}>{badge}</span>
-            </div>
-            <p class="font-body text-sm text-muted-foreground mb-3">{descricao}</p>
-            <ul class="space-y-1">
-              {pros.map(p => (
-                <li class="font-body text-xs text-foreground flex items-start gap-1.5">
-                  <span class="text-gold font-bold mt-0.5">✓</span>{p}
-                </li>
-              ))}
-            </ul>
+          'Catarata hipermadura com risco de glaucoma facolítico ou uveíte facoanafilática',
+          'Catarata congênita com risco de ambliopia em crianças',
+          'Catarata traumática com comprometimento visual significativo',
+          'Necessidade de melhor visualização do fundo de olho para tratamento de retinopatia diabética ou outras doenças retinianas',
+        ].map(item => (
+          <div class="flex items-start gap-2 bg-red-50 border border-red-200 rounded-xl p-4">
+            <span class="text-red-500 mt-0.5">⚠</span>
+            <p class="font-body text-sm text-foreground">{item}</p>
           </div>
         ))}
       </div>
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <p class="font-body text-sm text-foreground">
-          <strong class="text-navy">Referência científica:</strong> Meta-análise publicada no <em>Ophthalmology and Therapy</em> em 2024 por Zhu et al. demonstrou alta taxa de satisfação com a lente trifocal PanOptix, com halos e brilhos presentes nos primeiros meses mas considerados muito incômodos por apenas uma pequena porcentagem dos pacientes a longo prazo.<sup class="text-gold text-xs">[9]</sup>
+    </section>
+
+    <!-- Seção 6 -->
+    <section class="mb-10" id="facoemulsificacao">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">6. A cirurgia de catarata: facoemulsificação</h2>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Princípio e técnica</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A <strong>facoemulsificação</strong> (do grego <em>phakos</em> = lente + emulsificação) é a técnica padrão-ouro para a cirurgia de catarata em todo o mundo. Desenvolvida pelo oftalmologista americano Charles Kelman na década de 1960, a técnica evoluiu dramaticamente nas últimas décadas, tornando-se um dos procedimentos cirúrgicos mais seguros e eficazes da medicina moderna.
+      </p>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
+        <h4 class="font-ui text-sm font-bold text-navy mb-4">Passo a passo da cirurgia</h4>
+        <ol class="space-y-3">
+          {[
+            ['Anestesia tópica', 'Com colírios anestésicos (proxymetacaína ou tetracaína) — sem necessidade de injeções ao redor do olho na grande maioria dos casos'],
+            ['Microincisão corneana', 'De 2,2 a 2,8 mm, que é autosselante e não requer pontos'],
+            ['Capsulorrexe circular contínua (CCC)', 'Abertura circular precisa da cápsula anterior do cristalino, que servirá de suporte para a lente intraocular'],
+            ['Hidrodissecção', 'Injeção de solução salina para separar o núcleo do cristalino da cápsula'],
+            ['Facoemulsificação', 'Fragmentação e aspiração do núcleo do cristalino por ultrassom de alta frequência'],
+            ['Aspiração do córtex residual', 'Remoção dos restos corticais com sistema de irrigação-aspiração'],
+            ['Implante da lente intraocular (LIO)', 'A lente dobrável é inserida através da microincisão e se expande dentro do saco capsular'],
+            ['Hidratação da incisão', 'Fechamento autossealante sem necessidade de pontos na maioria dos casos'],
+          ].map(([passo, desc], i) => (
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-navy text-cream font-ui text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{i+1}</span>
+              <div>
+                <span class="font-ui text-sm font-semibold text-navy">{passo}: </span>
+                <span class="font-body text-sm text-foreground">{desc}</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O procedimento completo dura <strong>entre 10 e 20 minutos</strong> em mãos experientes. O paciente permanece acordado durante toda a cirurgia, mas não sente dor nem vê o cirurgião operando. A recuperação visual começa nas primeiras horas após a cirurgia.
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Cirurgia assistida por laser de femtosegundo (FLACS)</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A cirurgia de catarata assistida por laser de femtosegundo (FLACS) representa uma evolução tecnológica que utiliza laser para realizar as etapas mais críticas do procedimento — capsulorrexe, fragmentação do cristalino e incisões corneanas — com precisão nanométrica.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Meta-análise publicada no <em>Canadian Journal of Ophthalmology</em> em 2025 por Song et al., analisando <strong>57 ensaios clínicos randomizados com 6.318 participantes</strong>, demonstrou que a FLACS oferece melhores resultados visuais no pós-operatório precoce, capsulotomia mais precisa e posicionamento de LIO mais otimizado em comparação com a facoemulsificação convencional, embora sem diferença significativa nos resultados visuais a médio e longo prazo.<sup class="text-gold font-semibold">[7]</sup>
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        As diretrizes da AAO (2021) reconhecem os benefícios da FLACS em termos de precisão, mas ressaltam que a tecnologia ainda não demonstrou superioridade no perfil de risco geral e nos resultados refrativos finais em comparação com a facoemulsificação manual realizada por cirurgiões experientes.<sup class="text-gold font-semibold">[6]</sup>
+      </p>
+    </section>
+
+    <!-- Seção 7 -->
+    <section class="mb-10" id="tipos-de-lios">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">7. Tipos de lentes intraoculares (LIOs)</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-6">
+        A escolha da lente intraocular é a decisão mais importante do planejamento cirúrgico e deve ser personalizada de acordo com o estilo de vida, as necessidades visuais e as características anatômicas de cada paciente. Existem quatro categorias principais de LIOs:
+      </p>
+      <div class="space-y-6">
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">7.1 Lentes monofocais</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">As lentes monofocais são as mais utilizadas no mundo e cobertas pelos planos de saúde. Proporcionam foco nítido em uma única distância — geralmente a visão de longe — com excelente qualidade óptica e sensibilidade ao contraste. O paciente tipicamente necessitará de óculos para leitura e visão intermediária.</p>
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3"><strong>Indicação:</strong> Pacientes que não se incomodam com o uso de óculos para atividades próximas, especialmente aqueles com condições oculares associadas (glaucoma, degeneração macular, retinopatia diabética) que podem comprometer o resultado de lentes premium.</p>
+            <p class="font-body text-sm text-foreground leading-relaxed"><strong>Evidência científica:</strong> Revisão sistemática publicada no <em>Journal of Refractive Surgery</em> em 2015 por Shah et al. confirmou que as lentes monofocais proporcionam excelente acuidade visual de longe e alta sensibilidade ao contraste, com menor incidência de fenômenos fóticos (halos, brilhos) em comparação com lentes multifocais.<sup class="text-gold font-semibold">[8]</sup></p>
+          </div>
+        </div>
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">7.2 Lentes multifocais e trifocais</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">As lentes multifocais dividem a luz em dois ou mais focos, permitindo visão nítida em múltiplas distâncias — longe, intermediário e perto — com significativa independência de óculos. As lentes <strong>trifocais</strong> (como a AcrySof IQ PanOptix da Alcon) representam a geração mais recente, com três pontos focais distintos e alta eficiência na utilização da luz.</p>
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">Meta-análise publicada no <em>Ophthalmology and Therapy</em> em 2024 por Zhu et al., avaliando a incidência de distúrbios visuais com a lente trifocal PanOptix, demonstrou que a maioria dos pacientes experimenta halos e brilhos nos primeiros meses, mas apenas uma pequena porcentagem os considera muito incômodos a longo prazo, com alta taxa de satisfação geral.<sup class="text-gold font-semibold">[9]</sup></p>
+            <p class="font-body text-sm text-foreground leading-relaxed"><strong>Indicação:</strong> Pacientes com estilo de vida ativo que desejam máxima independência de óculos para longe, intermediário e perto. Não recomendadas para pacientes com glaucoma avançado, degeneração macular ou outras condições que comprometam a qualidade visual.</p>
+          </div>
+        </div>
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">7.3 Lentes EDOF (Extended Depth of Focus)</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">As lentes de profundidade de foco estendida (EDOF), como a AcrySof IQ Vivity da Alcon, utilizam tecnologia não difrativa para criar uma zona de foco contínuo e suave, em vez de pontos focais discretos. Proporcionam excelente visão de longe e intermediária com menor incidência de halos e brilhos em comparação com as lentes multifocais.</p>
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">Meta-análise publicada no <em>Eye (London)</em> em 2025 por Fernández et al. demonstrou que as lentes EDOF proporcionam melhor acuidade visual intermediária e de perto, com evidências de alta certeza para a acuidade visual à distância e sem diferenças significativas na sensibilidade ao contraste.<sup class="text-gold font-semibold">[10]</sup></p>
+            <p class="font-body text-sm text-foreground leading-relaxed"><strong>Indicação:</strong> Pacientes que priorizam visão de longe e intermediária de alta qualidade (dirigir, trabalhar no computador) com menor tolerância a fenômenos fóticos, ou aqueles que dirigem frequentemente à noite.</p>
+          </div>
+        </div>
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">7.4 Lentes tóricas</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">As lentes tóricas são projetadas para corrigir o astigmatismo corneano durante a cirurgia de catarata, eliminando ou reduzindo significativamente a necessidade de óculos para astigmatismo no pós-operatório. Estão disponíveis em versões monofocais, multifocais e EDOF.</p>
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">As diretrizes da ESCRS (2025) recomendam lentes tóricas para pacientes com astigmatismo corneano de 1,0 dioptria ou mais, com forte evidência para astigmatismo acima de 2,0 D.<sup class="text-gold font-semibold">[11]</sup></p>
+            <p class="font-body text-sm text-foreground leading-relaxed">Estudo de coorte retrospectivo publicado no <em>Scientific Reports</em> em 2022 por Oshika et al., com acompanhamento de 8 anos, demonstrou que o implante de LIO tórica reduz significativamente o astigmatismo pré-existente de forma sustentada, com resultados estáveis por até 8 anos para astigmatismo a favor da regra.<sup class="text-gold font-semibold">[12]</sup></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 8 -->
+    <section class="mb-10" id="comparativo-lios">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">8. Comparativo das lentes: qual escolher?</h2>
+      </div>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Característica</th>
+              <th class="px-3 py-3 text-center font-ui font-semibold border-b-2 border-gold">Monofocal</th>
+              <th class="px-3 py-3 text-center font-ui font-semibold border-b-2 border-gold">Multifocal/Trifocal</th>
+              <th class="px-3 py-3 text-center font-ui font-semibold border-b-2 border-gold">EDOF</th>
+              <th class="px-3 py-3 text-center font-ui font-semibold border-b-2 border-gold">Tórica</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Visão de longe', 'Excelente', 'Muito boa', 'Excelente', 'Excelente'],
+              ['Visão intermediária', 'Ruim', 'Boa', 'Muito boa', 'Variável'],
+              ['Visão de perto', 'Ruim', 'Muito boa', 'Razoável', 'Variável'],
+              ['Independência de óculos', 'Baixa', 'Alta', 'Moderada-alta', 'Moderada'],
+              ['Halos e brilhos', 'Mínimos', 'Moderados', 'Baixos', 'Mínimos'],
+              ['Sensibilidade ao contraste', 'Excelente', 'Reduzida', 'Boa', 'Excelente'],
+              ['Cobertura por convênio', 'Sim', 'Não (geralmente)', 'Não (geralmente)', 'Parcial'],
+              ['Indicação em doenças oculares', 'Sim', 'Não', 'Com cautela', 'Sim'],
+              ['Custo adicional (particular)', '—', 'R$ 3.000–8.000/olho', 'R$ 2.500–6.000/olho', 'R$ 1.500–4.000/olho'],
+            ].map(([caract, mono, multi, edof, torica], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-blue-50/50'}>
+                <td class="px-3 py-3 font-semibold text-navy border-b border-border/30 text-xs">{caract}</td>
+                <td class="px-3 py-3 text-center text-foreground border-b border-border/30 text-xs">{mono}</td>
+                <td class="px-3 py-3 text-center text-foreground border-b border-border/30 text-xs">{multi}</td>
+                <td class="px-3 py-3 text-center text-foreground border-b border-border/30 text-xs">{edof}</td>
+                <td class="px-3 py-3 text-center text-foreground border-b border-border/30 text-xs">{torica}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+        <p class="font-body text-xs text-muted-foreground"><strong>Nota:</strong> Os valores de custo são estimativas de mercado em São Paulo para 2026 e podem variar conforme o serviço e o modelo específico da lente. Consulte seu oftalmologista para um orçamento personalizado.</p>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Fatores que contraindicam lentes premium</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-3">
+        Revisão sistemática publicada no <em>Bioengineering</em> em 2023 por Hong et al. identificou que lentes multifocais e EDOF geralmente <strong>não são recomendadas</strong> para pacientes com:<sup class="text-gold font-semibold">[13]</sup>
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {[
+          'Glaucoma com perda de campo visual moderada a avançada',
+          'Degeneração macular relacionada à idade (DMRI)',
+          'Retinopatia diabética com edema macular',
+          'Irregularidades corneanas significativas (ceratocone, cicatrizes corneanas)',
+          'Síndrome do olho seco grave',
+        ].map(item => (
+          <div class="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg p-3">
+            <span class="text-red-500 text-xs mt-0.5">✗</span>
+            <p class="font-body text-xs text-foreground">{item}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Seção 9 -->
+    <section class="mb-10" id="recuperacao">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">9. Recuperação e cuidados pós-operatórios</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A recuperação após a cirurgia de catarata por facoemulsificação é rápida e, na grande maioria dos casos, sem intercorrências. A maioria dos pacientes nota melhora visual já nas primeiras horas após o procedimento.
+      </p>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Período</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">O que esperar</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Cuidados principais</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Primeiras 24 horas', 'Visão levemente embaçada, sensação de areia no olho, lacrimejamento', 'Repouso relativo, protetor ocular noturno, não coçar o olho'],
+              ['2–7 dias', 'Melhora progressiva da visão, possível vermelhidão', 'Colírios conforme prescrição, evitar esforço físico intenso'],
+              ['1–4 semanas', 'Estabilização da visão, adaptação à nova lente', 'Evitar natação, mergulho e ambientes com poeira'],
+              ['1–3 meses', 'Visão estável, prescrição final de óculos (se necessário)', 'Consulta de revisão, avaliação da necessidade de óculos'],
+            ].map(([periodo, esperar, cuidados], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-blue-50/50'}>
+                <td class="px-4 py-3 font-semibold text-navy border-b border-border/30 text-xs">{periodo}</td>
+                <td class="px-4 py-3 text-foreground border-b border-border/30 text-xs">{esperar}</td>
+                <td class="px-4 py-3 text-muted-foreground border-b border-border/30 text-xs">{cuidados}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Medicamentos pós-operatórios</h3>
+      <p class="font-body text-base text-foreground leading-relaxed mb-3">O protocolo padrão inclui:</p>
+      <div class="space-y-2 mb-4">
+        {[
+          ['Colírio antibiótico', '(moxifloxacino ou ciprofloxacino)', 'Prevenção de infecção, por 1–4 semanas'],
+          ['Colírio anti-inflamatório esteroidal', '(prednisolona ou dexametasona)', 'Controle da inflamação pós-operatória'],
+          ['Colírio AINE', '(cetorolaco ou nepafenaco)', 'Redução do risco de edema macular cistoide'],
+        ].map(([nome, principio, uso]) => (
+          <div class="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <span class="text-blue-600 text-lg">💊</span>
+            <div>
+              <span class="font-ui text-sm font-bold text-navy">{nome} </span>
+              <span class="font-body text-xs text-muted-foreground">{principio} — {uso}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="font-body text-sm text-foreground leading-relaxed mb-4">
+        As diretrizes da AAO (2021) destacam que há evidências substanciais de que a administração intracameral de antibióticos durante a cirurgia reduz o risco de endoftalmite bacteriana pós-operatória.<sup class="text-gold font-semibold">[6]</sup>
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Restrições pós-operatórias</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {[
+          ['Evitar', 'Esfregar ou pressionar o olho operado'],
+          ['Evitar', 'Natação, mergulho e jacuzzi por 4 semanas'],
+          ['Evitar', 'Esforço físico intenso (musculação, corrida) por 1–2 semanas'],
+          ['Usar', 'Protetor ocular durante o sono por 1–2 semanas'],
+          ['Dirigir', 'Somente após liberação médica (geralmente 24–48h após a cirurgia)'],
+        ].map(([tipo, desc]) => (
+          <div class={`flex items-start gap-2 rounded-lg p-3 border ${tipo === 'Evitar' ? 'bg-red-50 border-red-200' : 'bg-emerald-50 border-emerald-200'}`}>
+            <span class={`text-xs font-bold font-ui px-1.5 py-0.5 rounded ${tipo === 'Evitar' ? 'bg-red-200 text-red-800' : 'bg-emerald-200 text-emerald-800'}`}>{tipo}</span>
+            <p class="font-body text-xs text-foreground">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Seção 10 -->
+    <section class="mb-10" id="complicacoes">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">10. Complicações possíveis</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A cirurgia de catarata por facoemulsificação é considerada um dos procedimentos mais seguros da medicina, com taxa de complicações graves inferior a 1% em centros especializados. As principais complicações incluem:
+      </p>
+      <div class="space-y-4">
+        <div>
+          <h3 class="font-display text-base text-navy mb-2">Complicações intraoperatórias</h3>
+          <div class="space-y-2">
+            <div class="bg-orange-50 border border-orange-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-orange-800">Ruptura da cápsula posterior (0,5–2%)</p>
+              <p class="font-body text-xs text-foreground mt-1">Pode exigir modificação da técnica cirúrgica e, raramente, implante de lente em posição diferente do saco capsular.</p>
+            </div>
+            <div class="bg-orange-50 border border-orange-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-orange-800">Perda de fragmento nuclear para o vítreo (&lt;0,1%)</p>
+              <p class="font-body text-xs text-foreground mt-1">Requer vitrectomia posterior por especialista em retina.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-display text-base text-navy mb-2">Complicações pós-operatórias precoces</h3>
+          <div class="space-y-2">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-yellow-800">Edema corneano transitório</p>
+              <p class="font-body text-xs text-foreground mt-1">Comum nas primeiras 24–48h, resolve espontaneamente.</p>
+            </div>
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-yellow-800">Aumento transitório da pressão intraocular</p>
+              <p class="font-body text-xs text-foreground mt-1">Meta-análise de Herspiegel et al. (2024) recomenda monitoramento da PIO nas primeiras 4–8 horas pós-operatórias.<sup class="text-gold font-semibold">[14]</sup></p>
+            </div>
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-yellow-800">Endoftalmite (&lt;0,05%)</p>
+              <p class="font-body text-xs text-foreground mt-1">Infecção intraocular grave, tratável se diagnosticada precocemente.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-display text-base text-navy mb-2">Complicações pós-operatórias tardias</h3>
+          <div class="space-y-2">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-blue-800">Opacificação da cápsula posterior — "pós-catarata" (10–30% em 3–5 anos)</p>
+              <p class="font-body text-xs text-foreground mt-1">Opacificação da cápsula que suporta a lente, tratada de forma simples e indolor com laser YAG em consultório.</p>
+            </div>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-blue-800">Edema macular cistoide (1–2%)</p>
+              <p class="font-body text-xs text-foreground mt-1">Acúmulo de fluido na mácula, tratável com colírios anti-inflamatórios.</p>
+            </div>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p class="font-ui text-xs font-bold text-blue-800">Descolamento de retina (&lt;0,1%)</p>
+              <p class="font-body text-xs text-foreground mt-1">Mais frequente em olhos com alta miopia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mt-4">
+        <p class="font-body text-sm leading-relaxed">
+          <strong class="text-gold">Importante:</strong> A "pós-catarata" (opacificação da cápsula posterior) é frequentemente confundida pelos pacientes com o "retorno da catarata". Isso não é possível: a catarata não volta após a cirurgia, pois o cristalino natural é removido e substituído por uma lente artificial. A OCP é tratada com um único procedimento a laser, rápido e indolor.
         </p>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="mb-10">
+    <!-- Seção 11 -->
+    <section class="mb-10" id="convenios">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">11. Catarata e convênios em São Paulo</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A cirurgia de catarata com lente monofocal é <strong>coberta pela maioria dos planos de saúde</strong> no Brasil, de acordo com o rol de procedimentos da ANS (Agência Nacional de Saúde Suplementar). A cobertura inclui a cirurgia propriamente dita, a anestesia e a lente intraocular monofocal padrão.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        <strong>Lentes premium</strong> (multifocais, trifocais, EDOF e tóricas) geralmente <strong>não são cobertas</strong> pelos planos de saúde, representando um custo adicional que varia de R$ 1.500 a R$ 8.000 por olho, dependendo do modelo e do serviço.
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Convênios aceitos na Drudi e Almeida</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
+        {['Bradesco Saúde', 'Amil', 'Unimed', 'Prevent Senior', 'Mediservice (MetLife)', 'SulAmérica', 'Porto Seguro Saúde'].map(conv => (
+          <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2">
+            <span class="text-emerald-600 text-xs">✓</span>
+            <span class="font-ui text-xs font-semibold text-navy">{conv}</span>
+          </div>
+        ))}
+      </div>
+      <p class="font-body text-sm text-foreground leading-relaxed">
+        Para cirurgia com lentes premium, a Drudi e Almeida oferece condições especiais de pagamento e orientação personalizada sobre a melhor opção para cada perfil de paciente.
+      </p>
+    </section>
+
+    <!-- Seção 12: FAQ -->
+    <section class="mb-10" id="faq">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">12. Perguntas Frequentes</h2>
+        <h2 class="font-display text-2xl text-navy">12. Perguntas frequentes</h2>
       </div>
       <div class="space-y-4">
         {[
-          { q: 'A cirurgia de catarata dói?', a: 'Não. A cirurgia é realizada sob anestesia tópica com colírios, sem necessidade de injeções ao redor do olho. O paciente pode sentir leve pressão durante o procedimento, mas não dor. Após a cirurgia, é comum uma sensação de areia no olho nas primeiras horas, que cede com o uso de colírios.' },
-          { q: 'Quanto tempo dura a cirurgia?', a: 'O procedimento em si dura entre 10 e 20 minutos. Considerando a preparação pré-operatória e a recuperação imediata, o paciente permanece na clínica por aproximadamente 2 a 3 horas.' },
-          { q: 'A catarata pode voltar após a cirurgia?', a: 'Não. O cristalino natural é removido e substituído por uma lente artificial permanente. A catarata não pode se desenvolver novamente. O que pode ocorrer é a "pós-catarata" (opacificação da cápsula posterior), tratada com laser YAG em consultório — rápido e indolor.' },
-          { q: 'A cirurgia de catarata é coberta pelo plano de saúde?', a: 'Sim, a cirurgia com lente monofocal padrão é coberta pela maioria dos planos de saúde. Lentes premium (multifocais, trifocais, EDOF e tóricas) geralmente representam um custo adicional não coberto pelos planos.' },
-          { q: 'Quando posso voltar a dirigir após a cirurgia?', a: 'A maioria dos pacientes recebe liberação para dirigir 24 a 48 horas após a cirurgia, desde que a visão esteja adequada e o médico autorize. Recomenda-se evitar dirigir à noite nas primeiras semanas, especialmente com lentes multifocais.' },
-        ].map(({ q, a }) => (
-          <details class="group border border-border/50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-background hover:bg-blue-50/50 transition-colors">
+          ['A cirurgia de catarata dói?', 'Não. A cirurgia é realizada sob anestesia tópica com colírios, sem necessidade de injeções ao redor do olho. O paciente pode sentir leve pressão durante o procedimento, mas não dor. Após a cirurgia, é comum uma sensação de areia no olho nas primeiras horas, que cede com o uso de colírios.'],
+          ['Quanto tempo dura a cirurgia?', 'O procedimento em si dura entre 10 e 20 minutos. Considerando a preparação pré-operatória e a recuperação imediata, o paciente permanece na clínica por aproximadamente 2 a 3 horas.'],
+          ['Posso operar os dois olhos no mesmo dia?', 'A cirurgia bilateral simultânea (os dois olhos no mesmo dia) não é recomendada pelo Conselho Federal de Medicina (CFM) devido ao risco de complicações graves como endoftalmite bilateral. O intervalo recomendado entre os olhos é de 7 a 14 dias. [15]'],
+          ['A catarata pode voltar após a cirurgia?', 'Não. O cristalino natural é removido e substituído por uma lente artificial permanente. A catarata não pode se desenvolver novamente. O que pode ocorrer é a "pós-catarata" (opacificação da cápsula posterior), que não é uma nova catarata, mas sim uma opacificação da membrana que suporta a lente, tratada facilmente com laser YAG.'],
+          ['Quando posso voltar a dirigir após a cirurgia?', 'A maioria dos pacientes recebe liberação para dirigir 24 a 48 horas após a cirurgia, desde que a visão esteja adequada e o médico autorize. Recomenda-se evitar dirigir à noite nas primeiras semanas, especialmente com lentes multifocais, durante o período de adaptação.'],
+          ['Qual a diferença entre lente monofocal e multifocal?', 'A lente monofocal proporciona foco nítido em uma única distância (geralmente longe), necessitando de óculos para leitura. A lente multifocal ou trifocal proporciona foco em múltiplas distâncias, com maior independência de óculos, mas com maior chance de halos e brilhos, especialmente à noite.'],
+          ['A cirurgia de catarata é coberta pelo plano de saúde?', 'Sim, a cirurgia com lente monofocal padrão é coberta pela maioria dos planos de saúde. Lentes premium (multifocais, trifocais, EDOF e tóricas) geralmente representam um custo adicional não coberto pelos planos.'],
+          ['Preciso de exames pré-operatórios?', 'Sim. O planejamento cirúrgico inclui biometria óptica (para calcular o poder da lente), topografia corneana, OCT de mácula e, em alguns casos, microscopia especular. Exames laboratoriais e avaliação cardiológica podem ser solicitados conforme o estado de saúde geral do paciente.'],
+          ['O que é a "segunda catarata" (pós-catarata)?', 'A opacificação da cápsula posterior (OCP), popularmente chamada de "segunda catarata" ou "pós-catarata", ocorre em 10 a 30% dos pacientes nos primeiros 3 a 5 anos após a cirurgia. É causada pela proliferação de células epiteliais residuais na cápsula que suporta a lente. O tratamento é simples, rápido e indolor: uma única sessão de laser YAG em consultório, sem necessidade de nova cirurgia.'],
+          ['Qual a taxa de sucesso da cirurgia de catarata?', 'A cirurgia de catarata por facoemulsificação tem uma das maiores taxas de sucesso de todas as cirurgias: mais de 95% dos pacientes apresentam melhora significativa da visão após o procedimento, segundo dados do JAMA 2025. [1] Em centros especializados com alta casuística, como a Drudi e Almeida, as taxas de complicações graves são inferiores a 1%.'],
+          ['Quanto tempo leva para a visão estabilizar completamente?', 'A melhora visual começa nas primeiras horas após a cirurgia. A visão se estabiliza progressivamente ao longo de 4 a 6 semanas, quando a prescrição final de óculos (se necessária) pode ser determinada. Com lentes multifocais, o período de adaptação neuroadaptativa pode levar de 3 a 6 meses.'],
+        ].map(([q, a]) => (
+          <details class="group border border-border/60 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-white hover:bg-blue-50/50 transition-colors">
               <span class="font-ui text-sm font-semibold text-navy pr-4">{q}</span>
-              <span class="text-gold font-bold text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+              <span class="text-gold text-lg group-open:rotate-45 transition-transform flex-shrink-0">+</span>
             </summary>
             <div class="px-5 py-4 bg-blue-50/30 border-t border-border/30">
               <p class="font-body text-sm text-foreground leading-relaxed">{a}</p>
@@ -332,54 +696,87 @@ const faqSchema = {
       </div>
     </section>
 
-    <!-- Referências -->
+    <!-- Seção 13: Por que Drudi e Almeida -->
     <section class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Referências Científicas</h2>
-      </div>
-      <div class="bg-gray-50 rounded-xl p-5 space-y-2">
-        {[
-          '[1] Chen SP, Woreta F, Chang DF. Cataracts: a review. JAMA. 2025;333(23):2093–2103.',
-          '[2] Global Burden of Disease Study 2021. Prevalência de catarata. The Lancet. 2022.',
-          '[3] Bourne RRA, et al. Trends in prevalence of blindness. Lancet Glob Health. 2021;9(2):e130-e143.',
-          '[6] American Academy of Ophthalmology. Cataract in the Adult Eye Preferred Practice Pattern. AAO; 2021.',
-          '[7] Song X, et al. FLACS vs conventional phacoemulsification: meta-analysis. Can J Ophthalmol. 2025.',
-          '[8] Shah S, et al. Visual Outcomes After Cataract Surgery: Multifocal vs Monofocal IOLs. J Refract Surg. 2015.',
-          '[9] Zhu D, et al. Patient-Reported Outcomes with Trifocal IOL PanOptix: Meta-Analysis. Ophthalmol Ther. 2024.',
-          '[10] Fernández J, et al. Enhanced vs monofocal IOLs: systematic review. Eye (Lond). 2025.',
-          '[11] European Society of Cataract and Refractive Surgeons (ESCRS). Recommendations for Cataract Surgery. 2025.',
-          '[12] Oshika T, et al. Long-term outcomes with toric IOL implantation. Sci Rep. 2022.',
-          '[13] Hong ASY, et al. Premium IOLs in Glaucoma: Systematic Review. Bioengineering. 2023.',
-          '[14] Herspiegel WJ, et al. Optimal Timing for IOP Measurement After Phacoemulsification. Vision. 2024.',
-          '[15] Conselho Brasileiro de Oftalmologia (CBO). Diretriz de Tratamento da Catarata. 2014.',
-        ].map(ref => (
-          <p class="font-body text-xs text-muted-foreground leading-relaxed">{ref}</p>
-        ))}
+      <div class="bg-navy rounded-2xl p-8 text-cream">
+        <h2 class="font-display text-2xl text-cream mb-4">13. Por que escolher a Drudi e Almeida para sua cirurgia de catarata?</h2>
+        <p class="font-body text-cream/80 leading-relaxed mb-6">
+          O <strong class="text-cream">Instituto da Catarata da Drudi e Almeida</strong> é referência em cirurgia de catarata em São Paulo, com tecnologia de ponta e equipe especializada.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          {[
+            ['👨‍⚕️ Dr. Fernando Macei Drudi', 'CRM-SP 139.300 | RQE 58.695 — Especialista em catarata e retina cirúrgica pelo HSPE/IAMSPE, com mais de 10.000 cirurgias realizadas e 10+ anos no Projeto Oftalmologia Humanitária na Amazônia'],
+            ['🔬 Tecnologia de ponta', 'Biometria óptica IOLMaster 700 (Zeiss), topografia Pentacam AXL, microscópio cirúrgico Lumera 700 (Zeiss), facoemulsificador Alcon Centurion'],
+            ['🔭 Portfólio completo de lentes', 'Monofocais, trifocais PanOptix, EDOF Vivity, tóricas e mix-and-match — orientação personalizada para cada paciente'],
+            ['📍 5 unidades em São Paulo', 'Santana, Tatuapé, Lapa, São Miguel e Guarulhos — cobertura completa da Grande São Paulo'],
+          ].map(([titulo, desc]) => (
+            <div class="bg-white/10 rounded-xl p-4">
+              <p class="font-ui text-sm font-bold text-gold mb-2">{titulo}</p>
+              <p class="font-body text-xs text-cream/80 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            Agendar Consulta pelo WhatsApp
+          </a>
+          <a href="tel:+551150268521" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            (11) 5026-8521
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Download CTA -->
-    <div class="bg-navy rounded-2xl p-8 text-center">
-      <h3 class="font-display text-2xl text-cream mb-3">Baixe o Guia Completo em PDF</h3>
-      <p class="font-body text-cream/70 mb-6 max-w-md mx-auto">
-        17 páginas com todas as seções, tabelas comparativas de lentes e referências científicas completas.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a
-          data-ebook-slug="catarata"
-          href="#"
-          class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-3.5 rounded-md hover:bg-gold-light transition-colors"
-        >
+    <!-- Seção 14: Referências -->
+    <section class="mb-10" id="referencias">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">14. Referências científicas</h2>
+      </div>
+      <div class="bg-gray-50 border border-border/40 rounded-xl p-6">
+        <ol class="space-y-3">
+          {[
+            ['1', 'Chen SP, Woreta F, Chang DF. Cataracts: a review. JAMA. 2025;333(23):2093–2103.', 'https://doi.org/10.1001/jama.2025.1597'],
+            ['2', 'Global Burden of Disease Study 2021. Prevalência absoluta de catarata e DALYs (1990-2021). The Lancet. 2022.', ''],
+            ['3', 'Bourne RRA, et al. Trends in prevalence of blindness and distance and near vision impairment over 30 years. Lancet Glob Health. 2021;9(2):e130-e143.', 'https://doi.org/10.1016/S2214-109X(20)30425-3'],
+            ['4', 'Estudo epidemiológico de prevalência de catarata na região Centro-Oeste do Estado de São Paulo. Arq Bras Oftalmol. 2009.', ''],
+            ['5', 'Dados do Ministério da Saúde do Brasil sobre cirurgias de catarata no SUS (2001-2021). Campanha Nacional de Catarata (CNC).', ''],
+            ['6', 'American Academy of Ophthalmology. Cataract in the Adult Eye Preferred Practice Pattern. San Francisco: AAO; 2021.', ''],
+            ['7', 'Song X, Li L, Zhang X, Ma J. Comparing the efficacy and safety between femtosecond laser-assisted cataract surgery and conventional phacoemulsification: systematic review and meta-analysis. Can J Ophthalmol. 2025;60(1).', 'https://doi.org/10.1016/j.jcjo.2024.05.030'],
+            ['8', 'Shah S, Peris-Martinez C, Reinhard T, Vinciguerra P. Visual Outcomes After Cataract Surgery: Multifocal Versus Monofocal Intraocular Lenses. J Refract Surg. 2015;31(10):658-666.', 'https://doi.org/10.3928/1081597X-20150611-01'],
+            ['9', 'Zhu D, Karki S, Dhariwal M, Soini E, Asseburg C. Patient-Reported Outcomes of Visual Disturbances with a Trifocal Intraocular Lens: A Meta-Analysis. Ophthalmol Ther. 2024;14(2):379-390.', 'https://doi.org/10.1007/s40123-024-01085-9'],
+            ['10', 'Fernández J, et al. Visual and patient-reported outcomes of an enhanced versus monofocal intraocular lenses in cataract surgery: systematic review and meta-analysis. Eye (Lond). 2025;39(5):883-898.', 'https://doi.org/10.1038/s41433-025-03625-4'],
+            ['11', 'European Society of Cataract and Refractive Surgeons (ESCRS). Recommendations for Cataract Surgery. 2025.', ''],
+            ['12', 'Oshika T, et al. Long-term outcomes of cataract surgery with toric intraocular lens implantation. Sci Rep. 2022;12:8457.', 'https://doi.org/10.1038/s41598-022-12426-8'],
+            ['13', 'Hong ASY, Ang BCH, Dorairaj E, Dorairaj S. Premium Intraocular Lenses in Glaucoma—A Systematic Review. Bioengineering (Basel). 2023;10(9):993.', 'https://doi.org/10.3390/bioengineering10090993'],
+            ['14', 'Herspiegel WJ, et al. Optimal Timing for Intraocular Pressure Measurement Following Phacoemulsification Cataract Surgery: Systematic Review and Meta-Analysis. Vision. 2024;8(4):65.', 'https://doi.org/10.3390/vision8040065'],
+            ['15', 'Conselho Brasileiro de Oftalmologia (CBO). Diretriz de Tratamento da Catarata. 2014.', ''],
+          ].map(([num, ref, url]) => (
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-navy text-cream font-ui text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{num}</span>
+              <p class="font-body text-xs text-foreground leading-relaxed">
+                {ref}
+                {url && <a href={url} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline ml-1">DOI →</a>}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <p class="font-body text-xs text-muted-foreground mt-6 pt-4 border-t border-border/30 italic">
+          Este guia foi elaborado com base nas melhores evidências científicas disponíveis até abril de 2026. As informações aqui contidas têm caráter educativo e não substituem a consulta médica individualizada. Para diagnóstico e tratamento, consulte um oftalmologista.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 text-center">
+      <h3 class="font-display text-xl text-navy mb-2">Baixe o guia completo em PDF</h3>
+      <p class="font-body text-sm text-muted-foreground mb-4">17 páginas · 15 referências científicas · Gratuito · Revisado por Dr. Fernando Drudi</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a data-ebook-slug="catarata" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-navy/90 transition-colors">
           ⬇ Baixar PDF Grátis
         </a>
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui font-semibold px-8 py-3.5 rounded-md hover:bg-cream/10 transition-colors"
-        >
-          Agendar Consulta
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 text-white font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-emerald-700 transition-colors">
+          💬 Agendar pelo WhatsApp
         </a>
       </div>
     </div>

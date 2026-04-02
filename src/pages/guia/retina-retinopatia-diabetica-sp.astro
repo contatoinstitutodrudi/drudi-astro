@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta sobre retina ou retinopatia diabética.";
-const PDF_URL = "/ebooks/ebook-retina-drudi-almeida.pdf";
 
 const breadcrumbItems = [
   { name: 'Início', item: 'https://institutodrudiealmeida.com.br/' },
@@ -14,45 +13,53 @@ const breadcrumbItems = [
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  "name": "Retina e Retinopatia Diabética: Anti-VEGF e Tratamento (2026)",
-  "description": "Guia médico completo sobre retinopatia diabética, DMRI, injeções intravítreas anti-VEGF (aflibercepte, faricimabe, ranibizumabe), laser de retina e vitrectomia.",
+  "name": "Guia Completo: Retina e Retinopatia Diabética — Diagnóstico, Anti-VEGF e Tratamento (2026)",
+  "description": "Guia médico completo sobre doenças da retina: retinopatia diabética, DMRI, anti-VEGF (DRCR.net Protocol T NEJM 2015, PANORAMA, TENAYA/LUCERNE), laser, vitrectomia. 8 referências científicas.",
   "url": "https://institutodrudiealmeida.com.br/guia/retina-retinopatia-diabetica-sp/",
   "dateModified": "2026-04-01",
-  "publisher": { "@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas" },
+  "author": { "@type": "Person", "name": "Dr. Fernando Macei Drudi", "honorificPrefix": "Dr." },
+  "publisher": { "@type": "MedicalOrganization", "name": "Instituto da Retina — Drudi e Almeida Clínicas Oftalmológicas" },
   "medicalAudience": { "@type": "Patient" },
-  "about": { "@type": "MedicalCondition", "name": "Retinopatia Diabética" }
+  "about": [
+    { "@type": "MedicalCondition", "name": "Retinopatia Diabética" },
+    { "@type": "MedicalCondition", "name": "Degeneração Macular Relacionada à Idade" }
+  ]
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "O que é a injeção intravítrea anti-VEGF?", "acceptedAnswer": { "@type": "Answer", "text": "A injeção intravítrea é a aplicação de um medicamento (anti-VEGF) diretamente dentro do olho, no vítreo. O procedimento é realizado em consultório com anestesia tópica, dura cerca de 5 minutos e é praticamente indolor. Os anti-VEGFs bloqueiam o fator de crescimento vascular (VEGF), reduzindo o edema macular e os vasos anormais." } },
-    { "@type": "Question", "name": "Quantas injeções intravítreas são necessárias?", "acceptedAnswer": { "@type": "Answer", "text": "O número de injeções varia conforme a doença e a resposta ao tratamento. Na fase de indução, geralmente são realizadas 3 injeções mensais consecutivas. Na fase de manutenção, o intervalo é individualizado (mensal, bimestral ou trimestral). Alguns pacientes necessitam de tratamento por anos." } },
-    { "@type": "Question", "name": "Todo diabético vai ter problemas na retina?", "acceptedAnswer": { "@type": "Answer", "text": "Não necessariamente. O risco de retinopatia diabética depende do tempo de diabetes, do controle glicêmico (HbA1c) e da pressão arterial. Com controle rigoroso da glicemia e acompanhamento oftalmológico anual, é possível prevenir ou retardar significativamente o desenvolvimento da retinopatia." } },
-    { "@type": "Question", "name": "O que é DMRI (degeneração macular relacionada à idade)?", "acceptedAnswer": { "@type": "Answer", "text": "A DMRI é uma doença degenerativa da mácula (centro da retina) que afeta principalmente pessoas acima de 60 anos. Causa perda progressiva da visão central, dificultando a leitura, o reconhecimento de rostos e atividades de precisão. Existem duas formas: seca (atrófica) e úmida (neovascular), sendo esta última tratada com injeções anti-VEGF." } },
+    { "@type": "Question", "name": "As injeções intravítreas doem?", "acceptedAnswer": { "@type": "Answer", "text": "O procedimento é realizado sob anestesia tópica (colírios), sem dor durante a injeção. É comum uma leve sensação de pressão. Após a injeção, pode haver desconforto leve por algumas horas, facilmente controlado com colírios analgésicos." } },
+    { "@type": "Question", "name": "Quantas injeções anti-VEGF são necessárias?", "acceptedAnswer": { "@type": "Answer", "text": "O número de injeções varia conforme a doença e a resposta ao tratamento. Para DMRI neovascular e edema macular diabético, o protocolo inicial geralmente envolve 3 injeções mensais consecutivas (fase de indução), seguidas de injeções de manutenção com intervalos progressivamente maiores. O tratamento pode ser necessário por meses a anos." } },
+    { "@type": "Question", "name": "O diabetes pode causar cegueira?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, se não tratado adequadamente. A retinopatia diabética é a principal causa de cegueira em adultos em idade ativa. No entanto, com rastreamento regular e tratamento precoce, a grande maioria dos pacientes preserva a visão funcional ao longo da vida." } },
+    { "@type": "Question", "name": "Quais são os sintomas de descolamento de retina?", "acceptedAnswer": { "@type": "Answer", "text": "Os sintomas de alerta incluem: aumento súbito de moscas volantes (floaters), flashes de luz (fotopsias), sombra ou cortina cobrindo parte do campo visual, e distorção de imagens retas. Qualquer um desses sintomas requer avaliação oftalmológica urgente." } },
+    { "@type": "Question", "name": "Todo diabético vai ter problemas na retina?", "acceptedAnswer": { "@type": "Answer", "text": "Não necessariamente. O risco depende do tempo de diabetes, do controle glicêmico (HbA1c) e da pressão arterial. Com controle rigoroso da glicemia e acompanhamento oftalmológico anual, é possível prevenir ou retardar significativamente o desenvolvimento da retinopatia." } },
+    { "@type": "Question", "name": "O que é DMRI e como preveni-la?", "acceptedAnswer": { "@type": "Answer", "text": "A DMRI (degeneração macular relacionada à idade) é a principal causa de perda visual em pessoas acima de 60 anos. Medidas que reduzem o risco: não fumar, usar óculos de sol com proteção UV, manter dieta rica em vegetais de folhas verdes, controlar a pressão arterial e realizar exames anuais após os 50 anos." } }
   ]
 };
 ---
 
 <BaseLayout
-  title="Retina e Retinopatia Diabética: Anti-VEGF e Tratamento (2026) | Drudi e Almeida"
-  description="Guia completo sobre retinopatia diabética, DMRI, injeções intravítreas anti-VEGF (aflibercepte, faricimabe, ranibizumabe), laser de retina e vitrectomia. Baixe o PDF grátis."
-  keywords="retinopatia diabética São Paulo, injeção intravítrea anti-VEGF, DMRI tratamento, degeneração macular, laser retina, vitrectomia"
+  title="Guia Completo: Retina e Retinopatia Diabética — Anti-VEGF e Tratamento em SP (2026) | Drudi e Almeida"
+  description="Tudo sobre doenças da retina: retinopatia diabética, DMRI, injeções anti-VEGF (Protocol T NEJM 2015, PANORAMA, TENAYA/LUCERNE), laser de retina, vitrectomia e descolamento. 8 referências científicas. Baixe o PDF grátis."
+  keywords="retinopatia diabética São Paulo, anti-VEGF SP, DMRI tratamento, injeção intravítrea SP, descolamento de retina, laser de retina, vitrectomia SP"
   canonicalPath="/guia/retina-retinopatia-diabetica-sp/"
   breadcrumbItems={breadcrumbItems}
   isArticle={true}
   articlePublishedTime="2026-04-01"
   articleModifiedTime="2026-04-01"
-  articleAuthor="Drudi e Almeida Clínicas Oftalmológicas"
+  articleAuthor="Dr. Fernando Macei Drudi — Instituto da Retina"
   articleSection="Oftalmologia"
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <section class="relative bg-navy py-14 overflow-hidden">
+  <!-- HERO -->
+  <section class="relative bg-navy py-14 md:py-18 overflow-hidden">
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-rose-400 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold blur-3xl"></div>
     </div>
     <div class="container relative">
       <Breadcrumb items={breadcrumbItems} dark />
@@ -61,84 +68,135 @@ const faqSchema = {
           <span class="font-ui text-xs font-semibold text-rose-300 tracking-wide">INSTITUTO DA RETINA</span>
         </span>
         <h1 class="font-display text-3xl md:text-4xl text-cream leading-tight mb-4">
-          Retina e Retinopatia Diabética:<br/>
-          <span class="text-gold italic">Anti-VEGF e Tratamento (2026)</span>
+          Guia Completo: Retina e Retinopatia Diabética<br/>
+          <span class="text-gold italic">Diagnóstico, Anti-VEGF e Tratamento (2026)</span>
         </h1>
-        <p class="font-body text-cream/80 mb-6">
-          <span class="text-cream/60 text-sm">Baseado em estudos PANORAMA, PROTOCOL T e TENAYA/LUCERNE · Atualizado: Abril de 2026</span>
+        <p class="font-body text-cream/80 mb-2">
+          Revisão médica: <strong class="text-cream">Dr. Fernando Macei Drudi</strong> — CRM-SP 139.300 | RQE 58.695
+        </p>
+        <p class="font-body text-cream/60 text-sm mb-6">
+          Baseado em: DRCR.net Protocol T (NEJM 2015) · PANORAMA (Ophthalmology 2019) · TENAYA/LUCERNE (Lancet 2022) · Atualizado: Abril de 2026 · 20 min de leitura
         </p>
         <div class="flex flex-wrap gap-3">
-          <a data-ebook-slug="retina" href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">⬇ Baixar PDF Grátis</a>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">Agendar Consulta</a>
+          <a data-ebook-slug="retina" href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            ⬇ Baixar PDF Grátis
+          </a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            Agendar Consulta
+          </a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PDF BANNER -->
   <div class="bg-rose-50 border-b border-rose-200">
     <div class="container py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-3">
         <span class="text-2xl">📄</span>
         <div>
           <p class="font-ui text-sm font-semibold text-navy">E-book disponível em PDF</p>
-          <p class="font-body text-xs text-muted-foreground">13 páginas · 8 referências científicas · Gratuito</p>
+          <p class="font-body text-xs text-muted-foreground">20 páginas · 8 referências científicas · Gratuito · Inclui Protocol T (NEJM 2015)</p>
         </div>
       </div>
-      <a data-ebook-slug="retina" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">⬇ Baixar PDF</a>
+      <a data-ebook-slug="retina" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">
+        ⬇ Baixar PDF
+      </a>
     </div>
   </div>
 
   <article class="container py-12 max-w-4xl">
 
-    <section class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Retinopatia Diabética: A Principal Causa de Cegueira em Adultos</h2>
-      </div>
-      <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        A retinopatia diabética (RD) é a <strong>complicação microvascular mais frequente do diabetes mellitus</strong> e a principal causa de cegueira em adultos em idade produtiva nos países desenvolvidos. Resulta do dano cumulativo aos vasos sanguíneos da retina causado pela hiperglicemia crônica.
-      </p>
-      <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        Estima-se que <strong>um terço dos diabéticos</strong> apresente algum grau de retinopatia diabética, e que 10% tenham doença que ameaça a visão. No Brasil, com mais de 16 milhões de diabéticos, a RD representa um problema de saúde pública de grande magnitude.<sup class="text-gold text-xs">[1]</sup>
-      </p>
-      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-4">
-        <p class="font-body text-sm leading-relaxed italic">
-          "O estudo PANORAMA, publicado no <em>Ophthalmology</em> em 2019, demonstrou que o aflibercepte intravítreo 2 mg reduziu significativamente a progressão da retinopatia diabética não proliferativa moderada a grave, com 80% dos pacientes apresentando melhora de dois ou mais graus na escala ETDRS após 2 anos."
-          <span class="not-italic text-gold text-xs ml-1">[3]</span>
+    <!-- ALERTA DIABETES -->
+    <div class="bg-red-50 border border-red-200 rounded-xl p-5 mb-10 flex items-start gap-4">
+      <span class="text-2xl flex-shrink-0">⚠️</span>
+      <div>
+        <p class="font-ui text-sm font-bold text-red-800 mb-1">Diabetes e visão: rastreamento anual é obrigatório</p>
+        <p class="font-body text-sm text-foreground leading-relaxed">
+          Após 20 anos de diabetes, <strong>mais de 90% dos pacientes com diabetes tipo 1</strong> e <strong>60% dos pacientes com diabetes tipo 2</strong> têm algum grau de retinopatia. A perda visual causada pela retinopatia diabética avançada pode ser irreversível. O diagnóstico precoce e o tratamento com anti-VEGF preservam a visão na grande maioria dos casos.
         </p>
       </div>
-    </section>
+    </div>
 
+    <!-- SUMÁRIO -->
+    <nav class="bg-rose-50 border border-rose-200 rounded-xl p-6 mb-10">
+      <h2 class="font-ui text-sm font-bold text-navy mb-4 uppercase tracking-wide">Sumário</h2>
+      <ol class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+        {[
+          'A retina: estrutura e função',
+          'Principais doenças da retina',
+          'Retinopatia diabética: classificação e epidemiologia',
+          'Degeneração macular relacionada à idade (DMRI)',
+          'Injeções intravítreas anti-VEGF: a revolução no tratamento',
+          'Laser de retina: fotocoagulação',
+          'Vitrectomia posterior',
+          'Descolamento de retina: emergência oftalmológica',
+          'Oclusão venosa da retina',
+          'Monitoramento e rastreamento',
+          'Perguntas frequentes',
+          'Referências científicas',
+        ].map((item, i) => (
+          <li class="font-body text-sm text-muted-foreground hover:text-navy transition-colors">
+            <span class="text-gold font-semibold mr-2">{i + 1}.</span>{item}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <!-- SEÇÃO 1 -->
     <section class="mb-10">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Anti-VEGFs: Os Medicamentos que Revolucionaram o Tratamento</h2>
+        <h2 class="font-display text-2xl text-navy">1. A retina: estrutura e função</h2>
       </div>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        Os anti-VEGFs (inibidores do fator de crescimento vascular endotelial) representam a <strong>maior revolução no tratamento de doenças retinianas</strong> das últimas décadas. Ao bloquear o VEGF, reduzem a permeabilidade vascular (edema macular) e inibem o crescimento de vasos anormais (neovascularização).
+        A retina é uma fina camada de tecido nervoso que reveste a parede interna posterior do olho, com espessura de apenas 0,1 a 0,5 mm. Apesar de sua delicadeza, é uma das estruturas mais complexas e metabolicamente ativas do corpo humano — responsável por converter a luz em sinais elétricos transmitidos ao cérebro pelo nervo óptico, onde são interpretados como imagens.
       </p>
-      <div class="overflow-x-auto mb-4">
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A <strong>mácula</strong> é a região central da retina, com aproximadamente 5 mm de diâmetro, responsável pela visão central de alta resolução — a visão que usamos para ler, reconhecer rostos e realizar atividades que exigem acuidade visual precisa. No centro da mácula está a <strong>fóvea</strong>, uma pequena depressão com alta concentração de cones (fotorreceptores responsáveis pela visão colorida e de detalhes).
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A retina possui 10 camadas histológicas distintas, cada uma com função específica no processamento visual. As células fotorreceptoras (cones e bastonetes) convertem a energia luminosa em sinais elétricos, que são processados pelas células bipolares e ganglionares antes de serem transmitidos ao cérebro pelo nervo óptico.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed">
+        Qualquer doença que afete a mácula tem impacto direto e significativo na qualidade de vida do paciente, comprometendo atividades cotidianas fundamentais. As doenças da retina são a <strong>principal causa de perda visual irreversível em adultos</strong> nos países desenvolvidos.
+      </p>
+    </section>
+
+    <!-- SEÇÃO 2 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">2. Principais doenças da retina</h2>
+      </div>
+      <div class="overflow-x-auto">
         <table class="w-full text-sm border-collapse">
           <thead>
             <tr class="bg-navy text-cream">
-              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Medicamento</th>
-              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Mecanismo</th>
-              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Intervalo</th>
-              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Evidência</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Doença</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Causa principal</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Faixa etária</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Tratamento principal</th>
             </tr>
           </thead>
           <tbody>
             {[
-              ['Ranibizumabe (Lucentis)', 'Fragmento anti-VEGF-A', 'Mensal (fase inicial)', 'PROTOCOL T (NEJM 2015)'],
-              ['Aflibercepte (Eylea)', 'Proteína de fusão anti-VEGF-A/B e PlGF', 'Mensal → Bimestral', 'PANORAMA (Ophthalmology 2019)'],
-              ['Faricimabe (Vabysmo)', 'Anti-VEGF-A + anti-Ang-2', 'Até trimestral', 'TENAYA/LUCERNE (Lancet 2022)'],
-              ['Bevacizumabe (Avastin)', 'Anticorpo anti-VEGF-A (off-label)', 'Mensal', 'PROTOCOL T (NEJM 2015)'],
-            ].map(([med, mec, int, ev], i) => (
+              ['Retinopatia diabética', 'Diabetes mellitus', 'Adultos com diabetes', 'Anti-VEGF, laser, vitrectomia'],
+              ['DMRI neovascular', 'Envelhecimento + genética', '> 60 anos', 'Anti-VEGF intravítreo'],
+              ['DMRI atrófica', 'Envelhecimento', '> 60 anos', 'Suplementação AREDS2, anti-C5'],
+              ['Edema macular diabético', 'Diabetes mellitus', 'Adultos com diabetes', 'Anti-VEGF, laser focal'],
+              ['Oclusão venosa da retina', 'Hipertensão, trombose', '> 50 anos', 'Anti-VEGF, laser'],
+              ['Descolamento de retina', 'Tração vítrea, trauma, miopia', 'Qualquer idade', 'Vitrectomia, cerclagem'],
+              ['Buraco macular', 'Tração vítrea', '> 60 anos', 'Vitrectomia'],
+              ['Membrana epirretiniana', 'Proliferação celular', '> 50 anos', 'Vitrectomia'],
+              ['Retinopatia hipertensiva', 'Hipertensão arterial', '> 40 anos', 'Controle da PA'],
+              ['Coriorretinopatia serosa central', 'Estresse, corticosteroides', '30-50 anos (homens)', 'Observação, laser, anti-VEGF'],
+            ].map(([d, c, f, t], i) => (
               <tr class={i % 2 === 0 ? 'bg-white' : 'bg-rose-50/50'}>
-                <td class="px-4 py-3 font-semibold text-navy border-b border-border/30">{med}</td>
-                <td class="px-4 py-3 text-foreground border-b border-border/30">{mec}</td>
-                <td class="px-4 py-3 text-foreground border-b border-border/30">{int}</td>
-                <td class="px-4 py-3 text-muted-foreground text-xs border-b border-border/30">{ev}</td>
+                <td class="px-3 py-2 font-semibold text-navy border-b border-border/30 text-xs">{d}</td>
+                <td class="px-3 py-2 text-foreground border-b border-border/30 text-xs">{c}</td>
+                <td class="px-3 py-2 text-foreground border-b border-border/30 text-xs">{f}</td>
+                <td class="px-3 py-2 text-muted-foreground border-b border-border/30 text-xs">{t}</td>
               </tr>
             ))}
           </tbody>
@@ -146,22 +204,386 @@ const faqSchema = {
       </div>
     </section>
 
+    <!-- SEÇÃO 3 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">3. Retinopatia diabética: classificação e epidemiologia</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A retinopatia diabética (RD) é a complicação microvascular mais frequente do diabetes mellitus e a <strong>principal causa de cegueira em adultos em idade ativa</strong> (20-74 anos) nos países desenvolvidos. É causada pelo dano progressivo aos vasos sanguíneos da retina, decorrente da hiperglicemia crônica.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Revisão sistemática e meta-análise publicada no <em>JAMA Ophthalmology</em> em 2024 por Zayed et al. demonstrou que a qualidade de vida relacionada à visão diminui progressivamente com a presença e a gravidade da retinopatia diabética, reforçando a importância do rastreamento precoce e do tratamento adequado.<sup class="text-gold font-semibold">[1]</sup>
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        {[
+          ['1/3', 'dos pacientes com diabetes tem algum grau de RD'],
+          ['90%', 'dos pacientes com DM tipo 1 têm RD após 20 anos'],
+          ['60%', 'dos pacientes com DM tipo 2 têm RD após 20 anos'],
+          ['5 mi', 'de brasileiros com diabetes têm retinopatia'],
+        ].map(([val, desc]) => (
+          <div class="bg-navy text-cream rounded-xl p-4 text-center">
+            <div class="font-display text-2xl text-gold mb-1">{val}</div>
+            <div class="font-body text-xs text-cream/80 leading-tight">{desc}</div>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Classificação da retinopatia diabética (ETDRS)</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Estágio</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Achados fundoscópicos</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Risco de progressão</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Sem RD', 'Retina normal', 'Baixo'],
+              ['RD não proliferativa leve', 'Microaneurismas isolados', 'Baixo'],
+              ['RD não proliferativa moderada', 'Hemorragias, exsudatos duros, manchas algodonosas', 'Moderado'],
+              ['RD não proliferativa grave', 'Regra 4-2-1: hemorragias em 4 quadrantes, veias em rosário em 2 quadrantes, AMIR em 1 quadrante', 'Alto (50% progride para RDP em 1 ano)'],
+              ['RD proliferativa (RDP)', 'Neovascularização do disco ou da retina periférica', 'Muito alto (risco de hemorragia vítrea e descolamento tracional)'],
+              ['Edema macular diabético (EMD)', 'Espessamento retiniano na área macular (central ou não central)', 'Risco de perda visual central independente do estágio da RD'],
+            ].map(([e, a, r], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-rose-50/50'}>
+                <td class="px-3 py-2 font-semibold text-navy border-b border-border/30 text-xs">{e}</td>
+                <td class="px-3 py-2 text-foreground border-b border-border/30 text-xs">{a}</td>
+                <td class="px-3 py-2 text-muted-foreground border-b border-border/30 text-xs">{r}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Rastreamento recomendado (AAO e CBO)</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+        {[
+          ['Diabetes tipo 1', 'Exame oftalmológico anual a partir de 5 anos após o diagnóstico (ou a partir dos 10 anos de idade)'],
+          ['Diabetes tipo 2', 'Exame imediatamente após o diagnóstico e, pelo menos, anualmente a partir de então'],
+          ['Gestantes com diabetes', 'Exame no 1º trimestre e acompanhamento rigoroso durante toda a gestação — risco de progressão rápida'],
+        ].map(([tipo, rec]) => (
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-rose-800 mb-2">{tipo}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{rec}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-navy text-cream rounded-xl p-6 border-l-4 border-gold">
+        <p class="font-ui text-sm font-bold text-gold mb-2">PANORAMA — Ophthalmology 2019 (Evidência Nível I)</p>
+        <p class="font-body text-sm leading-relaxed italic">
+          "O estudo PANORAMA, publicado no <em>Ophthalmology</em> em 2019, demonstrou que o aflibercepte intravítreo 2 mg reduziu significativamente a progressão da retinopatia diabética não proliferativa moderada a grave, com <strong>80% dos pacientes apresentando melhora de dois ou mais graus na escala ETDRS</strong> após 2 anos, em comparação com 15% no grupo controle."
+          <span class="not-italic text-gold text-xs ml-1">[3]</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">4. Degeneração macular relacionada à idade (DMRI)</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A degeneração macular relacionada à idade (DMRI) é a <strong>principal causa de perda visual irreversível em pessoas acima de 60 anos</strong> nos países desenvolvidos. Afeta a mácula — a região central da retina responsável pela visão de detalhes — comprometendo progressivamente a visão central, enquanto a visão periférica é preservada.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Revisão publicada no <em>JAMA</em> em 2024 por Fleckenstein, Schmitz-Valckenberg e Chakravarthy confirma que a DMRI afeta mais de 196 milhões de pessoas globalmente e que o tratamento anti-VEGF intravítreo é a terapia de primeira linha para a forma neovascular (exsudativa).<sup class="text-gold font-semibold">[2]</sup>
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+          <p class="font-ui text-sm font-bold text-blue-800 mb-2">DMRI seca (atrófica) — 85-90% dos casos</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">Progressão lenta, com acúmulo de drusas (depósitos lipídicos) e atrofia progressiva do epitélio pigmentado da retina (EPR). Sem tratamento curativo disponível; suplementação com antioxidantes (AREDS2: vitaminas C, E, luteína, zeaxantina, zinco) pode reduzir o risco de progressão para DMRI avançada em 25%. Terapia anti-complemento (pegcetacoplan, avacincaptad pegol) aprovada pela FDA para atrofia geográfica avançada.</p>
+        </div>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-5">
+          <p class="font-ui text-sm font-bold text-red-800 mb-2">DMRI úmida (neovascular) — 10-15% dos casos, 90% da cegueira por DMRI</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">Crescimento de novos vasos sanguíneos anômalos sob a retina (neovascularização coroidal — NVC), que vazam fluido e sangue. Progressão rápida, com perda visual central em semanas a meses se não tratada. Tratamento com injeções intravítreas anti-VEGF é altamente eficaz na estabilização e frequente melhora da visão — 30-40% dos pacientes ganham 3 ou mais linhas de visão com tratamento adequado.</p>
+        </div>
+      </div>
+      <h3 class="font-display text-base text-navy mb-2">Fatores de risco para DMRI</h3>
+      <div class="flex flex-wrap gap-2">
+        {['Idade > 60 anos', 'Tabagismo (principal fator modificável)', 'História familiar', 'Raça caucasiana', 'Hipertensão arterial', 'Obesidade', 'Exposição excessiva à luz solar', 'Dieta pobre em antioxidantes'].map(r => (
+          <span class="bg-navy/10 text-navy font-ui text-xs font-semibold px-3 py-1.5 rounded-full">{r}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">5. Injeções intravítreas anti-VEGF: a revolução no tratamento</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        As injeções intravítreas são o <strong>procedimento mais realizado em oftalmologia no mundo</strong> atualmente, com mais de 8 milhões de injeções realizadas anualmente nos EUA. Consistem na aplicação de medicamentos diretamente no interior do olho (câmara vítrea), por meio de uma agulha fina introduzida pela esclera. O procedimento é realizado em consultório, sob anestesia tópica, e dura apenas alguns minutos.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Os medicamentos anti-VEGF (anti-fator de crescimento endotelial vascular) bloqueiam a ação do VEGF — uma proteína que estimula o crescimento de novos vasos sanguíneos anômalos e o aumento da permeabilidade vascular. Ao bloquear o VEGF, esses medicamentos reduzem o vazamento de fluido, a neovascularização e o edema macular.
+      </p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Medicamento</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Nome comercial</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Mecanismo</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Intervalo máximo</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Indicações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Ranibizumabe', 'Lucentis', 'Fragmento anti-VEGF-A', 'Mensal (fase inicial)', 'DMRI, EMD, OVR'],
+              ['Bevacizumabe', 'Avastin (off-label)', 'Anticorpo anti-VEGF-A', 'Mensal', 'DMRI, EMD, OVR (off-label)'],
+              ['Aflibercepte', 'Eylea', 'Anti-VEGF-A/B + PlGF', 'Bimestral', 'DMRI, EMD, OVR, RDP'],
+              ['Faricimabe', 'Vabysmo', 'Anti-VEGF-A + anti-Ang-2', 'Até 16 semanas', 'DMRI, EMD'],
+              ['Brolucizumabe', 'Beovu', 'Anti-VEGF-A (scFv)', 'Trimestral', 'DMRI neovascular'],
+            ].map(([m, n, mec, i, ind], idx) => (
+              <tr class={idx % 2 === 0 ? 'bg-white' : 'bg-rose-50/50'}>
+                <td class="px-3 py-2 font-semibold text-navy border-b border-border/30 text-xs">{m}</td>
+                <td class="px-3 py-2 text-foreground border-b border-border/30 text-xs">{n}</td>
+                <td class="px-3 py-2 text-foreground border-b border-border/30 text-xs">{mec}</td>
+                <td class="px-3 py-2 text-foreground border-b border-border/30 text-xs">{i}</td>
+                <td class="px-3 py-2 text-muted-foreground border-b border-border/30 text-xs">{ind}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-navy text-cream rounded-xl p-6 border-l-4 border-gold">
+          <p class="font-ui text-sm font-bold text-gold mb-2">DRCR.net Protocol T — NEJM 2015 (Evidência Nível I)</p>
+          <p class="font-body text-sm leading-relaxed italic">
+            "O ensaio clínico randomizado DRCR.net Protocol T, publicado no <em>New England Journal of Medicine</em> em 2015, comparou aflibercepte, bevacizumabe e ranibizumabe intravítreos no tratamento do edema macular diabético em 660 pacientes. Os resultados demonstraram que todos os três medicamentos melhoraram a visão, mas o <strong>aflibercepte foi mais eficaz em pacientes com acuidade visual inicial mais comprometida (20/50 ou pior)</strong>, com ganho médio de 18,9 letras ETDRS vs. 14,2 (ranibizumabe) e 11,8 (bevacizumabe)."
+            <span class="not-italic text-gold text-xs ml-1">[4]</span>
+          </p>
+        </div>
+        <div class="bg-navy text-cream rounded-xl p-6 border-l-4 border-gold">
+          <p class="font-ui text-sm font-bold text-gold mb-2">TENAYA/LUCERNE — Lancet 2022 (Faricimabe)</p>
+          <p class="font-body text-sm leading-relaxed italic">
+            "Os estudos TENAYA e LUCERNE, publicados no <em>Lancet</em> em 2022, demonstraram que o faricimabe — com duplo mecanismo de ação (anti-VEGF-A + anti-angiopoietina-2) — alcançou resultados não inferiores ao aflibercepte na DMRI neovascular, com <strong>45% dos pacientes mantendo intervalos de 16 semanas entre injeções</strong> após 1 ano, reduzindo significativamente o ônus do tratamento."
+            <span class="not-italic text-gold text-xs ml-1">[5]</span>
+          </p>
+        </div>
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3 mt-6">Como é realizada a injeção intravítrea</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+        {[
+          ['1', 'Instilação de colírio anestésico e antisséptico (iodopovidona)'],
+          ['2', 'Colocação de campo estéril e espéculo palpebral'],
+          ['3', 'Marcação do ponto de injeção (3,5-4 mm do limbo)'],
+          ['4', 'Injeção do medicamento com agulha 30G (< 5 segundos)'],
+          ['5', 'Verificação da pressão intraocular e da perfusão do nervo óptico'],
+        ].map(([num, desc]) => (
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-3 text-center">
+            <div class="w-8 h-8 rounded-full bg-navy text-cream font-ui text-sm font-bold flex items-center justify-center mx-auto mb-2">{num}</div>
+            <p class="font-body text-xs text-foreground leading-tight">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">6. Laser de retina: fotocoagulação</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O laser de retina (fotocoagulação) é utilizado há décadas no tratamento de doenças retinianas e continua sendo uma ferramenta importante, especialmente para a retinopatia diabética proliferativa e o tratamento preventivo de rupturas retinianas.
+      </p>
+      <div class="space-y-3">
+        {[
+          ['Fotocoagulação panretiniana (PRP)', 'Tratamento da retinopatia diabética proliferativa, destruindo áreas isquêmicas da retina periférica para reduzir a produção de VEGF e a neovascularização. Ensaio clínico randomizado publicado no JAMA em 2015 comparou a PRP com o ranibizumabe intravítreo para RDP — o ranibizumabe resultou em melhor acuidade visual e menor perda de campo visual periférico, embora a PRP continue sendo opção importante, especialmente em pacientes com dificuldade de adesão ao tratamento intravítreo.'],
+          ['Laser focal/em grade', 'Tratamento de microaneurismas e vazamentos localizados no edema macular diabético, especialmente em casos não centrais (fora da fóvea). Menos utilizado desde a introdução dos anti-VEGFs, mas ainda indicado em casos selecionados.'],
+          ['Retinopexa a laser', 'Selamento de rupturas retinianas antes que evoluam para descolamento de retina — procedimento preventivo de alta eficácia, realizado em consultório com anestesia tópica.'],
+          ['Laser de baixa fluência (micropulso)', 'Modalidade mais recente que aplica energia laser de forma fracionada, causando menos dano ao EPR. Indicado para edema macular diabético e coriorretinopatia serosa central.'],
+        ].map(([titulo, desc]) => (
+          <div class="border border-border/60 rounded-xl overflow-hidden">
+            <div class="bg-navy px-5 py-3"><h3 class="font-display text-sm text-cream">{titulo}</h3></div>
+            <div class="p-5"><p class="font-body text-sm text-foreground leading-relaxed">{desc}</p></div>
+          </div>
+        ))}
+      </div>
+      <p class="font-body text-sm text-muted-foreground mt-4 italic">
+        Na Drudi e Almeida, utilizamos o laser de retina <strong>Argônio Multipoint Vitra 2 (Quantel Medical)</strong>, que permite aplicação de múltiplos pontos de laser simultaneamente, reduzindo o tempo de tratamento e o desconforto do paciente.
+      </p>
+    </section>
+
+    <!-- SEÇÃO 7 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">7. Vitrectomia posterior</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A vitrectomia posterior (PPV — pars plana vitrectomy) é uma cirurgia intraocular que remove o gel vítreo do interior do olho para tratar diversas condições retinianas. É realizada por meio de três microincisões de 0,5 mm (calibre 25G ou 27G) na esclera, sem necessidade de pontos, com recuperação mais rápida que as técnicas antigas.
+      </p>
+      <h3 class="font-display text-base text-navy mb-3">Indicações da vitrectomia</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        {[
+          'Hemorragia vítrea (sangramento no gel vítreo, frequente na RD proliferativa)',
+          'Descolamento de retina tracional (causado por membranas fibrovasculares em pacientes com RD proliferativa)',
+          'Buraco macular (ruptura na fóvea — taxa de sucesso > 90% com vitrectomia)',
+          'Membrana epirretiniana (membrana que distorce a retina)',
+          'Descolamento de retina regmatogênico complexo',
+          'Endoftalmite (infecção intraocular grave — emergência)',
+          'Luxação de LIO (lente intraocular) para o vítreo',
+          'Corpo estranho intraocular',
+        ].map(item => (
+          <div class="flex items-start gap-2 bg-rose-50 border border-rose-200 rounded-lg p-3">
+            <span class="text-rose-600 mt-0.5 flex-shrink-0">•</span>
+            <span class="font-body text-sm text-foreground">{item}</span>
+          </div>
+        ))}
+      </div>
+      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold">
+        <p class="font-ui text-sm font-bold text-gold mb-2">Meta-análise — JAMA Ophthalmology 2023</p>
+        <p class="font-body text-sm leading-relaxed italic">
+          "Meta-análise publicada no <em>JAMA Ophthalmology</em> em 2023 por McCullough et al. investigou os resultados da vitrectomia pars plana para descolamento de retina tracional diabético, demonstrando que a PPV é eficaz para o re-descolamento da retina, com taxa de sucesso anatômico de 85-90%, embora a visão final pós-operatória seja limitada pela extensão do dano retiniano pré-existente."
+          <span class="not-italic text-gold text-xs ml-1">[8]</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 8 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">8. Descolamento de retina: emergência oftalmológica</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O descolamento de retina é uma <strong>emergência oftalmológica</strong> que ocorre quando a retina se separa da camada pigmentada subjacente (epitélio pigmentado da retina — EPR). Sem tratamento urgente, pode resultar em perda visual permanente, especialmente quando o descolamento atinge a mácula.
+      </p>
+      <div class="bg-red-50 border border-red-200 rounded-xl p-5 mb-6">
+        <p class="font-ui text-sm font-bold text-red-800 mb-3">⚠️ Sintomas de alerta — procure o oftalmologista imediatamente</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {[
+            'Moscas volantes súbitas (floaters): aumento repentino de pontos, fios ou teias na visão',
+            'Flashes de luz (fotopsias): clarões ou relâmpagos na visão periférica',
+            'Sombra ou cortina cobrindo parte do campo visual (sintoma de descolamento já instalado)',
+            'Distorção de imagens retas (metamorfopsia): indica envolvimento macular',
+          ].map(s => (
+            <div class="flex items-start gap-2">
+              <span class="text-red-600 mt-0.5 flex-shrink-0 font-bold">!</span>
+              <span class="font-body text-sm text-foreground">{s}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          ['Regmatogênico', 'Causado por ruptura na retina que permite a entrada de fluido vítreo sob a retina. É o tipo mais comum. Tratamento: vitrectomia ou cerclagem escleral.'],
+          ['Tracional', 'Causado por membranas fibrovasculares que tracionam a retina, comum na RD proliferativa. Tratamento: vitrectomia com remoção das membranas.'],
+          ['Exsudativo', 'Causado por acúmulo de fluido sob a retina sem ruptura, associado a tumores, inflamações ou DMRI exsudativa. Tratamento da causa subjacente.'],
+        ].map(([tipo, desc]) => (
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-rose-800 mb-2">Tipo {tipo}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 9 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">9. Oclusão venosa da retina</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A oclusão venosa da retina (OVR) é causada pelo bloqueio de uma veia retiniana, resultando em hemorragias retinianas, edema macular e, frequentemente, perda visual. É a <strong>segunda doença vascular retiniana mais comum</strong> após a retinopatia diabética, com incidência de 0,5-2% em pessoas acima de 40 anos.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="border border-border/60 rounded-xl p-4">
+          <p class="font-ui text-xs font-bold text-navy mb-2">Oclusão da veia central da retina (OVCR)</p>
+          <p class="font-body text-xs text-foreground leading-relaxed">Bloqueio da veia central da retina, causando hemorragias em todos os 4 quadrantes da retina ("sangue em tempestade"). Pode ser isquêmica (pior prognóstico, risco de neovascularização e glaucoma neovascular) ou não isquêmica.</p>
+        </div>
+        <div class="border border-border/60 rounded-xl p-4">
+          <p class="font-ui text-xs font-bold text-navy mb-2">Oclusão de ramo venoso da retina (ORVR)</p>
+          <p class="font-body text-xs text-foreground leading-relaxed">Bloqueio de um ramo venoso, causando hemorragias em um setor da retina. Geralmente melhor prognóstico que a OVCR. O edema macular é a principal causa de perda visual e responde bem ao tratamento com anti-VEGF.</p>
+        </div>
+      </div>
+      <p class="font-body text-sm text-foreground leading-relaxed">
+        Os principais fatores de risco incluem hipertensão arterial, diabetes, dislipidemia, glaucoma e estados de hipercoagulabilidade. O tratamento com injeções intravítreas anti-VEGF é a primeira linha para o edema macular associado à OVR, com excelentes resultados funcionais — estudos BRAVO e CRUISE demonstraram ganho médio de 18 letras ETDRS com ranibizumabe.
+      </p>
+    </section>
+
+    <!-- SEÇÃO 10 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">10. Monitoramento e exames de retina</h2>
+      </div>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Perfil de paciente</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Frequência recomendada</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Todos os pacientes com diabetes', 'Anualmente, ou com maior frequência se houver retinopatia'],
+              ['Pacientes com miopia alta (> -6,00 D)', 'Anualmente, com mapeamento de retina e pesquisa de degeneração lattice'],
+              ['Pacientes acima de 60 anos', 'Anualmente, para rastreamento de DMRI e outras doenças retinianas'],
+              ['Pacientes com hipertensão arterial não controlada', 'Regularmente, para avaliação de retinopatia hipertensiva'],
+              ['Pacientes com história familiar de descolamento de retina', 'Anualmente, com mapeamento de retina'],
+              ['Pacientes em tratamento com anti-VEGF', 'Conforme protocolo individualizado (mensal a trimestral)'],
+            ].map(([p, f], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-rose-50/50'}>
+                <td class="px-4 py-3 font-semibold text-navy border-b border-border/30 text-sm">{p}</td>
+                <td class="px-4 py-3 text-foreground border-b border-border/30 text-sm">{f}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          ['OCT com Angio-OCT Maestro 2 (Topcon)', 'Avaliação da espessura macular camada por camada, detecção de fluido subretiniano e intrarretiniano, mapeamento da vascularização retiniana sem contraste'],
+          ['Retinografia digital', 'Documentação fotográfica da retina para monitoramento longitudinal e rastreamento de retinopatia diabética'],
+          ['Angiofluoresceinografia (AFG)', 'Avaliação da circulação retiniana com contraste intravenoso — padrão ouro para diagnóstico de NVC e isquemia retiniana'],
+          ['Mapeamento de retina (biomicroscopia indireta)', 'Exame com lente de contato para avaliação da periferia retiniana — essencial para diagnóstico de rupturas e degenerações'],
+        ].map(([e, d]) => (
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-rose-800 mb-1">{e}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 11 FAQ -->
     <section class="mb-10">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Perguntas Frequentes</h2>
+        <h2 class="font-display text-2xl text-navy">11. Perguntas frequentes</h2>
       </div>
       <div class="space-y-4">
         {[
-          { q: 'O que é a injeção intravítrea anti-VEGF?', a: 'A injeção intravítrea é a aplicação de um medicamento (anti-VEGF) diretamente dentro do olho, no vítreo. O procedimento é realizado em consultório com anestesia tópica, dura cerca de 5 minutos e é praticamente indolor. Os anti-VEGFs bloqueiam o fator de crescimento vascular (VEGF), reduzindo o edema macular e os vasos anormais.' },
-          { q: 'Quantas injeções intravítreas são necessárias?', a: 'O número de injeções varia conforme a doença e a resposta ao tratamento. Na fase de indução, geralmente são realizadas 3 injeções mensais consecutivas. Na fase de manutenção, o intervalo é individualizado (mensal, bimestral ou trimestral). Alguns pacientes necessitam de tratamento por anos.' },
-          { q: 'Todo diabético vai ter problemas na retina?', a: 'Não necessariamente. O risco de retinopatia diabética depende do tempo de diabetes, do controle glicêmico (HbA1c) e da pressão arterial. Com controle rigoroso da glicemia e acompanhamento oftalmológico anual, é possível prevenir ou retardar significativamente o desenvolvimento da retinopatia.' },
-          { q: 'O que é DMRI?', a: 'A DMRI (degeneração macular relacionada à idade) é uma doença degenerativa da mácula que afeta principalmente pessoas acima de 60 anos. Causa perda progressiva da visão central. A forma úmida (neovascular) é tratada com injeções anti-VEGF, que podem estabilizar ou melhorar a visão.' },
-        ].map(({ q, a }) => (
-          <details class="group border border-border/50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-background hover:bg-rose-50/50 transition-colors">
+          ['As injeções intravítreas doem?', 'O procedimento é realizado sob anestesia tópica (colírios), sem dor durante a injeção. É comum uma leve sensação de pressão. Após a injeção, pode haver desconforto leve por algumas horas, facilmente controlado com colírios analgésicos. A maioria dos pacientes tolera muito bem o procedimento.'],
+          ['Quantas injeções são necessárias?', 'O número de injeções varia conforme a doença e a resposta ao tratamento. Para DMRI neovascular e edema macular diabético, o protocolo inicial geralmente envolve 3 injeções mensais consecutivas (fase de indução), seguidas de injeções de manutenção com intervalos progressivamente maiores (protocolos treat-and-extend ou pro re nata). O tratamento pode ser necessário por meses a anos.'],
+          ['As injeções intravítreas são seguras?', 'Sim. A complicação mais grave — endoftalmite (infecção intraocular) — ocorre em menos de 0,05% das injeções com técnica asséptica adequada. Estudos de longa duração (CATT, IVAN) confirmam o excelente perfil de segurança sistêmica dos medicamentos anti-VEGF, sem aumento significativo do risco cardiovascular.'],
+          ['O diabetes pode causar cegueira?', 'Sim, se não tratado adequadamente. A retinopatia diabética é a principal causa de cegueira em adultos em idade ativa. No entanto, com rastreamento regular (exame de retina anual) e tratamento precoce (anti-VEGF, laser), a grande maioria dos pacientes preserva a visão funcional ao longo da vida.'],
+          ['Tenho diabetes. Com que frequência devo fazer exame de retina?', 'Pelo menos uma vez por ano. Se houver retinopatia diagnosticada, a frequência pode ser maior (a cada 3-6 meses). Pacientes com diabetes tipo 2 devem realizar o primeiro exame de retina imediatamente após o diagnóstico, pois muitos já têm retinopatia no momento do diagnóstico.'],
+          ['O que são moscas volantes (floaters)?', 'Moscas volantes (floaters) são opacidades no gel vítreo que projetam sombras na retina, percebidas como pontos, fios, teias ou manchas que se movem com o olhar. São comuns com o envelhecimento e geralmente benignas. No entanto, o aumento súbito de floaters, especialmente acompanhado de flashes de luz, pode indicar descolamento de vítreo posterior ou ruptura retiniana — situações que requerem avaliação oftalmológica urgente.'],
+          ['O que é a DMRI e como preveni-la?', 'A degeneração macular relacionada à idade (DMRI) é a principal causa de perda visual em pessoas acima de 60 anos. Não existe prevenção absoluta, mas medidas que reduzem o risco incluem: não fumar (o principal fator de risco modificável), usar óculos de sol com proteção UV, manter dieta rica em vegetais de folhas verdes (luteína e zeaxantina), controlar a pressão arterial e o peso, e realizar exames oftalmológicos anuais após os 50 anos.'],
+          ['Posso dirigir após a injeção intravítrea?', 'Não no mesmo dia. A dilatação pupilar realizada antes do procedimento compromete a visão por algumas horas. Recomenda-se trazer um acompanhante. No dia seguinte, a maioria dos pacientes pode retomar as atividades normais.'],
+        ].map(([q, a]) => (
+          <details class="group border border-border/60 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-white hover:bg-rose-50/50 transition-colors">
               <span class="font-ui text-sm font-semibold text-navy pr-4">{q}</span>
-              <span class="text-gold font-bold text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+              <span class="text-gold text-lg group-open:rotate-45 transition-transform flex-shrink-0">+</span>
             </summary>
             <div class="px-5 py-4 bg-rose-50/30 border-t border-border/30">
               <p class="font-body text-sm text-foreground leading-relaxed">{a}</p>
@@ -171,34 +593,83 @@ const faqSchema = {
       </div>
     </section>
 
+    <!-- CTA INSTITUTO -->
     <section class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Referências Científicas</h2>
-      </div>
-      <div class="bg-gray-50 rounded-xl p-5 space-y-2">
-        {[
-          '[1] Yau JW, et al. Global prevalence and major risk factors of diabetic retinopathy. Diabetes Care. 2012;35(3):556-564.',
-          '[2] Diabetic Retinopathy Clinical Research Network. Aflibercept, bevacizumab, or ranibizumab for diabetic macular edema. N Engl J Med. 2015;372(13):1193-1203.',
-          '[3] Wykoff CC, et al. Efficacy, durability, and safety of intravitreal faricimabe with extended dosing up to every 16 weeks in patients with diabetic macular oedema (YOSEMITE and RHINE). Lancet. 2022;399(10326):741-755.',
-          '[4] Brown DM, et al. Intravitreal Aflibercept for Diabetic Macular Edema: 100-Week Results From the VISTA and VIVID Studies. Ophthalmology. 2015;122(10):2044-2052.',
-          '[5] Heier JS, et al. Intravitreal aflibercept for diabetic macular edema: 148-week results from the VISTA and VIVID studies. Ophthalmology. 2016;123(11):2376-2385.',
-          '[6] Wykoff CC, et al. PANORAMA: Intravitreal Aflibercept for Moderately Severe to Severe Nonproliferative Diabetic Retinopathy. Ophthalmology. 2019;126(8):1181-1190.',
-          '[7] Rosenfeld PJ, et al. Ranibizumab for neovascular age-related macular degeneration. N Engl J Med. 2006;355(14):1419-1431.',
-          '[8] Conselho Brasileiro de Oftalmologia. Diretriz de Retinopatia Diabética. CBO; 2019.',
-        ].map(ref => (
-          <p class="font-body text-xs text-muted-foreground leading-relaxed">{ref}</p>
-        ))}
+      <div class="bg-navy rounded-2xl p-8 text-cream">
+        <h2 class="font-display text-2xl text-cream mb-4">Instituto da Retina — Drudi e Almeida</h2>
+        <p class="font-body text-cream/80 mb-4 text-sm">
+          Dirigido pelo <strong class="text-cream">Dr. Fernando Macei Drudi</strong> (CRM-SP 139.300 | RQE 58.695) — especialista em retina e vítreo pelo HSPE/IAMSPE, com mais de 10 anos de experiência em vitrectomia, injeções intravítreas e laser de retina.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          {[
+            ['🔬 OCT com Angio-OCT Maestro 2 (Topcon)', 'Análise simultânea da estrutura e vascularização retiniana para diagnóstico precoce e monitoramento preciso'],
+            ['💉 Todos os anti-VEGF aprovados', 'Ranibizumabe, aflibercepte, faricimabe, bevacizumabe — protocolos individualizados conforme a doença e resposta'],
+            ['⚡ Laser Argônio Multipoint Vitra 2', 'Tratamento de RD proliferativa com múltiplos pontos simultâneos — mais rápido e confortável'],
+            ['🏥 Vitrectomia completa', 'Cirurgia de retina para casos complexos — hemorragia vítrea, descolamento tracional, buraco macular, membrana epirretiniana'],
+          ].map(([titulo, desc]) => (
+            <div class="bg-white/10 rounded-xl p-4">
+              <p class="font-ui text-sm font-bold text-gold mb-2">{titulo}</p>
+              <p class="font-body text-xs text-cream/80 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            Agendar Consulta pelo WhatsApp
+          </a>
+          <a href="tel:+551150268521" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            (11) 5026-8521
+          </a>
+        </div>
       </div>
     </section>
 
-    <div class="bg-navy rounded-2xl p-8 text-center">
-      <h3 class="font-display text-2xl text-cream mb-3">Baixe o Guia Completo em PDF</h3>
-      <p class="font-body text-cream/70 mb-6 max-w-md mx-auto">13 páginas com diagnóstico, anti-VEGFs, laser e referências científicas completas.</p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a data-ebook-slug="retina" href="#" class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-3.5 rounded-md hover:bg-gold-light transition-colors">⬇ Baixar PDF Grátis</a>
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui font-semibold px-8 py-3.5 rounded-md hover:bg-cream/10 transition-colors">Agendar Consulta</a>
+    <!-- REFERÊNCIAS -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">12. Referências científicas</h2>
+      </div>
+      <div class="bg-gray-50 border border-border/40 rounded-xl p-6">
+        <ol class="space-y-3">
+          {[
+            ['1', 'Zayed MG, Karsan W, Peto T, Saravanan P, Virgili G, Preiss D. Diabetic Retinopathy and Quality of Life: A Systematic Review and Meta-Analysis. JAMA Ophthalmol. 2024.', 'https://doi.org/10.1001/jamaophthalmol.2023.6435'],
+            ['2', 'Fleckenstein M, Schmitz-Valckenberg S, Chakravarthy U. Age-Related Macular Degeneration: A Review. JAMA. 2024;331(2):147-157.', 'https://doi.org/10.1001/jama.2023.26074'],
+            ['3', 'Gross JG, et al. Panretinal Photocoagulation vs Intravitreous Ranibizumab for Proliferative Diabetic Retinopathy: A Randomized Clinical Trial. JAMA. 2015;314(20):2137-2146.', 'https://doi.org/10.1001/jama.2015.15217'],
+            ['4', 'Diabetic Retinopathy Clinical Research Network. Aflibercept, Bevacizumab, or Ranibizumab for Diabetic Macular Edema. N Engl J Med. 2015;372(13):1193-1203.', 'https://doi.org/10.1056/NEJMoa1414264'],
+            ['5', 'Heier JS, et al. Intravitreal Faricimab for Neovascular Age-Related Macular Degeneration (TENAYA and LUCERNE): Two Randomised, Double-Masked, Phase 3, Non-Inferiority Trials. Lancet. 2022;399(10326):729-740.', 'https://doi.org/10.1016/S0140-6736(22)00010-1'],
+            ['6', 'Nichani PAH, et al. Efficacy and Safety of Intravitreal Faricimab in Neovascular AMD, DME, and RVO: A Meta-Analysis. Ophthalmologica. 2024.', 'https://doi.org/10.1159/000541662'],
+            ['7', 'Ngo-Ntjam N, et al. Cardiovascular Adverse Events With Intravitreal Anti-VEGF Drugs: A Systematic Review and Meta-analysis. JAMA Ophthalmol. 2021.', 'https://doi.org/10.1001/jamaophthalmol.2021.0640'],
+            ['8', 'McCullough P, et al. Outcomes and Complications of Pars Plana Vitrectomy for Tractional Retinal Detachment in Diabetes: A Systematic Review. JAMA Ophthalmol. 2023.', 'https://doi.org/10.1001/jamaophthalmol.2022.5817'],
+          ].map(([num, ref, url]) => (
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-navy text-cream font-ui text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{num}</span>
+              <p class="font-body text-xs text-foreground leading-relaxed">
+                {ref}
+                {url && <a href={url} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline ml-1">DOI →</a>}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <p class="font-body text-xs text-muted-foreground mt-6 pt-4 border-t border-border/30 italic">
+          Este guia foi elaborado com base nas melhores evidências científicas disponíveis até abril de 2026. As informações têm caráter educativo e não substituem a consulta médica individualizada. Para diagnóstico e tratamento, consulte um oftalmologista especialista em retina.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA FINAL PDF -->
+    <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6 text-center">
+      <h3 class="font-display text-xl text-navy mb-2">Baixe o guia completo em PDF</h3>
+      <p class="font-body text-sm text-muted-foreground mb-4">20 páginas · 8 referências científicas · Gratuito · Inclui Protocol T (NEJM 2015), PANORAMA e TENAYA/LUCERNE</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a data-ebook-slug="retina" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-navy/90 transition-colors">
+          ⬇ Baixar PDF Grátis
+        </a>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-rose-600 text-white font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-rose-700 transition-colors">
+          💬 Agendar pelo WhatsApp
+        </a>
       </div>
     </div>
+
   </article>
 </BaseLayout>

@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta sobre ceratocone.";
-const PDF_URL = "/ebooks/ebook-ceratocone-drudi-almeida.pdf";
 
 const breadcrumbItems = [
   { name: 'Início', item: 'https://institutodrudiealmeida.com.br/' },
@@ -14,21 +13,12 @@ const breadcrumbItems = [
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  "name": "Ceratocone: Diagnóstico, Crosslinking e Tratamento (2026)",
-  "description": "Guia médico completo sobre ceratocone: diagnóstico com Pentacam, crosslinking (CXL), anel de Ferrara, lentes esclerais e transplante de córnea.",
+  "name": "Guia Completo: Ceratocone — Diagnóstico e Tratamento em São Paulo (2026)",
+  "description": "Guia médico completo sobre ceratocone: causas, diagnóstico por topografia e Pentacam, crosslinking, anel de Ferrara, lentes esclerais e transplante de córnea. 10 referências científicas.",
   "url": "https://institutodrudiealmeida.com.br/guia/ceratocone-tratamento-sp/",
   "dateModified": "2026-04-01",
-  "author": {
-    "@type": "Person",
-    "name": "Dra. Priscilla R. de Almeida",
-    "description": "Especialista em Córnea e Doenças Externas — CBO",
-    "identifier": "CRM-SP"
-  },
-  "publisher": {
-    "@type": "MedicalOrganization",
-    "name": "Drudi e Almeida Clínicas Oftalmológicas",
-    "url": "https://institutodrudiealmeida.com.br"
-  },
+  "author": { "@type": "Person", "name": "Dra. Priscilla R. de Almeida", "description": "Especialista em Córnea, Segmento Anterior e Lentes de Contato — EPM/UNIFESP", "identifier": "CRM-SP 148.173" },
+  "publisher": { "@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas", "url": "https://institutodrudiealmeida.com.br" },
   "medicalAudience": { "@type": "Patient" },
   "about": { "@type": "MedicalCondition", "name": "Ceratocone" }
 };
@@ -37,18 +27,19 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "O ceratocone tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "O ceratocone não tem cura definitiva, mas pode ser estabilizado com crosslinking corneano (CXL), que interrompe a progressão em mais de 90% dos casos. A visão pode ser corrigida com óculos, lentes de contato especiais ou cirurgia (anel de Ferrara, transplante de córnea)." } },
-    { "@type": "Question", "name": "O crosslinking dói?", "acceptedAnswer": { "@type": "Answer", "text": "O procedimento é realizado com anestesia tópica (colírios). Durante o crosslinking, o paciente pode sentir leve desconforto. Nos 3-5 dias seguintes, é comum dor moderada, lacrimejamento e fotofobia, que são controlados com analgésicos e colírios." } },
-    { "@type": "Question", "name": "Qual a diferença entre crosslinking e anel de Ferrara?", "acceptedAnswer": { "@type": "Answer", "text": "O crosslinking (CXL) estabiliza a córnea e interrompe a progressão do ceratocone, mas não melhora significativamente a visão. O anel de Ferrara (ICRS) regulariza a curvatura corneana e melhora a visão, mas não estabiliza a progressão. Frequentemente são usados em combinação." } },
-    { "@type": "Question", "name": "Posso usar óculos com ceratocone?", "acceptedAnswer": { "@type": "Answer", "text": "Nos estágios iniciais, óculos convencionais podem corrigir a visão adequadamente. Com a progressão, a irregularidade corneana torna a correção com óculos insuficiente, sendo necessárias lentes de contato especiais (rígidas, híbridas ou esclerais)." } },
+    { "@type": "Question", "name": "O ceratocone tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "O ceratocone não tem cura no sentido de reversão completa da ectasia já estabelecida. No entanto, o crosslinking (CXL) é capaz de parar a progressão na grande maioria dos casos, e as lentes de contato especiais proporcionam excelente qualidade visual. Em casos avançados, o transplante de córnea oferece resultados visuais muito satisfatórios." } },
+    { "@type": "Question", "name": "O ceratocone causa cegueira?", "acceptedAnswer": { "@type": "Answer", "text": "O ceratocone raramente causa cegueira legal quando tratado adequadamente. Com as opções terapêuticas disponíveis — crosslinking, segmentos intracorneanos, lentes de contato especiais e transplante de córnea — a grande maioria dos pacientes mantém boa acuidade visual ao longo da vida." } },
+    { "@type": "Question", "name": "Posso fazer LASIK se tiver ceratocone?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O LASIK e outras cirurgias refrativas que removem tecido corneano são contraindicados em pacientes com ceratocone, pois podem acelerar drasticamente a progressão da ectasia." } },
+    { "@type": "Question", "name": "O crosslinking dói?", "acceptedAnswer": { "@type": "Answer", "text": "O procedimento é realizado sob anestesia tópica (colírios), sem dor durante a cirurgia. No pós-operatório imediato (primeiros 3-5 dias), é comum desconforto moderado (sensação de areia, lacrimejamento, fotofobia)." } },
+    { "@type": "Question", "name": "O ceratocone é hereditário?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, há componente genético no ceratocone. Aproximadamente 10% dos pacientes têm familiar de primeiro grau afetado. Familiares de pacientes com ceratocone devem realizar exame oftalmológico completo com topografia corneana, especialmente durante a adolescência." } }
   ]
 };
 ---
 
 <BaseLayout
-  title="Ceratocone: Diagnóstico, Crosslinking e Tratamento em SP (2026) | Drudi e Almeida"
-  description="Guia completo sobre ceratocone: diagnóstico com Pentacam, crosslinking (CXL), anel de Ferrara, lentes esclerais e transplante de córnea. 10 referências científicas. Baixe o PDF grátis."
-  keywords="ceratocone São Paulo, crosslinking ceratocone, anel de Ferrara, lente escleral, transplante de córnea, Pentacam ceratocone"
+  title="Guia Completo: Ceratocone — Diagnóstico e Tratamento em São Paulo (2026) | Drudi e Almeida"
+  description="Tudo sobre ceratocone: causas, diagnóstico por topografia e Pentacam, crosslinking, anel de Ferrara, lentes esclerais e transplante de córnea. 10 referências científicas. Baixe o PDF grátis."
+  keywords="ceratocone São Paulo, crosslinking ceratocone SP, anel de Ferrara, lente escleral ceratocone, topografia corneana, transplante córnea SP"
   canonicalPath="/guia/ceratocone-tratamento-sp/"
   breadcrumbItems={breadcrumbItems}
   isArticle={true}
@@ -61,9 +52,9 @@ const faqSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- Hero -->
-  <section class="relative bg-navy py-14 overflow-hidden">
+  <section class="relative bg-navy py-14 md:py-18 overflow-hidden">
     <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-emerald-400 blur-3xl"></div>
+      <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-gold blur-3xl"></div>
     </div>
     <div class="container relative">
       <Breadcrumb items={breadcrumbItems} dark />
@@ -72,12 +63,12 @@ const faqSchema = {
           <span class="font-ui text-xs font-semibold text-emerald-300 tracking-wide">INSTITUTO DO CERATOCONE</span>
         </span>
         <h1 class="font-display text-3xl md:text-4xl text-cream leading-tight mb-4">
-          Ceratocone: Diagnóstico,<br/>
-          <span class="text-gold italic">Crosslinking e Tratamento (2026)</span>
+          Guia Completo: Ceratocone<br/>
+          <span class="text-gold italic">Diagnóstico e Tratamento em São Paulo (2026)</span>
         </h1>
         <p class="font-body text-cream/80 mb-6">
-          Revisão médica: <strong class="text-cream">Dra. Priscilla R. de Almeida</strong><br/>
-          <span class="text-cream/60 text-sm">Especialista em Córnea e Doenças Externas · Atualizado: Abril de 2026</span>
+          Revisão médica: <strong class="text-cream">Dra. Priscilla R. de Almeida</strong> — CRM-SP 148.173 | RQE 59.216<br/>
+          <span class="text-cream/60 text-sm">Especialista em Córnea, Segmento Anterior e Lentes de Contato — EPM/UNIFESP · Atualizado: Abril de 2026 · Leitura: 20 min</span>
         </p>
         <div class="flex flex-wrap gap-3">
           <a data-ebook-slug="ceratocone" href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
@@ -98,7 +89,7 @@ const faqSchema = {
         <span class="text-2xl">📄</span>
         <div>
           <p class="font-ui text-sm font-semibold text-navy">E-book disponível em PDF</p>
-          <p class="font-body text-xs text-muted-foreground">14 páginas · 10 referências científicas · Gratuito</p>
+          <p class="font-body text-xs text-muted-foreground">20 páginas · 10 referências científicas · Gratuito</p>
         </div>
       </div>
       <a data-ebook-slug="ceratocone" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">
@@ -114,16 +105,17 @@ const faqSchema = {
       <h2 class="font-ui text-sm font-bold text-navy mb-4 uppercase tracking-wide">Sumário</h2>
       <ol class="space-y-1.5">
         {[
-          'O que é ceratocone?',
+          'O que é o ceratocone?',
           'Epidemiologia e prevalência',
           'Causas e fatores de risco',
-          'Sintomas e progressão',
-          'Diagnóstico: Pentacam e topografia',
-          'Estadiamento (Amsler-Krumeich)',
-          'Crosslinking corneano (CXL)',
-          'Anel de Ferrara (ICRS)',
+          'Estágios e classificação (Amsler-Krumeich)',
+          'Diagnóstico: topografia e tomografia corneana',
+          'Tratamentos disponíveis',
+          'Crosslinking (CXL): o tratamento que para a progressão',
+          'Anel de Ferrara (segmentos intracorneanos)',
           'Lentes de contato especiais',
           'Transplante de córnea',
+          'Comparativo dos tratamentos',
           'Perguntas frequentes',
           'Referências científicas',
         ].map((item, i) => (
@@ -135,80 +127,482 @@ const faqSchema = {
     </nav>
 
     <!-- Seção 1 -->
-    <section class="mb-10">
+    <section class="mb-10" id="o-que-e">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">1. O que é ceratocone?</h2>
+        <h2 class="font-display text-2xl text-navy">1. O que é o ceratocone?</h2>
       </div>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        O ceratocone é uma <strong>doença progressiva e bilateral da córnea</strong> caracterizada pelo afinamento e protrusão do estroma corneano, que assume uma forma cônica irregular em vez do formato esférico normal. Essa deformidade causa astigmatismo irregular progressivo, miopia e, nos casos avançados, opacificação corneana, comprometendo significativamente a qualidade visual.
+        O ceratocone (do grego <em>keras</em> = córnea + <em>konos</em> = cone) é uma <strong>ectasia corneana progressiva</strong> caracterizada pelo afinamento e protrusão anterior da córnea, que adquire uma forma cônica irregular em vez da curvatura esférica normal. Essa deformação progressiva causa distorção visual crescente, miopia e astigmatismo irregular, que não podem ser corrigidos adequadamente com óculos convencionais.
       </p>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        A palavra "ceratocone" deriva do grego <em>keras</em> (córnea) + <em>konos</em> (cone). A doença acomete principalmente <strong>jovens entre 10 e 30 anos</strong> e, sem tratamento adequado, pode progredir até a necessidade de transplante de córnea.
+        A córnea é a estrutura transparente que recobre a parte anterior do olho e é responsável por aproximadamente <strong>70% do poder refrativo</strong> do sistema óptico ocular. Quando ela perde sua forma esférica regular e assume um formato cônico, a luz que entra no olho é refratada de forma irregular, produzindo imagens distorcidas e múltiplas — um fenômeno chamado de <strong>poliopsia monocular</strong> (visão de imagens duplicadas ou fantasmas com um único olho).
       </p>
-      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-4">
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O ceratocone é tipicamente bilateral, embora frequentemente assimétrico — um olho costuma ser mais afetado do que o outro. A progressão é variável: alguns pacientes permanecem estáveis por décadas, enquanto outros evoluem rapidamente para formas graves que podem exigir transplante de córnea.
+      </p>
+    </section>
+
+    <!-- Seção 2 -->
+    <section class="mb-10" id="epidemiologia">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">2. Epidemiologia e prevalência</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A prevalência global do ceratocone varia amplamente entre os estudos, dependendo dos critérios diagnósticos utilizados e da população estudada. Estimativas tradicionais apontavam para <strong>1 caso em cada 2.000 pessoas</strong> na população geral, mas estudos mais recentes, utilizando topografia corneana de alta resolução, sugerem prevalência significativamente maior — de <strong>1 em 375</strong> a <strong>1 em 500</strong> indivíduos.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        No Brasil, não existem dados epidemiológicos nacionais precisos sobre ceratocone, mas estima-se que a prevalência seja similar à de outros países de clima tropical, onde a exposição ao sol (e o consequente ato de coçar os olhos por alergias oculares) pode ser um fator de risco adicional.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O ceratocone afeta predominantemente <strong>jovens entre 10 e 30 anos</strong>, com início frequente na adolescência e progressão mais rápida nas primeiras décadas de vida. A doença tende a se estabilizar por volta dos 30 a 40 anos, embora casos de progressão tardia sejam descritos. Homens e mulheres são afetados de forma aproximadamente igual.
+      </p>
+    </section>
+
+    <!-- Seção 3 -->
+    <section class="mb-10" id="causas">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">3. Causas e fatores de risco</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A etiologia do ceratocone é multifatorial, envolvendo predisposição genética e fatores ambientais.
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Fatores genéticos</h3>
+      <div class="space-y-3 mb-6">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-navy mb-1">🧬 História familiar</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">Aproximadamente 10% dos pacientes com ceratocone têm um familiar de primeiro grau afetado. Múltiplos genes foram associados ao ceratocone, incluindo variantes nos genes VSX1, SOD1, DOCK9, TGFBI e LOX (lisil oxidase), este último envolvido na síntese de colágeno corneano.</p>
+        </div>
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-navy mb-1">🔬 Síndromes genéticas associadas</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">Síndrome de Down (trissomia 21), síndrome de Marfan, síndrome de Ehlers-Danlos, síndrome de Turner e osteogênese imperfeita apresentam maior prevalência de ceratocone.</p>
+        </div>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Fatores ambientais e comportamentais</h3>
+      <div class="space-y-3 mb-6">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">👁️ Coçar os olhos (eye rubbing) — Fator de risco mais importante</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">É considerado o fator de risco modificável mais importante para o desenvolvimento e progressão do ceratocone. O trauma mecânico repetitivo causado pelo ato de coçar os olhos com força pode danificar as fibras de colágeno corneano e acelerar a ectasia. Pacientes com ceratocone devem ser <strong>orientados enfaticamente a não coçar os olhos</strong>.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">🌿 Alergias oculares</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">A conjuntivite alérgica e o ceratoconjuntivite atópica estão fortemente associados ao ceratocone, provavelmente pelo mecanismo de coçar os olhos. O tratamento adequado das alergias oculares é parte fundamental do manejo do ceratocone.</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-amber-800 mb-1">☀️ Exposição à luz ultravioleta</p>
+          <p class="font-body text-sm text-foreground leading-relaxed">A radiação UV pode degradar as fibras de colágeno corneano, contribuindo para o enfraquecimento estromal característico do ceratocone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4 -->
+    <section class="mb-10" id="classificacao">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">4. Estágios e classificação (Amsler-Krumeich)</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A classificação de Amsler-Krumeich, baseada em parâmetros topográficos, refrativos e biomicroscópicos, é a mais utilizada clinicamente para estadiar o ceratocone e orientar as decisões terapêuticas:
+      </p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Estágio</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Curvatura máx. (K)</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Equiv. esférico</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Acuidade visual</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Achados</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['I (Leve)', '< 48 D', '< -5,00 D', '> 20/40', 'Sem cicatrizes; estrias de Vogt possíveis'],
+              ['II (Moderado)', '48–53 D', '-5,00 a -8,00 D', '≥ 20/100', 'Sem cicatrizes; anel de Fleischer possível'],
+              ['III (Avançado)', '53–55 D', '> -8,00 D', '≥ 20/400', 'Sem cicatrizes; espessura central ≥ 200 µm'],
+              ['IV (Grave)', '> 55 D', 'Não mensurável', '< 20/400', 'Cicatrizes corneanas; espessura < 200 µm'],
+            ].map(([est, k, eq, av, ach], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-emerald-50/50'}>
+                <td class="px-3 py-3 font-semibold text-navy border-b border-border/30 text-xs">{est}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{k}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{eq}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{av}</td>
+                <td class="px-3 py-3 text-muted-foreground border-b border-border/30 text-xs">{ach}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="font-body text-sm text-muted-foreground italic">Classificações mais modernas, como o sistema ABCD (baseado no Pentacam), incorporam parâmetros tomográficos adicionais e são cada vez mais utilizadas na prática clínica especializada.</p>
+    </section>
+
+    <!-- Seção 5 -->
+    <section class="mb-10" id="diagnostico">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">5. Diagnóstico: topografia e tomografia corneana</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O diagnóstico precoce do ceratocone é fundamental para iniciar o tratamento antes que a progressão cause dano visual irreversível.
+      </p>
+      <div class="space-y-4">
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">Topografia corneana</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">A topografia corneana por videoceratoscopia de Plácido mapeia a curvatura da superfície anterior da córnea e é o exame de triagem mais utilizado. Padrões topográficos característicos do ceratocone incluem:</p>
+            <ul class="space-y-1">
+              {[
+                'Aumento focal da curvatura (protuberância inferior ou paracentral)',
+                'Assimetria entre os hemisférios superior e inferior',
+                'Inclinação do eixo do astigmatismo',
+                'Índices de irregularidade elevados (índice de superfície de regularidade — SRI; índice de acuidade superficial — SAI)',
+              ].map(item => (
+                <li class="flex items-start gap-2 font-body text-xs text-foreground">
+                  <span class="text-gold mt-1">•</span><span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">Tomografia corneana — Pentacam AXL (padrão-ouro)</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">A tomografia corneana por câmera de Scheimpflug (Pentacam AXL, Oculus) é o exame padrão-ouro para o diagnóstico e monitoramento do ceratocone. Avalia:</p>
+            <ul class="space-y-1 mb-3">
+              {[
+                'Curvatura corneana anterior e posterior — o aumento da curvatura posterior é frequentemente o primeiro sinal de ceratocone subclínico (forme fruste)',
+                'Espessura corneana (paquimetria) — o afinamento progressivo, especialmente no ápice do cone, é um marcador de progressão',
+                'Elevação corneana — mapas de elevação anterior e posterior em relação a uma esfera de referência',
+                'Índices de ceratocone — o índice de Belin/Ambrosio (BAD-D) e o índice de ceratocone do Pentacam (KI) têm alta sensibilidade e especificidade para o diagnóstico precoce',
+              ].map(item => (
+                <li class="flex items-start gap-2 font-body text-xs text-foreground">
+                  <span class="text-gold mt-1">•</span><span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+              <p class="font-body text-xs text-foreground"><strong>Na Drudi e Almeida:</strong> Utilizamos o Pentacam AXL (Oculus) — o sistema de tomografia corneana mais avançado disponível — para diagnóstico, estadiamento e monitoramento da progressão do ceratocone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 6 -->
+    <section class="mb-10" id="tratamentos">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">6. Tratamentos disponíveis</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O manejo do ceratocone é <strong>escalonado e personalizado</strong> de acordo com o estágio da doença, a velocidade de progressão e as necessidades visuais do paciente. A estratégia terapêutica atual segue uma lógica de três pilares:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          ['1. Parar a progressão', 'Crosslinking (CXL)', 'bg-emerald-50 border-emerald-300'],
+          ['2. Melhorar a forma da córnea', 'Anel de Ferrara (segmentos intracorneanos)', 'bg-blue-50 border-blue-300'],
+          ['3. Otimizar a visão', 'Lentes de contato especiais ou transplante de córnea', 'bg-amber-50 border-amber-300'],
+        ].map(([passo, desc, cls]) => (
+          <div class={`border rounded-xl p-4 ${cls}`}>
+            <p class="font-ui text-sm font-bold text-navy mb-2">{passo}</p>
+            <p class="font-body text-xs text-foreground">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Seção 7 -->
+    <section class="mb-10" id="crosslinking">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">7. Crosslinking (CXL): o tratamento que para a progressão</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O crosslinking de colágeno corneano (CXL) é o único tratamento comprovado capaz de <strong>interromper a progressão do ceratocone</strong>. O procedimento consiste na aplicação de riboflavina (vitamina B2) na córnea, seguida de irradiação com luz ultravioleta-A (UVA) de comprimento de onda 370 nm. A reação fotoquímica resultante cria novas ligações covalentes entre as fibras de colágeno do estroma corneano, aumentando significativamente a rigidez e a resistência biomecânica da córnea.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O CXL foi desenvolvido pelo Prof. Theo Seiler e colaboradores na Universidade de Dresden, Alemanha, no final da década de 1990, e representa um dos maiores avanços no tratamento do ceratocone das últimas décadas.
+      </p>
+      <h3 class="font-display text-lg text-navy mb-3">Evidência científica</h3>
+      <div class="space-y-3 mb-6">
+        <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold">
+          <p class="font-body text-sm leading-relaxed italic">
+            "Ensaio clínico randomizado e controlado publicado no <em>Ophthalmology</em> em 2014 por Wittig-Silva et al. demonstrou que o CXL interrompe efetivamente a progressão do ceratocone em 3 anos de acompanhamento, com melhora significativa da acuidade visual corrigida e redução da curvatura máxima no grupo tratado."
+            <span class="not-italic text-gold text-xs ml-1">[1]</span>
+          </p>
+        </div>
+        <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold">
+          <p class="font-body text-sm leading-relaxed italic">
+            "Meta-análise publicada no <em>Investigative Ophthalmology & Visual Science</em> em 2018 por Wen et al. concluiu que tanto o CXL padrão quanto o acelerado são eficazes na estabilização do ceratocone, embora o CXL padrão possa ter efeito ligeiramente superior na aplanação corneana."
+            <span class="not-italic text-gold text-xs ml-1">[2]</span>
+          </p>
+        </div>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Protocolos de CXL</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Protocolo</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Irradiância</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Tempo</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Dose total</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Observações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Dresden (padrão)', '3 mW/cm²', '30 min', '5,4 J/cm²', 'Protocolo original, maior evidência'],
+              ['Acelerado', '9-45 mW/cm²', '3-10 min', '5,4 J/cm²', 'Menor tempo, evidência crescente'],
+              ['Epitélio-off (padrão)', 'Variável', 'Variável', '5,4 J/cm²', 'Remoção do epitélio; maior penetração'],
+              ['Epitélio-on (transepitelial)', 'Variável', 'Variável', '5,4 J/cm²', 'Sem remoção do epitélio; recuperação mais rápida'],
+            ].map(([p, ir, t, d, obs], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-emerald-50/50'}>
+                <td class="px-3 py-3 font-semibold text-navy border-b border-border/30 text-xs">{p}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{ir}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{t}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{d}</td>
+                <td class="px-3 py-3 text-muted-foreground border-b border-border/30 text-xs">{obs}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Indicações e contraindicações</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-emerald-800 mb-2">✓ Indicações</p>
+          <ul class="space-y-1">
+            {[
+              'Ceratocone progressivo documentado (aumento de ≥ 1 D na curvatura máxima em 12 meses)',
+              'Ceratocone em estágios I a III (Amsler-Krumeich)',
+              'Espessura corneana mínima ≥ 400 µm no ponto mais fino',
+              'Pacientes jovens com ceratocone recém-diagnosticado',
+            ].map(item => (
+              <li class="flex items-start gap-2 font-body text-xs text-foreground">
+                <span class="text-emerald-600 mt-0.5">•</span><span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+          <p class="font-ui text-sm font-bold text-red-800 mb-2">✗ Contraindicações</p>
+          <ul class="space-y-1">
+            {[
+              'Espessura corneana < 400 µm no ponto mais fino (risco de dano ao endotélio)',
+              'Ceratocone estágio IV com cicatrizes corneanas densas',
+              'Infecção ocular ativa',
+              'Gravidez e amamentação',
+            ].map(item => (
+              <li class="flex items-start gap-2 font-body text-xs text-foreground">
+                <span class="text-red-600 mt-0.5">•</span><span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <h3 class="font-display text-lg text-navy mb-3">Recuperação após o CXL</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Período</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">O que esperar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Primeiros 3-5 dias', 'Desconforto moderado (sensação de areia, lacrimejamento, fotofobia), uso de lente terapêutica e colírios antibióticos e anti-inflamatórios'],
+              ['1-4 semanas', 'Reepitelização completa, melhora progressiva do desconforto'],
+              ['3-6 meses', 'Possível piora transitória da acuidade visual (edema estromal pós-CXL)'],
+              ['6-12 meses', 'Estabilização e frequente melhora da acuidade visual e da curvatura corneana'],
+              ['Acompanhamento', 'Topografias seriadas a cada 6-12 meses para monitorar a estabilização'],
+            ].map(([p, e], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-emerald-50/50'}>
+                <td class="px-4 py-3 font-semibold text-navy border-b border-border/30 text-xs">{p}</td>
+                <td class="px-4 py-3 text-foreground border-b border-border/30 text-xs">{e}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Seção 8 -->
+    <section class="mb-10" id="anel-de-ferrara">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">8. Anel de Ferrara (segmentos intracorneanos)</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        Os segmentos de anel intracorneano (ICRS), popularmente conhecidos como <strong>Anel de Ferrara</strong> (em homenagem ao oftalmologista brasileiro Paulo Ferrara, que desenvolveu o modelo mais utilizado no Brasil), são pequenos arcos de polimetilmetacrilato (PMMA) implantados no estroma corneano periférico para regularizar a curvatura da córnea ectásica.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O mecanismo de ação baseia-se no <strong>efeito de encurtamento do arco</strong>: os segmentos, ao serem inseridos no estroma periférico, achatam a córnea central, reduzindo a curvatura e o astigmatismo irregular. O resultado é uma melhora da qualidade óptica e da acuidade visual, especialmente com lentes de contato.
+      </p>
+      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-6">
         <p class="font-body text-sm leading-relaxed italic">
-          "Estudo de coorte publicado no <em>British Journal of Ophthalmology</em> em 2023 por Santodomingo-Rubido et al. demonstrou que o crosslinking corneano (CXL) interrompe a progressão do ceratocone em mais de 90% dos casos tratados precocemente, com estabilização mantida por até 10 anos de acompanhamento."
+          "Estudo de acompanhamento de 10 anos publicado no <em>Journal of Refractive Surgery</em> em 2014 por Torquetti et al. demonstrou resultados visuais e topográficos estáveis a longo prazo após o implante de segmentos intracorneanos em pacientes com ceratocone, com melhora significativa na acuidade visual corrigida e não corrigida."
           <span class="not-italic text-gold text-xs ml-1">[3]</span>
         </p>
       </div>
+      <h3 class="font-display text-lg text-navy mb-3">Indicações</h3>
+      <ul class="space-y-2 mb-4">
+        {[
+          'Ceratocone moderado (estágios II-III) com intolerância a lentes de contato',
+          'Pacientes que desejam melhorar a tolerância e o resultado visual com lentes de contato',
+          'Casos em que o crosslinking já foi realizado e a visão permanece insatisfatória',
+          'Frequentemente combinados com CXL (CXL + ICRS no mesmo ato ou sequencial)',
+        ].map(item => (
+          <li class="flex items-start gap-2 font-body text-sm text-foreground">
+            <span class="text-gold mt-1">•</span><span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </section>
 
-    <!-- Seção 7 — Crosslinking -->
-    <section class="mb-10">
+    <!-- Seção 9 -->
+    <section class="mb-10" id="lentes-de-contato">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">7. Crosslinking Corneano (CXL)</h2>
+        <h2 class="font-display text-2xl text-navy">9. Lentes de contato especiais</h2>
       </div>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        O crosslinking corneano (CXL) é o <strong>único tratamento comprovado para interromper a progressão do ceratocone</strong>. O procedimento utiliza riboflavina (vitamina B2) instilada na córnea associada à irradiação com luz ultravioleta A (UVA), criando novas ligações covalentes entre as fibras de colágeno corneano, aumentando a rigidez e resistência biomecânica da córnea.
+        Para a maioria dos pacientes com ceratocone, as lentes de contato especiais são a principal estratégia para otimizar a visão, pois criam uma nova superfície óptica regular sobre a córnea irregular. Revisão publicada no <em>Clinical and Experimental Optometry</em> em 2015 por Downie e Lindsay destaca que a adaptação de lentes de contato é o pilar do manejo visual do ceratocone em todos os estágios.<sup class="text-gold font-semibold">[6]</sup>
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
-          <h3 class="font-ui text-sm font-bold text-navy mb-3">CXL Epitelial OFF (padrão)</h3>
-          <ul class="space-y-2">
-            {['Remoção do epitélio corneano (8-9mm)', 'Instilação de riboflavina por 30 min', 'Irradiação UVA 3 mW/cm² por 30 min', 'Lente de contato terapêutica por 5 dias', 'Recuperação: 5-7 dias'].map(item => (
-              <li class="font-body text-xs text-foreground flex items-start gap-1.5">
-                <span class="text-emerald-600 font-bold mt-0.5">✓</span>{item}
-              </li>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Tipo</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Indicação</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Vantagens</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Desvantagens</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['RGP (rígida gás-permeável)', 'Ceratocone leve a moderado', 'Boa acuidade visual, durável, baixo custo', 'Período de adaptação, desconforto inicial'],
+              ['Híbrida', 'Ceratocone moderado', 'Conforto de lente mole + óptica de RGP', 'Custo elevado, adaptação complexa'],
+              ['Escleral', 'Ceratocone moderado a avançado', 'Máximo conforto, excelente óptica, cobre irregularidades', 'Custo elevado, manipulação complexa'],
+              ['Piggyback', 'Ceratocone avançado com intolerância a RGP', 'Conforto melhorado', 'Necessita duas lentes'],
+            ].map(([tipo, ind, van, des], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-emerald-50/50'}>
+                <td class="px-3 py-3 font-semibold text-navy border-b border-border/30 text-xs">{tipo}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{ind}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{van}</td>
+                <td class="px-3 py-3 text-muted-foreground border-b border-border/30 text-xs">{des}</td>
+              </tr>
             ))}
-          </ul>
-        </div>
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
-          <h3 class="font-ui text-sm font-bold text-navy mb-3">CXL Epitelial ON (transepitelial)</h3>
-          <ul class="space-y-2">
-            {['Epitélio preservado', 'Riboflavina com penetrantes especiais', 'Menor desconforto pós-operatório', 'Recuperação mais rápida', 'Eficácia ligeiramente inferior ao OFF'].map(item => (
-              <li class="font-body text-xs text-foreground flex items-start gap-1.5">
-                <span class="text-blue-600 font-bold mt-0.5">✓</span>{item}
-              </li>
-            ))}
-          </ul>
-        </div>
+          </tbody>
+        </table>
       </div>
-      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <p class="font-body text-sm text-foreground">
-          <strong class="text-navy">Indicação:</strong> Ceratocone com progressão documentada (aumento de ≥1,0 D de K máximo em 12 meses, ou aumento de ≥0,5 D em 6 meses), córnea com espessura mínima de 400 µm e paciente com 35 anos ou menos. O CXL é mais eficaz nos estágios iniciais (Amsler-Krumeich I e II).
-        </p>
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+        <p class="font-body text-sm text-foreground"><strong>Na Drudi e Almeida:</strong> A Dra. Priscilla de Almeida, especialista em córnea e lentes de contato pela EPM/UNIFESP, realiza adaptações de lentes RGP, híbridas e esclerais para pacientes com ceratocone, utilizando o Pentacam AXL para planejamento preciso.</p>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="mb-10">
+    <!-- Seção 10 -->
+    <section class="mb-10" id="transplante">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">10. Transplante de córnea</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O transplante de córnea é reservado para casos avançados de ceratocone (estágio IV) com cicatrizes corneanas densas que comprometem a visão, intolerância a todas as opções de lentes de contato ou falha dos tratamentos anteriores. Representa a última linha de tratamento, mas com excelentes resultados em centros especializados.
+      </p>
+      <div class="space-y-4">
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">Ceratoplastia Lamelar Anterior Profunda (DALK) — Técnica preferencial</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed mb-3">A DALK é a técnica preferencial para o transplante de córnea no ceratocone, pois remove apenas as camadas anteriores da córnea (epitélio, estroma) preservando o endotélio do receptor. As vantagens incluem:</p>
+            <ul class="space-y-1 mb-3">
+              {[
+                'Menor risco de rejeição (o endotélio do receptor é preservado)',
+                'Maior longevidade do enxerto',
+                'Possibilidade de tratar complicações sem comprometer o endotélio',
+              ].map(item => (
+                <li class="flex items-start gap-2 font-body text-xs text-foreground">
+                  <span class="text-emerald-600 mt-0.5">✓</span><span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="font-body text-xs text-muted-foreground italic">Meta-análise de grande escala publicada em 2025 por Awad et al., analisando 27.018 olhos, confirmou que a PK está associada a maior risco de complicações e rejeição, reforçando a preferência pela DALK quando tecnicamente viável. [10]</p>
+          </div>
+        </div>
+        <div class="border border-border/60 rounded-xl overflow-hidden">
+          <div class="bg-navy px-5 py-3"><h3 class="font-display text-base text-cream">Ceratoplastia Penetrante (PK)</h3></div>
+          <div class="p-5">
+            <p class="font-body text-sm text-foreground leading-relaxed">A PK (transplante de córnea total) ainda é utilizada em casos em que a DALK não é tecnicamente possível, como ceratocone com hidrops agudo ou cicatrizes que atingem o endotélio. Os resultados visuais são excelentes, mas o risco de rejeição é maior e o acompanhamento deve ser mais rigoroso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 11 -->
+    <section class="mb-10" id="comparativo">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">11. Comparativo dos tratamentos</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Tratamento</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Objetivo</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Estágio indicado</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Reverte dano?</th>
+              <th class="px-3 py-3 text-left font-ui font-semibold border-b-2 border-gold">Permanente?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Crosslinking (CXL)', 'Parar progressão', 'I-III', 'Não (estabiliza)', 'Sim'],
+              ['Anel de Ferrara', 'Melhorar forma corneana', 'II-III', 'Parcialmente', 'Reversível'],
+              ['Lentes RGP', 'Otimizar visão', 'I-III', 'Não', 'Não'],
+              ['Lentes esclerais', 'Otimizar visão', 'II-IV', 'Não', 'Não'],
+              ['DALK', 'Substituir córnea', 'III-IV', 'Sim (cicatrizes)', 'Sim'],
+              ['PK', 'Substituir córnea', 'IV', 'Sim', 'Sim'],
+            ].map(([t, o, e, r, p], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-emerald-50/50'}>
+                <td class="px-3 py-3 font-semibold text-navy border-b border-border/30 text-xs">{t}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{o}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{e}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{r}</td>
+                <td class="px-3 py-3 text-foreground border-b border-border/30 text-xs">{p}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Seção 12: FAQ -->
+    <section class="mb-10" id="faq">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">11. Perguntas Frequentes</h2>
+        <h2 class="font-display text-2xl text-navy">12. Perguntas frequentes</h2>
       </div>
       <div class="space-y-4">
         {[
-          { q: 'O ceratocone tem cura?', a: 'O ceratocone não tem cura definitiva, mas pode ser estabilizado com crosslinking corneano (CXL), que interrompe a progressão em mais de 90% dos casos. A visão pode ser corrigida com óculos, lentes de contato especiais ou cirurgia (anel de Ferrara, transplante de córnea).' },
-          { q: 'O crosslinking dói?', a: 'O procedimento é realizado com anestesia tópica (colírios). Durante o crosslinking, o paciente pode sentir leve desconforto. Nos 3-5 dias seguintes, é comum dor moderada, lacrimejamento e fotofobia, que são controlados com analgésicos e colírios.' },
-          { q: 'Qual a diferença entre crosslinking e anel de Ferrara?', a: 'O crosslinking (CXL) estabiliza a córnea e interrompe a progressão do ceratocone, mas não melhora significativamente a visão. O anel de Ferrara (ICRS) regulariza a curvatura corneana e melhora a visão, mas não estabiliza a progressão. Frequentemente são usados em combinação.' },
-          { q: 'Posso usar óculos com ceratocone?', a: 'Nos estágios iniciais, óculos convencionais podem corrigir a visão adequadamente. Com a progressão, a irregularidade corneana torna a correção com óculos insuficiente, sendo necessárias lentes de contato especiais (rígidas, híbridas ou esclerais).' },
-        ].map(({ q, a }) => (
-          <details class="group border border-border/50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-background hover:bg-emerald-50/50 transition-colors">
+          ['O ceratocone tem cura?', 'O ceratocone não tem cura no sentido de reversão completa da ectasia já estabelecida. No entanto, o crosslinking (CXL) é capaz de parar a progressão na grande maioria dos casos, e as lentes de contato especiais proporcionam excelente qualidade visual. Em casos avançados, o transplante de córnea oferece resultados visuais muito satisfatórios.'],
+          ['O ceratocone causa cegueira?', 'O ceratocone raramente causa cegueira legal quando tratado adequadamente. Com as opções terapêuticas disponíveis hoje — crosslinking, segmentos intracorneanos, lentes de contato especiais e transplante de córnea — a grande maioria dos pacientes mantém boa acuidade visual ao longo da vida.'],
+          ['Com que idade o ceratocone para de progredir?', 'A progressão do ceratocone tende a se estabilizar naturalmente por volta dos 30 a 40 anos. No entanto, essa estabilização não é garantida e pode ocorrer mais cedo ou mais tarde. O crosslinking é recomendado para pacientes com progressão documentada, independentemente da idade.'],
+          ['Posso usar óculos para ceratocone?', 'Nos estágios iniciais, os óculos podem corrigir parcialmente a miopia e o astigmatismo. Porém, com a progressão da doença, o astigmatismo irregular torna-se impossível de corrigir adequadamente com óculos, e as lentes de contato especiais (RGP, esclerais) tornam-se necessárias para otimizar a visão.'],
+          ['O crosslinking dói?', 'O procedimento é realizado sob anestesia tópica (colírios), sem dor durante a cirurgia. No pós-operatório imediato (primeiros 3-5 dias), é comum desconforto moderado (sensação de areia, lacrimejamento, fotofobia), que é controlado com colírios e analgésicos orais.'],
+          ['Posso fazer crosslinking nos dois olhos no mesmo dia?', 'Sim, o CXL bilateral simultâneo é realizado em muitos centros especializados, especialmente quando ambos os olhos apresentam progressão. A decisão é individualizada e discutida com o paciente.'],
+          ['Quanto tempo dura o efeito do crosslinking?', 'Os estudos de longo prazo disponíveis demonstram estabilidade por pelo menos 10 anos após o CXL. Acredita-se que o efeito seja permanente, embora casos raros de progressão tardia após o CXL tenham sido descritos.'],
+          ['O ceratocone é hereditário?', 'Sim, há componente genético no ceratocone. Aproximadamente 10% dos pacientes têm familiar de primeiro grau afetado. Familiares de pacientes com ceratocone devem realizar exame oftalmológico completo com topografia corneana, especialmente durante a adolescência.'],
+          ['Posso fazer cirurgia refrativa (LASIK) se tiver ceratocone?', 'Não. O LASIK e outras cirurgias refrativas que removem tecido corneano são contraindicados em pacientes com ceratocone, pois podem acelerar drasticamente a progressão da ectasia. Pacientes com ceratocone subclínico (forma fruste) também não são candidatos ao LASIK.'],
+          ['Qual a diferença entre ceratocone e astigmatismo comum?', 'O astigmatismo comum é causado por uma curvatura irregular da córnea que permanece estável ao longo da vida e pode ser corrigido com óculos ou lentes de contato convencionais. O ceratocone é uma doença progressiva que causa afinamento e protrusão da córnea, gerando astigmatismo irregular crescente que não pode ser corrigido adequadamente com óculos.'],
+        ].map(([q, a]) => (
+          <details class="group border border-border/60 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-white hover:bg-emerald-50/50 transition-colors">
               <span class="font-ui text-sm font-semibold text-navy pr-4">{q}</span>
-              <span class="text-gold font-bold text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+              <span class="text-gold text-lg group-open:rotate-45 transition-transform flex-shrink-0">+</span>
             </summary>
             <div class="px-5 py-4 bg-emerald-50/30 border-t border-border/30">
               <p class="font-body text-sm text-foreground leading-relaxed">{a}</p>
@@ -218,42 +612,79 @@ const faqSchema = {
       </div>
     </section>
 
-    <!-- Referências -->
+    <!-- CTA Drudi -->
     <section class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Referências Científicas</h2>
-      </div>
-      <div class="bg-gray-50 rounded-xl p-5 space-y-2">
-        {[
-          '[1] Gomes JAP, et al. Global consensus on keratoconus and ectatic diseases. Cornea. 2015;34(4):359-369.',
-          '[2] Rabinowitz YS. Keratoconus. Surv Ophthalmol. 1998;42(4):297-319.',
-          '[3] Santodomingo-Rubido J, et al. Keratoconus: an updated review. Clin Exp Optom. 2022;105(3):237-251.',
-          '[4] Wollensak G, Spoerl E, Seiler T. Riboflavin/ultraviolet-A-induced collagen crosslinking for the treatment of keratoconus. Am J Ophthalmol. 2003;135(5):620-627.',
-          '[5] Hersh PS, et al. United States multicenter clinical trial of corneal collagen crosslinking for keratoconus treatment. Ophthalmology. 2017;124(9):1259-1270.',
-          '[6] Ferrara P, Torquetti L. Clinical outcomes after implantation of a new intrastromal corneal ring design. J Cataract Refract Surg. 2009;35(9):1605-1614.',
-          '[7] Pecego M, et al. Intrastromal Corneal Ring Segments for Keratoconus: A Systematic Review. Cornea. 2012.',
-          '[8] Barnett M, Mannis MJ. Contact lenses in the management of keratoconus. Cornea. 2011;30(12):1385-1389.',
-          '[9] Pramanik S, et al. Long-term effects of rigid contact lens wear on corneal morphology. Eye Contact Lens. 2006.',
-          '[10] Tan DT, et al. Corneal transplantation. Lancet. 2012;379(9827):1749-1761.',
-        ].map(ref => (
-          <p class="font-body text-xs text-muted-foreground leading-relaxed">{ref}</p>
-        ))}
+      <div class="bg-navy rounded-2xl p-8 text-cream">
+        <h2 class="font-display text-2xl text-cream mb-4">Por que escolher a Drudi e Almeida para o tratamento do ceratocone?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          {[
+            ['👩‍⚕️ Dra. Priscilla R. de Almeida', 'CRM-SP 148.173 | RQE 59.216 — Especialista em córnea e segmento anterior pela EPM/UNIFESP, com fellowship em córnea e lentes de contato especiais, vasta experiência em crosslinking, anel de Ferrara e adaptação de lentes esclerais'],
+            ['🔬 Pentacam AXL', 'Tomografia corneana de última geração (Oculus) para diagnóstico precoce e monitoramento preciso da progressão do ceratocone'],
+            ['⚡ Crosslinking (CXL)', 'Protocolo epitélio-off e epitélio-on, com equipamento de última geração para estabilização definitiva'],
+            ['🔭 Lentes especiais', 'Adaptação de lentes RGP, híbridas e esclerais com planejamento baseado em topografia e tomografia corneana'],
+          ].map(([titulo, desc]) => (
+            <div class="bg-white/10 rounded-xl p-4">
+              <p class="font-ui text-sm font-bold text-gold mb-2">{titulo}</p>
+              <p class="font-body text-xs text-cream/80 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            Agendar Consulta pelo WhatsApp
+          </a>
+          <a href="tel:+551150268521" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            (11) 5026-8521
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Download CTA -->
-    <div class="bg-navy rounded-2xl p-8 text-center">
-      <h3 class="font-display text-2xl text-cream mb-3">Baixe o Guia Completo em PDF</h3>
-      <p class="font-body text-cream/70 mb-6 max-w-md mx-auto">
-        14 páginas com diagnóstico, estadiamento, tratamentos e referências científicas completas.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a data-ebook-slug="ceratocone" href="#" class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-3.5 rounded-md hover:bg-gold-light transition-colors">
+    <!-- Referências -->
+    <section class="mb-10" id="referencias">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">13. Referências científicas</h2>
+      </div>
+      <div class="bg-gray-50 border border-border/40 rounded-xl p-6">
+        <ol class="space-y-3">
+          {[
+            ['1', 'Wittig-Silva C, Chan E, Islam F, Wu T, Whiting M, Snibson GR. A randomized, controlled trial of corneal collagen cross-linking in progressive keratoconus: three-year results. Ophthalmology. 2014;121(4):812-821.', 'https://doi.org/10.1016/j.ophtha.2013.10.028'],
+            ['2', 'Wen D, Li Q, Song B, Tu R, Wang Q, O\'Brart D, et al. Comparison of standard versus accelerated corneal collagen cross-linking for keratoconus: a meta-analysis. Invest Ophthalmol Vis Sci. 2018;59(10):3920-3931.', 'https://doi.org/10.1167/iovs.18-24656'],
+            ['3', 'Torquetti L, Ferrara G, Almeida F, Cunha L, Araujo L, Machado A, et al. Intrastromal corneal ring segments implantation in patients with keratoconus: 10-year follow-up. J Refract Surg. 2014;30(1):22-26.', ''],
+            ['4', 'Vega-Estrada A, Alió JL, Brenner LF, Burguera N. Outcomes of intrastromal corneal ring segments for treatment of keratoconus: five-year follow-up analysis. J Cataract Refract Surg. 2013;39(8):1234-1240.', ''],
+            ['5', 'Vega-Estrada A, Alió JL, Plaza-Puche AB. Keratoconus progression after intrastromal corneal ring segment implantation in young patients: five-year follow-up. J Cataract Refract Surg. 2015;41(6):1145-1152.', 'https://doi.org/10.1016/j.jcrs.2014.08.045'],
+            ['6', 'Downie LE, Lindsay RG. Contact lens management of keratoconus. Clin Exp Optom. 2015;98(4):299-311.', ''],
+            ['7', 'Wu Y, Tan Q, Zhang W, Wang J, Yang B, Ma W, et al. Rigid gas-permeable contact lens related life quality in keratoconic patients with different grades of severity. Clin Exp Optom. 2015;98(2):150-154.', 'https://doi.org/10.1111/cxo.12237'],
+            ['8', 'Rathi VM, Mandathara PS, Taneja M, Dumpati S, Sangwan VS. Scleral lens for keratoconus: technology update. Clin Ophthalmol. 2015;9:2013-2018.', ''],
+            ['9', 'Song Y, et al. Systematic Review and Meta-Analysis of Clinical Outcomes of Penetrating Keratoplasty Versus Deep Anterior Lamellar Keratoplasty for Keratoconus. PubMed. 2020. PMID: 31724924.', ''],
+            ['10', 'Awad AA, et al. A Systematic Review and Meta-Analysis of 27018 Eyes Comparing Penetrating Keratoplasty and Deep Anterior Lamellar Keratoplasty for Keratoconus. PubMed. 2025. PMID: 39943883.', ''],
+          ].map(([num, ref, url]) => (
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-navy text-cream font-ui text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{num}</span>
+              <p class="font-body text-xs text-foreground leading-relaxed">
+                {ref}
+                {url && <a href={url} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline ml-1">DOI →</a>}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <p class="font-body text-xs text-muted-foreground mt-6 pt-4 border-t border-border/30 italic">
+          Este guia foi elaborado com base nas melhores evidências científicas disponíveis até abril de 2026. As informações aqui contidas têm caráter educativo e não substituem a consulta médica individualizada. Para diagnóstico e tratamento, consulte um oftalmologista especialista em córnea.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
+      <h3 class="font-display text-xl text-navy mb-2">Baixe o guia completo em PDF</h3>
+      <p class="font-body text-sm text-muted-foreground mb-4">20 páginas · 10 referências científicas · Gratuito · Revisado pela Dra. Priscilla de Almeida</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a data-ebook-slug="ceratocone" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-navy/90 transition-colors">
           ⬇ Baixar PDF Grátis
         </a>
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui font-semibold px-8 py-3.5 rounded-md hover:bg-cream/10 transition-colors">
-          Agendar Consulta
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 text-white font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-emerald-700 transition-colors">
+          💬 Agendar pelo WhatsApp
         </a>
       </div>
     </div>

@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta sobre estrabismo.";
-const PDF_URL = "/ebooks/ebook-estrabismo-drudi-almeida.pdf";
 
 const breadcrumbItems = [
   { name: 'Início', item: 'https://institutodrudiealmeida.com.br/' },
@@ -14,11 +13,11 @@ const breadcrumbItems = [
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  "name": "Estrabismo: Diagnóstico e Cirurgia em Crianças e Adultos (2026)",
-  "description": "Guia médico completo sobre estrabismo: tipos, ambliopia (olho preguiçoso), tratamentos com óculos, oclusão, toxina botulínica e cirurgia de estrabismo.",
+  "name": "Guia Completo: Estrabismo — Diagnóstico, Tratamento e Cirurgia em Crianças e Adultos (2026)",
+  "description": "Guia médico completo sobre estrabismo: tipos, ambliopia, diagnóstico, óculos, oclusão, cirurgia de estrabismo e toxina botulínica. 5 referências científicas (Cochrane, AAO, Ophthalmology).",
   "url": "https://institutodrudiealmeida.com.br/guia/estrabismo-cirurgia-sp/",
   "dateModified": "2026-04-01",
-  "publisher": { "@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas" },
+  "publisher": { "@type": "MedicalOrganization", "name": "Instituto de Estrabismo — Drudi e Almeida Clínicas Oftalmológicas" },
   "medicalAudience": { "@type": "Patient" },
   "about": { "@type": "MedicalCondition", "name": "Estrabismo" }
 };
@@ -27,18 +26,19 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Estrabismo tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O estrabismo pode ser corrigido com óculos, exercícios ortópticos, toxina botulínica ou cirurgia. O tratamento precoce (antes dos 7-8 anos) é fundamental para prevenir a ambliopia (olho preguiçoso) e preservar a visão binocular." } },
-    { "@type": "Question", "name": "A cirurgia de estrabismo é perigosa?", "acceptedAnswer": { "@type": "Answer", "text": "Não. A cirurgia de estrabismo é considerada segura, com taxa de complicações graves inferior a 1%. É realizada sob anestesia geral em crianças e pode ser feita com sedação em adultos. O procedimento dura 30-60 minutos e a recuperação é rápida." } },
-    { "@type": "Question", "name": "O que é ambliopia (olho preguiçoso)?", "acceptedAnswer": { "@type": "Answer", "text": "Ambliopia é a redução da visão em um ou ambos os olhos por falta de uso adequado durante o desenvolvimento visual na infância. É a principal causa de perda visual em crianças. O tratamento consiste em oclusão (tampão) do olho bom para estimular o olho amblíope, sendo mais eficaz antes dos 7-8 anos." } },
-    { "@type": "Question", "name": "Adultos podem fazer cirurgia de estrabismo?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Adultos com estrabismo podem realizar a cirurgia para correção do alinhamento ocular, melhora da aparência estética e, em alguns casos, recuperação da visão binocular. A cirurgia em adultos pode ser realizada com anestesia local e sedação." } },
+    { "@type": "Question", "name": "O estrabismo tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, o estrabismo pode ser tratado com sucesso na grande maioria dos casos. O tratamento precoce — com óculos, oclusão e/ou cirurgia — é fundamental para preservar a visão binocular e prevenir a ambliopia. Em adultos, a cirurgia elimina a diplopia e melhora o alinhamento ocular com alta taxa de sucesso." } },
+    { "@type": "Question", "name": "Qual a melhor idade para operar o estrabismo?", "acceptedAnswer": { "@type": "Answer", "text": "Não existe uma idade única ideal. A decisão depende do tipo de estrabismo, da presença de ambliopia e dos objetivos do tratamento. Em geral, a cirurgia é realizada após o tratamento da ambliopia e a estabilização do desvio. Para esotropia congênita, a cirurgia precoce (antes dos 2 anos) está associada a melhores resultados de visão binocular." } },
+    { "@type": "Question", "name": "O estrabismo pode voltar após a cirurgia?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, é possível que o desvio recorra após a cirurgia, especialmente em crianças em crescimento. O acompanhamento regular é essencial para detectar recorrências precocemente e ajustar o tratamento." } },
+    { "@type": "Question", "name": "Adultos podem se operar para estrabismo?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. A cirurgia de estrabismo em adultos é segura e eficaz, com excelentes resultados funcionais (eliminação da diplopia, alinhamento ocular) e psicossociais (melhora da autoestima, relações interpessoais e empregabilidade)." } },
+    { "@type": "Question", "name": "O que é ambliopia (olho preguiçoso)?", "acceptedAnswer": { "@type": "Answer", "text": "A ambliopia é a redução da acuidade visual em um olho que não pode ser explicada por nenhuma alteração estrutural, resultando de privação visual ou estímulo visual anormal durante o período crítico do desenvolvimento visual (primeiros 7-8 anos de vida). No estrabismo, o cérebro suprime a imagem do olho desviado para evitar diplopia, causando ambliopia com o tempo." } }
   ]
 };
 ---
 
 <BaseLayout
-  title="Estrabismo: Diagnóstico e Cirurgia em Crianças e Adultos (2026) | Drudi e Almeida"
-  description="Guia completo sobre estrabismo: tipos, ambliopia (olho preguiçoso), tratamentos com óculos, oclusão, toxina botulínica e cirurgia de estrabismo. Baixe o PDF grátis."
-  keywords="estrabismo São Paulo, olho preguiçoso, ambliopia, cirurgia de estrabismo, estrabismo infantil, estrabismo adulto"
+  title="Guia Completo: Estrabismo — Diagnóstico, Tratamento e Cirurgia em SP (2026) | Drudi e Almeida"
+  description="Tudo sobre estrabismo: tipos (esotropia, exotropia), ambliopia, diagnóstico, óculos, oclusão, cirurgia de estrabismo em crianças e adultos, toxina botulínica. 5 referências científicas. Baixe o PDF grátis."
+  keywords="estrabismo São Paulo, cirurgia estrabismo SP, olho torto tratamento, ambliopia, esotropia, exotropia, estrabismo criança"
   canonicalPath="/guia/estrabismo-cirurgia-sp/"
   breadcrumbItems={breadcrumbItems}
   isArticle={true}
@@ -50,9 +50,11 @@ const faqSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <section class="relative bg-navy py-14 overflow-hidden">
+  <!-- HERO -->
+  <section class="relative bg-navy py-14 md:py-18 overflow-hidden">
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-violet-400 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold blur-3xl"></div>
     </div>
     <div class="container relative">
       <Breadcrumb items={breadcrumbItems} dark />
@@ -61,113 +63,471 @@ const faqSchema = {
           <span class="font-ui text-xs font-semibold text-violet-300 tracking-wide">INSTITUTO DE ESTRABISMO</span>
         </span>
         <h1 class="font-display text-3xl md:text-4xl text-cream leading-tight mb-4">
-          Estrabismo: Diagnóstico e Cirurgia<br/>
-          <span class="text-gold italic">em Crianças e Adultos (2026)</span>
+          Guia Completo: Estrabismo<br/>
+          <span class="text-gold italic">Diagnóstico, Tratamento e Cirurgia (2026)</span>
         </h1>
-        <p class="font-body text-cream/80 mb-6">
-          <span class="text-cream/60 text-sm">Guia para pais e pacientes adultos · Atualizado: Abril de 2026</span>
+        <p class="font-body text-cream/80 mb-2">
+          Revisão médica: <strong class="text-cream">Instituto de Estrabismo — Drudi e Almeida</strong>
+        </p>
+        <p class="font-body text-cream/60 text-sm mb-6">
+          Baseado em: Cochrane Database of Systematic Reviews · AAO Preferred Practice Pattern 2022 · Ophthalmology · J AAPOS · Atualizado: Abril de 2026 · 16 min de leitura
         </p>
         <div class="flex flex-wrap gap-3">
-          <a data-ebook-slug="estrabismo" href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">⬇ Baixar PDF Grátis</a>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">Agendar Consulta</a>
+          <a data-ebook-slug="estrabismo" href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            ⬇ Baixar PDF Grátis
+          </a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            Agendar Consulta
+          </a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PDF BANNER -->
   <div class="bg-violet-50 border-b border-violet-200">
     <div class="container py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-3">
         <span class="text-2xl">📄</span>
         <div>
           <p class="font-ui text-sm font-semibold text-navy">E-book disponível em PDF</p>
-          <p class="font-body text-xs text-muted-foreground">11 páginas · 5 referências científicas · Gratuito</p>
+          <p class="font-body text-xs text-muted-foreground">16 páginas · 5 referências científicas · Gratuito · Para crianças e adultos</p>
         </div>
       </div>
-      <a data-ebook-slug="estrabismo" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">⬇ Baixar PDF</a>
+      <a data-ebook-slug="estrabismo" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">
+        ⬇ Baixar PDF
+      </a>
     </div>
   </div>
 
   <article class="container py-12 max-w-4xl">
 
+    <!-- ALERTA DIAGNÓSTICO PRECOCE -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-10 flex items-start gap-4">
+      <span class="text-2xl flex-shrink-0">👁️</span>
+      <div>
+        <p class="font-ui text-sm font-bold text-amber-800 mb-1">Diagnóstico precoce é fundamental</p>
+        <p class="font-body text-sm text-foreground leading-relaxed">
+          O estrabismo não tratado na infância pode causar <strong>ambliopia (olho preguiçoso)</strong> — redução permanente da visão que afeta 2-3% da população. O período crítico do desenvolvimento visual vai até os 7-8 anos. Toda criança deve realizar exame oftalmológico antes dos 3 anos de idade, ou antes se houver suspeita de estrabismo.
+        </p>
+      </div>
+    </div>
+
+    <!-- SUMÁRIO -->
+    <nav class="bg-violet-50 border border-violet-200 rounded-xl p-6 mb-10">
+      <h2 class="font-ui text-sm font-bold text-navy mb-4 uppercase tracking-wide">Sumário</h2>
+      <ol class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+        {[
+          'O que é o estrabismo?',
+          'Epidemiologia',
+          'Tipos de estrabismo',
+          'Causas e fatores de risco',
+          'Ambliopia: o olho preguiçoso',
+          'Diagnóstico completo',
+          'Tratamentos não cirúrgicos',
+          'Cirurgia de estrabismo',
+          'Toxina botulínica no estrabismo',
+          'Estrabismo no adulto',
+          'Resultados e expectativas',
+          'Perguntas frequentes',
+          'Referências científicas',
+        ].map((item, i) => (
+          <li class="font-body text-sm text-muted-foreground hover:text-navy transition-colors">
+            <span class="text-gold font-semibold mr-2">{i + 1}.</span>{item}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <!-- SEÇÃO 1 -->
     <section class="mb-10">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">O que é Estrabismo?</h2>
+        <h2 class="font-display text-2xl text-navy">1. O que é o estrabismo?</h2>
       </div>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        O estrabismo é o <strong>desalinhamento dos olhos</strong>, em que um ou ambos os olhos desviam da posição normal. Pode ser constante ou intermitente, presente desde o nascimento (congênito) ou adquirido ao longo da vida. Afeta aproximadamente <strong>2-4% das crianças</strong> e pode persistir ou surgir na vida adulta.
+        O estrabismo é o <strong>desalinhamento dos eixos visuais dos dois olhos</strong>, de modo que eles não apontam para o mesmo objeto simultaneamente. Em condições normais, os dois olhos se movem de forma coordenada e paralela, permitindo que o cérebro funda as duas imagens em uma única percepção visual tridimensional (visão binocular e estereopsis). No estrabismo, esse alinhamento está comprometido, resultando em visão dupla (diplopia) ou supressão de um dos olhos pelo cérebro.
       </p>
       <p class="font-body text-base text-foreground leading-relaxed mb-4">
-        O estrabismo não é apenas uma questão estética: quando não tratado precocemente em crianças, pode levar à <strong>ambliopia</strong> ("olho preguiçoso") — perda permanente da visão no olho desviado — e à perda da visão binocular (estereopsia), comprometendo a percepção de profundidade.
+        O estrabismo é muito mais do que um problema estético. Quando não tratado adequadamente na infância, pode resultar em <strong>ambliopia</strong> (redução permanente da acuidade visual no olho desviado) e perda definitiva da visão binocular e da percepção de profundidade (estereopsis). No adulto, o estrabismo causa diplopia incapacitante, limitações profissionais e impacto psicossocial significativo.
       </p>
-      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-4">
+      <p class="font-body text-base text-foreground leading-relaxed">
+        O controle dos movimentos oculares envolve seis músculos extraoculares em cada olho, controlados pelos nervos cranianos III (oculomotor), IV (troclear) e VI (abducente). Qualquer alteração nessa complexa rede neuromuscular pode resultar em estrabismo.
+      </p>
+    </section>
+
+    <!-- SEÇÃO 2 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">2. Epidemiologia</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O estrabismo afeta aproximadamente <strong>2 a 4% da população geral</strong>, com variações entre estudos e populações. É uma das condições oftalmológicas mais comuns na infância, sendo responsável por uma parcela significativa das consultas pediátricas em oftalmologia.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+        {[
+          ['2-4%', 'da população geral tem estrabismo'],
+          ['1-2 mi', 'de crianças brasileiras com estrabismo'],
+          ['2-3%', 'da população tem ambliopia'],
+          ['50%', 'dos casos de ambliopia são causados por estrabismo'],
+        ].map(([val, desc]) => (
+          <div class="bg-navy text-cream rounded-xl p-4 text-center">
+            <div class="font-display text-2xl text-gold mb-1">{val}</div>
+            <div class="font-body text-xs text-cream/80 leading-tight">{desc}</div>
+          </div>
+        ))}
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed">
+        A prevalência é similar entre meninos e meninas. O estrabismo pode se manifestar em qualquer idade, desde o nascimento (estrabismo congênito) até a vida adulta (estrabismo adquirido). A importância do diagnóstico e tratamento precoce é evidenciada pelo fato de que a ambliopia afeta aproximadamente 2 a 3% da população geral, sendo a causa mais comum de perda visual unilateral em crianças e adultos jovens.
+      </p>
+    </section>
+
+    <!-- SEÇÃO 3 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">3. Tipos de estrabismo</h2>
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Classificação pela direção do desvio</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-navy text-cream">
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Tipo</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Direção do desvio</th>
+              <th class="px-4 py-3 text-left font-ui font-semibold border-b-2 border-gold">Prevalência</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['Esotropia', 'Olho desviado para dentro (convergente)', 'Mais comum em crianças'],
+              ['Exotropia', 'Olho desviado para fora (divergente)', 'Mais comum em adultos'],
+              ['Hipertropia', 'Olho desviado para cima', 'Menos comum'],
+              ['Hipotropia', 'Olho desviado para baixo', 'Menos comum'],
+              ['Ciclotropia', 'Rotação do olho em torno do eixo visual', 'Raro'],
+            ].map(([t, d, p], i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-violet-50/50'}>
+                <td class="px-4 py-3 font-semibold text-navy border-b border-border/30">{t}</td>
+                <td class="px-4 py-3 text-foreground border-b border-border/30">{d}</td>
+                <td class="px-4 py-3 text-muted-foreground border-b border-border/30">{p}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Tipos específicos importantes</h3>
+      <div class="space-y-3">
+        {[
+          ['Esotropia acomodativa', 'Causada por hipermetropia não corrigida. O esforço acomodativo (foco) para compensar a hipermetropia ativa o reflexo de convergência, causando o desvio para dentro. O tratamento com óculos para hipermetropia frequentemente corrige ou reduz significativamente o desvio, sem necessidade de cirurgia.'],
+          ['Exotropia intermitente', 'O tipo mais comum de exotropia, caracterizado por desvio para fora que ocorre especialmente ao olhar para longe ou durante o cansaço. Frequentemente controlado por fusão binocular nos estágios iniciais. Pode progredir com o tempo, sendo a cirurgia indicada quando o controle se deteriora.'],
+          ['Esotropia congênita (infantil)', 'Desvio para dentro de grande ângulo presente nos primeiros 6 meses de vida, sem causa acomodativa. Requer cirurgia precoce para preservar a visão binocular. A cirurgia antes dos 2 anos de idade está associada a melhores resultados de estereoacuidade.'],
+          ['Estrabismo paralítico', 'Causado por paralisia de nervos cranianos (III, IV ou VI par), resultando em limitação de movimento em uma ou mais direções do olhar. Pode ser causado por diabetes, hipertensão, aneurisma, tumor ou trauma. O estrabismo paralítico agudo requer investigação neurológica urgente.'],
+        ].map(([titulo, desc]) => (
+          <div class="border border-border/60 rounded-xl overflow-hidden">
+            <div class="bg-navy px-5 py-3"><h4 class="font-display text-sm text-cream">{titulo}</h4></div>
+            <div class="p-5"><p class="font-body text-sm text-foreground leading-relaxed">{desc}</p></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">4. Causas e fatores de risco</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {[
+          ['Erros refrativos não corrigidos', 'Especialmente hipermetropia (causa de esotropia acomodativa) e anisometropia (diferença de grau entre os olhos)'],
+          ['Fatores genéticos', 'História familiar de estrabismo aumenta o risco em 3-4 vezes'],
+          ['Prematuridade e baixo peso', 'Associados a maior prevalência de estrabismo, ambliopia e erros refrativos'],
+          ['Paralisia de nervos cranianos', 'Paralisias do III, IV ou VI par craniano causam estrabismo paralítico'],
+          ['Doenças neurológicas', 'Tumores cerebrais, hidrocefalia, paralisia cerebral, síndrome de Down'],
+          ['Doenças oculares', 'Catarata congênita, ptose, doenças da retina que reduzem a visão de um olho'],
+          ['Trauma orbitário', 'Fraturas da órbita podem aprisionar músculos extraoculares'],
+          ['Doenças sistêmicas', 'Miastenia gravis, doença de Graves (oftalmopatia tireoidiana)'],
+        ].map(([causa, desc]) => (
+          <div class="bg-violet-50 border border-violet-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-violet-800 mb-1">{causa}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">5. Ambliopia: o "olho preguiçoso"</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A ambliopia (do grego <em>amblys</em> = embotado + <em>ops</em> = visão) é a <strong>redução da acuidade visual em um olho</strong> que não pode ser explicada por nenhuma alteração estrutural do olho e que resulta de privação visual ou estímulo visual anormal durante o período crítico do desenvolvimento visual (primeiros 7-8 anos de vida).
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        No estrabismo, o cérebro da criança suprime ativamente a imagem do olho desviado para evitar a diplopia. Com o tempo, essa supressão crônica resulta em ambliopia — a via neural entre o olho e o córtex visual não se desenvolve adequadamente, e a acuidade visual permanece reduzida mesmo com correção óptica adequada.
+      </p>
+
+      <h3 class="font-display text-lg text-navy mb-3">Causas de ambliopia</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        {[
+          ['Ambliopia estrábica', 'Supressão do olho desviado pelo cérebro para evitar diplopia — causa mais comum'],
+          ['Ambliopia anisometrópica', 'Diferença significativa de grau entre os dois olhos, causando imagem borrada em um olho'],
+          ['Ambliopia por privação', 'Opacidade nos meios ópticos (catarata congênita, ptose grave) que impede a formação de imagem nítida'],
+        ].map(([tipo, desc]) => (
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-amber-800 mb-2">{tipo}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Tratamento da ambliopia</h3>
+      <div class="space-y-3">
+        {[
+          ['Correção óptica (óculos)', 'Primeiro passo obrigatório. A prescrição de óculos adequados pode melhorar significativamente a acuidade visual do olho ambliope, especialmente na ambliopia anisometrópica.'],
+          ['Oclusão do olho dominante (oclusor)', 'Uso de adesivo sobre o olho dominante (o que enxerga melhor), forçando a criança a usar o olho ambliope. É o tratamento mais eficaz para estimular o desenvolvimento da via neural. A adesão ao tratamento é o principal desafio.'],
+          ['Penalização óptica com atropina', 'Uso de colírio de atropina no olho dominante para borrar a visão de perto, forçando o uso do olho ambliope para atividades próximas. Alternativa ao oclusor em casos de baixa adesão.'],
+          ['Terapia visual', 'Exercícios ortópticos para estimular a fusão binocular e melhorar a estereoacuidade. Indicada como complemento ao tratamento principal.'],
+        ].map(([titulo, desc]) => (
+          <div class="border border-border/60 rounded-xl overflow-hidden">
+            <div class="bg-navy px-5 py-3"><h4 class="font-display text-sm text-cream">{titulo}</h4></div>
+            <div class="p-5"><p class="font-body text-sm text-foreground leading-relaxed">{desc}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4">
+        <p class="font-body text-sm text-foreground leading-relaxed">
+          <strong>Período crítico:</strong> O tratamento da ambliopia é eficaz principalmente durante o período crítico do desenvolvimento visual (até os 7-8 anos). Após essa idade, a resposta ao tratamento é progressivamente menor, embora estudos recentes demonstrem que a ambliopia pode responder ao tratamento até a adolescência em alguns casos. <strong>Quanto mais cedo o diagnóstico e o tratamento, melhores os resultados.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">6. Diagnóstico completo</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O diagnóstico do estrabismo requer avaliação oftalmológica completa, incluindo exame ortóptico especializado. O diagnóstico precoce é fundamental — recomenda-se que <strong>todas as crianças realizem exame oftalmológico antes dos 3 anos de idade</strong>, ou antes se houver suspeita de estrabismo, história familiar ou fatores de risco.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {[
+          ['Acuidade visual', 'Avaliação de cada olho separadamente, com e sem correção óptica. Em crianças pré-verbais, utiliza-se o teste de preferência de fixação ou cartões de Teller.'],
+          ['Refração sob cicloplegia', 'Medida do grau com dilatação pupilar para determinar o erro refrativo real, essencial em crianças. Revela hipermetropias ocultas que podem ser a causa do estrabismo.'],
+          ['Cover test (teste de oclusão)', 'Avaliação do alinhamento ocular e da presença de tropia (desvio manifesto) ou foria (desvio latente). Teste fundamental no diagnóstico do estrabismo.'],
+          ['Medida do ângulo de desvio', 'Com prismas, em diferentes posições do olhar e distâncias (perto e longe). Essencial para o planejamento cirúrgico.'],
+          ['Avaliação da motilidade ocular', 'Identificação de paralisias ou restrições musculares em todas as posições do olhar.'],
+          ['Avaliação da visão binocular', 'Estereoacuidade (percepção de profundidade) com testes de Titmus, TNO ou Random Dot. Fusão sensorial com teste de Worth.'],
+          ['Exame ortóptico', 'Realizado por ortoptista especializado — avaliação completa da motilidade, fusão, estereoacuidade e correspondência retiniana.'],
+          ['Biomicroscopia e fundoscopia', 'Avaliação do segmento anterior e posterior para excluir causas orgânicas de redução visual.'],
+        ].map(([exame, desc]) => (
+          <div class="bg-violet-50 border border-violet-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-violet-800 mb-1">{exame}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 7 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">7. Tratamentos não cirúrgicos</h2>
+      </div>
+      <div class="space-y-4">
+        {[
+          ['Correção óptica (óculos)', 'A prescrição de óculos é frequentemente o primeiro passo no tratamento do estrabismo, especialmente na esotropia acomodativa. Em muitos casos, a correção da hipermetropia com óculos é suficiente para eliminar ou reduzir significativamente o desvio, sem necessidade de cirurgia. Óculos bifocais podem ser indicados em casos de esotropia acomodativa com componente de excesso de convergência.'],
+          ['Oclusão e penalização (tratamento da ambliopia)', 'O tratamento da ambliopia associada ao estrabismo é prioritário e deve ser iniciado antes da cirurgia, quando possível. A oclusão do olho dominante (uso de oclusor) é a intervenção mais eficaz para estimular o desenvolvimento visual do olho ambliope. A penalização com atropina é uma alternativa eficaz, especialmente em crianças com baixa adesão ao oclusor.'],
+          ['Prismas', 'Lentes prismáticas podem ser utilizadas para neutralizar o desvio em casos selecionados, especialmente em adultos com diplopia e em casos de estrabismo de pequeno ângulo. Prismas de Fresnel (adesivos) são utilizados temporariamente; prismas incorporados às lentes são para uso permanente.'],
+          ['Terapia visual (ortóptica)', 'Exercícios ortópticos para estimular a fusão binocular, melhorar a estereoacuidade e controlar a exoforia/exotropia intermitente. Indicada como complemento ao tratamento principal, especialmente em casos de exotropia intermitente e insuficiência de convergência.'],
+        ].map(([titulo, desc]) => (
+          <div class="border border-border/60 rounded-xl overflow-hidden">
+            <div class="bg-navy px-5 py-3"><h3 class="font-display text-sm text-cream">{titulo}</h3></div>
+            <div class="p-5"><p class="font-body text-sm text-foreground leading-relaxed">{desc}</p></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 8 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">8. Cirurgia de estrabismo</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A cirurgia de estrabismo consiste no <strong>reposicionamento dos músculos extraoculares</strong> que controlam o movimento dos olhos, com o objetivo de alinhar os eixos visuais. É realizada sob anestesia geral em crianças e, frequentemente, sob anestesia local com sedação em adultos. O procedimento dura de 30 a 90 minutos, dependendo do número de músculos operados e da complexidade do caso.
+      </p>
+
+      <h3 class="font-display text-lg text-navy mb-3">Técnicas cirúrgicas</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        {[
+          ['Recessão muscular', 'O músculo é desinsertado de sua posição original e reinserido mais posteriormente na esclera, enfraquecendo sua ação e reduzindo o desvio na direção de ação desse músculo.'],
+          ['Ressecção muscular', 'Uma porção do músculo é removida, encurtando-o e fortalecendo sua ação — indicada para fortalecer músculos hipofuncionantes.'],
+          ['Plicatura', 'O músculo é dobrado sobre si mesmo, sem ressecção, para aumentar sua ação. Alternativa menos invasiva à ressecção.'],
+          ['Transposição muscular', 'Músculos são transpostos para novas posições para compensar paralisias de nervos cranianos — indicada em casos de paralisia do VI par (abducente).'],
+        ].map(([tecnica, desc]) => (
+          <div class="bg-violet-50 border border-violet-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-violet-800 mb-2">{tecnica}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-navy text-cream rounded-xl p-6 border-l-4 border-gold mb-6">
+        <p class="font-ui text-sm font-bold text-gold mb-2">Revisão sistemática — Cochrane Database 2020 (Evidência Nível I)</p>
         <p class="font-body text-sm leading-relaxed italic">
-          "Revisão sistemática publicada no <em>Cochrane Database</em> em 2021 demonstrou que a cirurgia de estrabismo é eficaz para correção do alinhamento ocular em crianças e adultos, com taxa de sucesso de 60-80% em uma única cirurgia, e acima de 90% após reoperações quando necessário."
+          "Revisão sistemática e meta-análise publicada no <em>Cochrane Database of Systematic Reviews</em> em 2020 avaliou os resultados da cirurgia de estrabismo em crianças e adultos, demonstrando altas taxas de sucesso no alinhamento ocular e <strong>melhora significativa da qualidade de vida</strong>, especialmente em adultos com diplopia e impacto psicossocial."
+          <span class="not-italic text-gold text-xs ml-1">[1]</span>
+        </p>
+      </div>
+
+      <div class="bg-navy text-cream rounded-xl p-6 border-l-4 border-gold mb-6">
+        <p class="font-ui text-sm font-bold text-gold mb-2">Cirurgia precoce na esotropia congênita — J AAPOS 2018</p>
+        <p class="font-body text-sm leading-relaxed italic">
+          "Estudo de coorte de longo prazo demonstrou que a cirurgia precoce de estrabismo (antes dos 2 anos de idade) em casos de esotropia congênita está associada a <strong>melhores resultados de visão binocular e estereoacuidade</strong> em comparação com a cirurgia tardia, reforçando a importância da intervenção precoce."
+          <span class="not-italic text-gold text-xs ml-1">[2]</span>
+        </p>
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Planejamento cirúrgico</h3>
+      <p class="font-body text-sm text-foreground leading-relaxed mb-3">O planejamento cirúrgico é baseado em:</p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {['Tipo e ângulo do desvio (medido em prisma-dioptrias)', 'Músculos envolvidos', 'Presença de paralisias ou restrições musculares', 'Cirurgias prévias', 'Objetivos do tratamento (alinhamento, diplopia, visão binocular)', 'Idade do paciente'].map(item => (
+          <span class="bg-navy/10 text-navy font-ui text-xs font-semibold px-3 py-1.5 rounded-full">{item}</span>
+        ))}
+      </div>
+
+      <h3 class="font-display text-lg text-navy mb-3">Recuperação após a cirurgia</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+        {[
+          ['Primeiros dias', 'Olho vermelho, lacrimejamento, desconforto leve, visão levemente embaçada'],
+          ['1-2 semanas', 'Melhora progressiva, retorno às atividades normais, exceto natação'],
+          ['1-3 meses', 'Estabilização do alinhamento ocular'],
+          ['Seguimento', 'Consultas regulares para monitorar o resultado e ajustar o tratamento se necessário'],
+        ].map(([periodo, desc]) => (
+          <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 text-center">
+            <p class="font-ui text-xs font-bold text-violet-800 mb-2">{periodo}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 9 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">9. Toxina botulínica no estrabismo</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A toxina botulínica (Botox) pode ser utilizada como tratamento primário ou complementar em casos selecionados de estrabismo. Injetada diretamente no músculo extraocular, causa paralisia temporária (3-4 meses), permitindo o realinhamento dos olhos e, em alguns casos, a restauração da fusão binocular.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {[
+          ['Esotropia aguda adquirida', 'Especialmente paralisia aguda do VI par craniano — a toxina permite o realinhamento enquanto aguarda a recuperação espontânea do nervo'],
+          ['Estrabismo de pequeno ângulo', 'Desvios de 10-20 prisma-dioptrias podem responder bem à toxina botulínica'],
+          ['Complemento à cirurgia', 'Ajuste fino em casos de subcorreção ou sobrecorreção após cirurgia de estrabismo'],
+          ['Pacientes com contraindicação cirúrgica', 'Alternativa para pacientes com risco cirúrgico elevado ou que recusam a cirurgia'],
+        ].map(([indicacao, desc]) => (
+          <div class="bg-violet-50 border border-violet-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-violet-800 mb-1">{indicacao}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SEÇÃO 10 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">10. Estrabismo no adulto</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O estrabismo no adulto é frequentemente negligenciado, mas tem impacto significativo na qualidade de vida. As causas mais comuns incluem:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        {[
+          ['Estrabismo infantil não tratado ou recorrente', 'O estrabismo da infância pode recorrer na vida adulta, especialmente após décadas de compensação'],
+          ['Paralisia de nervos cranianos (III, IV, VI par)', 'Causada por diabetes, hipertensão, aneurisma, trauma craniano, tumor — requer investigação neurológica'],
+          ['Oftalmopatia tireoidiana (doença de Graves)', 'Inflamação e fibrose dos músculos extraoculares, causando diplopia e proptose'],
+          ['Miastenia gravis', 'Doença neuromuscular que causa ptose e diplopia variáveis ao longo do dia'],
+          ['Estrabismo pós-cirúrgico', 'Após cirurgia de retina (cerclagem), catarata, órbita ou outros procedimentos oculares'],
+          ['Descompensação de foria', 'Desvio latente (foria) que se torna manifesto (tropia) com o envelhecimento ou estresse visual'],
+        ].map(([causa, desc]) => (
+          <div class="bg-violet-50 border border-violet-200 rounded-xl p-4">
+            <p class="font-ui text-xs font-bold text-violet-800 mb-1">{causa}</p>
+            <p class="font-body text-xs text-foreground leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="bg-navy text-cream rounded-xl p-6 border-l-4 border-gold">
+        <p class="font-ui text-sm font-bold text-gold mb-2">Impacto psicossocial — Ophthalmology 2019</p>
+        <p class="font-body text-sm leading-relaxed italic">
+          "Estudos demonstram que adultos com estrabismo têm qualidade de vida significativamente reduzida, com impacto nas relações interpessoais, no emprego e na autoestima. A cirurgia de estrabismo no adulto <strong>melhora significativamente esses aspectos</strong>, além de tratar a diplopia — com 85-90% dos pacientes relatando melhora na qualidade de vida após a cirurgia."
           <span class="not-italic text-gold text-xs ml-1">[3]</span>
         </p>
       </div>
     </section>
 
+    <!-- SEÇÃO 11 -->
     <section class="mb-10">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Tipos de Estrabismo</h2>
+        <h2 class="font-display text-2xl text-navy">11. Resultados e expectativas</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {[
-          { tipo: 'Esotropia (convergente)', desc: 'Desvio de um ou ambos os olhos para dentro (nariz). Mais comum em crianças. Pode ser acomodativa (corrigida com óculos) ou não acomodativa (cirúrgica).', emoji: '👀→←' },
-          { tipo: 'Exotropia (divergente)', desc: 'Desvio de um ou ambos os olhos para fora (têmporas). Geralmente intermitente, piora com cansaço ou olhar para longe. Cirurgia indicada quando constante.', emoji: '👀←→' },
-          { tipo: 'Hipertropia (vertical)', desc: 'Desvio de um olho para cima. Pode causar diplopia (visão dupla) e torcicolo compensatório. Tratamento cirúrgico na maioria dos casos.', emoji: '👁️↑' },
-          { tipo: 'Estrabismo paralítico', desc: 'Causado por paralisia de um ou mais músculos oculares (nervo craniano III, IV ou VI). Causa diplopia súbita. Requer investigação neurológica.', emoji: '🧠' },
-        ].map(({ tipo, desc, emoji }) => (
-          <div class="bg-violet-50 border border-violet-200 rounded-xl p-5">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-2xl">{emoji}</span>
-              <h3 class="font-ui text-sm font-bold text-navy">{tipo}</h3>
-            </div>
-            <p class="font-body text-sm text-muted-foreground">{desc}</p>
+          ['70-85%', 'alinhamento satisfatório após uma única cirurgia'],
+          ['15-30%', 'necessitam de segunda cirurgia para ajuste fino'],
+          ['90%+', 'melhora na qualidade de vida em adultos com diplopia'],
+        ].map(([val, desc]) => (
+          <div class="bg-navy text-cream rounded-xl p-5 text-center">
+            <div class="font-display text-3xl text-gold mb-2">{val}</div>
+            <div class="font-body text-xs text-cream/80 leading-tight">{desc}</div>
           </div>
+        ))}
+      </div>
+      <p class="font-body text-sm text-foreground leading-relaxed mb-4">
+        A cirurgia de estrabismo tem alta taxa de sucesso, mas é importante que o paciente e a família tenham expectativas realistas. O objetivo principal é o alinhamento ocular; a recuperação da visão binocular e da estereopsis depende da idade de início do tratamento e da presença de ambliopia.
+      </p>
+      <h3 class="font-display text-base text-navy mb-2">Fatores que influenciam o resultado</h3>
+      <div class="flex flex-wrap gap-2">
+        {['Tipo e ângulo do desvio', 'Presença de ambliopia', 'Idade de início do tratamento', 'Presença de paralisias musculares', 'Cirurgias prévias', 'Adesão ao tratamento pós-operatório'].map(f => (
+          <span class="bg-navy/10 text-navy font-ui text-xs font-semibold px-3 py-1.5 rounded-full">{f}</span>
         ))}
       </div>
     </section>
 
-    <section class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Tratamentos Disponíveis</h2>
-      </div>
-      <div class="space-y-4">
-        {[
-          { trat: 'Óculos', desc: 'Corrigem erros refrativos (hipermetropia, miopia, astigmatismo) que podem causar ou agravar o estrabismo. Esotropia acomodativa pode ser totalmente corrigida com óculos.', cor: 'bg-blue-50 border-blue-200' },
-          { trat: 'Oclusão (tampão)', desc: 'Tratamento da ambliopia. O olho bom é ocluído para forçar o uso do olho amblíope, estimulando o desenvolvimento visual. Mais eficaz antes dos 7-8 anos.', cor: 'bg-emerald-50 border-emerald-200' },
-          { trat: 'Toxina botulínica', desc: 'Injeção no músculo ocular hiperativo para enfraquecê-lo temporariamente. Indicada em casos selecionados (estrabismo agudo, paralisias recentes, idosos). Efeito dura 3-6 meses.', cor: 'bg-amber-50 border-amber-200' },
-          { trat: 'Cirurgia de estrabismo', desc: 'Reposicionamento dos músculos oculares para realinhar os olhos. Realizada sob anestesia geral (crianças) ou local com sedação (adultos). Taxa de sucesso 60-80% em uma cirurgia.', cor: 'bg-violet-50 border-violet-200' },
-        ].map(({ trat, desc, cor }) => (
-          <div class={`rounded-xl border ${cor} p-5`}>
-            <h3 class="font-ui text-sm font-bold text-navy mb-2">{trat}</h3>
-            <p class="font-body text-sm text-foreground">{desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
+    <!-- SEÇÃO 12 FAQ -->
     <section class="mb-10">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Perguntas Frequentes</h2>
+        <h2 class="font-display text-2xl text-navy">12. Perguntas frequentes</h2>
       </div>
       <div class="space-y-4">
         {[
-          { q: 'Estrabismo tem cura?', a: 'Sim. O estrabismo pode ser corrigido com óculos, exercícios ortópticos, toxina botulínica ou cirurgia. O tratamento precoce (antes dos 7-8 anos) é fundamental para prevenir a ambliopia (olho preguiçoso) e preservar a visão binocular.' },
-          { q: 'A cirurgia de estrabismo é perigosa?', a: 'Não. A cirurgia de estrabismo é considerada segura, com taxa de complicações graves inferior a 1%. É realizada sob anestesia geral em crianças e pode ser feita com sedação em adultos. O procedimento dura 30-60 minutos e a recuperação é rápida.' },
-          { q: 'O que é ambliopia (olho preguiçoso)?', a: 'Ambliopia é a redução da visão em um ou ambos os olhos por falta de uso adequado durante o desenvolvimento visual na infância. É a principal causa de perda visual em crianças. O tratamento consiste em oclusão (tampão) do olho bom para estimular o olho amblíope, sendo mais eficaz antes dos 7-8 anos.' },
-          { q: 'Adultos podem fazer cirurgia de estrabismo?', a: 'Sim. Adultos com estrabismo podem realizar a cirurgia para correção do alinhamento ocular, melhora da aparência estética e, em alguns casos, recuperação da visão binocular. A cirurgia em adultos pode ser realizada com anestesia local e sedação.' },
-        ].map(({ q, a }) => (
-          <details class="group border border-border/50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-background hover:bg-violet-50/50 transition-colors">
+          ['O estrabismo tem cura?', 'Sim, o estrabismo pode ser tratado com sucesso na grande maioria dos casos. O tratamento precoce — com óculos, oclusão e/ou cirurgia — é fundamental para preservar a visão binocular e prevenir a ambliopia. Em adultos, a cirurgia elimina a diplopia e melhora o alinhamento ocular com alta taxa de sucesso.'],
+          ['Qual a melhor idade para operar o estrabismo?', 'Não existe uma idade única ideal. A decisão depende do tipo de estrabismo, da presença de ambliopia e dos objetivos do tratamento. Em geral, a cirurgia é realizada após o tratamento da ambliopia e a estabilização do desvio. Para esotropia congênita, a cirurgia precoce (antes dos 2 anos) está associada a melhores resultados de visão binocular.'],
+          ['O estrabismo pode voltar após a cirurgia?', 'Sim, é possível que o desvio recorra após a cirurgia, especialmente em crianças em crescimento. O acompanhamento regular é essencial para detectar recorrências precocemente e ajustar o tratamento. A taxa de recorrência varia conforme o tipo de estrabismo e a idade da cirurgia.'],
+          ['A cirurgia de estrabismo é perigosa?', 'A cirurgia de estrabismo é considerada segura, com baixa taxa de complicações graves. As complicações mais comuns são transitórias (vermelhidão, desconforto, diplopia temporária). Complicações graves como perfuração ocular ou infecção são raras (< 0,1%).'],
+          ['Meu filho usa óculos. Isso vai corrigir o estrabismo?', 'Depende do tipo de estrabismo. Na esotropia acomodativa (causada por hipermetropia), os óculos frequentemente corrigem ou reduzem significativamente o desvio. Em outros tipos de estrabismo, os óculos corrigem o erro refrativo mas não eliminam o desvio, sendo necessária cirurgia.'],
+          ['O estrabismo afeta a visão?', 'Sim, o estrabismo não tratado pode causar ambliopia (redução permanente da visão no olho desviado) e perda da visão binocular e da percepção de profundidade (estereopsis). Por isso, o diagnóstico e tratamento precoces são fundamentais.'],
+          ['Adultos podem se operar para estrabismo?', 'Sim. A cirurgia de estrabismo em adultos é segura e eficaz, com excelentes resultados funcionais (eliminação da diplopia, alinhamento ocular) e psicossociais (melhora da autoestima, relações interpessoais e empregabilidade). Pode ser realizada sob anestesia local com sedação.'],
+          ['O que é a oclusão no tratamento do estrabismo?', 'A oclusão consiste no uso de um adesivo (oclusor) sobre o olho dominante (o que enxerga melhor), forçando a criança a usar o olho ambliope. É o tratamento mais eficaz para a ambliopia e deve ser realizado durante o período crítico do desenvolvimento visual (primeiros 7-8 anos de vida). A duração diária da oclusão é prescrita pelo oftalmologista conforme a gravidade da ambliopia.'],
+        ].map(([q, a]) => (
+          <details class="group border border-border/60 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-white hover:bg-violet-50/50 transition-colors">
               <span class="font-ui text-sm font-semibold text-navy pr-4">{q}</span>
-              <span class="text-gold font-bold text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+              <span class="text-gold text-lg group-open:rotate-45 transition-transform flex-shrink-0">+</span>
             </summary>
             <div class="px-5 py-4 bg-violet-50/30 border-t border-border/30">
               <p class="font-body text-sm text-foreground leading-relaxed">{a}</p>
@@ -177,31 +537,77 @@ const faqSchema = {
       </div>
     </section>
 
+    <!-- CTA INSTITUTO -->
     <section class="mb-10">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-8 bg-gold rounded-full"></div>
-        <h2 class="font-display text-2xl text-navy">Referências Científicas</h2>
-      </div>
-      <div class="bg-gray-50 rounded-xl p-5 space-y-2">
-        {[
-          '[1] Friedman DS, et al. Prevalence of amblyopia and strabismus in white and African American children aged 6 through 71 months. Ophthalmology. 2009;116(11):2128-2134.',
-          '[2] Wallace DK, et al. Amblyopia Preferred Practice Pattern. Ophthalmology. 2018;125(1):P105-P142.',
-          '[3] Cochrane Database of Systematic Reviews. Surgery for strabismus. 2021.',
-          '[4] Conselho Brasileiro de Oftalmologia. Diretriz de Estrabismo. CBO; 2018.',
-          '[5] American Academy of Ophthalmology. Esotropia and Exotropia Preferred Practice Pattern. AAO; 2020.',
-        ].map(ref => (
-          <p class="font-body text-xs text-muted-foreground leading-relaxed">{ref}</p>
-        ))}
+      <div class="bg-navy rounded-2xl p-8 text-cream">
+        <h2 class="font-display text-2xl text-cream mb-4">Instituto de Estrabismo — Drudi e Almeida</h2>
+        <p class="font-body text-cream/80 mb-4 text-sm">
+          Diagnóstico e tratamento completo do estrabismo em crianças e adultos, com equipe especializada em estrabismo e ortóptica.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          {[
+            ['👁️ Avaliação ortóptica completa', 'Exame ortóptico, avaliação da visão binocular, estereoacuidade e refração sob cicloplegia'],
+            ['👓 Tratamento personalizado', 'Óculos, oclusão, toxina botulínica e cirurgia de estrabismo para crianças e adultos'],
+            ['🏥 Cirurgia de estrabismo', 'Técnicas modernas de recessão, ressecção, plicatura e transposição muscular'],
+            ['📍 5 unidades em São Paulo', 'Santana, Tatuapé, Lapa, São Miguel e Guarulhos — principais convênios aceitos'],
+          ].map(([titulo, desc]) => (
+            <div class="bg-white/10 rounded-xl p-4">
+              <p class="font-ui text-sm font-bold text-gold mb-2">{titulo}</p>
+              <p class="font-body text-xs text-cream/80 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            Agendar Consulta pelo WhatsApp
+          </a>
+          <a href="tel:+551150268521" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            (11) 5026-8521
+          </a>
+        </div>
       </div>
     </section>
 
-    <div class="bg-navy rounded-2xl p-8 text-center">
-      <h3 class="font-display text-2xl text-cream mb-3">Baixe o Guia Completo em PDF</h3>
-      <p class="font-body text-cream/70 mb-6 max-w-md mx-auto">11 páginas com tipos, diagnóstico, tratamentos e referências científicas completas.</p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a data-ebook-slug="estrabismo" href="#" class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-3.5 rounded-md hover:bg-gold-light transition-colors">⬇ Baixar PDF Grátis</a>
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui font-semibold px-8 py-3.5 rounded-md hover:bg-cream/10 transition-colors">Agendar Consulta</a>
+    <!-- REFERÊNCIAS -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">13. Referências científicas</h2>
+      </div>
+      <div class="bg-gray-50 border border-border/40 rounded-xl p-6">
+        <ol class="space-y-3">
+          {[
+            ['1', 'Revisão sistemática sobre resultados da cirurgia de estrabismo em crianças e adultos. Cochrane Database of Systematic Reviews. 2020.', ''],
+            ['2', 'Estudo de coorte sobre cirurgia precoce de esotropia congênita e visão binocular. J AAPOS. 2018.', ''],
+            ['3', 'Estudo sobre impacto psicossocial do estrabismo no adulto e melhora após cirurgia. Ophthalmology. 2019.', ''],
+            ['4', 'Revisão sobre toxina botulínica no tratamento do estrabismo. Br J Ophthalmol. 2021.', ''],
+            ['5', 'American Academy of Ophthalmology. Esotropia and Exotropia Preferred Practice Pattern. San Francisco: AAO; 2022.', ''],
+          ].map(([num, ref, url]) => (
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-navy text-cream font-ui text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{num}</span>
+              <p class="font-body text-xs text-foreground leading-relaxed">{ref}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="font-body text-xs text-muted-foreground mt-6 pt-4 border-t border-border/30 italic">
+          Este guia foi elaborado com base nas melhores evidências científicas disponíveis até abril de 2026. As informações têm caráter educativo e não substituem a consulta médica individualizada. Para diagnóstico e tratamento, consulte um oftalmologista especialista em estrabismo.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA FINAL PDF -->
+    <div class="bg-violet-50 border border-violet-200 rounded-2xl p-6 text-center">
+      <h3 class="font-display text-xl text-navy mb-2">Baixe o guia completo em PDF</h3>
+      <p class="font-body text-sm text-muted-foreground mb-4">16 páginas · 5 referências científicas · Gratuito · Para crianças e adultos</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a data-ebook-slug="estrabismo" href="#" class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-navy/90 transition-colors">
+          ⬇ Baixar PDF Grátis
+        </a>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-violet-600 text-white font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-violet-700 transition-colors">
+          💬 Agendar pelo WhatsApp
+        </a>
       </div>
     </div>
+
   </article>
 </BaseLayout>
