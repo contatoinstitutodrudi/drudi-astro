@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import EbookLeadModal from '../components/EbookLeadModal.astro';
 
 export interface Props {
   title: string;
@@ -780,5 +781,9 @@ const breadcrumbSegments: BreadcrumbListItem[] = (() => {
         initAOS();
       }
     </script>
+
+  <!-- Modal de captura de leads para e-books -->
+  <EbookLeadModal />
+
   </body>
 </html>

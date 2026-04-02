@@ -1,0 +1,336 @@
+---
+// EbookLeadModal.astro
+// Modal de captura de leads para download dos e-books
+// Uso: incluir UMA VEZ no BaseLayout ou em cada página que tem botões de download
+---
+
+<!-- Modal Overlay -->
+<div id="ebook-modal" class="fixed inset-0 z-[9999] hidden" aria-modal="true" role="dialog" aria-labelledby="ebook-modal-title">
+  <!-- Backdrop -->
+  <div id="ebook-modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  
+  <!-- Modal Card -->
+  <div class="absolute inset-0 flex items-center justify-center p-4">
+    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+      
+      <!-- Header -->
+      <div class="bg-gradient-to-br from-[#0d1f3c] to-[#1a3060] px-6 pt-6 pb-5">
+        <button id="ebook-modal-close" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors" aria-label="Fechar">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-[#c9a961]/20 rounded-xl flex items-center justify-center shrink-0">
+            <span class="text-[#c9a961] text-xl">📖</span>
+          </div>
+          <div>
+            <p class="text-[#c9a961] text-[10px] font-bold tracking-[2px] uppercase">E-Book Gratuito</p>
+            <p class="text-white/90 text-xs">Baseado em evidências científicas</p>
+          </div>
+        </div>
+        <h2 id="ebook-modal-title" class="text-white font-serif text-lg leading-snug mb-1"></h2>
+        <p id="ebook-modal-desc" class="text-white/60 text-xs leading-relaxed"></p>
+      </div>
+
+      <!-- Gold line -->
+      <div class="h-[3px]" style="background:linear-gradient(90deg,#c9a961,#e8d08a,#c9a961)"></div>
+
+      <!-- Form -->
+      <div class="px-6 py-5">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          Preencha seus dados para receber o guia <strong>gratuitamente por e-mail</strong> e ter acesso imediato ao PDF.
+        </p>
+
+        <form id="ebook-lead-form" novalidate>
+          <input type="hidden" id="ebook-slug-input" name="ebook_slug" value="">
+
+          <!-- Nome -->
+          <div class="mb-3">
+            <label for="lead-name" class="block text-xs font-semibold text-gray-700 mb-1">Nome completo <span class="text-red-500">*</span></label>
+            <input
+              type="text"
+              id="lead-name"
+              name="name"
+              placeholder="Seu nome completo"
+              autocomplete="name"
+              class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#0d1f3c] focus:ring-1 focus:ring-[#0d1f3c] transition-colors"
+              required
+            />
+          </div>
+
+          <!-- E-mail -->
+          <div class="mb-3">
+            <label for="lead-email" class="block text-xs font-semibold text-gray-700 mb-1">E-mail <span class="text-red-500">*</span></label>
+            <input
+              type="email"
+              id="lead-email"
+              name="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#0d1f3c] focus:ring-1 focus:ring-[#0d1f3c] transition-colors"
+              required
+            />
+          </div>
+
+          <!-- Telefone -->
+          <div class="mb-4">
+            <label for="lead-phone" class="block text-xs font-semibold text-gray-700 mb-1">Celular com DDD <span class="text-red-500">*</span></label>
+            <input
+              type="tel"
+              id="lead-phone"
+              name="phone"
+              placeholder="(11) 99999-9999"
+              autocomplete="tel"
+              class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#0d1f3c] focus:ring-1 focus:ring-[#0d1f3c] transition-colors"
+              required
+            />
+          </div>
+
+          <!-- LGPD -->
+          <div class="mb-4">
+            <label class="flex items-start gap-2.5 cursor-pointer group">
+              <input
+                type="checkbox"
+                id="lead-lgpd"
+                name="lgpd_consent"
+                class="mt-0.5 w-4 h-4 rounded border-gray-300 text-[#0d1f3c] focus:ring-[#0d1f3c] shrink-0"
+                required
+              />
+              <span class="text-xs text-gray-500 leading-relaxed group-hover:text-gray-700 transition-colors">
+                Concordo com o uso dos meus dados para receber este material e comunicações relacionadas à saúde ocular, conforme a 
+                <a href="/politica-de-privacidade/" target="_blank" class="text-[#0d1f3c] underline hover:text-[#c9a961]">Política de Privacidade</a> 
+                e a <strong>LGPD (Lei 13.709/2018)</strong>. <span class="text-red-500">*</span>
+              </span>
+            </label>
+          </div>
+
+          <!-- Error message -->
+          <div id="ebook-form-error" class="hidden mb-3 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-xs"></div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            id="ebook-submit-btn"
+            class="w-full bg-[#0d1f3c] hover:bg-[#1a3060] text-white font-bold py-3 px-6 rounded-xl text-sm transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <span id="ebook-btn-text">Receber o Guia Gratuitamente</span>
+            <svg id="ebook-btn-spinner" class="hidden animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Success state -->
+        <div id="ebook-success" class="hidden text-center py-4">
+          <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg text-[#0d1f3c] mb-1">Guia enviado com sucesso!</h3>
+          <p class="text-gray-500 text-sm mb-4">Verifique sua caixa de entrada (e spam) em instantes.</p>
+          <a
+            id="ebook-direct-download"
+            href="#"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-[#c9a961] text-[#0d1f3c] font-bold px-6 py-2.5 rounded-lg text-sm hover:bg-[#e8d08a] transition-colors"
+          >
+            ⬇ Baixar agora mesmo
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// EbookLeadModal — Lógica de abertura, validação e envio
+// ============================================================
+
+const EBOOK_DATA: Record<string, { title: string; desc: string }> = {
+  'catarata': {
+    title: 'Guia Definitivo: Cirurgia de Catarata em São Paulo (2026)',
+    desc: '4.484 palavras · 15 referências científicas (JAMA, NEJM, AAO, ESCRS)',
+  },
+  'ceratocone': {
+    title: 'Guia Definitivo: Ceratocone — Diagnóstico e Tratamento (2026)',
+    desc: '3.629 palavras · 10 referências científicas (BJO, Ophthalmology, Am J Ophthalmol)',
+  },
+  'glaucoma': {
+    title: 'Guia Definitivo: Glaucoma — Diagnóstico e Tratamento (2026)',
+    desc: '3.200 palavras · 10 referências científicas (Lancet, JAMA, Arch Ophthalmol)',
+  },
+  'retina': {
+    title: 'Guia Definitivo: Retina e Retinopatia Diabética (2026)',
+    desc: '3.100 palavras · 8 referências científicas (NEJM, Lancet, Ophthalmology)',
+  },
+  'estrabismo': {
+    title: 'Guia Definitivo: Estrabismo — Diagnóstico e Cirurgia (2026)',
+    desc: '2.634 palavras · 5 referências científicas (Cochrane, AAO, Ophthalmology)',
+  },
+};
+
+function openEbookModal(slug: string) {
+  const modal = document.getElementById('ebook-modal');
+  const titleEl = document.getElementById('ebook-modal-title');
+  const descEl = document.getElementById('ebook-modal-desc');
+  const slugInput = document.getElementById('ebook-slug-input') as HTMLInputElement;
+  const form = document.getElementById('ebook-lead-form');
+  const success = document.getElementById('ebook-success');
+  const errorEl = document.getElementById('ebook-form-error');
+
+  if (!modal || !titleEl || !descEl || !slugInput) return;
+
+  const data = EBOOK_DATA[slug];
+  if (!data) return;
+
+  titleEl.textContent = data.title;
+  descEl.textContent = data.desc;
+  slugInput.value = slug;
+
+  // Reset form state
+  if (form) (form as HTMLFormElement).reset();
+  slugInput.value = slug;
+  if (success) success.classList.add('hidden');
+  if (form) form.classList.remove('hidden');
+  if (errorEl) errorEl.classList.add('hidden');
+
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  // Focus no primeiro campo
+  setTimeout(() => {
+    const nameInput = document.getElementById('lead-name') as HTMLInputElement;
+    if (nameInput) nameInput.focus();
+  }, 100);
+}
+
+function closeEbookModal() {
+  const modal = document.getElementById('ebook-modal');
+  if (modal) modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// Máscara de telefone
+function phoneMask(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  if (digits.length <= 2) return `(${digits}`;
+  if (digits.length <= 7) return `(${digits.slice(0,2)}) ${digits.slice(2)}`;
+  if (digits.length <= 11) return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
+  return value;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Delegação de eventos para botões de download
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const btn = target.closest('[data-ebook-slug]') as HTMLElement | null;
+    if (btn) {
+      e.preventDefault();
+      const slug = btn.dataset.ebookSlug;
+      if (slug) openEbookModal(slug);
+    }
+  });
+
+  // Fechar modal
+  document.getElementById('ebook-modal-close')?.addEventListener('click', closeEbookModal);
+  document.getElementById('ebook-modal-backdrop')?.addEventListener('click', closeEbookModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeEbookModal();
+  });
+
+  // Máscara de telefone
+  const phoneInput = document.getElementById('lead-phone') as HTMLInputElement;
+  phoneInput?.addEventListener('input', () => {
+    phoneInput.value = phoneMask(phoneInput.value);
+  });
+
+  // Submit do formulário
+  const form = document.getElementById('ebook-lead-form') as HTMLFormElement;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('lead-name') as HTMLInputElement;
+    const emailInput = document.getElementById('lead-email') as HTMLInputElement;
+    const phoneInput = document.getElementById('lead-phone') as HTMLInputElement;
+    const lgpdInput = document.getElementById('lead-lgpd') as HTMLInputElement;
+    const slugInput = document.getElementById('ebook-slug-input') as HTMLInputElement;
+    const errorEl = document.getElementById('ebook-form-error') as HTMLElement;
+    const submitBtn = document.getElementById('ebook-submit-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('ebook-btn-text') as HTMLElement;
+    const spinner = document.getElementById('ebook-btn-spinner') as HTMLElement;
+    const successEl = document.getElementById('ebook-success') as HTMLElement;
+    const downloadLink = document.getElementById('ebook-direct-download') as HTMLAnchorElement;
+
+    // Validação client-side
+    if (!nameInput.value.trim() || nameInput.value.trim().length < 3) {
+      showError('Por favor, informe seu nome completo.');
+      nameInput.focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+      showError('Por favor, informe um e-mail válido.');
+      emailInput.focus();
+      return;
+    }
+    const phoneDigits = phoneInput.value.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      showError('Por favor, informe seu celular com DDD (ex: 11 99999-9999).');
+      phoneInput.focus();
+      return;
+    }
+    if (!lgpdInput.checked) {
+      showError('É necessário aceitar os termos para receber o guia.');
+      return;
+    }
+
+    function showError(msg: string) {
+      errorEl.textContent = msg;
+      errorEl.classList.remove('hidden');
+    }
+
+    errorEl.classList.add('hidden');
+    submitBtn.disabled = true;
+    btnText.textContent = 'Enviando...';
+    spinner.classList.remove('hidden');
+
+    try {
+      const resp = await fetch('/api/ebook-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim().toLowerCase(),
+          phone: phoneInput.value.trim(),
+          ebook_slug: slugInput.value,
+          lgpd_consent: true,
+        }),
+      });
+
+      const data = await resp.json() as { success?: boolean; pdf_url?: string; error?: string };
+
+      if (data.success) {
+        form.classList.add('hidden');
+        successEl.classList.remove('hidden');
+        if (downloadLink && data.pdf_url) {
+          downloadLink.href = data.pdf_url;
+        }
+      } else {
+        showError(data.error || 'Erro ao processar. Tente novamente.');
+        submitBtn.disabled = false;
+        btnText.textContent = 'Receber o Guia Gratuitamente';
+        spinner.classList.add('hidden');
+      }
+    } catch {
+      showError('Erro de conexão. Verifique sua internet e tente novamente.');
+      submitBtn.disabled = false;
+      btnText.textContent = 'Receber o Guia Gratuitamente';
+      spinner.classList.add('hidden');
+    }
+  });
+});
+</script>

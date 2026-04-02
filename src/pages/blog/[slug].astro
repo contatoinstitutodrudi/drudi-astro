@@ -284,13 +284,12 @@ const relatedGuia = post?.category ? catGuiaMap[post.category] : null;
                     >
                       Ler o Guia Completo
                     </a>
-                    <a
-                      href={`/ebooks/ebook-${relatedGuia.pdfSlug}-drudi-almeida.pdf`}
-                      download
-                      class="inline-flex items-center gap-2 border border-cream/25 text-cream font-ui text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-cream/10 transition-colors"
+                    <button
+                      data-ebook-slug={relatedGuia.pdfSlug}
+                      class="inline-flex items-center gap-2 border border-cream/25 text-cream font-ui text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-cream/10 transition-colors cursor-pointer bg-transparent"
                     >
                       ⬇ Baixar PDF
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
