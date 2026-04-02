@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de baixar um guia de oftalmologia.";
+
+const guias = [
+  {
+    slug: 'cirurgia-catarata-sp',
+    titulo: 'Guia Completo: Cirurgia de Catarata em São Paulo (2026)',
+    descricao: 'Tudo sobre a cirurgia de catarata por facoemulsificação: tipos de lentes (monofocal, trifocal, EDOF, tórica), recuperação, convênios e 15 referências científicas de alto impacto (JAMA, AAO, ESCRS).',
+    especialidade: 'Instituto da Catarata',
+    cor: 'blue',
+    icone: '👁️',
+    pdf: '/ebooks/ebook-catarata-drudi-almeida.pdf',
+    paginas: '17 páginas',
+    refs: '15 referências',
+    keywords: 'cirurgia catarata, facoemulsificação, lente intraocular, LIO multifocal',
+  },
+  {
+    slug: 'ceratocone-tratamento-sp',
+    titulo: 'Ceratocone: Diagnóstico, Crosslinking e Tratamento (2026)',
+    descricao: 'Guia completo sobre ceratocone: diagnóstico com Pentacam, crosslinking (CXL), anel de Ferrara, lentes esclerais e transplante de córnea. Baseado em 10 estudos clínicos randomizados.',
+    especialidade: 'Instituto do Ceratocone',
+    cor: 'emerald',
+    icone: '🔬',
+    pdf: '/ebooks/ebook-ceratocone-drudi-almeida.pdf',
+    paginas: '14 páginas',
+    refs: '10 referências',
+    keywords: 'ceratocone, crosslinking, anel de ferrara, lente escleral',
+  },
+  {
+    slug: 'glaucoma-tratamento-sp',
+    titulo: 'Glaucoma: Diagnóstico Precoce e Tratamento (2026)',
+    descricao: 'O "ladrão silencioso da visão": tipos de glaucoma, OCT, campo visual, colírios, SLT (laser) e cirurgia. Inclui dados do estudo LiGHT e Early Manifest Glaucoma Trial.',
+    especialidade: 'Instituto do Glaucoma',
+    cor: 'amber',
+    icone: '🩺',
+    pdf: '/ebooks/ebook-glaucoma-drudi-almeida.pdf',
+    paginas: '13 páginas',
+    refs: '10 referências',
+    keywords: 'glaucoma, pressão ocular, campo visual, trabeculoplastia laser',
+  },
+  {
+    slug: 'retina-retinopatia-diabetica-sp',
+    titulo: 'Retina e Retinopatia Diabética: Anti-VEGF e Tratamento (2026)',
+    descricao: 'Retinopatia diabética, DMRI, injeções intravítreas anti-VEGF (aflibercepte, faricimabe, ranibizumabe), laser de retina e vitrectomia. Baseado em estudos do NEJM e JAMA Ophthalmology.',
+    especialidade: 'Instituto da Retina',
+    cor: 'rose',
+    icone: '💉',
+    pdf: '/ebooks/ebook-retina-drudi-almeida.pdf',
+    paginas: '13 páginas',
+    refs: '8 referências',
+    keywords: 'retinopatia diabética, DMRI, anti-VEGF, injeção intravítrea',
+  },
+  {
+    slug: 'estrabismo-cirurgia-sp',
+    titulo: 'Estrabismo: Diagnóstico e Cirurgia em Crianças e Adultos (2026)',
+    descricao: 'Tipos de estrabismo, ambliopia ("olho preguiçoso"), tratamentos com óculos, oclusão, toxina botulínica e cirurgia de estrabismo. Guia para pais e pacientes adultos.',
+    especialidade: 'Instituto de Estrabismo',
+    cor: 'violet',
+    icone: '👶',
+    pdf: '/ebooks/ebook-estrabismo-drudi-almeida.pdf',
+    paginas: '11 páginas',
+    refs: '5 referências',
+    keywords: 'estrabismo, olho preguiçoso, ambliopia, cirurgia de estrabismo',
+  },
+];
+
+const corMap: Record<string, { bg: string; border: string; badge: string; text: string }> = {
+  blue:    { bg: 'bg-blue-50',    border: 'border-blue-200',    badge: 'bg-blue-100 text-blue-800',    text: 'text-blue-700' },
+  emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', badge: 'bg-emerald-100 text-emerald-800', text: 'text-emerald-700' },
+  amber:   { bg: 'bg-amber-50',   border: 'border-amber-200',   badge: 'bg-amber-100 text-amber-800',   text: 'text-amber-700' },
+  rose:    { bg: 'bg-rose-50',    border: 'border-rose-200',    badge: 'bg-rose-100 text-rose-800',     text: 'text-rose-700' },
+  violet:  { bg: 'bg-violet-50',  border: 'border-violet-200',  badge: 'bg-violet-100 text-violet-800', text: 'text-violet-700' },
+};
+
+const breadcrumbItems = [
+  { name: 'Início', item: 'https://institutodrudiealmeida.com.br/' },
+  { name: 'Guias de Oftalmologia' },
+];
+
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Guias de Oftalmologia — Drudi e Almeida",
+  "description": "5 guias médicos completos sobre as principais doenças oftalmológicas, baseados em literatura científica de alto impacto.",
+  "url": "https://institutodrudiealmeida.com.br/guia/",
+  "numberOfItems": 5,
+  "itemListElement": guias.map((g, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": g.titulo,
+    "url": `https://institutodrudiealmeida.com.br/guia/${g.slug}/`,
+  }))
+};
+---
+
+<BaseLayout
+  title="Guias de Oftalmologia com Base Científica | Drudi e Almeida"
+  description="5 guias médicos completos sobre catarata, ceratocone, glaucoma, retina e estrabismo. Baixe gratuitamente em PDF. Baseados em estudos do JAMA, NEJM e AAO."
+  keywords="guia oftalmologia, ebook catarata, guia ceratocone, glaucoma tratamento, retinopatia diabética, estrabismo cirurgia"
+  canonicalPath="/guia/"
+  breadcrumbItems={breadcrumbItems}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />
+
+  <!-- Hero -->
+  <section class="relative bg-navy py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-gold blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold blur-3xl"></div>
+    </div>
+    <div class="container relative">
+      <Breadcrumb items={breadcrumbItems} dark />
+      <div class="max-w-3xl mt-6">
+        <span class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-1.5 mb-5">
+          <span class="font-ui text-xs font-semibold text-gold tracking-wide">EVIDÊNCIA CIENTÍFICA</span>
+        </span>
+        <h1 class="font-display text-3xl md:text-4xl lg:text-5xl text-cream leading-tight mb-5">
+          Guias de Oftalmologia<br/>
+          <span class="text-gold italic">com Base Científica</span>
+        </h1>
+        <p class="font-body text-lg text-cream/80 leading-relaxed mb-8 max-w-2xl">
+          5 guias médicos completos sobre as principais doenças oftalmológicas, elaborados com base
+          em estudos publicados no <em>JAMA</em>, <em>New England Journal of Medicine</em>,
+          <em>Ophthalmology</em> e diretrizes da AAO. Disponíveis gratuitamente em PDF.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors"
+          >
+            Agendar Consulta
+          </a>
+          <a
+            href="#guias"
+            class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors"
+          >
+            Ver os Guias ↓
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-cream border-b border-border/30">
+    <div class="container py-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-display text-2xl text-navy font-bold">5</div>
+          <div class="font-ui text-xs text-muted-foreground mt-1">Guias Completos</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl text-navy font-bold">16.900+</div>
+          <div class="font-ui text-xs text-muted-foreground mt-1">Palavras de Conteúdo</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl text-navy font-bold">45+</div>
+          <div class="font-ui text-xs text-muted-foreground mt-1">Referências Científicas</div>
+        </div>
+        <div>
+          <div class="font-display text-2xl text-navy font-bold">100%</div>
+          <div class="font-ui text-xs text-muted-foreground mt-1">Gratuito</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guias Grid -->
+  <section id="guias" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl text-navy mb-4">Escolha seu Guia</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          Cada guia foi elaborado por especialistas da Drudi e Almeida com base nas melhores
+          evidências científicas disponíveis. Leia online ou baixe em PDF gratuitamente.
+        </p>
+        <div class="gold-line max-w-[80px] mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {guias.map((guia) => {
+          const c = corMap[guia.cor];
+          return (
+            <article class={`group relative rounded-xl border ${c.border} ${c.bg} p-6 hover:shadow-lg transition-all duration-300 flex flex-col`}>
+              <!-- Badge especialidade -->
+              <span class={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${c.badge} mb-4 w-fit`}>
+                {guia.especialidade}
+              </span>
+
+              <!-- Ícone -->
+              <div class="text-3xl mb-3">{guia.icone}</div>
+
+              <!-- Título -->
+              <h3 class="font-display text-lg text-navy mb-3 leading-snug group-hover:text-navy/80 transition-colors">
+                {guia.titulo}
+              </h3>
+
+              <!-- Descrição -->
+              <p class="font-body text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
+                {guia.descricao}
+              </p>
+
+              <!-- Meta -->
+              <div class="flex items-center gap-4 text-xs text-muted-foreground mb-5 border-t border-border/40 pt-4">
+                <span>📄 {guia.paginas}</span>
+                <span>📚 {guia.refs}</span>
+              </div>
+
+              <!-- CTAs -->
+              <div class="flex flex-col sm:flex-row gap-2">
+                <a
+                  href={`/guia/${guia.slug}/`}
+                  class={`flex-1 text-center font-ui text-sm font-semibold px-4 py-2.5 rounded-md border ${c.border} ${c.text} hover:bg-white/60 transition-colors`}
+                >
+                  Ler Online
+                </a>
+                <a
+                  href={guia.pdf}
+                  download
+                  class="flex-1 text-center font-ui text-sm font-bold px-4 py-2.5 rounded-md bg-navy text-cream hover:bg-navy/90 transition-colors"
+                >
+                  ⬇ Baixar PDF
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="bg-navy py-16">
+    <div class="container text-center">
+      <h2 class="font-display text-3xl text-cream mb-4">
+        Dúvidas? Fale com um <span class="text-gold italic">especialista</span>
+      </h2>
+      <p class="font-body text-cream/80 mb-8 max-w-xl mx-auto">
+        Os guias têm caráter educativo. Para diagnóstico e tratamento individualizado,
+        agende uma consulta com os especialistas da Drudi e Almeida.
+      </p>
+      <a
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-4 rounded-md hover:bg-gold-light transition-colors"
+      >
+        Agendar pelo WhatsApp
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -33,6 +33,12 @@ export default defineConfig({
         'https://institutodrudiealmeida.com.br/blog/coriorretinopatia-serosa-central',
         'https://institutodrudiealmeida.com.br/perguntas-frequentes/',
         'https://institutodrudiealmeida.com.br/oftalmologia-humanitaria/',
+        'https://institutodrudiealmeida.com.br/guia/',
+        'https://institutodrudiealmeida.com.br/guia/cirurgia-catarata-sp/',
+        'https://institutodrudiealmeida.com.br/guia/ceratocone-tratamento-sp/',
+        'https://institutodrudiealmeida.com.br/guia/glaucoma-tratamento-sp/',
+        'https://institutodrudiealmeida.com.br/guia/retina-retinopatia-diabetica-sp/',
+        'https://institutodrudiealmeida.com.br/guia/estrabismo-cirurgia-sp/',
       ],
       serialize(item) {
         const today = new Date().toISOString().split('T')[0];
@@ -48,6 +54,9 @@ export default defineConfig({
         }
         if (item.url.includes('/blog/')) {
           return { ...item, priority: 0.7, changefreq: 'yearly', lastmod: today };
+        }
+        if (item.url.includes('/guia/')) {
+          return { ...item, priority: 0.9, changefreq: 'monthly', lastmod: today };
         }
         if (item.url.includes('/perguntas-frequentes/')) {
           return { ...item, priority: 0.9, changefreq: 'monthly', lastmod: today };

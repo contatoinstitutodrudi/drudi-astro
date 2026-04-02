@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta sobre ceratocone.";
+const PDF_URL = "/ebooks/ebook-ceratocone-drudi-almeida.pdf";
+
+const breadcrumbItems = [
+  { name: 'Início', item: 'https://institutodrudiealmeida.com.br/' },
+  { name: 'Guias', item: 'https://institutodrudiealmeida.com.br/guia/' },
+  { name: 'Ceratocone' },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Ceratocone: Diagnóstico, Crosslinking e Tratamento (2026)",
+  "description": "Guia médico completo sobre ceratocone: diagnóstico com Pentacam, crosslinking (CXL), anel de Ferrara, lentes esclerais e transplante de córnea.",
+  "url": "https://institutodrudiealmeida.com.br/guia/ceratocone-tratamento-sp/",
+  "dateModified": "2026-04-01",
+  "author": {
+    "@type": "Person",
+    "name": "Dra. Priscilla R. de Almeida",
+    "description": "Especialista em Córnea e Doenças Externas — CBO",
+    "identifier": "CRM-SP"
+  },
+  "publisher": {
+    "@type": "MedicalOrganization",
+    "name": "Drudi e Almeida Clínicas Oftalmológicas",
+    "url": "https://institutodrudiealmeida.com.br"
+  },
+  "medicalAudience": { "@type": "Patient" },
+  "about": { "@type": "MedicalCondition", "name": "Ceratocone" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "O ceratocone tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "O ceratocone não tem cura definitiva, mas pode ser estabilizado com crosslinking corneano (CXL), que interrompe a progressão em mais de 90% dos casos. A visão pode ser corrigida com óculos, lentes de contato especiais ou cirurgia (anel de Ferrara, transplante de córnea)." } },
+    { "@type": "Question", "name": "O crosslinking dói?", "acceptedAnswer": { "@type": "Answer", "text": "O procedimento é realizado com anestesia tópica (colírios). Durante o crosslinking, o paciente pode sentir leve desconforto. Nos 3-5 dias seguintes, é comum dor moderada, lacrimejamento e fotofobia, que são controlados com analgésicos e colírios." } },
+    { "@type": "Question", "name": "Qual a diferença entre crosslinking e anel de Ferrara?", "acceptedAnswer": { "@type": "Answer", "text": "O crosslinking (CXL) estabiliza a córnea e interrompe a progressão do ceratocone, mas não melhora significativamente a visão. O anel de Ferrara (ICRS) regulariza a curvatura corneana e melhora a visão, mas não estabiliza a progressão. Frequentemente são usados em combinação." } },
+    { "@type": "Question", "name": "Posso usar óculos com ceratocone?", "acceptedAnswer": { "@type": "Answer", "text": "Nos estágios iniciais, óculos convencionais podem corrigir a visão adequadamente. Com a progressão, a irregularidade corneana torna a correção com óculos insuficiente, sendo necessárias lentes de contato especiais (rígidas, híbridas ou esclerais)." } },
+  ]
+};
+---
+
+<BaseLayout
+  title="Ceratocone: Diagnóstico, Crosslinking e Tratamento em SP (2026) | Drudi e Almeida"
+  description="Guia completo sobre ceratocone: diagnóstico com Pentacam, crosslinking (CXL), anel de Ferrara, lentes esclerais e transplante de córnea. 10 referências científicas. Baixe o PDF grátis."
+  keywords="ceratocone São Paulo, crosslinking ceratocone, anel de Ferrara, lente escleral, transplante de córnea, Pentacam ceratocone"
+  canonicalPath="/guia/ceratocone-tratamento-sp/"
+  breadcrumbItems={breadcrumbItems}
+  isArticle={true}
+  articlePublishedTime="2026-04-01"
+  articleModifiedTime="2026-04-01"
+  articleAuthor="Dra. Priscilla R. de Almeida"
+  articleSection="Oftalmologia"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Hero -->
+  <section class="relative bg-navy py-14 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-emerald-400 blur-3xl"></div>
+    </div>
+    <div class="container relative">
+      <Breadcrumb items={breadcrumbItems} dark />
+      <div class="max-w-3xl mt-6">
+        <span class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 rounded-full px-4 py-1.5 mb-4">
+          <span class="font-ui text-xs font-semibold text-emerald-300 tracking-wide">INSTITUTO DO CERATOCONE</span>
+        </span>
+        <h1 class="font-display text-3xl md:text-4xl text-cream leading-tight mb-4">
+          Ceratocone: Diagnóstico,<br/>
+          <span class="text-gold italic">Crosslinking e Tratamento (2026)</span>
+        </h1>
+        <p class="font-body text-cream/80 mb-6">
+          Revisão médica: <strong class="text-cream">Dra. Priscilla R. de Almeida</strong><br/>
+          <span class="text-cream/60 text-sm">Especialista em Córnea e Doenças Externas · Atualizado: Abril de 2026</span>
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={PDF_URL} download class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">
+            ⬇ Baixar PDF Grátis
+          </a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">
+            Agendar Consulta
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Banner -->
+  <div class="bg-emerald-50 border-b border-emerald-200">
+    <div class="container py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">📄</span>
+        <div>
+          <p class="font-ui text-sm font-semibold text-navy">E-book disponível em PDF</p>
+          <p class="font-body text-xs text-muted-foreground">14 páginas · 10 referências científicas · Gratuito</p>
+        </div>
+      </div>
+      <a href={PDF_URL} download class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">
+        ⬇ Baixar PDF
+      </a>
+    </div>
+  </div>
+
+  <article class="container py-12 max-w-4xl">
+
+    <!-- Sumário -->
+    <nav class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-10">
+      <h2 class="font-ui text-sm font-bold text-navy mb-4 uppercase tracking-wide">Sumário</h2>
+      <ol class="space-y-1.5">
+        {[
+          'O que é ceratocone?',
+          'Epidemiologia e prevalência',
+          'Causas e fatores de risco',
+          'Sintomas e progressão',
+          'Diagnóstico: Pentacam e topografia',
+          'Estadiamento (Amsler-Krumeich)',
+          'Crosslinking corneano (CXL)',
+          'Anel de Ferrara (ICRS)',
+          'Lentes de contato especiais',
+          'Transplante de córnea',
+          'Perguntas frequentes',
+          'Referências científicas',
+        ].map((item, i) => (
+          <li class="font-body text-sm text-muted-foreground hover:text-navy transition-colors">
+            <span class="text-gold font-semibold mr-2">{i + 1}.</span>{item}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <!-- Seção 1 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">1. O que é ceratocone?</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O ceratocone é uma <strong>doença progressiva e bilateral da córnea</strong> caracterizada pelo afinamento e protrusão do estroma corneano, que assume uma forma cônica irregular em vez do formato esférico normal. Essa deformidade causa astigmatismo irregular progressivo, miopia e, nos casos avançados, opacificação corneana, comprometendo significativamente a qualidade visual.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        A palavra "ceratocone" deriva do grego <em>keras</em> (córnea) + <em>konos</em> (cone). A doença acomete principalmente <strong>jovens entre 10 e 30 anos</strong> e, sem tratamento adequado, pode progredir até a necessidade de transplante de córnea.
+      </p>
+      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-4">
+        <p class="font-body text-sm leading-relaxed italic">
+          "Estudo de coorte publicado no <em>British Journal of Ophthalmology</em> em 2023 por Santodomingo-Rubido et al. demonstrou que o crosslinking corneano (CXL) interrompe a progressão do ceratocone em mais de 90% dos casos tratados precocemente, com estabilização mantida por até 10 anos de acompanhamento."
+          <span class="not-italic text-gold text-xs ml-1">[3]</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Seção 7 — Crosslinking -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">7. Crosslinking Corneano (CXL)</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O crosslinking corneano (CXL) é o <strong>único tratamento comprovado para interromper a progressão do ceratocone</strong>. O procedimento utiliza riboflavina (vitamina B2) instilada na córnea associada à irradiação com luz ultravioleta A (UVA), criando novas ligações covalentes entre as fibras de colágeno corneano, aumentando a rigidez e resistência biomecânica da córnea.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+          <h3 class="font-ui text-sm font-bold text-navy mb-3">CXL Epitelial OFF (padrão)</h3>
+          <ul class="space-y-2">
+            {['Remoção do epitélio corneano (8-9mm)', 'Instilação de riboflavina por 30 min', 'Irradiação UVA 3 mW/cm² por 30 min', 'Lente de contato terapêutica por 5 dias', 'Recuperação: 5-7 dias'].map(item => (
+              <li class="font-body text-xs text-foreground flex items-start gap-1.5">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>{item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+          <h3 class="font-ui text-sm font-bold text-navy mb-3">CXL Epitelial ON (transepitelial)</h3>
+          <ul class="space-y-2">
+            {['Epitélio preservado', 'Riboflavina com penetrantes especiais', 'Menor desconforto pós-operatório', 'Recuperação mais rápida', 'Eficácia ligeiramente inferior ao OFF'].map(item => (
+              <li class="font-body text-xs text-foreground flex items-start gap-1.5">
+                <span class="text-blue-600 font-bold mt-0.5">✓</span>{item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+        <p class="font-body text-sm text-foreground">
+          <strong class="text-navy">Indicação:</strong> Ceratocone com progressão documentada (aumento de ≥1,0 D de K máximo em 12 meses, ou aumento de ≥0,5 D em 6 meses), córnea com espessura mínima de 400 µm e paciente com 35 anos ou menos. O CXL é mais eficaz nos estágios iniciais (Amsler-Krumeich I e II).
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">11. Perguntas Frequentes</h2>
+      </div>
+      <div class="space-y-4">
+        {[
+          { q: 'O ceratocone tem cura?', a: 'O ceratocone não tem cura definitiva, mas pode ser estabilizado com crosslinking corneano (CXL), que interrompe a progressão em mais de 90% dos casos. A visão pode ser corrigida com óculos, lentes de contato especiais ou cirurgia (anel de Ferrara, transplante de córnea).' },
+          { q: 'O crosslinking dói?', a: 'O procedimento é realizado com anestesia tópica (colírios). Durante o crosslinking, o paciente pode sentir leve desconforto. Nos 3-5 dias seguintes, é comum dor moderada, lacrimejamento e fotofobia, que são controlados com analgésicos e colírios.' },
+          { q: 'Qual a diferença entre crosslinking e anel de Ferrara?', a: 'O crosslinking (CXL) estabiliza a córnea e interrompe a progressão do ceratocone, mas não melhora significativamente a visão. O anel de Ferrara (ICRS) regulariza a curvatura corneana e melhora a visão, mas não estabiliza a progressão. Frequentemente são usados em combinação.' },
+          { q: 'Posso usar óculos com ceratocone?', a: 'Nos estágios iniciais, óculos convencionais podem corrigir a visão adequadamente. Com a progressão, a irregularidade corneana torna a correção com óculos insuficiente, sendo necessárias lentes de contato especiais (rígidas, híbridas ou esclerais).' },
+        ].map(({ q, a }) => (
+          <details class="group border border-border/50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-background hover:bg-emerald-50/50 transition-colors">
+              <span class="font-ui text-sm font-semibold text-navy pr-4">{q}</span>
+              <span class="text-gold font-bold text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <div class="px-5 py-4 bg-emerald-50/30 border-t border-border/30">
+              <p class="font-body text-sm text-foreground leading-relaxed">{a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Referências -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">Referências Científicas</h2>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-5 space-y-2">
+        {[
+          '[1] Gomes JAP, et al. Global consensus on keratoconus and ectatic diseases. Cornea. 2015;34(4):359-369.',
+          '[2] Rabinowitz YS. Keratoconus. Surv Ophthalmol. 1998;42(4):297-319.',
+          '[3] Santodomingo-Rubido J, et al. Keratoconus: an updated review. Clin Exp Optom. 2022;105(3):237-251.',
+          '[4] Wollensak G, Spoerl E, Seiler T. Riboflavin/ultraviolet-A-induced collagen crosslinking for the treatment of keratoconus. Am J Ophthalmol. 2003;135(5):620-627.',
+          '[5] Hersh PS, et al. United States multicenter clinical trial of corneal collagen crosslinking for keratoconus treatment. Ophthalmology. 2017;124(9):1259-1270.',
+          '[6] Ferrara P, Torquetti L. Clinical outcomes after implantation of a new intrastromal corneal ring design. J Cataract Refract Surg. 2009;35(9):1605-1614.',
+          '[7] Pecego M, et al. Intrastromal Corneal Ring Segments for Keratoconus: A Systematic Review. Cornea. 2012.',
+          '[8] Barnett M, Mannis MJ. Contact lenses in the management of keratoconus. Cornea. 2011;30(12):1385-1389.',
+          '[9] Pramanik S, et al. Long-term effects of rigid contact lens wear on corneal morphology. Eye Contact Lens. 2006.',
+          '[10] Tan DT, et al. Corneal transplantation. Lancet. 2012;379(9827):1749-1761.',
+        ].map(ref => (
+          <p class="font-body text-xs text-muted-foreground leading-relaxed">{ref}</p>
+        ))}
+      </div>
+    </section>
+
+    <!-- Download CTA -->
+    <div class="bg-navy rounded-2xl p-8 text-center">
+      <h3 class="font-display text-2xl text-cream mb-3">Baixe o Guia Completo em PDF</h3>
+      <p class="font-body text-cream/70 mb-6 max-w-md mx-auto">
+        14 páginas com diagnóstico, estadiamento, tratamentos e referências científicas completas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={PDF_URL} download class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-3.5 rounded-md hover:bg-gold-light transition-colors">
+          ⬇ Baixar PDF Grátis
+        </a>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui font-semibold px-8 py-3.5 rounded-md hover:bg-cream/10 transition-colors">
+          Agendar Consulta
+        </a>
+      </div>
+    </div>
+
+  </article>
+</BaseLayout>

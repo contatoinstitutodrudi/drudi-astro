@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const WHATSAPP_LINK = "https://wa.me/5511916544653?text=Olá! Gostaria de agendar uma consulta sobre glaucoma.";
+const PDF_URL = "/ebooks/ebook-glaucoma-drudi-almeida.pdf";
+
+const breadcrumbItems = [
+  { name: 'Início', item: 'https://institutodrudiealmeida.com.br/' },
+  { name: 'Guias', item: 'https://institutodrudiealmeida.com.br/guia/' },
+  { name: 'Glaucoma' },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Glaucoma: Diagnóstico Precoce e Tratamento (2026)",
+  "description": "Guia médico completo sobre glaucoma: tipos, OCT, campo visual, colírios, trabeculoplastia a laser (SLT) e cirurgia. Baseado em estudos LiGHT e EMGT.",
+  "url": "https://institutodrudiealmeida.com.br/guia/glaucoma-tratamento-sp/",
+  "dateModified": "2026-04-01",
+  "publisher": { "@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas" },
+  "medicalAudience": { "@type": "Patient" },
+  "about": { "@type": "MedicalCondition", "name": "Glaucoma" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "O glaucoma tem cura?", "acceptedAnswer": { "@type": "Answer", "text": "O glaucoma não tem cura, mas tem tratamento eficaz. Com diagnóstico precoce e tratamento adequado (colírios, laser ou cirurgia), é possível controlar a pressão ocular e preservar a visão por toda a vida." } },
+    { "@type": "Question", "name": "Glaucoma causa cegueira?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, o glaucoma não tratado pode causar cegueira irreversível. É a segunda causa de cegueira no mundo. No entanto, com diagnóstico e tratamento precoces, a grande maioria dos pacientes preserva a visão funcional." } },
+    { "@type": "Question", "name": "Quem tem pressão alta nos olhos tem glaucoma?", "acceptedAnswer": { "@type": "Answer", "text": "Não necessariamente. A pressão ocular elevada (hipertensão ocular) é o principal fator de risco, mas o diagnóstico de glaucoma requer também alterações no nervo óptico e/ou no campo visual. Existem casos de glaucoma com pressão normal (glaucoma normotensivo)." } },
+    { "@type": "Question", "name": "O que é a trabeculoplastia a laser (SLT)?", "acceptedAnswer": { "@type": "Answer", "text": "A trabeculoplastia seletiva a laser (SLT) é um procedimento ambulatorial que utiliza laser para estimular a malha trabecular a drenar melhor o humor aquoso, reduzindo a pressão ocular. O estudo LiGHT (2019) demonstrou que o SLT é tão eficaz quanto colírios como tratamento inicial do glaucoma." } },
+  ]
+};
+---
+
+<BaseLayout
+  title="Glaucoma: Diagnóstico Precoce e Tratamento em SP (2026) | Drudi e Almeida"
+  description="Guia completo sobre glaucoma: tipos, OCT, campo visual, colírios, trabeculoplastia laser (SLT) e cirurgia. Estudos LiGHT e EMGT. Baixe o PDF grátis."
+  keywords="glaucoma São Paulo, pressão ocular alta, campo visual glaucoma, trabeculoplastia laser SLT, colírios glaucoma, cirurgia glaucoma"
+  canonicalPath="/guia/glaucoma-tratamento-sp/"
+  breadcrumbItems={breadcrumbItems}
+  isArticle={true}
+  articlePublishedTime="2026-04-01"
+  articleModifiedTime="2026-04-01"
+  articleAuthor="Drudi e Almeida Clínicas Oftalmológicas"
+  articleSection="Oftalmologia"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="relative bg-navy py-14 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-amber-400 blur-3xl"></div>
+    </div>
+    <div class="container relative">
+      <Breadcrumb items={breadcrumbItems} dark />
+      <div class="max-w-3xl mt-6">
+        <span class="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/30 rounded-full px-4 py-1.5 mb-4">
+          <span class="font-ui text-xs font-semibold text-amber-300 tracking-wide">INSTITUTO DO GLAUCOMA</span>
+        </span>
+        <h1 class="font-display text-3xl md:text-4xl text-cream leading-tight mb-4">
+          Glaucoma: Diagnóstico Precoce<br/>
+          <span class="text-gold italic">e Tratamento (2026)</span>
+        </h1>
+        <p class="font-body text-cream/80 mb-6">
+          <span class="text-cream/60 text-sm">Revisão baseada em evidências · Estudos LiGHT e EMGT · Atualizado: Abril de 2026</span>
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={PDF_URL} download class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-md hover:bg-gold-light transition-colors">⬇ Baixar PDF Grátis</a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-6 py-3 rounded-md hover:bg-cream/10 transition-colors">Agendar Consulta</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-amber-50 border-b border-amber-200">
+    <div class="container py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">📄</span>
+        <div>
+          <p class="font-ui text-sm font-semibold text-navy">E-book disponível em PDF</p>
+          <p class="font-body text-xs text-muted-foreground">13 páginas · 10 referências científicas · Gratuito</p>
+        </div>
+      </div>
+      <a href={PDF_URL} download class="inline-flex items-center gap-2 bg-navy text-cream font-ui text-sm font-bold px-5 py-2.5 rounded-md hover:bg-navy/90 transition-colors whitespace-nowrap">⬇ Baixar PDF</a>
+    </div>
+  </div>
+
+  <article class="container py-12 max-w-4xl">
+
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">O "Ladrão Silencioso da Visão"</h2>
+      </div>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        O glaucoma é uma <strong>neuropatia óptica progressiva</strong> caracterizada pela degeneração das células ganglionares da retina e das fibras do nervo óptico, resultando em perda irreversível do campo visual. É chamado de "ladrão silencioso da visão" porque, na maioria dos casos, evolui sem sintomas perceptíveis até estágios avançados.
+      </p>
+      <p class="font-body text-base text-foreground leading-relaxed mb-4">
+        É a <strong>segunda causa de cegueira no mundo</strong>, responsável por 8% de todos os casos, afetando mais de 80 milhões de pessoas globalmente. No Brasil, estima-se que mais de 1 milhão de pessoas tenham glaucoma sem saber.<sup class="text-gold text-xs">[1]</sup>
+      </p>
+      <div class="bg-navy text-cream rounded-xl p-5 border-l-4 border-gold mb-4">
+        <p class="font-body text-sm leading-relaxed italic">
+          "O estudo LiGHT (Laser in Glaucoma and Ocular Hypertension), publicado no <em>Lancet</em> em 2019, demonstrou que a trabeculoplastia seletiva a laser (SLT) é tão eficaz quanto os colírios como tratamento de primeira linha do glaucoma de ângulo aberto, com 74,2% dos pacientes não necessitando de medicação adicional após 3 anos."
+          <span class="not-italic text-gold text-xs ml-1">[5]</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">Tipos de Glaucoma</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        {[
+          { tipo: 'Glaucoma de Ângulo Aberto (GPAA)', desc: 'O mais comum (90% dos casos). Evolução lenta e silenciosa. Pressão ocular elevada por disfunção da malha trabecular.', cor: 'border-amber-300 bg-amber-50' },
+          { tipo: 'Glaucoma de Ângulo Fechado', desc: 'Bloqueio agudo ou crônico da drenagem do humor aquoso. Pode causar dor intensa, vermelhidão e perda visual súbita.', cor: 'border-red-300 bg-red-50' },
+          { tipo: 'Glaucoma Normotensivo', desc: 'Dano ao nervo óptico com pressão ocular normal (<21 mmHg). Associado a fatores vasculares e sistêmicos.', cor: 'border-blue-300 bg-blue-50' },
+          { tipo: 'Glaucoma Congênito', desc: 'Presente ao nascimento ou nos primeiros anos de vida. Causa olho grande (buftalmo), fotofobia e lacrimejamento.', cor: 'border-violet-300 bg-violet-50' },
+        ].map(({ tipo, desc, cor }) => (
+          <div class={`rounded-xl border-2 ${cor} p-5`}>
+            <h3 class="font-ui text-sm font-bold text-navy mb-2">{tipo}</h3>
+            <p class="font-body text-sm text-muted-foreground">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">Perguntas Frequentes</h2>
+      </div>
+      <div class="space-y-4">
+        {[
+          { q: 'O glaucoma tem cura?', a: 'O glaucoma não tem cura, mas tem tratamento eficaz. Com diagnóstico precoce e tratamento adequado (colírios, laser ou cirurgia), é possível controlar a pressão ocular e preservar a visão por toda a vida.' },
+          { q: 'Glaucoma causa cegueira?', a: 'Sim, o glaucoma não tratado pode causar cegueira irreversível. É a segunda causa de cegueira no mundo. No entanto, com diagnóstico e tratamento precoces, a grande maioria dos pacientes preserva a visão funcional.' },
+          { q: 'Quem tem pressão alta nos olhos tem glaucoma?', a: 'Não necessariamente. A pressão ocular elevada (hipertensão ocular) é o principal fator de risco, mas o diagnóstico de glaucoma requer também alterações no nervo óptico e/ou no campo visual.' },
+          { q: 'O que é a trabeculoplastia a laser (SLT)?', a: 'A trabeculoplastia seletiva a laser (SLT) é um procedimento ambulatorial que utiliza laser para estimular a malha trabecular a drenar melhor o humor aquoso, reduzindo a pressão ocular. O estudo LiGHT (2019) demonstrou que o SLT é tão eficaz quanto colírios como tratamento inicial do glaucoma.' },
+        ].map(({ q, a }) => (
+          <details class="group border border-border/50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer bg-background hover:bg-amber-50/50 transition-colors">
+              <span class="font-ui text-sm font-semibold text-navy pr-4">{q}</span>
+              <span class="text-gold font-bold text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <div class="px-5 py-4 bg-amber-50/30 border-t border-border/30">
+              <p class="font-body text-sm text-foreground leading-relaxed">{a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-gold rounded-full"></div>
+        <h2 class="font-display text-2xl text-navy">Referências Científicas</h2>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-5 space-y-2">
+        {[
+          '[1] Tham YC, et al. Global prevalence of glaucoma and projections of glaucoma burden through 2040. Ophthalmology. 2014;121(11):2081-2090.',
+          '[2] Weinreb RN, Aung T, Medeiros FA. The pathophysiology and treatment of glaucoma: a review. JAMA. 2014;311(18):1901-1911.',
+          '[3] Heijl A, et al. Reduction of intraocular pressure and glaucoma progression: results from the Early Manifest Glaucoma Trial. Arch Ophthalmol. 2002;120(10):1268-1279.',
+          '[4] Kass MA, et al. The Ocular Hypertension Treatment Study. Arch Ophthalmol. 2002;120(6):701-713.',
+          '[5] Gazzard G, et al. Selective laser trabeculoplasty versus eye drops for first-line treatment of ocular hypertension and glaucoma (LiGHT). Lancet. 2019;393(10180):1505-1516.',
+          '[6] Gedde SJ, et al. Tube Versus Trabeculectomy Study Group. J Glaucoma. 2012.',
+          '[7] Leske MC, et al. Factors for glaucoma progression and the effect of treatment. Arch Ophthalmol. 2003.',
+          '[8] Quigley HA, Broman AT. The number of people with glaucoma worldwide in 2010 and 2020. Br J Ophthalmol. 2006.',
+          '[9] Chauhan BC, et al. Optic disc and visual field changes in a prospective longitudinal study of patients with glaucoma. Arch Ophthalmol. 2001.',
+          '[10] Conselho Brasileiro de Oftalmologia. Diretrizes Clínicas no Glaucoma. CBO; 2020.',
+        ].map(ref => (
+          <p class="font-body text-xs text-muted-foreground leading-relaxed">{ref}</p>
+        ))}
+      </div>
+    </section>
+
+    <div class="bg-navy rounded-2xl p-8 text-center">
+      <h3 class="font-display text-2xl text-cream mb-3">Baixe o Guia Completo em PDF</h3>
+      <p class="font-body text-cream/70 mb-6 max-w-md mx-auto">13 páginas com diagnóstico, tratamentos e referências científicas completas.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={PDF_URL} download class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui font-bold px-8 py-3.5 rounded-md hover:bg-gold-light transition-colors">⬇ Baixar PDF Grátis</a>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream font-ui font-semibold px-8 py-3.5 rounded-md hover:bg-cream/10 transition-colors">Agendar Consulta</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

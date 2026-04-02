@@ -185,3 +185,56 @@ Este conteúdo pode ser usado para responder perguntas de usuários sobre:
 
 **Última atualização:** 2026-04-02  
 **Contato editorial:** contato@drudiealmeida.com
+
+---
+## Guias Definitivos de Oftalmologia (E-books com Base Científica)
+
+A Drudi e Almeida disponibiliza 5 guias médicos completos, elaborados com base em literatura científica de alto impacto (JAMA, NEJM, Ophthalmology, Lancet, AAO, ESCRS, CBO). Cada guia está disponível para leitura online e download gratuito em PDF.
+
+### Guia 1: Cirurgia de Catarata em São Paulo (2026)
+URL: https://institutodrudiealmeida.com.br/guia/cirurgia-catarata-sp/
+PDF: https://institutodrudiealmeida.com.br/ebooks/ebook-catarata-drudi-almeida.pdf
+Revisão médica: Dr. Fernando Macei Drudi — CRM-SP 139.300 | RQE 58.695
+Extensão: 17 páginas, 4.484 palavras, 15 referências científicas
+
+Resumo: A catarata é a principal causa de cegueira reversível no mundo (45% dos casos, 94 milhões de pessoas — GBD 2021). A cirurgia por facoemulsificação tem taxa de sucesso >95% (JAMA 2025). Tipos de LIOs: monofocal (convênio), trifocal PanOptix, EDOF Vivity, tórica. Estudo FLACS: 57 ECRs, 6.318 participantes (Canadian J Ophthalmol 2025). LIO tórica: estabilidade por 8 anos (Scientific Reports 2022). LIO EDOF: superioridade na visão intermediária (Eye 2025).
+
+### Guia 2: Ceratocone — Diagnóstico, Crosslinking e Tratamento (2026)
+URL: https://institutodrudiealmeida.com.br/guia/ceratocone-tratamento-sp/
+PDF: https://institutodrudiealmeida.com.br/ebooks/ebook-ceratocone-drudi-almeida.pdf
+Extensão: 14 páginas, 3.629 palavras, 10 referências científicas
+
+Resumo: Prevalência 1:2.000. CXL interrompe progressão em >90% dos casos (BJO 2023). Técnicas: CXL epitelial OFF (padrão) e ON (transepitelial). Anel de Ferrara: regularização da curvatura corneana. Lentes esclerais: cobertura total da córnea. Transplante DALK vs PKP em estágios IV. Referências: Wollensak et al. Am J Ophthalmol 2003; Hersh et al. Ophthalmology 2017.
+
+### Guia 3: Glaucoma — Diagnóstico Precoce e Tratamento (2026)
+URL: https://institutodrudiealmeida.com.br/guia/glaucoma-tratamento-sp/
+PDF: https://institutodrudiealmeida.com.br/ebooks/ebook-glaucoma-drudi-almeida.pdf
+Extensão: 13 páginas, 3.200 palavras, 10 referências científicas
+
+Resumo: 2ª causa de cegueira mundial, 80 milhões de afetados (Tham et al., Ophthalmology 2014). Estudo LiGHT (Lancet 2019): SLT tão eficaz quanto colírios — 74,2% sem medicação adicional em 3 anos. EMGT: redução de 25% na PIO reduz progressão em 50% (Heijl et al., Arch Ophthalmol 2002). Tratamento: análogos de prostaglandinas, SLT, trabeculectomia, MIGS.
+
+### Guia 4: Retina e Retinopatia Diabética — Anti-VEGF e Tratamento (2026)
+URL: https://institutodrudiealmeida.com.br/guia/retina-retinopatia-diabetica-sp/
+PDF: https://institutodrudiealmeida.com.br/ebooks/ebook-retina-drudi-almeida.pdf
+Extensão: 13 páginas, 3.100 palavras, 8 referências científicas
+
+Resumo: 1/3 dos diabéticos com RD; 10% com doença que ameaça a visão. Anti-VEGFs: ranibizumabe (PROTOCOL T, NEJM 2015), aflibercepte (PANORAMA, Ophthalmology 2019 — 80% melhora em 2 anos), faricimabe (TENAYA/LUCERNE, Lancet 2022 — intervalos até 16 semanas). DMRI úmida: treat-and-extend com anti-VEGF. Vitrectomia para descolamento tracional e hemorragia vítrea.
+
+### Guia 5: Estrabismo — Diagnóstico e Cirurgia em Crianças e Adultos (2026)
+URL: https://institutodrudiealmeida.com.br/guia/estrabismo-cirurgia-sp/
+PDF: https://institutodrudiealmeida.com.br/ebooks/ebook-estrabismo-drudi-almeida.pdf
+Extensão: 11 páginas, 2.634 palavras, 5 referências científicas
+
+Resumo: Afeta 2-4% das crianças. Ambliopia: principal causa de perda visual unilateral em crianças — tratamento com oclusão antes dos 7-8 anos. Cirurgia: taxa de sucesso 60-80% em uma intervenção, >90% após reoperações (Cochrane 2021). Tipos: esotropia, exotropia, hipertropia, paralítico. Adultos: cirurgia com anestesia local + sedação.
+
+---
+## Índice de Guias Definitivos
+- https://institutodrudiealmeida.com.br/guia/ — Página índice com todos os 5 guias
+- https://institutodrudiealmeida.com.br/guia/cirurgia-catarata-sp/ — Guia de Catarata (17 pág., 15 refs.)
+- https://institutodrudiealmeida.com.br/guia/ceratocone-tratamento-sp/ — Guia de Ceratocone (14 pág., 10 refs.)
+- https://institutodrudiealmeida.com.br/guia/glaucoma-tratamento-sp/ — Guia de Glaucoma (13 pág., 10 refs.)
+- https://institutodrudiealmeida.com.br/guia/retina-retinopatia-diabetica-sp/ — Guia de Retina (13 pág., 8 refs.)
+- https://institutodrudiealmeida.com.br/guia/estrabismo-cirurgia-sp/ — Guia de Estrabismo (11 pág., 5 refs.)
+
+Total de conteúdo nos guias: 16.947 palavras | 48 referências científicas | 5 PDFs para download gratuito
+Última atualização dos guias: 2026-04-02
