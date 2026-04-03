@@ -93,6 +93,9 @@ const faqItems = [
   { question: "Com que frequência devo fazer exames?", answer: "Para pacientes em tratamento, geralmente recomendamos consultas a cada 3 a 6 meses, com campo visual e OCT pelo menos uma vez ao ano. Para pessoas com fatores de risco mas sem diagnóstico, recomendamos avaliação anual após os 40 anos. A frequência pode variar conforme o estágio da doença e a estabilidade do tratamento." },
   { question: "Colírios de glaucoma têm efeitos colaterais?", answer: "Sim, como qualquer medicamento. Os análogos de prostaglandina podem causar escurecimento da íris, crescimento dos cílios e vermelhidão. Os betabloqueadores podem afetar a frequência cardíaca e são contraindicados em pacientes com asma. Os inibidores da anidrase carbônica podem causar ardência e gosto amargo. É importante informar ao médico todos os medicamentos que usa para evitar interações." },
   { question: "Posso dirigir se tenho glaucoma?", answer: "Depende do estágio da doença. Em estágios iniciais e com tratamento adequado, a maioria dos pacientes pode dirigir normalmente. Em estágios avançados, a perda de campo visual periférico pode comprometer a segurança ao volante. Seu oftalmologista pode realizar testes específicos de campo visual para avaliar se sua visão atende aos requisitos legais para condução de veículos." },
+  { question: "O glaucoma tem cura?", answer: "O glaucoma não tem cura, mas tem tratamento eficaz que interrompe sua progressão. Com diagnóstico precoce e tratamento adequado — colírios, laser SLT ou cirurgia — é possível preservar a visão por toda a vida. O principal problema é que o glaucoma não causa sintomas nos estágios iniciais, por isso o exame oftalmológico anual é fundamental para diagnóstico precoce." },
+  { question: "Quais são os sintomas do glaucoma?", answer: "Na maioria dos casos (glaucoma de ângulo aberto), o glaucoma não causa sintomas perceptíveis até estágios avançados. A perda de visão começa pela periferia e progride lentamente. Apenas o glaucoma agudo (de ângulo fechado) causa sintomas súbitos: dor intensa no olho, visão turva, halos coloridos ao redor de luzes, náusea e vômito — situação de emergência médica." },
+  { question: "O laser SLT substitui os colírios para glaucoma?", answer: "Sim, em muitos casos. O estudo LiGHT (Lancet 2019) demonstrou que o laser SLT (trabeculoplastia seletiva a laser) é tão eficaz quanto os colírios como primeira linha de tratamento, com 74,2% dos pacientes sem necessidade de medicação adicional após 3 anos. O SLT é um procedimento ambulatorial, indolor, com duração de 5 a 10 minutos, e pode ser repetido." },
 ];
 
 const clinicas = [
@@ -110,8 +113,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   description="Instituto do Glaucoma: diagnóstico precoce, colírios, laser SLT e cirurgia MIGS. Especialistas em glaucoma em 5 unidades em São Paulo e Guarulhos."
   canonicalPath="/instituto/glaucoma"
   ogImage="/images/og-glaucoma_07645bdd.webp"
-  heroImage="/images/glaucoma-hero_degas_a3f7c912.webp"
-  heroImageSrcset="/images/glaucoma-hero-480w.webp 480w, /images/glaucoma-hero-768w.webp 768w, /images/glaucoma-hero_degas_a3f7c912.webp 1280w"
+  heroImage="/images/glaucoma-hero-inst.webp"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
   <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({"@context": "https://schema.org", "@type": "MedicalClinic", "name": "Instituto do Glaucoma — Drudi e Almeida", "medicalSpecialty": "http://schema.org/Optometric", "url": "https://institutodrudiealmeida.com.br/instituto/glaucoma/", "telephone": "+551154302421", "priceRange": "$$", "description": "Diagnóstico precoce e tratamento contínuo do glaucoma: trabeculoplastia seletiva a laser (SLT), trabeculectomia, implante de válvula de Ahmed e colírios.", "image": {"@type": "ImageObject", "url": "https://institutodrudiealmeida.com.br/images/hero-monet-resized_00e348d0.webp", "width": 1920, "height": 1080}, "address": {"@type": "PostalAddress", "streetAddress": "Rua Dr. César, 130", "addressLocality": "São Paulo", "addressRegion": "SP", "postalCode": "02013-001", "addressCountry": "BR"}, "parentOrganization": {"@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas", "url": "https://institutodrudiealmeida.com.br/"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "bestRating": "5", "worstRating": "1", "reviewCount": "312"}})} />
@@ -161,7 +163,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
 
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-6 aos-element" style="color:#ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
-          <em class="text-gold italic">Glaucoma:</em><br class="hidden md:block" />
+          <em class="text-gold italic">Glaucoma</em> -<br class="hidden md:block" />
           diagnóstico precoce para preservar sua visão
         </h1>
 
@@ -251,7 +253,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
         </div>
         <div class="relative aos-element">
           <div class="rounded-2xl overflow-hidden shadow-xl">
-            <img src="/images/tonometria-glaucoma_bb25553e.webp" alt="Tonometria — medida da pressão intraocular" class="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover" loading="lazy" />
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028489100/bJpZLaNUAwiEuNvz3b7LGz/glaucoma-tonometria-goldmann-KMVFc8USteDV7px7CAECjp.webp" alt="Tonometria de aplanação de Goldmann — medida da pressão intraocular com luz azul fluorescente" class="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover" loading="lazy" />
           </div>
           <div class="absolute bottom-4 left-4 right-4 bg-navy/90 backdrop-blur-sm rounded-xl p-4">
             <p class="font-ui text-xs font-bold text-gold tracking-wide uppercase mb-1">Tonometria</p>
@@ -643,7 +645,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <div class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border/40 hover:shadow-lg hover:border-gold/30 transition-all aos-element">
             <div class="relative overflow-hidden">
               <img loading="lazy" src={clinica.image} alt={`Unidade Drudi e Almeida ${clinica.name}`} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+              
               <div class="absolute bottom-3 left-4">
                 <span class="font-ui text-xs font-bold text-white bg-gold/80 rounded-full px-3 py-1">{clinica.city}</span>
               </div>
@@ -685,7 +687,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <p class="font-body text-cream/75 leading-relaxed mb-6">
             Diagnóstico precoce com OCT, campo visual, tratamento com colírios, laser SLT e cirurgia.
           </p>
-          <div class="flex items-center gap-6 mb-6">
+          <div class="flex items-center justify-center gap-6 mb-6">
             <div class="text-center">
               <div class="font-display text-2xl text-gold font-bold">3.200</div>
               <div class="font-ui text-xs text-cream/60">palavras</div>
@@ -869,18 +871,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
             </a>
           </div>
         </div>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-gold font-ui text-sm font-semibold hover:text-gold/80 transition-colors">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Agende pelo WhatsApp
-          </a>
-          <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
-            class="inline-flex items-center gap-2 text-cream/70 font-ui text-sm font-semibold hover:text-cream transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.55 5.55l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-            Ligar: {PHONE}
-          </a>
-        </div>
+
       </div>
     </div>
   </section>

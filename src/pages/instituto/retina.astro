@@ -230,6 +230,9 @@ const faqItems = [
   { question: "Posso ficar cego por retinopatia diabética?", answer: "Se não tratada, sim. A retinopatia diabética é a principal causa de cegueira em adultos em idade produtiva. Porém, com controle glicêmico adequado (HbA1c < 7%), exames regulares e tratamento oportuno (laser, anti-VEGF), a grande maioria dos pacientes mantém visão funcional por toda a vida." },
   { question: "O que é a grade de Amsler?", answer: "A grade de Amsler é um teste simples de autoavaliação que detecta distorções na visão central. É uma folha quadriculada com um ponto central. Linhas onduladas, manchas ou áreas faltantes podem indicar doença macular ativa. Pacientes com DMRI devem fazer este teste semanalmente em casa, alternando cada olho." },
   { question: "A injeção intravítrea é coberta pelo convênio?", answer: "Depende do convênio e da indicação. A maioria dos planos de saúde cobre injeções de anti-VEGF para DMRI úmida e edema macular diabético quando há indicação documentada. O implante de dexametasona (Ozurdex) também tem cobertura na maioria dos planos. Nossa equipe auxilia na solicitação de autorização prévia." },
+  { question: "O que é injeção intravítrea e dói?", answer: "A injeção intravítrea é a aplicação de medicamento (anti-VEGF ou corticoide) diretamente no interior do olho, indicada para doenças como DMRI úmida, edema macular diabético e oclusão vascular. O procedimento é realizado com anestesia tópica (colírios) e é praticamente indolor. Dura apenas alguns minutos e o paciente vai para casa no mesmo dia." },
+  { question: "Quais são os sintomas do descolamento de retina?", answer: "Os principais sintomas do descolamento de retina são: flashes de luz (fotopsias), aumento súbito de 'moscas volantes' (floaters), sombra ou cortina escura no campo visual. É uma emergência médica — procure atendimento imediato. O tratamento cirúrgico (vitrectomia ou retinopexia pneumática) tem melhores resultados quanto mais precoce for realizado." },
+  { question: "Diabético precisa ir ao oftalmologista mesmo sem problemas de visão?", answer: "Sim, obrigatoriamente. A retinopatia diabética é a principal causa de cegueira em adultos em idade produtiva e pode progredir sem sintomas por anos. Todo diabético deve fazer exame de fundo de olho anualmente. O diagnóstico precoce permite tratamento com laser ou anti-VEGF antes que a visão seja comprometida. Quanto melhor o controle glicêmico, menor o risco de retinopatia." },
 ];
 
 const clinicas = [
@@ -335,20 +338,13 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
               Agendar pelo WhatsApp
             </a>
-            <a
-              href="/agendar"
-              class="inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-7 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm"
-            >
+            <a href="/agendar"
+              class="w-full inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-6 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               <span class="flex items-center gap-2 text-sm leading-tight">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Agendar Online
               </span>
               <span class="text-[11px] font-medium leading-tight" style="color:#c9a961">Consulta em até 48h</span>
-            </a>
-            <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
-              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.55 5.55l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-              Ligar: {PHONE}
             </a>
           </div>
         </div>
@@ -404,7 +400,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="/images/retina-oct-exame_9c52bb71.webp" alt="OCT da retina mostrando as camadas retinianas" class="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover" loading="lazy" width="600" height="420" />
+          <img src="/images/retina-oct-exame_9c52bb71.webp" alt="OCT da retina mostrando as camadas retinianas" class="w-full h-[280px] md:h-[380px] lg:h-[460px] object-cover" loading="lazy" width="600" height="460" />
         </div>
       </div>
     </div>
@@ -560,7 +556,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           </div>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-xl aos-element">
-          <img src="/images/retina-injecao-pt_15c4bc8e.webp" alt="Injeção intravítrea anti-VEGF para tratamento de DMRI e retinopatia diabética" class="w-full h-[380px] object-cover" loading="lazy" width="560" height="380" />
+          <img src="/images/retina-injecao-pt_15c4bc8e.webp" alt="Injeção intravítrea anti-VEGF para tratamento de DMRI e retinopatia diabética" class="w-full max-h-[380px] object-contain bg-slate-50" loading="lazy" width="560" height="380" />
         </div>
       </div>
 
@@ -737,7 +733,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <div class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border/40 hover:shadow-lg hover:border-gold/30 transition-all aos-element">
             <div class="relative overflow-hidden">
               <img loading="lazy" src={clinica.image} alt={`Unidade Drudi e Almeida ${clinica.name}`} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" width="400" height="192" />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+              
               <div class="absolute bottom-3 left-4">
                 <span class="font-ui text-xs font-bold text-white bg-gold/80 rounded-full px-3 py-1">{clinica.city}</span>
               </div>
@@ -779,7 +775,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <p class="font-body text-cream/75 leading-relaxed mb-6">
             Retinopatia diabética, DMRI, injeções intravítreas anti-VEGF, laser de retina e vitrectomia.
           </p>
-          <div class="flex items-center gap-6 mb-6">
+          <div class="flex items-center justify-center gap-6 mb-6">
             <div class="text-center">
               <div class="font-display text-2xl text-gold font-bold">3.100</div>
               <div class="font-ui text-xs text-cream/60">palavras</div>
@@ -954,19 +950,13 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.476 2 11.99c0 1.763.461 3.418 1.268 4.858L2 22l5.29-1.238A9.945 9.945 0 0 0 11.99 22C17.504 22 22 17.524 22 12.01 22 6.496 17.504 2 11.99 2z"/></svg>
               Agendar pelo WhatsApp
             </a>
-            <a
-              href="/agendar"
-              class="inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-7 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm"
-            >
+            <a href="/agendar"
+              class="w-full inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-6 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               <span class="flex items-center gap-2 text-sm leading-tight">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Agendar Online
               </span>
               <span class="text-[11px] font-medium leading-tight" style="color:#c9a961">Consulta em até 48h</span>
-            </a>
-            <a href={`tel:+55${PHONE.replace(/\D/g, "")}`}
-              class="w-full inline-flex items-center justify-center gap-2 font-ui text-sm font-semibold px-6 py-3 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-all">
-              Ligar: {PHONE}
             </a>
           </div>
         </div>

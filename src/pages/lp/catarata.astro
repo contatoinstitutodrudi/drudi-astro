@@ -41,11 +41,25 @@ const depoimentos = [
   <title>Cirurgia de Catarata em SP | Drudi e Almeida Clínicas Oftalmológicas</title>
   <meta name="description" content="Cirurgia de catarata a partir de R$ 2.800 em até 10x sem juros. Pacote completo com consulta, exames, lente importada e cirurgia. 5 unidades em SP e Guarulhos." />
   <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:image" content="https://institutodrudiealmeida.com.br/images/og-catarata.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Drudi e Almeida Clínicas Oftalmológicas" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://institutodrudiealmeida.com.br/images/og-catarata.jpg" />
+
   <link rel="canonical" href="https://institutodrudiealmeida.com.br/instituto/catarata/" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Fontes: preload não-bloqueante com display=swap para evitar render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <!-- Preload hero image para LCP rápido -->
+  <link rel="preload" as="image" href="/images/catarata-hero-480w.webp" media="(max-width: 767px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/catarata-hero-960w.webp" media="(min-width: 768px)" fetchpriority="high" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -133,9 +147,12 @@ const depoimentos = [
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('/images/catarata-hero-art_bd1bf3f5.webp');
+      background-image: url('/images/catarata-hero-480w.webp');
       background-size: cover;
       background-position: center;
+    }
+    @media (min-width: 768px) {
+      .hero-bg { background-image: url('/images/catarata-hero-960w.webp'); }
     }
     .hero-overlay {
       position: absolute;
@@ -851,6 +868,90 @@ const depoimentos = [
       .btn-header-wa { font-size: 11px; padding: 7px 12px; }
     }
   </style>
+  <!-- Google tag (gtag.js) — AW-17598191636 + GA4 G-X3TM41VL1E — carregamento diferido -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'AW-17598191636');
+    gtag('config', 'G-X3TM41VL1E');
+    function loadGtag() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-X3TM41VL1E';
+      document.head.appendChild(s);
+      var s2 = document.createElement('script');
+      s2.async = true;
+      s2.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17598191636';
+      document.head.appendChild(s2);
+    }
+    if (document.readyState === 'complete') {
+      loadGtag();
+    } else {
+      window.addEventListener('load', loadGtag, { once: true });
+    }
+    // Personalizar mensagem WhatsApp com unidade selecionada
+    document.addEventListener('DOMContentLoaded', function() {
+      var unitSelect = document.getElementById('unitSelect') as HTMLSelectElement;
+      var waBaseText = 'Ol%C3%A1!%20Gostaria%20de%20receber%20o%20pre%C3%A7o%20da%20cirurgia%20de%20catarata.';
+      var waBase = 'https://wa.me/5511916544653?text=';
+      function updateWaLinks() {
+        var unit = unitSelect ? unitSelect.value : '';
+        var text = unit
+          ? 'Ol%C3%A1!%20Gostaria%20de%20receber%20o%20pre%C3%A7o%20da%20cirurgia%20de%20catarata.%20Unidade%20de%20interesse%3A%20' + encodeURIComponent(unit)
+          : waBaseText;
+        var newHref = waBase + text;
+        document.querySelectorAll('.btn-wa-primary, .btn-final-wa, .btn-header-wa').forEach(function(el) {
+          (el as HTMLAnchorElement).href = newHref;
+        });
+      }
+      if (unitSelect) unitSelect.addEventListener('change', updateWaLinks);
+    });
+    // Rastreamento de cliques — WhatsApp e Telefone
+    document.addEventListener('DOMContentLoaded', function() {
+      // WhatsApp: todos os links wa.me
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var page = window.location.pathname;
+          if (window.gtag) {
+            gtag('event', 'whatsapp_click', {
+              event_category: 'Contato',
+              event_label: 'WhatsApp LP - ' + page,
+              value: 1
+            });
+            gtag('event', 'generate_lead', {
+              event_category: 'WhatsApp',
+              event_label: page
+            });
+          }
+        });
+      });
+      // Telefone: todos os links tel:
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var page = window.location.pathname;
+          if (window.gtag) {
+            gtag('event', 'phone_click', {
+              event_category: 'Contato',
+              event_label: el.href.replace('tel:', '').trim() || 'Telefone LP',
+              value: 1
+            });
+            gtag('event', 'generate_lead', {
+              event_category: 'Telefone',
+              event_label: page
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- ===== SCHEMAS ESTRUTURADOS SEO ===== -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"A cirurgia de catarata é dolorosa?","acceptedAnswer":{"@type":"Answer","text":"Não. O procedimento é realizado com anestesia local e sedação leve, garantindo total conforto. A maioria dos pacientes relata apenas uma leve pressão durante a cirurgia, sem dor."}},{"@type":"Question","name":"Quanto tempo leva a recuperação da cirurgia de catarata?","acceptedAnswer":{"@type":"Answer","text":"A recuperação é rápida. No dia seguinte à cirurgia, a maioria dos pacientes já percebe melhora significativa na visão. Atividades cotidianas como ler e assistir TV podem ser retomadas em 24–48h."}},{"@type":"Question","name":"Meu convênio cobre a cirurgia de catarata?","acceptedAnswer":{"@type":"Answer","text":"Sim. A cirurgia de catarata por facoemulsificação é coberta pelos principais planos de saúde. As lentes premium (multifocais, tóricas) podem ter cobertura parcial. Consulte nossa equipe para verificar seu plano."}},{"@type":"Question","name":"Qual a diferença entre lente monofocal e multifocal?","acceptedAnswer":{"@type":"Answer","text":"A lente monofocal corrige a visão para uma distância (geralmente longe), podendo necessitar de óculos para perto. A lente multifocal permite enxergar bem de perto, intermediário e longe sem óculos, oferecendo maior independência visual."}},{"@type":"Question","name":"A catarata pode voltar após a cirurgia?","acceptedAnswer":{"@type":"Answer","text":"Não. A catarata não retorna após a cirurgia, pois o cristalino opacificado é substituído por uma lente artificial permanente. Em alguns casos, pode ocorrer opacificação da cápsula posterior (catarata secundária), tratada com um procedimento a laser simples e indolor."}},{"@type":"Question","name":"Quanto custa a cirurgia de catarata em São Paulo?","acceptedAnswer":{"@type":"Answer","text":"Na Drudi e Almeida, a cirurgia de catarata começa a partir de R$ 2.800 com pacote completo incluindo consulta, exames, lente importada e cirurgia, com parcelamento em até 10x sem juros. O valor varia conforme o tipo de lente escolhida."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalBusiness","name":"Drudi e Almeida — Instituto da Catarata","url":"https://institutodrudiealmeida.com.br/instituto/catarata/","@id":"https://institutodrudiealmeida.com.br/instituto/catarata/","image":"https://institutodrudiealmeida.com.br/images/og-catarata.jpg","telephone":"+551154302421","priceRange":"$$","medicalSpecialty":"Cataract Surgery","address":{"@type":"PostalAddress","addressLocality":"São Paulo","addressRegion":"SP","addressCountry":"BR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"200","bestRating":"5"},"parentOrganization":{"@type":"MedicalOrganization","name":"Drudi e Almeida Clínicas Oftalmológicas","url":"https://institutodrudiealmeida.com.br"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://institutodrudiealmeida.com.br"},{"@type":"ListItem","position":2,"name":"Instituto da Catarata","item":"https://institutodrudiealmeida.com.br/instituto/catarata/"}]}</script>
+  <!-- ===== FIM SCHEMAS ===== -->
 </head>
 <body>
 
@@ -861,9 +962,9 @@ const depoimentos = [
 
   <!-- Header Minimalista -->
   <header class="lp-header">
-    <a href="/">
-      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" />
-    </a>
+    <span aria-label="Drudi e Almeida Oftalmologia" style="cursor:default;pointer-events:none;">
+      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" width="200" height="111" />
+    </span>
     <div class="header-cta">
       <a href={WA_PRECO} target="_blank" rel="noopener noreferrer" class="btn-header-wa">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -959,12 +1060,12 @@ const depoimentos = [
     <div class="convenios-inner">
       <p class="convenios-label">Convênios Aceitos</p>
       <div class="convenios-logos">
-        <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" />
-        <img src="/images/amil-188w_94445080.webp" alt="Amil" />
-        <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" />
-        <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" />
-        <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" />
-        <img src="/images/logo-propm-188w_44c9af21.webp" alt="Pro-PM" />
+        <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" width="188" height="187" loading="lazy" />
+        <img src="/images/amil-188w_94445080.webp" alt="Amil" width="188" height="192" loading="lazy" />
+        <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" width="188" height="77" loading="lazy" />
+        <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" width="188" height="187" loading="lazy" />
+        <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" width="188" height="94" loading="lazy" />
+        <img src="/images/logo-propm-188w_44c9af21.webp" alt="Pro-PM" width="188" height="69" loading="lazy" />
       </div>
       <p class="convenio-cta">
         Não encontrou seu convênio? <a href={WA_CONVENIO} target="_blank" rel="noopener noreferrer">Consulte pelo WhatsApp</a>
@@ -1088,7 +1189,7 @@ const depoimentos = [
 
       <div class="specialists-grid">
         <div class="specialist-card">
-          <img src="/images/dr-fernando-lp-400w.webp" alt="Dr. Fernando Macei Drudi" class="specialist-img" />
+          <img src="/images/dr-fernando-lp-400w.webp" alt="Dr. Fernando Macei Drudi" class="specialist-img" width="400" height="583" loading="lazy" />
           <div class="specialist-info">
             <h3 class="specialist-name">Dr. Fernando Macei Drudi</h3>
             <p class="specialist-crm">Catarata e Retina Cirúrgica — CRM-SP 139.300</p>
@@ -1100,7 +1201,7 @@ const depoimentos = [
           </div>
         </div>
         <div class="specialist-card">
-          <img src="/images/dra-priscilla-lp-400w.webp" alt="Dra. Priscilla R. de Almeida" class="specialist-img" />
+          <img src="/images/dra-priscilla-lp-400w.webp" alt="Dra. Priscilla R. de Almeida" class="specialist-img" width="400" height="583" loading="lazy" />
           <div class="specialist-info">
             <h3 class="specialist-name">Dra. Priscilla R. de Almeida</h3>
             <p class="specialist-crm">Córnea e Segmento Anterior — CRM-SP 148.173 | RQE 59.216</p>
@@ -1156,7 +1257,7 @@ const depoimentos = [
         <!-- Card 1: Você Bonita -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Gazeta</div>
           </div>
           <div style="padding:14px 16px;">
@@ -1167,7 +1268,7 @@ const depoimentos = [
         <!-- Card 2: CNN Brasil -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">CNN Brasil</div>
           </div>
           <div style="padding:14px 16px;">
@@ -1178,7 +1279,7 @@ const depoimentos = [
         <!-- Card 3: Programa Interioriza -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Cultura</div>
           </div>
           <div style="padding:14px 16px;">
@@ -1189,7 +1290,7 @@ const depoimentos = [
         <!-- Card 4: Ressoar -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Ressoar</div>
           </div>
           <div style="padding:14px 16px;">

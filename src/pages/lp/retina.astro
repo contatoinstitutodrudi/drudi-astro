@@ -24,11 +24,25 @@ const unidades = [
   <title>Instituto da Retina em SP | Drudi e Almeida Clínicas Oftalmológicas</title>
   <meta name="description" content="Diagnóstico avançado e tratamentos de ponta para doenças da retina: DMRI, retinopatia diabética, descolamento de retina. Especialistas em 5 unidades em SP." />
   <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:image" content="https://institutodrudiealmeida.com.br/images/og-retina.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Drudi e Almeida Clínicas Oftalmológicas" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://institutodrudiealmeida.com.br/images/og-retina.jpg" />
+
   <link rel="canonical" href="https://institutodrudiealmeida.com.br/instituto/retina/" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Fontes: preload não-bloqueante com display=swap para evitar render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <!-- Preload hero image para LCP rápido -->
+  <link rel="preload" as="image" href="/images/retina-lp-hero-480w.webp" media="(max-width: 767px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/retina-lp-hero-960w.webp" media="(min-width: 768px)" fetchpriority="high" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -97,9 +111,12 @@ const unidades = [
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('/images/starry-night-hero-v3-JqwHFQEiozpvaSGrn5zcqj.webp');
+      background-image: url('/images/retina-lp-hero-480w.webp');
       background-size: cover;
       background-position: center top;
+    }
+    @media (min-width: 768px) {
+      .hero-bg { background-image: url('/images/retina-lp-hero-960w.webp'); }
     }
     .hero-overlay {
       position: absolute;
@@ -534,6 +551,73 @@ const unidades = [
     }
     .btn-phone-main:hover { background: #1a2d3d; }
     </style>
+  <!-- Google tag (gtag.js) — AW-17598191636 + GA4 G-X3TM41VL1E — carregamento diferido -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'AW-17598191636');
+    gtag('config', 'G-X3TM41VL1E');
+    function loadGtag() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-X3TM41VL1E';
+      document.head.appendChild(s);
+      var s2 = document.createElement('script');
+      s2.async = true;
+      s2.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17598191636';
+      document.head.appendChild(s2);
+    }
+    if (document.readyState === 'complete') {
+      loadGtag();
+    } else {
+      window.addEventListener('load', loadGtag, { once: true });
+    }
+    // Rastreamento de cliques — WhatsApp e Telefone
+    document.addEventListener('DOMContentLoaded', function() {
+      // WhatsApp: todos os links wa.me
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var page = window.location.pathname;
+          if (window.gtag) {
+            gtag('event', 'whatsapp_click', {
+              event_category: 'Contato',
+              event_label: 'WhatsApp LP - ' + page,
+              value: 1
+            });
+            gtag('event', 'generate_lead', {
+              event_category: 'WhatsApp',
+              event_label: page
+            });
+          }
+        });
+      });
+      // Telefone: todos os links tel:
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var page = window.location.pathname;
+          if (window.gtag) {
+            gtag('event', 'phone_click', {
+              event_category: 'Contato',
+              event_label: el.href.replace('tel:', '').trim() || 'Telefone LP',
+              value: 1
+            });
+            gtag('event', 'generate_lead', {
+              event_category: 'Telefone',
+              event_label: page
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- ===== SCHEMAS ESTRUTURADOS SEO ===== -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é a degeneração macular (DMRI)?","acceptedAnswer":{"@type":"Answer","text":"A Degeneração Macular Relacionada à Idade (DMRI) é a principal causa de perda de visão central em pessoas acima de 50 anos. Afeta a mácula, região central da retina responsável pela visão de detalhes. O diagnóstico precoce e o tratamento com injeções intravítreas podem estabilizar ou melhorar a visão."}},{"@type":"Question","name":"A injeção intravítrea dói?","acceptedAnswer":{"@type":"Answer","text":"Não. O procedimento é realizado com anestesia local (colírio anestésico) e dura poucos minutos. A maioria dos pacientes relata apenas uma leve sensação de pressão. Após o procedimento, pode haver leve desconforto por algumas horas."}},{"@type":"Question","name":"Quais são os sintomas de problemas na retina?","acceptedAnswer":{"@type":"Answer","text":"Os principais sintomas incluem: visão embaçada ou distorcida, manchas escuras ou 'moscas volantes' (floaters), flashes de luz, perda súbita de visão, ou visão em cortina. Qualquer um desses sintomas requer avaliação oftalmológica urgente."}},{"@type":"Question","name":"Meu convênio cobre o tratamento de retina?","acceptedAnswer":{"@type":"Answer","text":"A maioria dos planos de saúde cobre consultas, exames diagnósticos (OCT, mapeamento de retina) e procedimentos como injeções intravítreas e laser. A cobertura varia conforme o plano e o medicamento utilizado. Consulte nossa equipe para verificar seu plano."}},{"@type":"Question","name":"O que é vitrectomia e como é a recuperação?","acceptedAnswer":{"@type":"Answer","text":"A vitrectomia é uma cirurgia minimamente invasiva que remove o vítreo (gel transparente que preenche o olho) para tratar condições como descolamento de retina, membrana epirretiniana e buraco macular. A recuperação leva de 2 a 6 semanas, dependendo da condição tratada."}},{"@type":"Question","name":"Retinopatia diabética tem cura?","acceptedAnswer":{"@type":"Answer","text":"A retinopatia diabética pode ser controlada e estabilizada com tratamento adequado, mas o controle rigoroso do diabetes é fundamental para prevenir a progressão. Laser, injeções intravítreas e cirurgia podem preservar a visão, mas o melhor tratamento é a prevenção com controle glicêmico."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalBusiness","name":"Drudi e Almeida — Instituto da Retina","url":"https://institutodrudiealmeida.com.br/instituto/retina/","@id":"https://institutodrudiealmeida.com.br/instituto/retina/","image":"https://institutodrudiealmeida.com.br/images/og-retina.jpg","telephone":"+551154302421","priceRange":"$$","medicalSpecialty":"Retinal Disorders","address":{"@type":"PostalAddress","addressLocality":"São Paulo","addressRegion":"SP","addressCountry":"BR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"200","bestRating":"5"},"parentOrganization":{"@type":"MedicalOrganization","name":"Drudi e Almeida Clínicas Oftalmológicas","url":"https://institutodrudiealmeida.com.br"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://institutodrudiealmeida.com.br"},{"@type":"ListItem","position":2,"name":"Instituto da Retina","item":"https://institutodrudiealmeida.com.br/instituto/retina/"}]}</script>
+  <!-- ===== FIM SCHEMAS ===== -->
 </head>
 <body>
 
@@ -544,9 +628,9 @@ const unidades = [
 
   <!-- Header -->
   <header class="lp-header">
-    <a href="/">
-      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" />
-    </a>
+    <span aria-label="Drudi e Almeida Oftalmologia" style="cursor:default;pointer-events:none;">
+      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" width="200" height="111" />
+    </span>
     <div class="header-cta">
       <a href={WA_AGENDAR} target="_blank" rel="noopener noreferrer" class="btn-header-wa">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L0 24l6.335-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.378l-.36-.214-3.724.882.935-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
@@ -607,12 +691,12 @@ const unidades = [
   <div class="convenios-strip">
     <h4>Convênios Aceitos</h4>
     <div class="convenios-logos">
-      <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" />
-      <img src="/images/amil-188w_94445080.webp" alt="Amil" />
-      <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" />
-      <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" />
-      <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" />
-      <img src="/images/logo-propm-188w_44c9af21.webp" alt="Pró-PM" />
+      <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" width="188" height="187" loading="lazy" />
+      <img src="/images/amil-188w_94445080.webp" alt="Amil" width="188" height="192" loading="lazy" />
+      <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" width="188" height="77" loading="lazy" />
+      <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" width="188" height="187" loading="lazy" />
+      <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" width="188" height="94" loading="lazy" />
+      <img src="/images/logo-propm-188w_44c9af21.webp" alt="Pró-PM" width="188" height="69" loading="lazy" />
     </div>
     <p class="convenio-not-found">Não encontrou o seu? <a href={WA_CONVENIO} target="_blank" rel="noopener noreferrer">Consulte pelo WhatsApp</a></p>
   </div>
@@ -789,7 +873,7 @@ const unidades = [
 
       <div class="specialists-grid">
         <div class="specialist-card">
-          <img class="specialist-img" src="/images/dr-fernando-800w.webp" alt="Dr. Fernando Macei Drudi" />
+          <img class="specialist-img" src="/images/dr-fernando-800w.webp" alt="Dr. Fernando Macei Drudi" width="800" height="1167" loading="lazy" />
           <div class="specialist-info">
             <h3>Dr. Fernando Macei Drudi</h3>
             <div class="specialist-crm">Retina Cirúrgica e Catarata — CRM-SP 139.300</div>
@@ -798,7 +882,7 @@ const unidades = [
           </div>
         </div>
         <div class="specialist-card">
-          <img class="specialist-img" src="/images/dra-priscilla-800w.webp" alt="Dra. Priscilla R. de Almeida" />
+          <img class="specialist-img" src="/images/dra-priscilla-800w.webp" alt="Dra. Priscilla R. de Almeida" width="800" height="1167" loading="lazy" />
           <div class="specialist-info">
             <h3>Dra. Priscilla R. de Almeida</h3>
             <div class="specialist-crm">Córnea e Segmento Anterior — CRM-SP 148.173 | RQE 59.216</div>
@@ -868,7 +952,7 @@ const unidades = [
         <!-- Card 1: Você Bonita -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Gazeta</div>
           </div>
           <div style="padding:14px 16px;">
@@ -879,7 +963,7 @@ const unidades = [
         <!-- Card 2: CNN Brasil -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">CNN Brasil</div>
           </div>
           <div style="padding:14px 16px;">
@@ -890,7 +974,7 @@ const unidades = [
         <!-- Card 3: Programa Interioriza -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Cultura</div>
           </div>
           <div style="padding:14px 16px;">
@@ -901,7 +985,7 @@ const unidades = [
         <!-- Card 4: Ressoar -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Ressoar</div>
           </div>
           <div style="padding:14px 16px;">
@@ -1008,6 +1092,19 @@ const unidades = [
         if (!isOpen) item.classList.add('open');
       });
     });
+    // Personalizar mensagem WhatsApp com unidade selecionada
+    const unitSelect = document.getElementById('unitSelect');
+    const baseWa = 'https://wa.me/5511916544653?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20retina.';
+    function updateWaLinks() {
+      const unit = unitSelect ? unitSelect.value : '';
+      const newHref = unit
+        ? 'https://wa.me/5511916544653?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20retina.%20Unidade%20de%20interesse%3A%20' + encodeURIComponent(unit)
+        : baseWa;
+      document.querySelectorAll('.btn-wa-primary, .btn-wa, .btn-header-wa').forEach(el => {
+        el.href = newHref;
+      });
+    }
+    if (unitSelect) unitSelect.addEventListener('change', updateWaLinks);
   </script>
 </body>
 </html>

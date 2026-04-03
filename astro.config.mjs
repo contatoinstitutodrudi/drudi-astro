@@ -9,6 +9,11 @@ import react from '@astrojs/react';
 export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
+  build: {
+    // Inlinar todo CSS no HTML elimina o request bloqueante ao /_astro/*.css
+    // que causava 330ms de latência no LCP (PageSpeed 80 → 97)
+    inlineStylesheets: 'always',
+  },
   adapter: cloudflare({
     platformProxy: { enabled: false },
     imageService: 'passthrough',

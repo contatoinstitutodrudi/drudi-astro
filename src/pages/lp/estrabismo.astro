@@ -24,11 +24,25 @@ const unidades = [
   <title>Cirurgia de Estrabismo em SP | Drudi e Almeida Clínicas Oftalmológicas</title>
   <meta name="description" content="Cirurgia de estrabismo para crianças e adultos em SP. Correção do olho torto com técnicas modernas. 5 unidades. Aceita convênios. Agende sua avaliação." />
   <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:image" content="https://institutodrudiealmeida.com.br/images/og-estrabismo.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Drudi e Almeida Clínicas Oftalmológicas" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://institutodrudiealmeida.com.br/images/og-estrabismo.jpg" />
+
   <link rel="canonical" href="https://institutodrudiealmeida.com.br/instituto/estrabismo/" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Fontes: preload não-bloqueante com display=swap para evitar render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <!-- Preload hero image para LCP rápido -->
+  <link rel="preload" as="image" href="/images/estrabismo-lp-hero-480w.webp" media="(max-width: 767px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/estrabismo-lp-hero-960w.webp" media="(min-width: 768px)" fetchpriority="high" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -67,7 +81,8 @@ const unidades = [
     .btn-header-wa { display: flex; align-items: center; gap: 7px; background: #25d366; color: var(--white); padding: 9px 18px; border-radius: 6px; font-size: 13px; font-weight: 700; }
     /* Hero */
     .hero { position: relative; min-height: 90vh; display: flex; align-items: center; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background-image: url('/images/catarata-hero-art_bd1bf3f5.webp'); background-size: cover; background-position: center top; }
+    .hero-bg { position: absolute; inset: 0; background-image: url('/images/estrabismo-lp-hero-480w.webp'); background-size: cover; background-position: center top; }
+    @media (min-width: 768px) { .hero-bg { background-image: url('/images/estrabismo-lp-hero-960w.webp'); } }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(26,38,55,0.93) 0%, rgba(26,38,55,0.78) 55%, rgba(26,38,55,0.48) 100%); }
     .hero-content { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; padding: 80px 32px 60px; display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: center; width: 100%; }
     .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,169,97,0.18); border: 1px solid rgba(201,169,97,0.4); color: var(--gold); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 22px; }
@@ -260,6 +275,73 @@ const unidades = [
       .addresses-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <!-- Google tag (gtag.js) — AW-17598191636 + GA4 G-X3TM41VL1E — carregamento diferido -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'AW-17598191636');
+    gtag('config', 'G-X3TM41VL1E');
+    function loadGtag() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-X3TM41VL1E';
+      document.head.appendChild(s);
+      var s2 = document.createElement('script');
+      s2.async = true;
+      s2.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17598191636';
+      document.head.appendChild(s2);
+    }
+    if (document.readyState === 'complete') {
+      loadGtag();
+    } else {
+      window.addEventListener('load', loadGtag, { once: true });
+    }
+    // Rastreamento de cliques — WhatsApp e Telefone
+    document.addEventListener('DOMContentLoaded', function() {
+      // WhatsApp: todos os links wa.me
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var page = window.location.pathname;
+          if (window.gtag) {
+            gtag('event', 'whatsapp_click', {
+              event_category: 'Contato',
+              event_label: 'WhatsApp LP - ' + page,
+              value: 1
+            });
+            gtag('event', 'generate_lead', {
+              event_category: 'WhatsApp',
+              event_label: page
+            });
+          }
+        });
+      });
+      // Telefone: todos os links tel:
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var page = window.location.pathname;
+          if (window.gtag) {
+            gtag('event', 'phone_click', {
+              event_category: 'Contato',
+              event_label: el.href.replace('tel:', '').trim() || 'Telefone LP',
+              value: 1
+            });
+            gtag('event', 'generate_lead', {
+              event_category: 'Telefone',
+              event_label: page
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- ===== SCHEMAS ESTRUTURADOS SEO ===== -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual a idade ideal para operar o estrabismo em crianças?","acceptedAnswer":{"@type":"Answer","text":"Não existe uma idade mínima para a cirurgia de estrabismo. A indicação depende do tipo de desvio, da idade e do desenvolvimento visual da criança. Em geral, quanto mais cedo o tratamento, melhores os resultados para o desenvolvimento da visão binocular."}},{"@type":"Question","name":"Adulto pode operar estrabismo?","acceptedAnswer":{"@type":"Answer","text":"Sim. A cirurgia de estrabismo pode ser realizada em qualquer idade. Em adultos, o procedimento melhora o alinhamento ocular, elimina a visão dupla e tem grande impacto na autoestima e qualidade de vida, além de benefícios funcionais importantes."}},{"@type":"Question","name":"O convênio cobre a cirurgia de estrabismo?","acceptedAnswer":{"@type":"Answer","text":"Sim. A cirurgia de estrabismo está no rol de procedimentos obrigatórios da ANS e deve ser coberta pelos planos de saúde. Consulte nossa equipe para verificar a cobertura específica do seu plano."}},{"@type":"Question","name":"Como é a recuperação após a cirurgia de estrabismo?","acceptedAnswer":{"@type":"Answer","text":"A recuperação é relativamente rápida. O olho fica vermelho por 2-4 semanas — isso é normal e esperado. A maioria dos pacientes retorna às atividades normais em 1-2 dias. Atividades físicas intensas devem ser evitadas por 2-3 semanas."}},{"@type":"Question","name":"O estrabismo pode voltar após a cirurgia?","acceptedAnswer":{"@type":"Answer","text":"Em alguns casos, pode ocorrer recorrência do desvio ao longo dos anos, especialmente em crianças pequenas. Por isso, o acompanhamento regular com o oftalmologista é fundamental após a cirurgia. Uma segunda intervenção pode ser necessária em alguns casos."}},{"@type":"Question","name":"Óculos podem corrigir o estrabismo sem cirurgia?","acceptedAnswer":{"@type":"Answer","text":"Em alguns tipos de estrabismo, especialmente a esotropia acomodativa (causada por hipermetropia), os óculos podem corrigir ou reduzir significativamente o desvio. No entanto, quando os óculos não são suficientes para alinhar os olhos, a cirurgia é indicada."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalBusiness","name":"Drudi e Almeida — Instituto de Estrabismo","url":"https://institutodrudiealmeida.com.br/instituto/estrabismo/","@id":"https://institutodrudiealmeida.com.br/instituto/estrabismo/","image":"https://institutodrudiealmeida.com.br/images/og-estrabismo.jpg","telephone":"+551154302421","priceRange":"$$","medicalSpecialty":"Strabismus","address":{"@type":"PostalAddress","addressLocality":"São Paulo","addressRegion":"SP","addressCountry":"BR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"200","bestRating":"5"},"parentOrganization":{"@type":"MedicalOrganization","name":"Drudi e Almeida Clínicas Oftalmológicas","url":"https://institutodrudiealmeida.com.br"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://institutodrudiealmeida.com.br"},{"@type":"ListItem","position":2,"name":"Instituto de Estrabismo","item":"https://institutodrudiealmeida.com.br/instituto/estrabismo/"}]}</script>
+  <!-- ===== FIM SCHEMAS ===== -->
 </head>
 <body>
   <!-- Announcement Bar -->
@@ -269,9 +351,9 @@ const unidades = [
 
   <!-- Header -->
   <header class="lp-header">
-    <a href="/">
-      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" />
-    </a>
+    <span aria-label="Drudi e Almeida Oftalmologia" style="cursor:default;pointer-events:none;">
+      <img src="/images/logo-horizontal-200w_opt.webp" alt="Drudi e Almeida Oftalmologia" width="200" height="111" />
+    </span>
     <div class="header-cta">
       <a href={WA_AVALIACAO} target="_blank" rel="noopener noreferrer" class="btn-header-wa">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L0 24l6.335-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.378l-.36-.214-3.724.882.935-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
@@ -341,11 +423,11 @@ const unidades = [
   <div class="convenios-strip">
     <h4>CONVÊNIOS ACEITOS</h4>
     <div class="convenios-logos">
-      <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" />
-      <img src="/images/amil-188w_94445080.webp" alt="Amil" />
-      <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" />
-      <img src="/images/prevent-senior-188w_c1b2a3d4.webp" alt="Prevent Senior" onerror="this.style.display='none'" />
-      <img src="/images/mediservice-188w_e5f6a7b8.webp" alt="Mediservice" onerror="this.style.display='none'" />
+      <img src="/images/bradesco-188w_b58e35a5.webp" alt="Bradesco Saúde" width="188" height="187" loading="lazy" />
+      <img src="/images/amil-188w_94445080.webp" alt="Amil" width="188" height="192" loading="lazy" />
+      <img src="/images/unimed-188w_3728f5a6.webp" alt="Unimed" width="188" height="77" loading="lazy" />
+      <img src="/images/prevent-senior-188w_60641e66.webp" alt="Prevent Senior" width="188" height="187" loading="lazy" />
+      <img src="/images/tech-mediservice-188w_ba541991.webp" alt="Mediservice" width="188" height="94" loading="lazy" />
     </div>
     <p class="convenio-not-found">Não encontrou seu convênio? <a href={WA_CONVENIO} target="_blank" rel="noopener noreferrer">Consulte pelo WhatsApp</a></p>
   </div>
@@ -504,7 +586,7 @@ const unidades = [
       <div class="gold-line"></div>
       <div class="specialists-grid">
         <div class="specialist-card">
-          <img class="specialist-img" src="/images/dr-fernando-800w.webp" alt="Dr. Fernando Macei Drudi" />
+          <img class="specialist-img" src="/images/dr-fernando-800w.webp" alt="Dr. Fernando Macei Drudi" width="800" height="1167" loading="lazy" />
           <div class="specialist-info">
             <h3>Dr. Fernando Macei Drudi</h3>
             <div class="specialist-crm">Catarata e Retina Cirúrgica — CRM-SP 139.300</div>
@@ -513,7 +595,7 @@ const unidades = [
           </div>
         </div>
         <div class="specialist-card">
-          <img class="specialist-img" src="/images/dra-priscilla-800w.webp" alt="Dra. Priscilla R. de Almeida" />
+          <img class="specialist-img" src="/images/dra-priscilla-800w.webp" alt="Dra. Priscilla R. de Almeida" width="800" height="1167" loading="lazy" />
           <div class="specialist-info">
             <h3>Dra. Priscilla R. de Almeida</h3>
             <div class="specialist-crm">Córnea e Segmento Anterior — CRM-SP 148.173 | RQE 59.216</div>
@@ -582,7 +664,7 @@ const unidades = [
         <!-- Card 1: Você Bonita -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-voce-bonita.webp" alt="Dra. Priscilla no Você Bonita — TV Gazeta" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Gazeta</div>
           </div>
           <div style="padding:14px 16px;">
@@ -593,7 +675,7 @@ const unidades = [
         <!-- Card 2: CNN Brasil -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-cnn.webp" alt="Dra. Priscilla na CNN Brasil" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">CNN Brasil</div>
           </div>
           <div style="padding:14px 16px;">
@@ -604,7 +686,7 @@ const unidades = [
         <!-- Card 3: Programa Interioriza -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-interioriza.webp" alt="Dra. Priscilla no Programa Interioriza" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">TV Cultura</div>
           </div>
           <div style="padding:14px 16px;">
@@ -615,7 +697,7 @@ const unidades = [
         <!-- Card 4: Ressoar -->
         <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10);background:#fff;text-align:left;">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <img src="/images/midia-ressoar.webp" alt="Dra. Priscilla no Ressoar" style="width:100%;height:100%;object-fit:cover;display:block;" width="640" height="295" loading="lazy" />
             <div style="position:absolute;top:10px;left:10px;background:rgba(44,62,80,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Ressoar</div>
           </div>
           <div style="padding:14px 16px;">

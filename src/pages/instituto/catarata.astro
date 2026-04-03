@@ -66,6 +66,9 @@ const faqItems = [
   { question: "Posso operar os dois olhos no mesmo dia?", answer: "Geralmente, os olhos são operados em dias diferentes, com intervalo de 1 a 2 semanas entre cada procedimento. Isso permite acompanhar a recuperação do primeiro olho antes de operar o segundo." },
   { question: "Qual tipo de lente intraocular é melhor para mim?", answer: "A escolha da lente depende de diversos fatores: estilo de vida, atividades profissionais, presença de astigmatismo e expectativas do paciente. Na consulta pré-operatória, nossos especialistas avaliam cada caso individualmente para a recomendação final." },
   { question: "A cirurgia é coberta pelo plano de saúde?", answer: "Sim. A cirurgia de catarata por facoemulsificação é coberta pelos planos de saúde. As lentes premium (multifocais, trifocais, tóricas) podem ter cobertura parcial, com complementação pelo paciente. Consulte seu plano para detalhes." },
+  { question: "Quanto custa a cirurgia de catarata em São Paulo?", answer: "Na Drudi e Almeida, a cirurgia de catarata começa a partir de R$ 2.800 com pacote completo (consulta, exames, lente e cirurgia), parcelável em até 10x sem juros. Convênios como Bradesco Saúde, Amil, Unimed e Prevent Senior cobrem a cirurgia com lente monofocal. Lentes premium (multifocal, trifocal, tórica) podem ter complementação. Solicite uma avaliação gratuita." },
+  { question: "Qual a diferença entre lente monofocal, multifocal e trifocal?", answer: "A lente monofocal corrige a visão para uma distância (geralmente longe), podendo necessitar de óculos para perto. A lente multifocal (bifocal) permite enxergar bem de perto e longe. A lente trifocal (como a PanOptix) oferece visão nítida em três distâncias — perto, intermediário e longe — com maior independência dos óculos. A escolha ideal depende do seu estilo de vida e é definida na consulta pré-operatória." },
+  { question: "A cirurgia de catarata pode ser feita em pacientes com diabetes ou hipertensão?", answer: "Sim, desde que as doenças estejam controladas. Pacientes diabéticos e hipertensos podem e devem operar a catarata, pois a opacidade do cristalino dificulta o acompanhamento de outras condições oculares como a retinopatia diabética. Nossa equipe realiza avaliação clínica completa e trabalha em conjunto com o clínico geral do paciente." },
 ];
 
 const clinicas = [
@@ -176,13 +179,13 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <div class="container">
       <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
         <div class="text-center">
-          <div class="flex justify-center mb-2">
-            {[1,2,3,4,5].map(() => (
-              <svg class="w-4 h-4 text-gold fill-gold" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            ))}
-          </div>
           <p class="font-display text-2xl text-navy font-bold">4,9</p>
           <p class="font-body text-xs text-muted-foreground mt-0.5">no Google</p>
+          <div class="flex justify-center mt-1.5">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-3.5 h-3.5 text-gold fill-gold" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            ))}
+          </div>
         </div>
         <div class="text-center border-x border-border/50 px-4">
           <p class="font-display text-2xl text-navy font-bold">+10</p>
@@ -273,7 +276,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <div class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border/40 hover:shadow-lg hover:border-gold/30 transition-all aos-element">
             <div class="relative overflow-hidden">
               <img loading="lazy" src={clinica.image} alt={`Unidade Drudi e Almeida ${clinica.name}`} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+              
               <div class="absolute bottom-3 left-4">
                 <span class="font-ui text-xs font-bold text-white bg-gold/80 rounded-full px-3 py-1">{clinica.city}</span>
               </div>
@@ -489,8 +492,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
       <div class="max-w-3xl mx-auto">
         <div class="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-8 md:p-14 text-center aos-element">
-          <div class="w-16 h-16 rounded-2xl bg-gold/20 flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/><path d="M19 3v4"/><path d="M21 5h-4"/></svg>
+          <div class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mx-auto mb-6 shadow-sm">
+            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
           </div>
           <h3 class="font-display text-2xl md:text-3xl text-white mb-4">Portal de Lentes Intraoculares</h3>
           <p class="font-body text-base text-white/80 leading-relaxed mb-4 max-w-2xl mx-auto">
@@ -502,18 +505,18 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-2xl mx-auto">
             {["Questionário personalizado", "Recomendações por categoria", "Informações completas", "Apresentações visuais"].map(item => (
-              <div class="flex flex-col items-center gap-2 bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 border border-gold/30 shadow-sm">
                 <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span class="font-body text-xs text-white/80 text-center">{item}</span>
+                <span class="font-body text-xs text-navy font-semibold text-center">{item}</span>
               </div>
             ))}
           </div>
 
           <a href={PORTAL_LENTES_URL} target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 bg-gold hover:bg-gold/90 text-navy font-display text-lg font-bold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            class="inline-flex items-center gap-1.5 bg-gold hover:bg-gold/90 text-navy font-ui text-xs font-bold px-5 py-2.5 rounded-xl transition-all duration-300 shadow-xl">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
             Descobrir Minha Lente Ideal
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
 
           <p class="font-body text-xs text-white/50 mt-6 leading-relaxed max-w-lg mx-auto">
@@ -683,7 +686,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <p class="font-body text-cream/75 leading-relaxed mb-6">
             Elaborado com base em 15 referências científicas de alto impacto — JAMA, New England Journal of Medicine, AAO e ESCRS. Inclui comparativo de lentes intraoculares, técnicas cirúrgicas, recuperação e perguntas frequentes.
           </p>
-          <div class="flex items-center gap-6 mb-6">
+          <div class="flex items-center justify-center gap-6 mb-6">
             <div class="text-center">
               <div class="font-display text-2xl text-gold font-bold">4.484</div>
               <div class="font-ui text-xs text-cream/60">palavras</div>

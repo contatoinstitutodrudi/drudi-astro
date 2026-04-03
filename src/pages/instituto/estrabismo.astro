@@ -53,6 +53,9 @@ const faqItems = [
   { question: "A cirurgia de estrabismo dói?", answer: "O procedimento é realizado sob anestesia (geral em crianças, local com sedação em adultos). No pós-operatório, há desconforto leve a moderado por 3-5 dias, controlado com analgésicos comuns e colírios. A maioria dos pacientes descreve como 'sensação de areia no olho'." },
   { question: "Quando devo levar meu filho ao oftalmologista?", answer: "O primeiro exame oftalmológico deve ser feito entre 6 meses e 1 ano de idade. Se notar qualquer desalinhamento dos olhos, fechar um olho na luz, inclinar a cabeça ou dificuldade visual, procure um oftalmologista imediatamente, independentemente da idade." },
   { question: "O que são suturas ajustáveis?", answer: "Técnica cirúrgica em que os pontos são deixados acessíveis para ajuste fino no pós-operatório (geralmente no dia seguinte). Permite correção mais precisa do desvio. Especialmente útil em reoperações e estrabismos restritivos. Resultados estatisticamente melhores que suturas convencionais." },
+  { question: "Criança com estrabismo precisa operar?", answer: "Nem sempre. O tratamento depende do tipo e grau do estrabismo. Muitos casos são tratados com óculos, oclusão do olho dominante (para tratar a ambliopia associada) ou exercícios ortópticos. A cirurgia é indicada quando o estrabismo não responde ao tratamento clínico ou quando o ângulo de desvio é grande. O tratamento precoce — idealmente antes dos 7-8 anos — é fundamental para preservar a visão binocular." },
+  { question: "Adulto pode operar estrabismo?", answer: "Sim. A cirurgia de estrabismo em adultos é segura e eficaz, com taxa de sucesso superior a 90% após uma ou duas intervenções (Cochrane 2021). Além do benefício estético, a cirurgia pode restaurar a visão binocular e eliminar diplopia (visão dupla). É realizada com anestesia local e sedação, em regime ambulatorial, com retorno às atividades em poucos dias." },
+  { question: "O que é ambliopia e como tratar?", answer: "Ambliopia (olho preguiçoso) é a redução da acuidade visual em um olho que não se desenvolveu corretamente na infância, geralmente associada a estrabismo ou diferença de grau entre os olhos. O tratamento consiste em óculos para corrigir o erro refrativo e oclusão do olho dominante (tampão) para estimular o olho ambliope. O tratamento é mais eficaz antes dos 7-8 anos, quando o sistema visual ainda está em desenvolvimento." },
 ];
 
 const clinicas = [
@@ -70,8 +73,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
   description="Tratamento especializado de estrabismo para crianças e adultos em São Paulo e Guarulhos. Cirurgia com suturas ajustáveis, diagnóstico preciso e 5 unidades. Agende: (11) 5430-2421."
   canonicalPath="/instituto/estrabismo"
   ogImage="/images/og-estrabismo_4463707b.webp"
-  heroImage="/images/estrabismo-hero-salvator-mundi.webp"
-  heroImageSrcset="/images/estrabismo-hero-480w.webp 480w, /images/estrabismo-hero-768w.webp 768w, /images/estrabismo-hero-salvator-mundi.webp 1280w"
+  heroImage="/images/estrabismo-hero-inst.webp"
 >
   <FAQSchema items={faqItems} slot="head-schema" />
   <script type="application/ld+json" slot="head-schema" set:html={JSON.stringify({"@context": "https://schema.org", "@type": "MedicalClinic", "name": "Instituto de Estrabismo — Drudi e Almeida", "medicalSpecialty": "http://schema.org/Surgical", "url": "https://institutodrudiealmeida.com.br/instituto/estrabismo/", "telephone": "+551154302421", "priceRange": "$$", "description": "Cirurgia de correção do estrabismo para crianças e adultos, tratamento da ambliopia, prismas e toxina botulínica. Atendimento pediátrico especializado.", "image": {"@type": "ImageObject", "url": "https://institutodrudiealmeida.com.br/images/hero-monet-resized_00e348d0.webp", "width": 1920, "height": 1080}, "address": {"@type": "PostalAddress", "streetAddress": "Rua Dr. César, 130", "addressLocality": "São Paulo", "addressRegion": "SP", "postalCode": "02013-001", "addressCountry": "BR"}, "parentOrganization": {"@type": "MedicalOrganization", "name": "Drudi e Almeida Clínicas Oftalmológicas", "url": "https://institutodrudiealmeida.com.br/"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "bestRating": "5", "worstRating": "1", "reviewCount": "312"}})} />
@@ -103,7 +105,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 
   <!-- ========== 1. HERO ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/estrabismo-hero-salvator-mundi.webp'); background-position: center 20%"></div>
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/estrabismo-hero-inst.webp'); background-position: center 30%"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-transparent"></div>
 
     <div class="relative container pb-14 pt-[100px] md:pt-[120px]">
@@ -135,10 +137,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               class="w-full inline-flex items-center justify-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-gold/90 transition-all shadow-lg">
               Receber Informações
             </a>
-            <a
-              href="/agendar"
-              class="inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-7 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm"
-            >
+            <a href="/agendar"
+              class="w-full inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-6 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               <span class="flex items-center gap-2 text-sm leading-tight">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Agendar Online
@@ -699,7 +699,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <div class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border/40 hover:shadow-lg hover:border-gold/30 transition-all aos-element">
             <div class="relative overflow-hidden">
               <img loading="lazy" src={clinica.image} alt={`Unidade Drudi e Almeida ${clinica.name}`} class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+              
               <div class="absolute bottom-3 left-4">
                 <span class="font-ui text-xs font-bold text-white bg-gold/80 rounded-full px-3 py-1">{clinica.city}</span>
               </div>
@@ -741,7 +741,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
           <p class="font-body text-cream/75 leading-relaxed mb-6">
             Diagnóstico, tipos (esotropia, exotropia), ambliopia, cirurgia de estrabismo e toxina botulínica.
           </p>
-          <div class="flex items-center gap-6 mb-6">
+          <div class="flex items-center justify-center gap-6 mb-6">
             <div class="text-center">
               <div class="font-display text-2xl text-gold font-bold">2.634</div>
               <div class="font-ui text-xs text-cream/60">palavras</div>
@@ -913,10 +913,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
               class="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-ui text-sm font-bold px-6 py-3.5 rounded-lg hover:bg-[#1ebe5d] transition-all shadow-[0_4px_14px_rgba(37,211,102,0.35)]">
               Agendar pelo WhatsApp
             </a>
-            <a
-              href="/agendar"
-              class="inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-7 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm"
-            >
+            <a href="/agendar"
+              class="w-full inline-flex flex-col items-center justify-center gap-0.5 bg-white text-navy font-ui font-bold px-6 py-3 rounded-lg border-2 border-navy hover:bg-navy hover:text-white transition-all shadow-sm">
               <span class="flex items-center gap-2 text-sm leading-tight">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Agendar Online

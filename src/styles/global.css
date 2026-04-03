@@ -15,8 +15,8 @@
   --color-background: oklch(0.995 0.002 80);
   --color-foreground: oklch(0.22 0.04 250);
   --color-border: oklch(0.91 0.005 80);
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --font-display: "Source Sans 3", system-ui, sans-serif;
+  --font-body: "Montserrat", system-ui, sans-serif;
   --font-ui: "Montserrat", system-ui, sans-serif;
 }
 
