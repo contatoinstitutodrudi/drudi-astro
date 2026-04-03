@@ -2,7 +2,10 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache para fontes
+# Cache para fontes auto-hospedadas
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
 /*.woff
@@ -26,6 +29,10 @@
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Cache para _astro (assets com hash de conteúdo — imutáveis)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Cache para PDFs dos e-books (1 semana)
 /ebooks/*.pdf
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
@@ -47,4 +54,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(self), interest-cohort=(), payment=(), usb=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.drudi.com.br https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.drudi.com.br https://cloudflareinsights.com https://static.cloudflareinsights.com; worker-src blob:; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.drudi.com.br https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.drudi.com.br https://cloudflareinsights.com https://static.cloudflareinsights.com https://www.googletagmanager.com; worker-src blob:; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; upgrade-insecure-requests
