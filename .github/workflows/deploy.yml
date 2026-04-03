@@ -38,6 +38,8 @@ jobs:
         run: pnpm run build
         env:
           NODE_ENV: production
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Deploy para Cloudflare Workers
         run: pnpm exec wrangler deploy
