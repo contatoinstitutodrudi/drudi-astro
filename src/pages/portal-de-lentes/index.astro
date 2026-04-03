@@ -1,0 +1,405 @@
+---
+// ============================================================
+//  Portal de Lentes — Landing Page
+//  institutodrudiealmeida.com.br/portal-de-lentes/
+//  SEO + GEO otimizado | Drudi e Almeida
+// ============================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LENTES, TIPOS_LENTE, DESCRICOES_TIPO } from '../../data/lentes';
+
+const destaques = LENTES.filter(l => l.destaque).slice(0, 3);
+const totalLentes = LENTES.length;
+const totalFabricantes = [...new Set(LENTES.map(l => l.fabricante))].length;
+
+// FAQ para schema GEO
+const faqs = [
+  {
+    q: 'Qual é a melhor lente intraocular para cirurgia de catarata?',
+    a: 'A melhor lente intraocular depende do estilo de vida, expectativas visuais e características oculares de cada paciente. As lentes trifocais (como PanOptix e Synergy) oferecem independência total de óculos. As EDOF (como Clareon Vivity) são ideais para quem dirige muito à noite. As monofocais asféricas são indicadas para casos com glaucoma ou doença da retina. A escolha deve ser feita com o cirurgião após biometria e avaliação completa.',
+  },
+  {
+    q: 'O que é uma lente trifocal?',
+    a: 'Uma lente trifocal é um tipo de lente intraocular (LIO) que possui três focos definidos: longe (distância), intermediário (60–80 cm, ideal para computador) e perto (40 cm, para leitura). Ela substitui o cristalino opacificado pela catarata e permite visão em todas as distâncias com mínima dependência de óculos. Exemplos: PanOptix (Alcon), Synergy (J&J) e AT ELANA (Zeiss).',
+  },
+  {
+    q: 'O que é uma lente EDOF?',
+    a: 'EDOF significa Extended Depth of Focus (Profundidade de Foco Estendida). São lentes intraoculares que proporcionam visão contínua de longe a intermediária com mínima difotopsia (halos e reflexos). São ideais para pacientes sensíveis a halos ou que dirigem frequentemente à noite. Exemplos: Clareon Vivity (Alcon) e Symfony (J&J).',
+  },
+  {
+    q: 'O que é uma lente tórica?',
+    a: 'Uma lente tórica é uma lente intraocular que corrige o astigmatismo durante a cirurgia de catarata. Ela possui dois poderes ópticos diferentes em meridianos perpendiculares, compensando a curvatura irregular da córnea. Está disponível em versões monofocal, EDOF e trifocal. Indicada para pacientes com astigmatismo ≥ 0,75 D.',
+  },
+  {
+    q: 'Qual é a diferença entre lente monofocal e multifocal?',
+    a: 'A lente monofocal tem um único foco (geralmente para longe), exigindo óculos para perto e intermediário. A lente multifocal (trifocal, bifocal ou EDOF) tem múltiplos focos, reduzindo ou eliminando a necessidade de óculos. As multifocais podem causar halos e reflexos à noite, especialmente nas primeiras semanas após a cirurgia.',
+  },
+  {
+    q: 'Como é calculado o poder da lente intraocular?',
+    a: 'O poder da lente intraocular é calculado por biometria ocular, que mede o comprimento axial do olho, a curvatura da córnea (ceratometria) e a profundidade da câmara anterior. Esses dados são inseridos em fórmulas matemáticas como SRK/T, Holladay 1 e Barrett Universal II para estimar o poder ideal da LIO. O objetivo é atingir a refração alvo (geralmente emetropia).',
+  },
+  {
+    q: 'Cirurgia de catarata com lente premium tem cobertura pelo plano de saúde?',
+    a: 'A cirurgia de catarata é coberta pelos planos de saúde, mas geralmente apenas com lente monofocal básica. As lentes premium (trifocais, EDOF, tóricas) costumam ter cobertura parcial ou nenhuma cobertura, sendo a diferença de valor paga pelo paciente. Consulte seu plano de saúde para verificar as condições específicas.',
+  },
+];
+
+const schemaFAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const schemaMedical = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Portal de Lentes Intraoculares — Drudi e Almeida',
+  description: `Catálogo completo com ${totalLentes} lentes intraoculares premium. Compare tecnologias, calcule o poder da LIO e encontre a lente ideal para cirurgia de catarata.`,
+  url: 'https://institutodrudiealmeida.com.br/portal-de-lentes/',
+  medicalAudience: { '@type': 'MedicalAudience', audienceType: 'Patient' },
+  about: { '@type': 'MedicalCondition', name: 'Catarata' },
+  author: {
+    '@type': 'Organization',
+    name: 'Drudi e Almeida Clínicas Oftalmológicas',
+    url: 'https://institutodrudiealmeida.com.br',
+  },
+};
+---
+
+<BaseLayout
+  title={`Portal de Lentes Intraoculares | ${totalLentes} LIOs Premium | Drudi e Almeida`}
+  description={`Catálogo completo com ${totalLentes} lentes intraoculares de ${totalFabricantes} fabricantes. Compare PanOptix, Vivity, Synergy, Symfony e mais. Calculadora de LIO e questionário de perfil. Drudi e Almeida Oftalmologia — São Paulo.`}
+  keywords="portal lentes intraoculares, catálogo LIO, lente intraocular São Paulo, PanOptix, Clareon Vivity, Synergy, Symfony, lente trifocal, lente EDOF, lente tórica, calculadora LIO, cirurgia catarata SP"
+  canonicalPath="/portal-de-lentes"
+>
+  <!-- Schema JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaMedical)} slot="head" />
+
+  <!-- ========== HERO ========== -->
+  <section class="relative bg-navy overflow-hidden py-20 md:py-28">
+    <!-- Decoração de fundo -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gold blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cream blur-3xl"></div>
+    </div>
+
+    <div class="container relative">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 mb-6 text-cream/50 font-ui text-xs">
+        <a href="/" class="hover:text-gold transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-gold">Portal de Lentes</span>
+      </nav>
+
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-1.5 mb-6">
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+          </svg>
+          <span class="font-ui text-xs font-semibold text-gold tracking-wide">PORTAL DE LENTES INTRAOCULARES</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-6">
+          A referência em <span class="text-gold italic">lentes intraoculares</span> do Brasil
+        </h1>
+
+        <p class="font-body text-lg text-cream/75 leading-relaxed mb-8 max-w-2xl">
+          {totalLentes} lentes intraoculares de {totalFabricantes} fabricantes. Compare tecnologias, 
+          calcule o poder ideal e encontre a LIO perfeita para cada paciente — tudo em um só lugar.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/portal-de-lentes/catalogo/"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-xl hover:bg-gold-light transition-colors"
+          >
+            Ver catálogo completo
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/portal-de-lentes/questionario/"
+            class="inline-flex items-center gap-2 border border-cream/30 text-cream font-ui text-sm font-semibold px-7 py-3.5 rounded-xl hover:bg-cream/10 transition-colors"
+          >
+            Questionário de perfil
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-cream/10">
+          <div>
+            <p class="font-display text-3xl text-gold font-bold">{totalLentes}</p>
+            <p class="font-ui text-xs text-cream/50 mt-1">Lentes catalogadas</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl text-gold font-bold">{totalFabricantes}</p>
+            <p class="font-ui text-xs text-cream/50 mt-1">Fabricantes</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl text-gold font-bold">3</p>
+            <p class="font-ui text-xs text-cream/50 mt-1">Fórmulas de cálculo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FERRAMENTAS ========== -->
+  <section class="section-padding bg-cream/30">
+    <div class="container">
+      <div class="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Ferramentas Clínicas</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">O que você encontra aqui</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          Ferramentas desenvolvidas para auxiliar cirurgiões e pacientes na tomada de decisão sobre lentes intraoculares.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Catálogo -->
+        <a href="/portal-de-lentes/catalogo/" class="group block">
+          <div class="rounded-2xl border border-border/60 bg-white p-7 h-full hover:shadow-lg hover:border-gold/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-navy/8 flex items-center justify-center mb-5 group-hover:bg-gold/15 transition-colors">
+              <svg class="w-6 h-6 text-navy group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-navy mb-2 group-hover:text-gold transition-colors">Catálogo Completo</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+              {totalLentes} lentes com especificações técnicas, diferenciais e indicações. Filtros por tipo e fabricante.
+            </p>
+            <span class="inline-flex items-center gap-1.5 font-ui text-xs font-semibold text-navy group-hover:text-gold transition-colors">
+              Acessar catálogo
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Comparador -->
+        <a href="/portal-de-lentes/comparar/" class="group block">
+          <div class="rounded-2xl border border-border/60 bg-white p-7 h-full hover:shadow-lg hover:border-gold/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-navy/8 flex items-center justify-center mb-5 group-hover:bg-gold/15 transition-colors">
+              <svg class="w-6 h-6 text-navy group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-navy mb-2 group-hover:text-gold transition-colors">Comparador</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+              Compare até 3 lentes lado a lado. Especificações técnicas, diferenciais e indicações em uma tabela.
+            </p>
+            <span class="inline-flex items-center gap-1.5 font-ui text-xs font-semibold text-navy group-hover:text-gold transition-colors">
+              Comparar lentes
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Calculadora -->
+        <a href="/portal-de-lentes/calculadora/" class="group block">
+          <div class="rounded-2xl border border-border/60 bg-white p-7 h-full hover:shadow-lg hover:border-gold/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-navy/8 flex items-center justify-center mb-5 group-hover:bg-gold/15 transition-colors">
+              <svg class="w-6 h-6 text-navy group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-navy mb-2 group-hover:text-gold transition-colors">Calculadora de LIO</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+              Estime o poder dióptrico ideal com fórmulas SRK/T, Holladay 1 e Barrett Universal II.
+            </p>
+            <span class="inline-flex items-center gap-1.5 font-ui text-xs font-semibold text-navy group-hover:text-gold transition-colors">
+              Usar calculadora
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Questionário -->
+        <a href="/portal-de-lentes/questionario/" class="group block">
+          <div class="rounded-2xl border border-border/60 bg-white p-7 h-full hover:shadow-lg hover:border-gold/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-navy/8 flex items-center justify-center mb-5 group-hover:bg-gold/15 transition-colors">
+              <svg class="w-6 h-6 text-navy group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-navy mb-2 group-hover:text-gold transition-colors">Questionário de Perfil</h3>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4">
+              7 perguntas sobre estilo de vida para sugestão personalizada de categoria de lente.
+            </p>
+            <span class="inline-flex items-center gap-1.5 font-ui text-xs font-semibold text-navy group-hover:text-gold transition-colors">
+              Fazer questionário
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LENTES EM DESTAQUE ========== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Mais Utilizadas</span>
+          <h2 class="font-display text-3xl md:text-4xl text-navy mt-2">Lentes em Destaque</h2>
+        </div>
+        <a href="/portal-de-lentes/catalogo/" class="hidden md:inline-flex items-center gap-2 font-ui text-sm font-semibold text-navy hover:text-gold transition-colors">
+          Ver todas as {totalLentes} lentes
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {destaques.map(lente => (
+          <div class="rounded-2xl border border-border/60 bg-white p-7 hover:shadow-lg hover:border-gold/30 transition-all duration-300">
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div>
+                <span class="inline-block bg-gold/15 text-gold font-ui text-xs font-semibold px-2.5 py-1 rounded-full border border-gold/30 mb-2">
+                  {lente.tipo}
+                </span>
+                <h3 class="font-display text-xl text-navy">{lente.nome}</h3>
+                <p class="font-ui text-xs text-muted-foreground mt-0.5">{lente.fabricante}</p>
+              </div>
+            </div>
+            <p class="font-body text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-3">
+              {lente.descricao}
+            </p>
+            <ul class="space-y-2 mb-6">
+              {lente.diferenciais.slice(0, 3).map(d => (
+                <li class="flex items-start gap-2 font-body text-xs text-muted-foreground">
+                  <svg class="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="line-clamp-1">{d}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={`/portal-de-lentes/catalogo/?lente=${lente.id}`}
+              class="block text-center border border-navy/20 text-navy font-ui text-xs font-semibold px-4 py-2.5 rounded-lg hover:bg-navy hover:text-white transition-colors"
+            >
+              Ver detalhes completos
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-8 md:hidden">
+        <a href="/portal-de-lentes/catalogo/" class="inline-flex items-center gap-2 font-ui text-sm font-semibold text-navy hover:text-gold transition-colors">
+          Ver todas as {totalLentes} lentes
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATEGORIAS ========== -->
+  <section class="section-padding bg-navy">
+    <div class="container">
+      <div class="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Tecnologias Disponíveis</span>
+        <h2 class="font-display text-3xl md:text-4xl text-cream mt-3 mb-4">Categorias de Lentes</h2>
+        <p class="font-body text-base text-cream/60 max-w-2xl mx-auto">
+          Cada categoria de lente intraocular tem indicações específicas. Conheça as tecnologias disponíveis.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {TIPOS_LENTE.map(tipo => {
+          const count = LENTES.filter(l => l.tipo === tipo).length;
+          const desc = DESCRICOES_TIPO[tipo];
+          return (
+            <a
+              href={`/portal-de-lentes/catalogo/?tipo=${encodeURIComponent(tipo)}`}
+              class="group block rounded-xl border border-cream/10 bg-cream/5 p-6 hover:bg-cream/10 hover:border-gold/30 transition-all duration-300"
+            >
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <h3 class="font-display text-lg text-cream group-hover:text-gold transition-colors">{tipo}</h3>
+                <span class="flex-shrink-0 bg-gold/20 text-gold font-ui text-xs font-bold px-2.5 py-1 rounded-full">
+                  {count}
+                </span>
+              </div>
+              <p class="font-body text-xs text-cream/50 leading-relaxed">{desc}</p>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ / GEO ========== -->
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <div class="text-center mb-12">
+        <span class="font-ui text-xs font-semibold tracking-[0.2em] uppercase text-gold">Perguntas Frequentes</span>
+        <h2 class="font-display text-3xl md:text-4xl text-navy mt-3 mb-4">Dúvidas sobre Lentes Intraoculares</h2>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          Respostas baseadas em evidências científicas e nas diretrizes da ESCRS e SBCOVIT.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq, i) => (
+          <details class="group rounded-xl border border-border bg-white overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none hover:bg-cream/30 transition-colors">
+              <h3 class="font-ui text-sm font-semibold text-navy pr-4">{faq.q}</h3>
+              <svg class="w-5 h-5 text-gold flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="font-body text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ========== -->
+  <section class="section-padding bg-cream/40 border-t border-border">
+    <div class="container text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-navy mb-4">
+        Pronto para escolher a lente ideal?
+      </h2>
+      <p class="font-body text-base text-muted-foreground max-w-xl mx-auto mb-8">
+        Agende uma consulta com nossos especialistas em cirurgia de catarata. 
+        Realizamos biometria de alta precisão e orientamos sobre a melhor opção para o seu caso.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a
+          href="https://wa.me/5511916544653?text=Olá! Gostaria de saber mais sobre lentes intraoculares e agendar uma consulta."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-7 py-3.5 rounded-xl hover:bg-gold-light transition-colors"
+        >
+          Agendar pelo WhatsApp
+        </a>
+        <a
+          href="/portal-de-lentes/questionario/"
+          class="inline-flex items-center gap-2 border border-navy/20 text-navy font-ui text-sm font-semibold px-7 py-3.5 rounded-xl hover:bg-navy hover:text-white transition-colors"
+        >
+          Fazer questionário de perfil
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,402 @@
+---
+// ============================================================
+//  Portal de Lentes — Questionário de Perfil do Paciente
+//  institutodrudiealmeida.com.br/portal-de-lentes/questionario/
+// ============================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Questionário de Perfil para Lente Intraocular | Portal de Lentes | Drudi e Almeida"
+  description="Responda perguntas sobre seu estilo de vida e receba uma sugestão personalizada de categoria de lente intraocular para cirurgia de catarata."
+  keywords="questionário lente intraocular, perfil paciente catarata, qual lente escolher, lente ideal cirurgia catarata"
+  canonicalPath="/portal-de-lentes/questionario"
+>
+  <!-- Hero compacto -->
+  <section class="bg-navy py-14">
+    <div class="container">
+      <nav class="flex items-center gap-2 mb-4 text-cream/50 font-ui text-xs">
+        <a href="/" class="hover:text-gold transition-colors">Home</a>
+        <span>/</span>
+        <a href="/portal-de-lentes/" class="hover:text-gold transition-colors">Portal de Lentes</a>
+        <span>/</span>
+        <span class="text-gold">Questionário</span>
+      </nav>
+      <h1 class="font-display text-3xl md:text-4xl text-cream mb-3">
+        Questionário de <span class="text-gold italic">Perfil</span>
+      </h1>
+      <p class="font-body text-cream/70 max-w-2xl">
+        Responda 7 perguntas sobre seu estilo de vida e receba uma sugestão de categoria de lente intraocular. 
+        A decisão final é sempre do cirurgião após avaliação completa.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container max-w-3xl">
+
+      <!-- Aviso -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8 flex items-start gap-3">
+        <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <p class="font-body text-xs text-blue-700 leading-relaxed">
+          Este questionário é uma ferramenta educativa para auxiliar na conversa com seu médico. A escolha da lente depende de exames específicos (biometria, topografia corneal) e da avaliação clínica do cirurgião.
+        </p>
+      </div>
+
+      <!-- Progresso -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-ui text-xs text-muted-foreground">Progresso</span>
+          <span id="progresso-texto" class="font-ui text-xs font-semibold text-navy">Pergunta 1 de 7</span>
+        </div>
+        <div class="h-2 bg-border rounded-full overflow-hidden">
+          <div id="barra-progresso" class="h-full bg-gold rounded-full transition-all duration-500" style="width: 14.28%"></div>
+        </div>
+      </div>
+
+      <!-- Questionário -->
+      <div id="questionario">
+        <!-- Perguntas serão renderizadas via JS -->
+      </div>
+
+      <!-- Resultado -->
+      <div id="resultado" class="hidden">
+        <div class="bg-navy rounded-2xl p-8 mb-6 text-center">
+          <div class="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="font-ui text-xs font-semibold text-gold tracking-wide uppercase mb-2">Sugestão Personalizada</p>
+          <h2 id="res-titulo" class="font-display text-2xl text-cream mb-2"></h2>
+          <p id="res-subtitulo" class="font-body text-sm text-cream/70 leading-relaxed max-w-lg mx-auto"></p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-white rounded-xl border border-border p-6">
+            <h3 class="font-ui text-sm font-bold text-navy mb-3">Por que essa categoria?</h3>
+            <p id="res-motivo" class="font-body text-sm text-muted-foreground leading-relaxed"></p>
+          </div>
+          <div class="bg-white rounded-xl border border-border p-6">
+            <h3 class="font-ui text-sm font-bold text-navy mb-3">Pontos de atenção</h3>
+            <ul id="res-atencao" class="space-y-2"></ul>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-border p-6 mb-6">
+          <h3 class="font-ui text-sm font-bold text-navy mb-4">Exemplos de lentes nesta categoria</h3>
+          <div id="res-exemplos" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/portal-de-lentes/catalogo/"
+            id="res-link-catalogo"
+            class="flex-1 text-center bg-navy text-white font-ui text-sm font-bold px-6 py-3.5 rounded-xl hover:bg-navy-dark transition-colors"
+          >
+            Ver lentes desta categoria
+          </a>
+          <a
+            href="https://wa.me/5511916544653?text=Olá! Fiz o questionário de perfil de lentes e gostaria de agendar uma consulta."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 text-center bg-gold text-navy font-ui text-sm font-bold px-6 py-3.5 rounded-xl hover:bg-gold-light transition-colors"
+          >
+            Agendar consulta
+          </a>
+        </div>
+
+        <button
+          id="btn-refazer"
+          class="w-full mt-4 border border-border text-muted-foreground font-ui text-sm font-semibold px-6 py-3 rounded-xl hover:bg-cream/50 transition-colors"
+        >
+          Refazer questionário
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const perguntas = [
+      {
+        id: 'atividade',
+        texto: 'Qual é a sua principal atividade diária?',
+        opcoes: [
+          { texto: 'Trabalho principalmente no computador / celular', valor: 'tela', pontos: { trifocal: 3, edof: 2, bifocal: 1 } },
+          { texto: 'Leio muito (livros, documentos, receitas)', valor: 'leitura', pontos: { trifocal: 2, bifocal: 3, edof: 1 } },
+          { texto: 'Atividades ao ar livre, esportes, dirigir', valor: 'externo', pontos: { edof: 3, trifocal: 2, monofocal: 1 } },
+          { texto: 'Misto — uso todas as distâncias igualmente', valor: 'misto', pontos: { trifocal: 3, edof: 2 } },
+        ]
+      },
+      {
+        id: 'dirige',
+        texto: 'Com que frequência você dirige, especialmente à noite?',
+        opcoes: [
+          { texto: 'Dirijo muito, inclusive à noite', valor: 'muito', pontos: { edof: 3, monofocal: 2, trifocal: 1 } },
+          { texto: 'Dirijo moderadamente', valor: 'moderado', pontos: { trifocal: 2, edof: 2, monofocal: 1 } },
+          { texto: 'Raramente ou nunca dirijo', valor: 'nao', pontos: { trifocal: 3, bifocal: 2 } },
+        ]
+      },
+      {
+        id: 'oculos',
+        texto: 'Qual é a sua expectativa em relação ao uso de óculos após a cirurgia?',
+        opcoes: [
+          { texto: 'Quero total independência de óculos', valor: 'total', pontos: { trifocal: 3, bifocal: 1 } },
+          { texto: 'Aceito usar óculos para leitura fina', valor: 'parcial', pontos: { edof: 3, trifocal: 2, monofocal_plus: 2 } },
+          { texto: 'Não me importo de usar óculos', valor: 'aceita', pontos: { monofocal: 3, monofocal_plus: 2 } },
+        ]
+      },
+      {
+        id: 'astigmatismo',
+        texto: 'Você tem astigmatismo significativo (≥ 1,0 D)?',
+        opcoes: [
+          { texto: 'Sim, tenho astigmatismo', valor: 'sim', pontos: { torica: 3 } },
+          { texto: 'Não tenho ou é muito pequeno', valor: 'nao', pontos: { trifocal: 1, edof: 1 } },
+          { texto: 'Não sei', valor: 'nao_sei', pontos: {} },
+        ]
+      },
+      {
+        id: 'sensibilidade',
+        texto: 'Como você se sente em relação a halos e reflexos de luz à noite?',
+        opcoes: [
+          { texto: 'Sou muito sensível — incomoda bastante', valor: 'muito', pontos: { edof: 3, monofocal: 3, monofocal_plus: 2 } },
+          { texto: 'Tolero bem, não é prioridade', valor: 'pouco', pontos: { trifocal: 3, bifocal: 2 } },
+          { texto: 'Tenho dúvida', valor: 'duvida', pontos: { edof: 2, trifocal: 1 } },
+        ]
+      },
+      {
+        id: 'profissao',
+        texto: 'Qual é a sua situação profissional?',
+        opcoes: [
+          { texto: 'Trabalho ativamente — precisão visual é essencial', valor: 'ativo', pontos: { trifocal: 3, edof: 2 } },
+          { texto: 'Aposentado(a) — foco em qualidade de vida', valor: 'aposentado', pontos: { trifocal: 2, bifocal: 2, edof: 2 } },
+          { texto: 'Profissão que exige visão noturna (motorista, segurança)', valor: 'noturno', pontos: { edof: 3, monofocal: 2 } },
+        ]
+      },
+      {
+        id: 'historico',
+        texto: 'Você tem algum histórico oftalmológico relevante?',
+        opcoes: [
+          { texto: 'Cirurgia refrativa prévia (LASIK, PRK)', valor: 'refrativa', pontos: { edof: 2, monofocal_plus: 2, monofocal: 1 } },
+          { texto: 'Glaucoma ou doença da retina', valor: 'glaucoma', pontos: { monofocal: 3, monofocal_plus: 1 } },
+          { texto: 'Nenhum histórico relevante', valor: 'nenhum', pontos: { trifocal: 2, edof: 2, bifocal: 1 } },
+        ]
+      },
+    ];
+
+    const categorias = {
+      trifocal: {
+        titulo: 'Lente Trifocal',
+        subtitulo: 'Máxima independência de óculos em todas as distâncias',
+        motivo: 'Seu perfil indica que você usa ativamente todas as distâncias visuais — longe, intermediária (computador/celular) e perto (leitura). As lentes trifocais são a melhor opção para quem deseja liberdade total de óculos.',
+        atencao: [
+          'Pode haver halos leves à noite nas primeiras semanas',
+          'Requer adaptação neurológica de 3 a 6 meses',
+          'Não indicada em casos de glaucoma avançado ou doença da retina',
+        ],
+        exemplos: ['PanOptix (Alcon)', 'Synergy (J&J)', 'AT ELANA 841P (Zeiss)', 'Finevision HP (BVI)'],
+        tipo: 'Trifocal',
+      },
+      edof: {
+        titulo: 'Lente EDOF',
+        subtitulo: 'Visão contínua de longe a intermediária com mínima difotopsia',
+        motivo: 'Seu perfil indica sensibilidade a halos ou necessidade de boa visão noturna. As lentes EDOF oferecem profundidade de foco estendida com muito menos halos que as trifocais, sendo ideais para quem dirige frequentemente.',
+        atencao: [
+          'Visão de perto (leitura fina) pode requerer óculos leves',
+          'Melhor tolerância noturna entre as lentes premium',
+          'Boa opção para olhos com pupila grande',
+        ],
+        exemplos: ['Clareon Vivity (Alcon)', 'Symfony (J&J)', 'Puresse (J&J)'],
+        tipo: 'EDOF',
+      },
+      bifocal: {
+        titulo: 'Lente Bifocal',
+        subtitulo: 'Excelente visão de longe e perto',
+        motivo: 'Seu perfil indica que você prioriza a visão de longe e de perto (leitura), sem necessidade crítica de visão intermediária. As lentes bifocais oferecem boa qualidade de imagem nessas duas distâncias.',
+        atencao: [
+          'Visão intermediária (computador) pode ser limitada',
+          'Menor incidência de halos que trifocais',
+          'Boa opção para quem não usa muito computador',
+        ],
+        exemplos: ['AT LISA 809M (Zeiss)', 'ZMB (J&J)'],
+        tipo: 'Bifocal',
+      },
+      monofocal_plus: {
+        titulo: 'Lente Monofocal Plus',
+        subtitulo: 'Melhor visão intermediária com mínima difotopsia',
+        motivo: 'Seu perfil indica que você aceita usar óculos para leitura fina, mas deseja alguma visão intermediária sem os riscos das multifocais. As lentes Monofocal Plus são uma excelente opção intermediária.',
+        atencao: [
+          'Óculos para leitura fina podem ser necessários',
+          'Mínima difotopsia — boa tolerância noturna',
+          'Boa opção para casos com contraindicação relativa a multifocais',
+        ],
+        exemplos: ['Tecnis Eyehance (J&J)', 'Clareon (Alcon)', 'Vivinex Impress (Hoya)'],
+        tipo: 'Monofocal Plus',
+      },
+      monofocal: {
+        titulo: 'Lente Monofocal Asférica',
+        subtitulo: 'Alta qualidade de visão de longe com máxima previsibilidade',
+        motivo: 'Seu perfil indica que você prioriza a qualidade de visão de longe com máxima previsibilidade e tolerância noturna. As lentes monofocais asféricas oferecem a melhor qualidade de imagem para longe com mínima difotopsia.',
+        atencao: [
+          'Óculos para perto e intermediário serão necessários',
+          'Melhor tolerância noturna entre todas as categorias',
+          'Indicada para casos com glaucoma, doença da retina ou cirurgia refrativa prévia',
+        ],
+        exemplos: ['AcrySof IQ (Alcon)', 'Tecnis Aspheric (J&J)', 'CT Asphina (Zeiss)'],
+        tipo: 'Monofocal Asférica',
+      },
+      torica: {
+        titulo: 'Lente Tórica',
+        subtitulo: 'Correção do astigmatismo durante a cirurgia',
+        motivo: 'Você tem astigmatismo significativo. As lentes tóricas corrigem o astigmatismo durante a cirurgia, eliminando ou reduzindo a necessidade de óculos para longe. Estão disponíveis em versões monofocais, EDOF e trifocais.',
+        atencao: [
+          'Alta estabilidade rotacional é fundamental',
+          'Disponível em combinação com outras tecnologias (trifocal tórica, EDOF tórica)',
+          'Requer marcação do eixo no pré-operatório',
+        ],
+        exemplos: ['AcrySof IQ Toric (Alcon)', 'Tecnis Toric (J&J)', 'AT Torbi (Zeiss)', 'RayOne Toric (Rayner)'],
+        tipo: 'Tórica',
+      },
+    };
+
+    let perguntaAtual = 0;
+    let pontos = {};
+    let temAstigmatismo = false;
+
+    function renderizarPergunta() {
+      const p = perguntas[perguntaAtual];
+      const container = document.getElementById('questionario');
+
+      container.innerHTML = `
+        <div class="bg-white rounded-2xl border border-border p-8 animate-fade-in">
+          <p class="font-ui text-xs text-muted-foreground mb-2">Pergunta ${perguntaAtual + 1} de ${perguntas.length}</p>
+          <h2 class="font-display text-xl text-navy mb-6">${p.texto}</h2>
+          <div class="space-y-3">
+            ${p.opcoes.map((op, i) => `
+              <button
+                class="opcao-btn w-full text-left p-5 rounded-xl border-2 border-border hover:border-gold/50 hover:bg-cream/30 transition-all duration-200 font-body text-sm text-navy"
+                data-valor="${op.valor}"
+                data-pontos='${JSON.stringify(op.pontos)}'
+              >
+                <span class="flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-full border-2 border-border flex items-center justify-center font-ui text-xs font-bold text-muted-foreground flex-shrink-0">
+                    ${String.fromCharCode(65 + i)}
+                  </span>
+                  ${op.texto}
+                </span>
+              </button>
+            `).join('')}
+          </div>
+          ${perguntaAtual > 0 ? `
+            <button id="btn-voltar" class="mt-6 font-ui text-sm text-muted-foreground hover:text-navy transition-colors flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+              Voltar
+            </button>
+          ` : ''}
+        </div>
+      `;
+
+      document.querySelectorAll('.opcao-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const valor = btn.dataset.valor;
+          const pts = JSON.parse(btn.dataset.pontos);
+
+          // Acumular pontos
+          Object.entries(pts).forEach(([cat, val]) => {
+            pontos[cat] = (pontos[cat] || 0) + val;
+          });
+
+          // Verificar astigmatismo
+          if (valor === 'sim') temAstigmatismo = true;
+
+          perguntaAtual++;
+          atualizarProgresso();
+
+          if (perguntaAtual >= perguntas.length) {
+            mostrarResultado();
+          } else {
+            renderizarPergunta();
+          }
+        });
+      });
+
+      document.getElementById('btn-voltar')?.addEventListener('click', () => {
+        perguntaAtual--;
+        atualizarProgresso();
+        renderizarPergunta();
+      });
+    }
+
+    function atualizarProgresso() {
+      const pct = ((perguntaAtual + 1) / perguntas.length) * 100;
+      document.getElementById('barra-progresso').style.width = `${Math.min(pct, 100)}%`;
+      document.getElementById('progresso-texto').textContent =
+        perguntaAtual >= perguntas.length
+          ? 'Concluído!'
+          : `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
+    }
+
+    function mostrarResultado() {
+      // Se tem astigmatismo, dar peso extra para tórica
+      if (temAstigmatismo) {
+        pontos.torica = (pontos.torica || 0) + 5;
+      }
+
+      // Encontrar categoria vencedora
+      let melhorCat = 'trifocal';
+      let melhorPts = 0;
+      Object.entries(pontos).forEach(([cat, pts]) => {
+        if (pts > melhorPts && categorias[cat]) {
+          melhorPts = pts;
+          melhorCat = cat;
+        }
+      });
+
+      const cat = categorias[melhorCat];
+
+      document.getElementById('questionario').classList.add('hidden');
+      document.getElementById('resultado').classList.remove('hidden');
+
+      document.getElementById('res-titulo').textContent = cat.titulo;
+      document.getElementById('res-subtitulo').textContent = cat.subtitulo;
+      document.getElementById('res-motivo').textContent = cat.motivo;
+
+      const listaAtencao = document.getElementById('res-atencao');
+      listaAtencao.innerHTML = cat.atencao.map(a => `
+        <li class="flex items-start gap-2 font-body text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+          ${a}
+        </li>
+      `).join('');
+
+      const exemplos = document.getElementById('res-exemplos');
+      exemplos.innerHTML = cat.exemplos.map(e => `
+        <div class="bg-cream/50 rounded-xl p-3 text-center">
+          <p class="font-ui text-xs font-semibold text-navy">${e}</p>
+        </div>
+      `).join('');
+
+      document.getElementById('res-link-catalogo').href =
+        `/portal-de-lentes/catalogo/?tipo=${encodeURIComponent(cat.tipo)}`;
+    }
+
+    document.getElementById('btn-refazer')?.addEventListener('click', () => {
+      perguntaAtual = 0;
+      pontos = {};
+      temAstigmatismo = false;
+      document.getElementById('resultado').classList.add('hidden');
+      document.getElementById('questionario').classList.remove('hidden');
+      atualizarProgresso();
+      renderizarPergunta();
+    });
+
+    // Inicializar
+    renderizarPergunta();
+  </script>
+</BaseLayout>

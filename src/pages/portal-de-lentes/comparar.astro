@@ -1,0 +1,359 @@
+---
+// ============================================================
+//  Portal de Lentes — Comparador de Lentes
+//  institutodrudiealmeida.com.br/portal-de-lentes/comparar/
+// ============================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LENTES } from '../../data/lentes';
+---
+
+<BaseLayout
+  title="Comparar Lentes Intraoculares | Portal de Lentes | Drudi e Almeida"
+  description="Compare lentes intraoculares lado a lado. Analise especificações técnicas, diferenciais e indicações de até 3 lentes simultaneamente."
+  keywords="comparar lentes intraoculares, comparação LIO, PanOptix vs Vivity, trifocal vs EDOF"
+  canonicalPath="/portal-de-lentes/comparar"
+>
+  <!-- Hero compacto -->
+  <section class="bg-navy py-14">
+    <div class="container">
+      <nav class="flex items-center gap-2 mb-4 text-cream/50 font-ui text-xs">
+        <a href="/" class="hover:text-gold transition-colors">Home</a>
+        <span>/</span>
+        <a href="/portal-de-lentes/" class="hover:text-gold transition-colors">Portal de Lentes</a>
+        <span>/</span>
+        <span class="text-gold">Comparar</span>
+      </nav>
+      <h1 class="font-display text-3xl md:text-4xl text-cream mb-3">
+        Comparar <span class="text-gold italic">Lentes Intraoculares</span>
+      </h1>
+      <p class="font-body text-cream/70 max-w-2xl">
+        Selecione até 3 lentes para comparar especificações técnicas, diferenciais e indicações lado a lado.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+
+      <!-- Seletor de lentes -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        {[0, 1, 2].map(i => (
+          <div class="slot-lente rounded-xl border-2 border-dashed border-border p-5 min-h-[200px] flex flex-col" data-slot={i}>
+            <div class="slot-vazio flex flex-col items-center justify-center flex-1 text-center">
+              <div class="w-12 h-12 rounded-full bg-navy/8 flex items-center justify-center mb-3">
+                <svg class="w-6 h-6 text-navy/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+              </div>
+              <p class="font-ui text-sm text-muted-foreground mb-3">Lente {i + 1}</p>
+              <button
+                class="btn-adicionar-slot bg-navy text-white font-ui text-xs font-semibold px-4 py-2 rounded-lg hover:bg-navy-dark transition-colors"
+                data-slot={i}
+              >
+                Selecionar lente
+              </button>
+            </div>
+            <div class="slot-preenchido hidden flex-col flex-1">
+              <div class="flex items-start justify-between mb-3">
+                <div>
+                  <span class="slot-tipo inline-block bg-navy/8 text-navy font-ui text-xs font-semibold px-2 py-0.5 rounded-full mb-1"></span>
+                  <h3 class="slot-nome font-display text-lg text-navy"></h3>
+                  <p class="slot-fab font-ui text-xs text-muted-foreground"></p>
+                </div>
+                <button class="btn-remover-slot w-7 h-7 rounded-full bg-red-50 flex items-center justify-center hover:bg-red-100 transition-colors" data-slot={i}>
+                  <svg class="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </button>
+              </div>
+              <p class="slot-desc font-body text-xs text-muted-foreground leading-relaxed line-clamp-3 flex-1"></p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Tabela de comparação -->
+      <div id="tabela-comparacao" class="hidden">
+        <h2 class="font-display text-2xl text-navy mb-6">Comparação Detalhada</h2>
+
+        <div class="overflow-x-auto rounded-xl border border-border">
+          <table class="w-full">
+            <thead>
+              <tr class="bg-navy">
+                <th class="text-left px-6 py-4 font-ui text-xs font-semibold text-cream/70 tracking-wide uppercase w-40">Critério</th>
+                <th id="th-0" class="text-left px-6 py-4 font-ui text-sm font-semibold text-cream"></th>
+                <th id="th-1" class="text-left px-6 py-4 font-ui text-sm font-semibold text-cream hidden"></th>
+                <th id="th-2" class="text-left px-6 py-4 font-ui text-sm font-semibold text-cream hidden"></th>
+              </tr>
+            </thead>
+            <tbody id="tbody-comparacao" class="divide-y divide-border">
+            </tbody>
+          </table>
+        </div>
+
+        <!-- CTA após comparação -->
+        <div class="mt-8 p-6 rounded-xl bg-cream/50 border border-border text-center">
+          <p class="font-body text-sm text-muted-foreground mb-4">
+            Ainda com dúvidas? Nossos especialistas podem ajudar a escolher a melhor lente para o seu caso.
+          </p>
+          <a
+            href="https://wa.me/5511916544653?text=Olá! Estive comparando lentes intraoculares e gostaria de uma orientação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gold text-navy font-ui text-sm font-bold px-6 py-3 rounded-lg hover:bg-gold-light transition-colors"
+          >
+            Consultar com especialista
+          </a>
+        </div>
+      </div>
+
+      <!-- Estado inicial -->
+      <div id="estado-inicial" class="text-center py-12">
+        <svg class="w-16 h-16 text-muted-foreground/20 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+        <p class="font-body text-muted-foreground">Selecione pelo menos 2 lentes para ver a comparação</p>
+        <a href="/portal-de-lentes/catalogo/" class="mt-4 inline-block font-ui text-sm text-gold hover:underline">
+          Ir ao catálogo para selecionar lentes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de seleção -->
+  <div id="modal-selecao" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col">
+      <div class="p-6 border-b border-border flex items-center justify-between">
+        <h3 class="font-display text-xl text-navy">Selecionar Lente</h3>
+        <button id="modal-sel-fechar" class="w-8 h-8 rounded-full bg-navy/8 flex items-center justify-center hover:bg-navy/15 transition-colors">
+          <svg class="w-4 h-4 text-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 border-b border-border">
+        <input
+          type="text"
+          id="modal-busca"
+          placeholder="Buscar por nome ou fabricante..."
+          class="w-full border border-border rounded-lg px-4 py-2.5 font-body text-sm focus:outline-none focus:border-gold"
+        />
+      </div>
+      <div id="modal-lista" class="overflow-y-auto flex-1 p-4 space-y-2">
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ lentesData: LENTES }}>
+    let slots = [null, null, null];
+    let slotAtivo = null;
+
+    const modalSelecao = document.getElementById('modal-selecao');
+    const modalLista = document.getElementById('modal-lista');
+    const modalBusca = document.getElementById('modal-busca');
+    const tabelaComparacao = document.getElementById('tabela-comparacao');
+    const estadoInicial = document.getElementById('estado-inicial');
+
+    // Verificar URL params
+    const params = new URLSearchParams(window.location.search);
+    const idsParam = params.get('ids');
+    if (idsParam) {
+      const ids = idsParam.split(',').slice(0, 3);
+      ids.forEach((id, i) => {
+        const lente = lentesData.find(l => l.id === id);
+        if (lente) slots[i] = lente;
+      });
+    }
+
+    function renderizarSlots() {
+      slots.forEach((lente, i) => {
+        const slot = document.querySelector(`.slot-lente[data-slot="${i}"]`);
+        const vazio = slot.querySelector('.slot-vazio');
+        const preenchido = slot.querySelector('.slot-preenchido');
+
+        if (lente) {
+          slot.classList.remove('border-dashed', 'border-border');
+          slot.classList.add('border-gold/30', 'bg-cream/30');
+          vazio.classList.add('hidden');
+          preenchido.classList.remove('hidden');
+          preenchido.classList.add('flex');
+          preenchido.querySelector('.slot-tipo').textContent = lente.tipo;
+          preenchido.querySelector('.slot-nome').textContent = lente.nome;
+          preenchido.querySelector('.slot-fab').textContent = lente.fabricante;
+          preenchido.querySelector('.slot-desc').textContent = lente.descricao;
+        } else {
+          slot.classList.add('border-dashed', 'border-border');
+          slot.classList.remove('border-gold/30', 'bg-cream/30');
+          vazio.classList.remove('hidden');
+          preenchido.classList.add('hidden');
+          preenchido.classList.remove('flex');
+        }
+      });
+      atualizarTabela();
+    }
+
+    function atualizarTabela() {
+      const lentesAtivas = slots.filter(Boolean);
+      if (lentesAtivas.length < 2) {
+        tabelaComparacao.classList.add('hidden');
+        estadoInicial.classList.remove('hidden');
+        return;
+      }
+      tabelaComparacao.classList.remove('hidden');
+      estadoInicial.classList.add('hidden');
+
+      // Atualizar headers
+      slots.forEach((lente, i) => {
+        const th = document.getElementById(`th-${i}`);
+        if (lente) {
+          th.textContent = `${lente.nome} (${lente.fabricante})`;
+          th.classList.remove('hidden');
+        } else {
+          th.classList.add('hidden');
+        }
+      });
+
+      // Linhas da tabela
+      const criterios = [
+        { label: 'Tipo', key: 'tipo' },
+        { label: 'Fabricante', key: 'fabricante' },
+        { label: 'Material', key: 'material' },
+        { label: 'Óptica', key: 'optica' },
+        { label: 'Faixa de Dioptria', key: 'faixaDioptria' },
+        { label: 'Constante A', key: 'acd' },
+      ];
+
+      const tbody = document.getElementById('tbody-comparacao');
+      tbody.innerHTML = '';
+
+      criterios.forEach(({ label, key }) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-cream/30 transition-colors';
+        let html = `<td class="px-6 py-4 font-ui text-xs font-semibold text-muted-foreground uppercase tracking-wide">${label}</td>`;
+        slots.forEach((lente, i) => {
+          const val = lente ? (lente[key] || '—') : '';
+          html += `<td class="px-6 py-4 font-body text-sm text-navy ${!lente ? 'hidden' : ''}">${val}</td>`;
+        });
+        tr.innerHTML = html;
+        tbody.appendChild(tr);
+      });
+
+      // Linha de diferenciais
+      const trDif = document.createElement('tr');
+      trDif.className = 'hover:bg-cream/30 transition-colors align-top';
+      let htmlDif = `<td class="px-6 py-4 font-ui text-xs font-semibold text-muted-foreground uppercase tracking-wide">Diferenciais</td>`;
+      slots.forEach((lente, i) => {
+        if (!lente) {
+          htmlDif += `<td class="hidden"></td>`;
+          return;
+        }
+        htmlDif += `<td class="px-6 py-4">
+          <ul class="space-y-1.5">
+            ${lente.diferenciais.map(d => `
+              <li class="flex items-start gap-2 font-body text-xs text-muted-foreground">
+                <svg class="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                ${d}
+              </li>`).join('')}
+          </ul>
+        </td>`;
+      });
+      trDif.innerHTML = htmlDif;
+      tbody.appendChild(trDif);
+
+      // Linha de indicações
+      const trInd = document.createElement('tr');
+      trInd.className = 'hover:bg-cream/30 transition-colors align-top';
+      let htmlInd = `<td class="px-6 py-4 font-ui text-xs font-semibold text-muted-foreground uppercase tracking-wide">Indicações</td>`;
+      slots.forEach((lente, i) => {
+        if (!lente) {
+          htmlInd += `<td class="hidden"></td>`;
+          return;
+        }
+        htmlInd += `<td class="px-6 py-4">
+          <ul class="space-y-1.5">
+            ${lente.indicacoes.map(ind => `
+              <li class="flex items-start gap-2 font-body text-xs text-muted-foreground">
+                <svg class="w-3.5 h-3.5 text-navy mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                ${ind}
+              </li>`).join('')}
+          </ul>
+        </td>`;
+      });
+      trInd.innerHTML = htmlInd;
+      tbody.appendChild(trInd);
+    }
+
+    // Abrir modal de seleção
+    function abrirModalSelecao(slot) {
+      slotAtivo = slot;
+      renderizarListaModal('');
+      modalSelecao.classList.remove('hidden');
+      modalSelecao.classList.add('flex');
+      modalBusca.value = '';
+      modalBusca.focus();
+    }
+
+    function fecharModalSelecao() {
+      modalSelecao.classList.add('hidden');
+      modalSelecao.classList.remove('flex');
+    }
+
+    function renderizarListaModal(busca) {
+      const filtradas = lentesData.filter(l => {
+        const jaNoSlot = slots.some((s, i) => s && s.id === l.id && i !== slotAtivo);
+        return !jaNoSlot && (
+          !busca ||
+          l.nome.toLowerCase().includes(busca.toLowerCase()) ||
+          l.fabricante.toLowerCase().includes(busca.toLowerCase()) ||
+          l.tipo.toLowerCase().includes(busca.toLowerCase())
+        );
+      });
+
+      modalLista.innerHTML = filtradas.map(l => `
+        <button
+          class="w-full text-left p-4 rounded-xl border border-border hover:border-gold/30 hover:bg-cream/30 transition-all"
+          data-id="${l.id}"
+        >
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <span class="inline-block bg-navy/8 text-navy font-ui text-xs font-semibold px-2 py-0.5 rounded-full mb-1">${l.tipo}</span>
+              <p class="font-display text-base text-navy">${l.nome}</p>
+              <p class="font-ui text-xs text-muted-foreground">${l.fabricante}</p>
+            </div>
+            ${l.destaque ? '<span class="flex-shrink-0 bg-gold/15 text-gold font-ui text-[10px] font-bold px-2 py-1 rounded-full border border-gold/30 uppercase">Destaque</span>' : ''}
+          </div>
+        </button>
+      `).join('');
+
+      modalLista.querySelectorAll('button[data-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lente = lentesData.find(l => l.id === btn.dataset.id);
+          if (lente) {
+            slots[slotAtivo] = lente;
+            fecharModalSelecao();
+            renderizarSlots();
+          }
+        });
+      });
+    }
+
+    document.querySelectorAll('.btn-adicionar-slot').forEach(btn => {
+      btn.addEventListener('click', () => abrirModalSelecao(parseInt(btn.dataset.slot)));
+    });
+
+    document.querySelectorAll('.btn-remover-slot').forEach(btn => {
+      btn.addEventListener('click', () => {
+        slots[parseInt(btn.dataset.slot)] = null;
+        renderizarSlots();
+      });
+    });
+
+    document.getElementById('modal-sel-fechar').addEventListener('click', fecharModalSelecao);
+    modalSelecao.addEventListener('click', e => { if (e.target === modalSelecao) fecharModalSelecao(); });
+
+    modalBusca.addEventListener('input', e => renderizarListaModal(e.target.value));
+
+    // Inicializar
+    renderizarSlots();
+  </script>
+</BaseLayout>

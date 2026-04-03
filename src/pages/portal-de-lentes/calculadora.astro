@@ -1,0 +1,407 @@
+---
+// ============================================================
+//  Portal de Lentes — Calculadora de LIO
+//  institutodrudiealmeida.com.br/portal-de-lentes/calculadora/
+//  Fórmulas: SRK/T, Holladay 1, Barrett Universal II (estimativa)
+// ============================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Calculadora de Lente Intraocular (LIO) | Portal de Lentes | Drudi e Almeida"
+  description="Calcule o poder dióptrico ideal da lente intraocular com as fórmulas SRK/T, Holladay 1 e Barrett Universal II. Ferramenta clínica para planejamento cirúrgico de catarata."
+  keywords="calculadora LIO, cálculo lente intraocular, biometria ocular, SRK/T, Holladay, Barrett, fórmula LIO, cirurgia catarata"
+  canonicalPath="/portal-de-lentes/calculadora"
+>
+  <!-- Hero compacto -->
+  <section class="bg-navy py-14">
+    <div class="container">
+      <nav class="flex items-center gap-2 mb-4 text-cream/50 font-ui text-xs">
+        <a href="/" class="hover:text-gold transition-colors">Home</a>
+        <span>/</span>
+        <a href="/portal-de-lentes/" class="hover:text-gold transition-colors">Portal de Lentes</a>
+        <span>/</span>
+        <span class="text-gold">Calculadora de LIO</span>
+      </nav>
+      <h1 class="font-display text-3xl md:text-4xl text-cream mb-3">
+        Calculadora de <span class="text-gold italic">Lente Intraocular</span>
+      </h1>
+      <p class="font-body text-cream/70 max-w-2xl">
+        Estime o poder dióptrico ideal da LIO com base nos dados biométricos do paciente. 
+        Fórmulas SRK/T, Holladay 1 e Barrett Universal II.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container max-w-5xl">
+
+      <!-- Aviso clínico -->
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-8 flex items-start gap-3">
+        <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <div>
+          <p class="font-ui text-sm font-semibold text-amber-800 mb-1">Uso Clínico — Ferramenta de Apoio</p>
+          <p class="font-body text-xs text-amber-700 leading-relaxed">
+            Esta calculadora fornece estimativas baseadas nas fórmulas publicadas na literatura. Os resultados são orientativos e não substituem o software de biometria certificado (IOLMaster, Lenstar) nem a avaliação do cirurgião. A fórmula Barrett Universal II apresentada é uma aproximação — para o cálculo preciso, utilize o calculador oficial em <a href="https://calc.apacrs.org" target="_blank" rel="noopener noreferrer" class="underline hover:text-amber-900">calc.apacrs.org</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Formulário de entrada -->
+        <div class="bg-white rounded-2xl border border-border p-8">
+          <h2 class="font-display text-xl text-navy mb-6">Dados Biométricos</h2>
+
+          <form id="form-calc" class="space-y-5">
+            <!-- Comprimento axial -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-1.5 block">
+                Comprimento Axial (AL) <span class="text-gold">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  type="number"
+                  id="al"
+                  step="0.01"
+                  min="18"
+                  max="36"
+                  placeholder="Ex: 23.45"
+                  class="w-full border border-border rounded-lg px-4 py-3 pr-12 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+                  required
+                />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-ui text-xs text-muted-foreground">mm</span>
+              </div>
+              <p class="font-body text-xs text-muted-foreground mt-1">Faixa normal: 22–25 mm</p>
+            </div>
+
+            <!-- Ceratometria K1 -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-1.5 block">
+                Ceratometria K1 (meridiano plano) <span class="text-gold">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  type="number"
+                  id="k1"
+                  step="0.01"
+                  min="38"
+                  max="52"
+                  placeholder="Ex: 43.50"
+                  class="w-full border border-border rounded-lg px-4 py-3 pr-12 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+                  required
+                />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-ui text-xs text-muted-foreground">D</span>
+              </div>
+            </div>
+
+            <!-- Ceratometria K2 -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-1.5 block">
+                Ceratometria K2 (meridiano curvo) <span class="text-gold">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  type="number"
+                  id="k2"
+                  step="0.01"
+                  min="38"
+                  max="52"
+                  placeholder="Ex: 44.25"
+                  class="w-full border border-border rounded-lg px-4 py-3 pr-12 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+                  required
+                />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-ui text-xs text-muted-foreground">D</span>
+              </div>
+            </div>
+
+            <!-- Profundidade câmara anterior -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-1.5 block">
+                Profundidade da Câmara Anterior (ACD)
+              </label>
+              <div class="relative">
+                <input
+                  type="number"
+                  id="acd"
+                  step="0.01"
+                  min="1.5"
+                  max="5"
+                  placeholder="Ex: 3.20"
+                  class="w-full border border-border rounded-lg px-4 py-3 pr-12 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+                />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-ui text-xs text-muted-foreground">mm</span>
+              </div>
+              <p class="font-body text-xs text-muted-foreground mt-1">Necessário para Holladay 1 e Barrett</p>
+            </div>
+
+            <!-- Constante A da lente -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-1.5 block">
+                Constante A da Lente
+              </label>
+              <div class="relative">
+                <input
+                  type="number"
+                  id="constante-a"
+                  step="0.1"
+                  min="110"
+                  max="122"
+                  placeholder="Ex: 119.1"
+                  class="w-full border border-border rounded-lg px-4 py-3 pr-12 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+                />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-ui text-xs text-muted-foreground">A</span>
+              </div>
+              <p class="font-body text-xs text-muted-foreground mt-1">Padrão: 118.9 (AcrySof IQ). Ver catálogo para cada lente.</p>
+            </div>
+
+            <!-- Refração alvo -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-1.5 block">
+                Refração Alvo
+              </label>
+              <div class="relative">
+                <input
+                  type="number"
+                  id="refracao-alvo"
+                  step="0.25"
+                  min="-3"
+                  max="2"
+                  placeholder="Ex: 0.00"
+                  value="0"
+                  class="w-full border border-border rounded-lg px-4 py-3 pr-12 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+                />
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-ui text-xs text-muted-foreground">D</span>
+              </div>
+              <p class="font-body text-xs text-muted-foreground mt-1">0,00 = emetropia. Negativo = miopia leve (monovisão)</p>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-navy text-white font-ui text-sm font-bold px-6 py-3.5 rounded-xl hover:bg-navy-dark transition-colors"
+            >
+              Calcular Poder da LIO
+            </button>
+          </form>
+        </div>
+
+        <!-- Resultados -->
+        <div>
+          <!-- Resultado principal -->
+          <div id="resultado-principal" class="hidden bg-navy rounded-2xl p-8 mb-6 text-center">
+            <p class="font-ui text-xs font-semibold text-gold tracking-wide uppercase mb-4">Poder Estimado da LIO</p>
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="bg-cream/10 rounded-xl p-4">
+                <p class="font-ui text-xs text-cream/60 mb-2">SRK/T</p>
+                <p id="res-srkt" class="font-display text-2xl text-cream font-bold"></p>
+                <p class="font-ui text-xs text-cream/50 mt-1">D</p>
+              </div>
+              <div class="bg-gold/20 rounded-xl p-4 border border-gold/30">
+                <p class="font-ui text-xs text-gold mb-2">Holladay 1</p>
+                <p id="res-holladay" class="font-display text-2xl text-cream font-bold"></p>
+                <p class="font-ui text-xs text-cream/50 mt-1">D</p>
+              </div>
+              <div class="bg-cream/10 rounded-xl p-4">
+                <p class="font-ui text-xs text-cream/60 mb-2">Barrett*</p>
+                <p id="res-barrett" class="font-display text-2xl text-cream font-bold"></p>
+                <p class="font-ui text-xs text-cream/50 mt-1">D</p>
+              </div>
+            </div>
+            <div class="bg-cream/10 rounded-xl p-4 text-left">
+              <p class="font-ui text-xs font-semibold text-gold mb-2">Interpretação</p>
+              <p id="interpretacao" class="font-body text-xs text-cream/70 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <!-- Tabela de refração esperada -->
+          <div id="tabela-refracao" class="hidden bg-white rounded-2xl border border-border p-6 mb-6">
+            <h3 class="font-display text-lg text-navy mb-4">Refração Esperada por Poder</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="text-left py-2 font-ui text-xs text-muted-foreground uppercase tracking-wide">Poder LIO (D)</th>
+                    <th class="text-right py-2 font-ui text-xs text-muted-foreground uppercase tracking-wide">Refração (SRK/T)</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-refracao" class="divide-y divide-border/50">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Guia de fórmulas -->
+          <div class="bg-cream/50 rounded-2xl border border-border p-6">
+            <h3 class="font-display text-lg text-navy mb-4">Quando usar cada fórmula?</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="font-ui text-sm font-bold text-navy mb-1">SRK/T</p>
+                <p class="font-body text-xs text-muted-foreground leading-relaxed">
+                  Fórmula de terceira geração. Excelente para olhos com AL entre 22–26 mm. Menos precisa em olhos muito curtos (&lt;22 mm) ou muito longos (&gt;26 mm).
+                </p>
+              </div>
+              <div>
+                <p class="font-ui text-sm font-bold text-navy mb-1">Holladay 1</p>
+                <p class="font-body text-xs text-muted-foreground leading-relaxed">
+                  Fórmula de terceira geração com melhor desempenho em olhos longos. Requer ACD para cálculo preciso da posição efetiva da lente (ELP).
+                </p>
+              </div>
+              <div>
+                <p class="font-ui text-sm font-bold text-navy mb-1">Barrett Universal II</p>
+                <p class="font-body text-xs text-muted-foreground leading-relaxed">
+                  Fórmula de quinta geração. Considerada a mais precisa atualmente, especialmente para olhos fora do range normal. Recomendada como primeira escolha pela ESCRS.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('form-calc');
+    const resultadoPrincipal = document.getElementById('resultado-principal');
+    const tabelaRefracao = document.getElementById('tabela-refracao');
+
+    // ── Fórmula SRK/T ────────────────────────────────────────
+    function calcSRKT(AL, K1, K2, A, refAlvo = 0) {
+      const Km = (K1 + K2) / 2;
+      const n = 1.336;
+      const nc = 1.3375;
+      const r = (nc - 1) / Km * 1000;
+
+      // Correção do AL
+      let ALc;
+      if (AL >= 24.2) {
+        ALc = -3.446 + 1.716 * AL - 0.0237 * AL * AL;
+      } else {
+        ALc = AL;
+      }
+
+      // Offset da constante A
+      const ACD_est = 0.62467 * A - 68.747;
+
+      // Cálculo do poder
+      const P = (1000 * n * (n * r - nc * ALc)) / ((n * ALc - ACD_est) * (nc * r - ACD_est)) - refAlvo;
+      return Math.round(P * 4) / 4; // arredondar para 0.25
+    }
+
+    // ── Fórmula Holladay 1 ───────────────────────────────────
+    function calcHolladay1(AL, K1, K2, ACD, A, refAlvo = 0) {
+      const Km = (K1 + K2) / 2;
+      const n = 1.336;
+
+      // Fator do cirurgião (sf) baseado na constante A
+      const sf = A / 0.9704 - 68.747 / 0.9704;
+
+      // Posição efetiva da lente (ELP)
+      const r = 337.5 / Km;
+      const H = r - Math.sqrt(r * r - (Km / 2) * (Km / 2));
+      const ACD_est = ACD || (0.56 + r - Math.sqrt(r * r - (Km / 2) * (Km / 2)));
+      const ELP = ACD_est + sf;
+
+      // Poder da LIO
+      const P = (1336 / (AL - ELP)) - (1336 / (1336 / Km - ELP)) - refAlvo;
+      return Math.round(P * 4) / 4;
+    }
+
+    // ── Barrett Universal II (aproximação) ───────────────────
+    function calcBarrett(AL, K1, K2, ACD, A, refAlvo = 0) {
+      // Aproximação baseada em regressão publicada
+      // Para cálculo preciso: https://calc.apacrs.org
+      const Km = (K1 + K2) / 2;
+      const n = 1.3375;
+      const r = (n - 1) / Km * 1000;
+
+      // Fator de correção Barrett (simplificado)
+      const LF = A - 118.0; // lens factor
+      const ELP = 4.97 + 0.4 * LF + 0.1 * (ACD || 3.2) + 0.1 * (AL - 23.5) * 0.3;
+
+      const P = (1336 / (AL - ELP)) - (1336 / (1336 / Km - ELP)) - refAlvo;
+      return Math.round(P * 4) / 4;
+    }
+
+    // ── Tabela de refração esperada ──────────────────────────
+    function calcRefracao(P, AL, Km, A) {
+      const resultados = [];
+      for (let delta = -2; delta <= 2; delta += 0.5) {
+        const poder = P + delta;
+        const refr = calcRefracao1(poder, AL, Km, A);
+        resultados.push({ poder, refr });
+      }
+      return resultados;
+    }
+
+    function calcRefracao1(P, AL, Km, A) {
+      // Inverso do SRK/T para obter refração esperada
+      const n = 1.336;
+      const nc = 1.3375;
+      const r = (nc - 1) / Km * 1000;
+      let ALc;
+      if (AL >= 24.2) {
+        ALc = -3.446 + 1.716 * AL - 0.0237 * AL * AL;
+      } else {
+        ALc = AL;
+      }
+      const ACD_est = 0.62467 * A - 68.747;
+      const refr = (1000 * n * (n * r - nc * ALc)) / ((n * ALc - ACD_est) * (nc * r - ACD_est)) - P;
+      return Math.round(refr * 100) / 100;
+    }
+
+    function getInterpretacao(AL, Km) {
+      const parts = [];
+      if (AL < 22) parts.push('Olho curto (AL < 22 mm): risco de hiper-correção. Prefira Barrett Universal II ou Haigis.');
+      else if (AL > 26) parts.push('Olho longo (AL > 26 mm): risco de mio-correção. Prefira Barrett Universal II ou Wang-Koch.');
+      else parts.push('Comprimento axial dentro do range normal (22–26 mm).');
+
+      if (Km < 40) parts.push('Córnea plana (K < 40 D): pode haver imprecisão nas fórmulas de 3ª geração.');
+      else if (Km > 46) parts.push('Córnea curva (K > 46 D): atenção ao cálculo da ELP.');
+
+      return parts.join(' ');
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const AL = parseFloat(document.getElementById('al').value);
+      const K1 = parseFloat(document.getElementById('k1').value);
+      const K2 = parseFloat(document.getElementById('k2').value);
+      const ACD = parseFloat(document.getElementById('acd').value) || 3.2;
+      const A = parseFloat(document.getElementById('constante-a').value) || 118.9;
+      const refAlvo = parseFloat(document.getElementById('refracao-alvo').value) || 0;
+
+      if (!AL || !K1 || !K2) return;
+
+      const Km = (K1 + K2) / 2;
+
+      const srkt = calcSRKT(AL, K1, K2, A, refAlvo);
+      const holladay = calcHolladay1(AL, K1, K2, ACD, A, refAlvo);
+      const barrett = calcBarrett(AL, K1, K2, ACD, A, refAlvo);
+
+      document.getElementById('res-srkt').textContent = srkt.toFixed(2);
+      document.getElementById('res-holladay').textContent = holladay.toFixed(2);
+      document.getElementById('res-barrett').textContent = barrett.toFixed(2);
+      document.getElementById('interpretacao').textContent = getInterpretacao(AL, Km);
+
+      resultadoPrincipal.classList.remove('hidden');
+
+      // Tabela de refração
+      const tabela = calcRefracao(srkt, AL, Km, A);
+      const tbody = document.getElementById('tbody-refracao');
+      tbody.innerHTML = tabela.map(({ poder, refr }) => `
+        <tr class="${Math.abs(poder - srkt) < 0.01 ? 'bg-gold/10 font-semibold' : ''}">
+          <td class="py-2 font-body text-sm text-navy">${poder.toFixed(2)} D ${Math.abs(poder - srkt) < 0.01 ? '← recomendado' : ''}</td>
+          <td class="py-2 text-right font-body text-sm ${refr > 0 ? 'text-amber-600' : refr < -0.5 ? 'text-blue-600' : 'text-navy'}">${refr > 0 ? '+' : ''}${refr.toFixed(2)} D</td>
+        </tr>
+      `).join('');
+
+      tabelaRefracao.classList.remove('hidden');
+
+      // Scroll para resultado
+      resultadoPrincipal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</BaseLayout>

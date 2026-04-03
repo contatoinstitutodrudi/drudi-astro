@@ -1,0 +1,499 @@
+---
+// ============================================================
+//  Portal de Lentes — Catálogo Completo
+//  institutodrudiealmeida.com.br/portal-de-lentes/catalogo/
+//  SEO + GEO otimizado | Drudi e Almeida
+// ============================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LENTES, TIPOS_LENTE, FABRICANTES, DESCRICOES_TIPO } from '../../data/lentes';
+---
+
+<BaseLayout
+  title="Catálogo de Lentes Intraoculares | Portal de Lentes | Drudi e Almeida"
+  description="Catálogo completo com 34 lentes intraoculares premium: trifocais, EDOF, tóricas, monofocais. Compare PanOptix, Vivity, Synergy, Symfony e muito mais. Drudi e Almeida."
+  keywords="catálogo lentes intraoculares, PanOptix, Vivity, Synergy, Symfony, lente trifocal, lente EDOF, lente tórica, cirurgia catarata São Paulo"
+  canonicalPath="/portal-de-lentes/catalogo"
+>
+  <!-- Hero compacto -->
+  <section class="bg-navy py-14">
+    <div class="container">
+      <nav class="flex items-center gap-2 mb-4 text-cream/50 font-ui text-xs">
+        <a href="/" class="hover:text-gold transition-colors">Home</a>
+        <span>/</span>
+        <a href="/portal-de-lentes/" class="hover:text-gold transition-colors">Portal de Lentes</a>
+        <span>/</span>
+        <span class="text-gold">Catálogo</span>
+      </nav>
+      <h1 class="font-display text-3xl md:text-4xl text-cream mb-3">
+        Catálogo de <span class="text-gold italic">Lentes Intraoculares</span>
+      </h1>
+      <p class="font-body text-cream/70 max-w-2xl">
+        {LENTES.length} lentes intraoculares premium de 8 fabricantes. Use os filtros para encontrar a tecnologia ideal.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filtros + Grid -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- Sidebar de filtros -->
+        <aside class="lg:w-64 flex-shrink-0">
+          <div class="sticky top-28 space-y-6">
+            <!-- Busca -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-2 block">Buscar</label>
+              <input
+                type="text"
+                id="busca"
+                placeholder="Nome da lente..."
+                class="w-full border border-border rounded-lg px-4 py-2.5 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30"
+              />
+            </div>
+
+            <!-- Filtro por tipo -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-3 block">Tipo de Lente</label>
+              <div class="space-y-1.5">
+                <button
+                  class="filtro-tipo w-full text-left px-3 py-2 rounded-lg font-ui text-sm font-medium transition-colors bg-navy text-white"
+                  data-tipo="todos"
+                >
+                  Todos os tipos
+                </button>
+                {TIPOS_LENTE.map(tipo => {
+                  const count = LENTES.filter(l => l.tipo === tipo).length;
+                  return (
+                    <button
+                      class="filtro-tipo w-full text-left px-3 py-2 rounded-lg font-ui text-sm font-medium transition-colors text-navy/70 hover:bg-navy/8 hover:text-navy"
+                      data-tipo={tipo}
+                    >
+                      <span class="flex items-center justify-between">
+                        <span class="truncate">{tipo}</span>
+                        <span class="text-xs text-muted-foreground ml-2 flex-shrink-0">{count}</span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <!-- Filtro por fabricante -->
+            <div>
+              <label class="font-ui text-xs font-semibold text-navy tracking-wide uppercase mb-3 block">Fabricante</label>
+              <div class="space-y-1.5">
+                <button
+                  class="filtro-fab w-full text-left px-3 py-2 rounded-lg font-ui text-sm font-medium transition-colors bg-navy text-white"
+                  data-fab="todos"
+                >
+                  Todos os fabricantes
+                </button>
+                {FABRICANTES.map(fab => {
+                  const count = LENTES.filter(l => l.fabricante === fab).length;
+                  return (
+                    <button
+                      class="filtro-fab w-full text-left px-3 py-2 rounded-lg font-ui text-sm font-medium transition-colors text-navy/70 hover:bg-navy/8 hover:text-navy"
+                      data-fab={fab}
+                    >
+                      <span class="flex items-center justify-between">
+                        <span class="truncate">{fab}</span>
+                        <span class="text-xs text-muted-foreground ml-2 flex-shrink-0">{count}</span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <!-- Botão comparar -->
+            <div class="pt-4 border-t border-border">
+              <p class="font-ui text-xs text-muted-foreground mb-3">Selecione até 3 lentes para comparar</p>
+              <button
+                id="btn-comparar"
+                disabled
+                class="w-full bg-gold text-navy font-ui text-sm font-bold px-4 py-2.5 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gold-light transition-colors"
+              >
+                Comparar selecionadas (<span id="count-selecionadas">0</span>)
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Grid de lentes -->
+        <div class="flex-1">
+          <!-- Contador -->
+          <div class="flex items-center justify-between mb-6">
+            <p class="font-ui text-sm text-muted-foreground">
+              Exibindo <span id="count-exibindo" class="font-semibold text-navy">{LENTES.length}</span> lentes
+            </p>
+          </div>
+
+          <!-- Grid -->
+          <div id="grid-lentes" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {LENTES.map(lente => (
+              <div
+                class="lente-card rounded-xl border border-border/60 bg-white hover:shadow-lg hover:border-gold/30 transition-all duration-300 flex flex-col"
+                data-tipo={lente.tipo}
+                data-fab={lente.fabricante}
+                data-nome={lente.nome.toLowerCase()}
+                data-id={lente.id}
+              >
+                <div class="p-6 flex-1">
+                  <!-- Header -->
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div>
+                      <span class="inline-block bg-navy/8 text-navy font-ui text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
+                        {lente.tipo}
+                      </span>
+                      <h3 class="font-display text-lg text-navy leading-tight">{lente.nome}</h3>
+                      <p class="font-ui text-xs text-muted-foreground mt-0.5">{lente.fabricante}</p>
+                    </div>
+                    {lente.destaque && (
+                      <span class="flex-shrink-0 bg-gold/15 text-gold font-ui text-[10px] font-bold px-2 py-1 rounded-full border border-gold/30 uppercase tracking-wide">
+                        Destaque
+                      </span>
+                    )}
+                  </div>
+
+                  <!-- Descrição -->
+                  <p class="font-body text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                    {lente.descricao}
+                  </p>
+
+                  <!-- Specs -->
+                  {lente.faixaDioptria && (
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="font-ui text-xs text-muted-foreground">Dioptria:</span>
+                      <span class="font-ui text-xs font-semibold text-navy">{lente.faixaDioptria}</span>
+                    </div>
+                  )}
+
+                  <!-- Diferenciais -->
+                  <ul class="space-y-1.5 mb-4">
+                    {lente.diferenciais.slice(0, 3).map(d => (
+                      <li class="flex items-start gap-2 font-body text-xs text-muted-foreground">
+                        <svg class="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="line-clamp-1">{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-6 pb-5 flex items-center gap-3 border-t border-border/40 pt-4">
+                  <button
+                    class="btn-selecionar flex-1 border border-navy/20 text-navy font-ui text-xs font-semibold px-3 py-2 rounded-lg hover:bg-navy hover:text-white transition-colors"
+                    data-id={lente.id}
+                    data-nome={lente.nome}
+                  >
+                    + Comparar
+                  </button>
+                  <a
+                    href={`/portal-de-lentes/catalogo/?lente=${lente.id}`}
+                    class="flex-1 text-center bg-navy/8 text-navy font-ui text-xs font-semibold px-3 py-2 rounded-lg hover:bg-navy hover:text-white transition-colors"
+                  >
+                    Ver detalhes
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Estado vazio -->
+          <div id="estado-vazio" class="hidden text-center py-20">
+            <svg class="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <p class="font-body text-muted-foreground">Nenhuma lente encontrada com esses filtros.</p>
+            <button id="limpar-filtros" class="mt-4 font-ui text-sm text-gold hover:underline">Limpar filtros</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de detalhes -->
+  <div id="modal-lente" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-8">
+        <div class="flex items-start justify-between mb-6">
+          <div>
+            <span id="modal-tipo" class="inline-block bg-navy/8 text-navy font-ui text-xs font-semibold px-2.5 py-1 rounded-full mb-2"></span>
+            <h2 id="modal-nome" class="font-display text-2xl text-navy"></h2>
+            <p id="modal-fab" class="font-ui text-sm text-muted-foreground mt-1"></p>
+          </div>
+          <button id="modal-fechar" class="w-8 h-8 rounded-full bg-navy/8 flex items-center justify-center hover:bg-navy/15 transition-colors">
+            <svg class="w-4 h-4 text-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <p id="modal-desc" class="font-body text-sm text-muted-foreground leading-relaxed mb-6"></p>
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="bg-cream/50 rounded-xl p-4">
+            <p class="font-ui text-xs text-muted-foreground mb-1">Material</p>
+            <p id="modal-material" class="font-ui text-sm font-semibold text-navy"></p>
+          </div>
+          <div class="bg-cream/50 rounded-xl p-4">
+            <p class="font-ui text-xs text-muted-foreground mb-1">Óptica</p>
+            <p id="modal-optica" class="font-ui text-sm font-semibold text-navy"></p>
+          </div>
+          <div class="bg-cream/50 rounded-xl p-4">
+            <p class="font-ui text-xs text-muted-foreground mb-1">Faixa de Dioptria</p>
+            <p id="modal-dioptria" class="font-ui text-sm font-semibold text-navy"></p>
+          </div>
+          <div class="bg-cream/50 rounded-xl p-4">
+            <p class="font-ui text-xs text-muted-foreground mb-1">Constante A</p>
+            <p id="modal-acd" class="font-ui text-sm font-semibold text-navy"></p>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="font-ui text-sm font-bold text-navy mb-3">Diferenciais</h3>
+          <ul id="modal-diferenciais" class="space-y-2"></ul>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="font-ui text-sm font-bold text-navy mb-3">Indicações</h3>
+          <ul id="modal-indicacoes" class="space-y-2"></ul>
+        </div>
+
+        <div class="flex gap-3 pt-4 border-t border-border">
+          <a
+            href="https://wa.me/5511916544653?text=Olá! Gostaria de saber mais sobre a lente"
+            id="modal-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 text-center bg-gold text-navy font-ui text-sm font-bold px-4 py-3 rounded-lg hover:bg-gold-light transition-colors"
+          >
+            Consultar sobre esta lente
+          </a>
+          <button
+            id="modal-btn-comparar"
+            class="flex-1 border border-navy/20 text-navy font-ui text-sm font-semibold px-4 py-3 rounded-lg hover:bg-navy hover:text-white transition-colors"
+          >
+            + Adicionar ao comparador
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ lentesData: LENTES }}>
+    // ── Estado ──────────────────────────────────────────────
+    let tipoAtivo = 'todos';
+    let fabAtivo = 'todos';
+    let busca = '';
+    let selecionadas = [];
+    let lenteAtual = null;
+
+    // Verificar URL params na carga
+    const params = new URLSearchParams(window.location.search);
+    const tipoParam = params.get('tipo');
+    const lenteParam = params.get('lente');
+
+    // ── Elementos ───────────────────────────────────────────
+    const cards = document.querySelectorAll('.lente-card');
+    const countExibindo = document.getElementById('count-exibindo');
+    const estadoVazio = document.getElementById('estado-vazio');
+    const gridLentes = document.getElementById('grid-lentes');
+    const btnComparar = document.getElementById('btn-comparar');
+    const countSelecionadas = document.getElementById('count-selecionadas');
+    const inputBusca = document.getElementById('busca');
+    const modal = document.getElementById('modal-lente');
+
+    // ── Filtros ──────────────────────────────────────────────
+    function aplicarFiltros() {
+      let count = 0;
+      cards.forEach(card => {
+        const tipo = card.dataset.tipo;
+        const fab = card.dataset.fab;
+        const nome = card.dataset.nome;
+        const matchTipo = tipoAtivo === 'todos' || tipo === tipoAtivo;
+        const matchFab = fabAtivo === 'todos' || fab === fabAtivo;
+        const matchBusca = !busca || nome.includes(busca.toLowerCase()) || fab.toLowerCase().includes(busca.toLowerCase());
+        if (matchTipo && matchFab && matchBusca) {
+          card.style.display = '';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      countExibindo.textContent = count;
+      estadoVazio.classList.toggle('hidden', count > 0);
+      gridLentes.classList.toggle('hidden', count === 0);
+    }
+
+    // Filtros de tipo
+    document.querySelectorAll('.filtro-tipo').forEach(btn => {
+      btn.addEventListener('click', () => {
+        tipoAtivo = btn.dataset.tipo;
+        document.querySelectorAll('.filtro-tipo').forEach(b => {
+          b.classList.remove('bg-navy', 'text-white');
+          b.classList.add('text-navy/70', 'hover:bg-navy/8', 'hover:text-navy');
+        });
+        btn.classList.add('bg-navy', 'text-white');
+        btn.classList.remove('text-navy/70', 'hover:bg-navy/8', 'hover:text-navy');
+        aplicarFiltros();
+      });
+    });
+
+    // Filtros de fabricante
+    document.querySelectorAll('.filtro-fab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        fabAtivo = btn.dataset.fab;
+        document.querySelectorAll('.filtro-fab').forEach(b => {
+          b.classList.remove('bg-navy', 'text-white');
+          b.classList.add('text-navy/70', 'hover:bg-navy/8', 'hover:text-navy');
+        });
+        btn.classList.add('bg-navy', 'text-white');
+        btn.classList.remove('text-navy/70', 'hover:bg-navy/8', 'hover:text-navy');
+        aplicarFiltros();
+      });
+    });
+
+    // Busca
+    inputBusca.addEventListener('input', e => {
+      busca = e.target.value;
+      aplicarFiltros();
+    });
+
+    // Limpar filtros
+    document.getElementById('limpar-filtros')?.addEventListener('click', () => {
+      tipoAtivo = 'todos';
+      fabAtivo = 'todos';
+      busca = '';
+      inputBusca.value = '';
+      document.querySelectorAll('.filtro-tipo, .filtro-fab').forEach(b => {
+        b.classList.remove('bg-navy', 'text-white');
+        b.classList.add('text-navy/70', 'hover:bg-navy/8', 'hover:text-navy');
+      });
+      document.querySelector('.filtro-tipo[data-tipo="todos"]').classList.add('bg-navy', 'text-white');
+      document.querySelector('.filtro-fab[data-fab="todos"]').classList.add('bg-navy', 'text-white');
+      aplicarFiltros();
+    });
+
+    // ── Comparador ───────────────────────────────────────────
+    function atualizarComparador() {
+      countSelecionadas.textContent = selecionadas.length;
+      btnComparar.disabled = selecionadas.length < 2;
+      document.querySelectorAll('.btn-selecionar').forEach(btn => {
+        const id = btn.dataset.id;
+        const isSel = selecionadas.includes(id);
+        btn.textContent = isSel ? '✓ Selecionada' : '+ Comparar';
+        btn.classList.toggle('bg-gold', isSel);
+        btn.classList.toggle('text-navy', isSel);
+        btn.classList.toggle('border-gold', isSel);
+      });
+    }
+
+    document.querySelectorAll('.btn-selecionar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        if (selecionadas.includes(id)) {
+          selecionadas = selecionadas.filter(s => s !== id);
+        } else if (selecionadas.length < 3) {
+          selecionadas.push(id);
+        } else {
+          alert('Você pode comparar no máximo 3 lentes. Remova uma antes de adicionar outra.');
+          return;
+        }
+        atualizarComparador();
+      });
+    });
+
+    btnComparar.addEventListener('click', () => {
+      if (selecionadas.length >= 2) {
+        window.location.href = `/portal-de-lentes/comparar/?ids=${selecionadas.join(',')}`;
+      }
+    });
+
+    // ── Modal de detalhes ────────────────────────────────────
+    function abrirModal(id) {
+      const lente = lentesData.find(l => l.id === id);
+      if (!lente) return;
+      lenteAtual = lente;
+
+      document.getElementById('modal-tipo').textContent = lente.tipo;
+      document.getElementById('modal-nome').textContent = lente.nome;
+      document.getElementById('modal-fab').textContent = lente.fabricante;
+      document.getElementById('modal-desc').textContent = lente.descricao;
+      document.getElementById('modal-material').textContent = lente.material || '—';
+      document.getElementById('modal-optica').textContent = lente.optica || '—';
+      document.getElementById('modal-dioptria').textContent = lente.faixaDioptria || '—';
+      document.getElementById('modal-acd').textContent = lente.acd ? `${lente.acd}` : '—';
+
+      const listaDif = document.getElementById('modal-diferenciais');
+      listaDif.innerHTML = lente.diferenciais.map(d =>
+        `<li class="flex items-start gap-2 font-body text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          ${d}
+        </li>`
+      ).join('');
+
+      const listaInd = document.getElementById('modal-indicacoes');
+      listaInd.innerHTML = lente.indicacoes.map(i =>
+        `<li class="flex items-start gap-2 font-body text-sm text-muted-foreground">
+          <svg class="w-4 h-4 text-navy mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          ${i}
+        </li>`
+      ).join('');
+
+      document.getElementById('modal-whatsapp').href =
+        `https://wa.me/5511916544653?text=Olá! Gostaria de saber mais sobre a lente ${lente.nome} (${lente.fabricante}).`;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-fechar').addEventListener('click', fecharModal);
+    modal.addEventListener('click', e => { if (e.target === modal) fecharModal(); });
+
+    document.getElementById('modal-btn-comparar')?.addEventListener('click', () => {
+      if (!lenteAtual) return;
+      const id = lenteAtual.id;
+      if (!selecionadas.includes(id)) {
+        if (selecionadas.length < 3) {
+          selecionadas.push(id);
+          atualizarComparador();
+          fecharModal();
+        } else {
+          alert('Você pode comparar no máximo 3 lentes.');
+        }
+      }
+    });
+
+    // Abrir modal ao clicar em "Ver detalhes"
+    document.querySelectorAll('a[href*="?lente="]').forEach(link => {
+      link.addEventListener('click', e => {
+        const url = new URL(link.href);
+        const id = url.searchParams.get('lente');
+        if (id) {
+          e.preventDefault();
+          abrirModal(id);
+        }
+      });
+    });
+
+    // ── Aplicar params da URL ────────────────────────────────
+    if (tipoParam) {
+      const btn = document.querySelector(`.filtro-tipo[data-tipo="${tipoParam}"]`);
+      if (btn) btn.click();
+    }
+    if (lenteParam) {
+      setTimeout(() => abrirModal(lenteParam), 100);
+    }
+  </script>
+</BaseLayout>
