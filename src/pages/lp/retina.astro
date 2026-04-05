@@ -57,6 +57,7 @@ const depoimentos = [
     /* Announcement Bar */
     .ann-bar { background: var(--navy-deep); color: var(--cream); text-align: center; padding: 6px 16px; font-size: 12px; font-weight: 500; }
     .ann-bar strong { color: var(--gold); }
+    @media (max-width: 859px) { .ann-bar { display: none; } }
 
     /* Header */
     .lp-header { background: var(--white); border-bottom: 1px solid rgba(44,62,80,0.1); padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
@@ -66,6 +67,7 @@ const depoimentos = [
     .btn-header-phone:hover { background: var(--navy-deep); }
     .btn-header-wa { display: flex; align-items: center; gap: 6px; background: #25d366; color: var(--white); padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; transition: background 0.2s; }
     .btn-header-wa:hover { background: #1fb855; }
+    @media (max-width: 859px) { .btn-header-wa { display: none !important; } }
 
     /* HERO */
     .hero { position: relative; width: 100%; display: flex; flex-direction: column; }
@@ -80,7 +82,7 @@ const depoimentos = [
     }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(20,32,48,0.80) 0%, rgba(20,32,48,0.60) 55%, rgba(20,32,48,0.25) 100%); }
     .hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; padding: 20px 20px 14px 20px; text-align: left; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,169,97,0.18); border: 1px solid rgba(201,169,97,0.45); color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; }
+    .hero-badge { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #1a2e45; background: linear-gradient(105deg, #b8922a 0%, #e8c96a 35%, #f5e09a 50%, #e8c96a 65%, #b8922a 100%); border: none; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; display: inline-block; box-shadow: 0 2px 12px rgba(201,169,97,0.45), inset 0 1px 0 rgba(255,255,255,0.4); }
     .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 500; color: var(--white); line-height: 1.25; letter-spacing: -0.01em; }
     .hero h1 .h-cat { color: var(--gold); font-style: italic; font-size: 2.6rem; font-weight: 700; }
     .hero h1 .h-price { color: var(--gold); font-style: italic; font-size: 2.8rem; font-weight: 700; }
@@ -221,6 +223,15 @@ const depoimentos = [
     .lp-footer p { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.8; }
     .lp-footer a { color: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(255,255,255,0.2); }
 
+    /* Mobile: hero termina exatamente na linha do sticky bar */
+    @media (max-width: 859px) {
+      .hero {
+        min-height: calc(100dvh - 56px - 56px);
+        justify-content: space-between;
+      }
+      .hero-card-wrap { background: transparent; padding: 0 12px; }
+      .form-card { border-radius: 16px 16px 0 0; box-shadow: 0 -6px 32px rgba(0,0,0,0.22); border-top: 3px solid var(--gold); }
+    }
     /* Sticky CTA Mobile */
     .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; grid-template-columns: 1fr auto; z-index: 300; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
     .sticky-cta .s-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: var(--white); padding: 15px; font-size: 14px; font-weight: 700; }
@@ -259,7 +270,7 @@ const depoimentos = [
       .specialist-img { width: 100%; height: 260px; object-position: center 15%; }
       .btn-header-phone { display: none; }
       .lp-header { padding: 10px 16px; }
-      .btn-header-wa { font-size: 11px; padding: 7px 12px; display: flex !important; }
+      .btn-header-wa { font-size: 11px; padding: 7px 12px; display: none !important; }
       .convenios-logos { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
@@ -319,7 +330,7 @@ const depoimentos = [
       <div class="hero-checks">
         <span class="hero-check">✓ Injeção Intravítrea</span>
         <span class="hero-check">✓ OCT Alta Resolução</span>
-        <span class="hero-check">✓ Convênios Aceitos</span>
+        <span class="hero-check">✓ Cirurgias</span>
       </div>
     </div>
     <div class="hero-card-wrap">
