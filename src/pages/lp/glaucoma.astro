@@ -56,6 +56,7 @@ const depoimentos = [
     /* Announcement Bar */
     .ann-bar { background: var(--navy-deep); color: var(--cream); text-align: center; padding: 6px 16px; font-size: 12px; font-weight: 500; }
     .ann-bar strong { color: var(--gold); }
+    @media (max-width: 859px) { .ann-bar { display: none; } }
 
     /* Header */
     .lp-header { background: var(--white); border-bottom: 1px solid rgba(44,62,80,0.1); padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
@@ -65,6 +66,7 @@ const depoimentos = [
     .btn-header-phone:hover { background: var(--navy-deep); }
     .btn-header-wa { display: flex; align-items: center; gap: 6px; background: #25d366; color: var(--white); padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; transition: background 0.2s; }
     .btn-header-wa:hover { background: #1fb855; }
+    @media (max-width: 859px) { .btn-header-wa { display: none; } }
 
     /* HERO */
     .hero { position: relative; width: 100%; display: flex; flex-direction: column; }
@@ -319,9 +321,9 @@ const depoimentos = [
       <h1>Preserve sua Visão — <span class="h-cat">Glaucoma</span> tem tratamento e o diagnóstico precoce é <span class="h-inst">essencial</span></h1>
       <div class="hero-divider"></div>
       <div class="hero-checks">
-        <span class="hero-check">✓ Diagnóstico Preciso</span>
-        <span class="hero-check">✓ Laser e Cirurgia</span>
-        <span class="hero-check">✓ Convênios Aceitos</span>
+        <span class="hero-check">✓ Diagnóstico Precoce</span>
+        <span class="hero-check">✓ Laser</span>
+        <span class="hero-check">✓ Tratamento Cirúrgico</span>
       </div>
     </div>
     <div class="hero-card-wrap">
@@ -390,7 +392,6 @@ const depoimentos = [
           <a href={WA_DISPONIBILIDADE} target="_blank" rel="noopener noreferrer" class="btn-price btn-price-outline">Agendar consulta</a>
         </div>
         <div class="price-card featured">
-          <div class="featured-badge">MAIS INDICADO</div>
           <h3 class="price-card-title">Laser (SLT / ALT)</h3>
           <p class="price-card-desc">Trabeculoplastia a laser para reduzir a pressão intraocular, podendo diminuir ou eliminar a necessidade de colírios.</p>
           <div class="price-value" style="font-size:1.6rem;color:var(--navy)">Consulte</div>
@@ -415,7 +416,7 @@ const depoimentos = [
             <li><span class="check-icon">✓</span> Controle duradouro da pressão</li>
             <li><span class="check-icon">✓</span> Acompanhamento pós-operatório completo</li>
           </ul>
-          <a href={WA_CONVENIO} target="_blank" rel="noopener noreferrer" class="btn-price btn-price-navy">Verificar meu convênio</a>
+          <a href={WA_DISPONIBILIDADE} target="_blank" rel="noopener noreferrer" class="btn-price btn-price-navy">Agendar Avaliação</a>
         </div>
       </div>
       <p class="price-disclaimer">* Todos os tratamentos são cobertos pelos principais convênios. <a href={WA_DUVIDA} target="_blank" rel="noopener noreferrer">Solicite orientação personalizada.</a></p>
