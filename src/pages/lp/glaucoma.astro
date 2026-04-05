@@ -227,9 +227,10 @@ const depoimentos = [
 
     /* Sticky CTA Mobile */
     .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; grid-template-columns: 1fr auto; z-index: 300; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
-    /* Espaço para o sticky bar não cobrir o card no mobile */
+    /* Espaço para o sticky bar não cobrir o card no mobile — aplicado ao form-card, não ao wrapper */
     @media (max-width: 859px) {
-      .hero-card-wrap { padding-bottom: 56px; }
+      .form-card { margin-bottom: 56px; }
+      .hero-card-wrap { padding-bottom: 0; }
     }
     .sticky-cta .s-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: var(--white); padding: 15px; font-size: 14px; font-weight: 700; }
     .sticky-cta .s-phone { display: flex; align-items: center; justify-content: center; background: var(--navy); color: var(--white); padding: 15px 20px; }
@@ -317,7 +318,7 @@ const depoimentos = [
 
   <section class="hero">
     <div class="hero-bg">
-      <img src="/images/glaucoma-lp-hero-480w.webp" srcset="/images/glaucoma-lp-hero-480w.webp 480w, /images/glaucoma-lp-hero-768w.webp 768w, /images/glaucoma-lp-hero-960w.webp 960w" sizes="100vw" alt="Vincent van Gogh — A Noite Estrelada, 1889" width="960" height="640" fetchpriority="high" decoding="async" />
+      <img src="/images/art-vangogh-300w_ec1adebc_fab9e3db.webp" srcset="/images/art-vangogh-300w_ec1adebc_fab9e3db.webp 300w, /images/art-vangogh-600w_61afdfcd_f834e739.webp 600w" sizes="100vw" alt="Vincent van Gogh — Noite Estrelada sobre o Ródano, 1888" width="600" height="478" fetchpriority="high" decoding="async" style="object-position: center 40%;" />
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-copy">
