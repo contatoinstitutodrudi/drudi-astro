@@ -227,10 +227,19 @@ const depoimentos = [
 
     /* Sticky CTA Mobile */
     .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; display: none; grid-template-columns: 1fr auto; z-index: 300; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
-    /* Espaço para o sticky bar não cobrir o card no mobile — aplicado ao form-card, não ao wrapper */
+    /* Mobile: hero-card-wrap cobre completamente a imagem de fundo e alinha com sticky bar */
     @media (max-width: 859px) {
-      .form-card { margin-bottom: 56px; }
-      .hero-card-wrap { padding-bottom: 0; }
+      .hero-card-wrap {
+        background: #ffffff;
+        padding-bottom: 56px;
+        padding-top: 0;
+      }
+      .form-card {
+        border-radius: 0;
+        box-shadow: none;
+        border-top: 3px solid var(--gold);
+        margin-bottom: 0;
+      }
     }
     .sticky-cta .s-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: var(--white); padding: 15px; font-size: 14px; font-weight: 700; }
     .sticky-cta .s-phone { display: flex; align-items: center; justify-content: center; background: var(--navy); color: var(--white); padding: 15px 20px; }
